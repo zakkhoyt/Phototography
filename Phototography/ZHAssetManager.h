@@ -26,6 +26,8 @@ typedef void (^ZHAssetManagerFloatBlock)(float progress);
 -(void)getAssetsWithoutLocationWithCompletionBlock:(ZHAssetManagerErrorBlock)completionBlock;
 //-(void)getMomentsWithoutLocationWithCompletionBlock:(ZHAssetManagerMutableArrayBlock)completionBlock;
 
+-(void)writeLocation:(CLLocation*)location toAssetAtIndex:(NSUInteger)index completionBlock:(ZHAssetManagerErrorBlock)completionBlock;
+
 @end
 
 

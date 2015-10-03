@@ -8,6 +8,7 @@
 
 #import "ZHAssetDetailViewController.h"
 #import "ZHAssetManager.h"
+#import "ZHLocationViewController.h"
 
 @interface ZHAssetDetailViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *textView;
@@ -32,6 +33,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"SegueDetailsToLocation"]){
+        ZHLocationViewController *vc = segue.destinationViewController;
+        vc.asset = self.asset;
+    }
+    
+}
+
 -(void)setAsset:(PHAsset *)asset{
     if(_asset != asset){
         _asset = asset;
@@ -47,6 +56,12 @@
     } completionBlock:^(NSError *error) {
         
     }];
+}
+
+
+
+- (IBAction)tagBarButtonAction:(id)sender {
+    
 }
 
 

@@ -9,6 +9,7 @@
 #import "ZHAssetManager.h"
 @import CoreLocation;
 @import Photos;
+#import "PHAsset+Utility.h"
 
 
 
@@ -68,6 +69,17 @@
     });
 }
 
+-(void)writeLocation:(CLLocation*)location toAssetAtIndex:(NSUInteger)index completionBlock:(ZHAssetManagerErrorBlock)completionBlock{
+    if(index > self.assetsNoLocation.count){
+        NSLog(@"Index out of bounds");
+        return completionBlock([NSError errorWithDomain:@"ZH" code:777 userInfo:nil]);
+    }
+    
+    PHAsset *asset = self.assetsNoLocation[index];
+    [asset updateLocation:location creationDate:nil completionBlock:^(BOOL success) {
+        return completionBlock(nil);
+    }];
+}
 @end
 
 @implementation ZHAssetManager (PHPhotoLibraryChangeObserver)

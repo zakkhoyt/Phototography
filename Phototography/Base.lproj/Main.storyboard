@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9046" systemVersion="15A278b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Master-->
@@ -59,7 +60,14 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
+                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM">
+                        <barButtonItem key="rightBarButtonItem" title="Tag" id="pIB-Ay-Ud7">
+                            <connections>
+                                <action selector="tagBarButtonAction:" destination="JEX-9P-axG" id="zjp-Ko-HHO"/>
+                                <segue destination="BNN-6m-oYb" kind="show" identifier="SegueDetailsToLocation" id="ajt-Vr-Pkp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="x9w-PX-zjw" id="ySh-4k-mfY"/>
                         <outlet property="textView" destination="ORp-G0-QdX" id="dKD-xa-qkO"/>
@@ -68,6 +76,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="709" y="129"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="wpw-bl-YQO">
+            <objects>
+                <viewController storyboardIdentifier="ZHLocationViewController" id="BNN-6m-oYb" customClass="ZHLocationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sJz-b7-WPH"/>
+                        <viewControllerLayoutGuide type="bottom" id="omx-fQ-VrH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="S6C-RN-g34">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tqv-eg-Jhl">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                                <connections>
+                                    <outlet property="delegate" destination="BNN-6m-oYb" id="Nv8-hX-MzO"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tqv-eg-Jhl" firstAttribute="top" secondItem="S6C-RN-g34" secondAttribute="top" id="Hsr-qZ-Ldt"/>
+                            <constraint firstItem="tqv-eg-Jhl" firstAttribute="leading" secondItem="S6C-RN-g34" secondAttribute="leading" id="T34-N7-EvB"/>
+                            <constraint firstItem="omx-fQ-VrH" firstAttribute="top" secondItem="tqv-eg-Jhl" secondAttribute="bottom" id="cQO-WQ-pIG"/>
+                            <constraint firstAttribute="trailing" secondItem="tqv-eg-Jhl" secondAttribute="trailing" id="cg2-WW-4M1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="ix4-ri-RAM">
+                        <rightBarButtonItems>
+                            <barButtonItem style="plain" systemItem="search" id="I3G-09-L4g">
+                                <connections>
+                                    <action selector="searchBarButtonAction:" destination="BNN-6m-oYb" id="5TY-7X-Amh"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Save" id="v6S-9K-lW9">
+                                <connections>
+                                    <action selector="saveButtonAction:" destination="BNN-6m-oYb" id="HEM-sj-DBB"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="tqv-eg-Jhl" id="qUb-Cn-L4x"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u5x-vF-9eF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1423" y="129"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">

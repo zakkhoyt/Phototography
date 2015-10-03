@@ -62,9 +62,9 @@
 -(void)checkPermissions{
     VWWPhotosPermission *photos = [VWWPhotosPermission permissionWithLabelText:@"We will read your photo library to find photos without a geotag."];
 //    VWWCoreLocationWhenInUsePermission *locationWhenInUse = [VWWCoreLocationWhenInUsePermission permissionWithLabelText:@"For obtaining your current location"];
-//    VWWCoreLocationAlwaysPermission *al = [VWWCoreLocationAlwaysPermission permissionWithLabelText:@"please"];
-//    NSArray *permissions = @[al, photos];
-    NSArray *permissions = @[photos];
+    VWWCoreLocationAlwaysPermission *locationAlways = [VWWCoreLocationAlwaysPermission permissionWithLabelText:@"please"];
+    NSArray *permissions = @[locationAlways, photos];
+//    NSArray *permissions = @[photos];
     
     [VWWPermissionsManager requirePermissions:permissions
                                        title:@"Welcome to the Phototography! A tool to add geotags to your Apple Photo collection. Approve these permissions, then we can get started."
