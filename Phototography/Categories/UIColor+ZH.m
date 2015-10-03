@@ -1,15 +1,15 @@
 //
-//  UIColor+Peck.m
-//  Peck
+//  UIColor+ZH.m
+//  ZH
 //
 //  Created by Zakk Hoyt on 4/21/15.
 //  Copyright (c) 2015 Zakk Hoyt. All rights reserved.
 //
 
-#import "UIColor+Peck.h"
+#import "UIColor+ZH.h"
 #import "ZHDefines.h"
 
-@implementation UIColor (Peck)
+@implementation UIColor (ZH)
 
 +(UIColor*)randomColor{
     return [UIColor randomColorWithAlpha:1.0];
@@ -34,37 +34,37 @@
 }
 
 
-#pragma mark Peck
+#pragma mark ZH
 
 
-+(UIColor*)peckPurpleColor{
++(UIColor*)zhPurpleColor{
     return [UIColor colorWithRed:(119/(float)0xFF) green:(76/(float)0xFF) blue:(121/(float)0xFF) alpha:1.0];
 }
 
-+(UIColor*)peckYellowColor{
++(UIColor*)zhYellowColor{
     return [UIColor colorWithRed:(246/(float)0xFF) green:(225/(float)0xFF) blue:(92/(float)0xFF) alpha:1.0];
 }
 
-+(UIColor*)peckRedColor{
++(UIColor*)zhRedColor{
     return [UIColor colorWithRed:(185/(float)0xFF) green:(73/(float)0xFF) blue:(57/(float)0xFF) alpha:1.0];
 }
-+(UIColor*)peckGreenColor{
++(UIColor*)zhGreenColor{
     return [UIColor colorWithRed:(0x8E/(float)0xFF) green:(0xC4/(float)0xFF) blue:(0x64/(float)0xFF) alpha:1.0];
     
 }
-+(UIColor*)peckBlackColor{
++(UIColor*)zhBlackColor{
     return [UIColor colorWithRed:(59/(float)0xFF) green:(71/(float)0xFF) blue:(80/(float)0xFF) alpha:1.0];
 }
 
-+(UIColor*)peckBlueColor{
++(UIColor*)zhBlueColor{
     return [UIColor colorWithRed:(02/(float)0xFF) green:(0xBA/(float)0xFF) blue:(0xDB/(float)0xFF) alpha:1.0];
 }
 
-+(UIColor*)peckOrangeColor{
++(UIColor*)zhOrangeColor{
     return [UIColor colorWithRed:(0xFF/(float)0xFF) green:(0x9F/(float)0xFF) blue:(0x00/(float)0xFF) alpha:1.0];
 }
 
-+(UIColor*)peckDimBackgroundColor{
++(UIColor*)zhDimBackgroundColor{
     return [[UIColor blackColor] colorWithAlphaComponent:0.5];
 }
 
@@ -80,46 +80,46 @@
 
 
 
-+(UIColor*)peckBackgroundColor{
++(UIColor*)zhBackgroundColor{
     return [UIColor colorWithRed:(86.3/(float)0xFF) green:(86.3/(float)0xFF) blue:(86.3/(float)0xFF) alpha:1.0];
 }
-+(UIColor*)peckTranslucentBackgroundColor{
-    return [[UIColor peckBackgroundColor] colorWithAlphaComponent:0.9];
++(UIColor*)zhTranslucentBackgroundColor{
+    return [[UIColor zhBackgroundColor] colorWithAlphaComponent:0.9];
 }
 
-+(UIColor*)peckTintColor{
++(UIColor*)zhTintColor{
     return [UIColor orangeColor];
 }
-+(UIColor*)peckAlternateTintColor{
++(UIColor*)zhAlternateTintColor{
     return [UIColor purpleColor];
 }
-+(UIColor*)peckLightTextColor{
++(UIColor*)zhLightTextColor{
     return [UIColor darkTextColor];
 }
-+(UIColor*)peckDarkTextColor{
++(UIColor*)zhDarkTextColor{
     return [UIColor lightTextColor];
 }
 
 #else 
-+(UIColor*)peckBackgroundColor{
++(UIColor*)zhBackgroundColor{
     return [UIColor colorWithRed:(243/(float)0xFF) green:(242/(float)0xFF) blue:(237/(float)0xFF) alpha:1.0];
 }
-+(UIColor*)peckTranslucentBackgroundColor{
-    return [[UIColor peckBackgroundColor] colorWithAlphaComponent:0.9];
++(UIColor*)zhTranslucentBackgroundColor{
+    return [[UIColor zhBackgroundColor] colorWithAlphaComponent:0.9];
 }
-+(UIColor*)peckTintColor{
++(UIColor*)zhTintColor{
     // Blue
     return [UIColor colorWithRed:(02/(float)0xFF) green:(0xBA/(float)0xFF) blue:(0xDB/(float)0xFF) alpha:1.0];
 }
-+(UIColor*)peckAlternateTintColor{
++(UIColor*)zhAlternateTintColor{
     // Orange
-//    return [UIColor peckOrangeColor];
-    return [UIColor peckGreenColor];
+//    return [UIColor zhOrangeColor];
+    return [UIColor zhGreenColor];
 }
-+(UIColor*)peckLightTextColor{
++(UIColor*)zhLightTextColor{
     return [UIColor lightTextColor];
 }
-+(UIColor*)peckDarkTextColor{
++(UIColor*)zhDarkTextColor{
     return [UIColor darkTextColor];
 }
 

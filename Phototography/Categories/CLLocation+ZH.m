@@ -1,14 +1,14 @@
 //
-//  CLLocation+Peck.m
-//  Peck
+//  CLLocation+ZH.m
+//  ZH
 //
 //  Created by Zakk Hoyt on 4/28/15.
 //  Copyright (c) 2015 Zakk Hoyt. All rights reserved.
 //
 
-#import "CLLocation+Peck.h"
+#import "CLLocation+ZH.h"
 
-@implementation CLLocation (Peck)
+@implementation CLLocation (ZH)
 
 
 -(NSString*)stringForCoordinate{

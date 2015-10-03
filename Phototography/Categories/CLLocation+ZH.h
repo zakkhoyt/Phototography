@@ -1,6 +1,6 @@
 //
-//  CLLocation+Peck.h
-//  Peck
+//  CLLocation+ZH.h
+//  ZH
 //
 //  Created by Zakk Hoyt on 4/28/15.
 //  Copyright (c) 2015 Zakk Hoyt. All rights reserved.
@@ -10,7 +10,7 @@
 
 typedef void (^CLLocationStringBlock)(NSString *string);
 
-@interface CLLocation (Peck)
+@interface CLLocation (ZH)
 
 -(NSString*)stringForCoordinate;
 +(NSString*)stringForCoordinate:(CLLocationCoordinate2D)coordinate;

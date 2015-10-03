@@ -1,14 +1,14 @@
 //
-//  NSString+Peck.m
-//  Peck
+//  NSString+ZH.m
+//  ZH
 //
 //  Created by Zakk Hoyt on 5/4/15.
 //  Copyright (c) 2015 Zakk Hoyt. All rights reserved.
 //
 
-#import "NSString+Peck.h"
+#import "NSString+ZH.h"
 
-@implementation NSString (Peck)
+@implementation NSString (ZH)
 -(NSString*)paddedString{
 //    return [NSString stringWithFormat:@"  %@  ", self];
         return [NSString stringWithFormat:@"\t%@\t", self];

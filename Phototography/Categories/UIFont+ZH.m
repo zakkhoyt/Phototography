@@ -1,18 +1,18 @@
 //
-//  UIFont+Peck.m
-//  Peck
+//  UIFont+ZH.m
+//  ZH
 //
 //  Created by Zakk Hoyt on 6/8/15.
 //  Copyright (c) 2015 Zakk Hoyt. All rights reserved.
 //
 
-#import "UIFont+Peck.h"
+#import "UIFont+ZH.h"
 
 const CGFloat PKFontPointSizeDelta = 0;
 
-@implementation UIFont (Peck)
+@implementation UIFont (ZH)
 
-+(UIFont*)preferredPeckFontForTextStyle:(NSString *)style{
++(UIFont*)preferredZHFontForTextStyle:(NSString *)style{
     
     if([style isEqualToString:PKFontTextStyleHeadline]){
         UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];

@@ -1,16 +1,16 @@
 //
-//  NSDate+Peck.m
-//  Peck
+//  NSDate+ZH.m
+//  ZH
 //
 //  Created by Zakk Hoyt on 4/20/15.
 //  Copyright (c) 2015 Zakk Hoyt. All rights reserved.
 //
 
-#import "NSDate+Peck.h"
+#import "NSDate+ZH.h"
 #import "NSDate+Utilities.h"
 #import "ZHDefines.h"
 
-@implementation NSDate (Peck)
+@implementation NSDate (ZH)
 
 
 +(NSDate*)dateFromStringDownToTheSecond:(NSString*)string{

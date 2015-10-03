@@ -1,6 +1,6 @@
 //
-//  NSDate+Peck.h
-//  Peck
+//  NSDate+ZH.h
+//  ZH
 //
 //  Created by Zakk Hoyt on 4/20/15.
 //  Copyright (c) 2015 Zakk Hoyt. All rights reserved.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSDate (Peck)
+@interface NSDate (ZH)
 
 // Date from string
 +(NSDate*)dateFromStringDownToTheSecond:(NSString*)string;

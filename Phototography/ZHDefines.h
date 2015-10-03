@@ -1,6 +1,6 @@
 //
 //  PKDefines.h
-//  Peck
+//  ZH
 //
 //  Created by Zakk Hoyt on 06/03/2013.
 //
@@ -25,7 +25,7 @@
 //******************************************************************************
 // This is the main configuration section. Comment/Uncomment variables in this section only.
 
-////**  Use SF Giants color scheme instead of peck color scheme
+////**  Use SF Giants color scheme instead of zh color scheme
 //#define PK_ALTERNATE_COLORS 1
 
 //** Make the clustered annotations pulsate with random ripples even though they are not unviewed
@@ -47,14 +47,14 @@
 //******************************************************************************
 // Begin server defines:
 // Staging server
-#define PK_SERVER_STAGING                   @"http://peck.me:8080"    // Sends push notifications to production server
+#define PK_SERVER_STAGING                   @"http://zh.me:8080"    // Sends push notifications to production server
 #define PK_SERVER_API_STAGING               @"/api/v5"
 #define PK_PUB_NUB_PUB_KEY_STAGING          @"pub-c-5f52ba40-c142-44da-8a85-911582b03199"
 #define PK_PUB_NUB_SUB_KEY_STAGING          @"sub-c-4c37031e-ef5d-11e4-a4a1-02ee2ddab7fe"
 #define PK_MIXPANEL_KEY_STAGING             @""
 
 // QA server
-#define PK_SERVER_QA                        @"http://qa.peck.me:8080"    // Sends notifications to development(sandbox) server
+#define PK_SERVER_QA                        @"http://qa.zh.me:8080"    // Sends notifications to development(sandbox) server
 #define PK_SERVER_API_QA                    @"/api/v5"
 #define PK_PUB_NUB_PUB_KEY_QA               @"pub-c-ca70b892-f157-417c-bf3e-084fdec4293f"
 #define PK_PUB_NUB_SUB_KEY_QA               @"sub-c-5c7a7ddc-ef5d-11e4-bad8-02ee2ddab7fe"

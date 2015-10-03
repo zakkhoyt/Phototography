@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ZHAssetDetailViewController.h"
-#import "UIColor+Peck.h"
+#import "UIColor+ZH.h"
 
 @interface AppDelegate () <UISplitViewControllerDelegate>
 
@@ -66,52 +66,52 @@
     
     
     // UIView (this is what controls the color of the back button arrow)
-    [[UIView appearance] setTintColor:[UIColor peckTintColor]];
-//    [[UIView appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:[UIColor peckBackgroundColor]];
-    [[UIView appearanceWhenContainedInInstancesOfClasses:@[[UINavigationBar class]]] setTintColor:[UIColor peckBackgroundColor]];
+    [[UIView appearance] setTintColor:[UIColor zhTintColor]];
+//    [[UIView appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:[UIColor zhBackgroundColor]];
+    [[UIView appearanceWhenContainedInInstancesOfClasses:@[[UINavigationBar class]]] setTintColor:[UIColor zhBackgroundColor]];
     
     // UILabel
-    [[UILabel appearance] setTintColor:[UIColor peckGreenColor]];
+    [[UILabel appearance] setTintColor:[UIColor zhGreenColor]];
     
     // Navigation bar
-    NSDictionary *navBarAttributes = @{NSForegroundColorAttributeName : [UIColor peckBackgroundColor]};
+    NSDictionary *navBarAttributes = @{NSForegroundColorAttributeName : [UIColor zhBackgroundColor]};
     [[UINavigationBar appearance] setTitleTextAttributes:navBarAttributes];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor peckTintColor]];
-    [[UINavigationBar appearance] setTintColor:[UIColor peckBackgroundColor]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor zhTintColor]];
+    [[UINavigationBar appearance] setTintColor:[UIColor zhBackgroundColor]];
     // The nav bar back button
     [[UIBarButtonItem appearance] setTitleTextAttributes:navBarAttributes forState:UIControlStateNormal];
     
     // Tabbar
-    [[UITabBar appearance] setBarTintColor:[UIColor peckBackgroundColor]];
-    [[UITabBar appearance] setTintColor:[UIColor peckTintColor]];
+    [[UITabBar appearance] setBarTintColor:[UIColor zhBackgroundColor]];
+    [[UITabBar appearance] setTintColor:[UIColor zhTintColor]];
     
     // TabbarItem
-    NSDictionary *tabBarAttributes = @{NSForegroundColorAttributeName : [UIColor peckTintColor]};
+    NSDictionary *tabBarAttributes = @{NSForegroundColorAttributeName : [UIColor zhTintColor]};
     [[UITabBarItem appearance] setTitleTextAttributes:tabBarAttributes forState:UIControlStateNormal];
     
     // Segmented control
-    NSDictionary *segmentAttributes = @{NSForegroundColorAttributeName : [UIColor peckTintColor],
-                                        NSStrokeColorAttributeName : [UIColor peckBackgroundColor]};
+    NSDictionary *segmentAttributes = @{NSForegroundColorAttributeName : [UIColor zhTintColor],
+                                        NSStrokeColorAttributeName : [UIColor zhBackgroundColor]};
     [[UISegmentedControl appearance] setTitleTextAttributes:segmentAttributes forState:UIControlStateNormal];
     
     // Toolbar
-    [[UIToolbar appearance] setBarTintColor:[UIColor peckBackgroundColor]];
-    [[UIToolbar appearance] setTintColor:[UIColor peckTintColor]];
+    [[UIToolbar appearance] setBarTintColor:[UIColor zhBackgroundColor]];
+    [[UIToolbar appearance] setTintColor:[UIColor zhTintColor]];
     
     // Text controls
-    [[UITextView appearance] setTextColor:[UIColor peckDarkTextColor]];
-    [[UITextView appearance] setBackgroundColor:[UIColor peckBackgroundColor]];
+    [[UITextView appearance] setTextColor:[UIColor zhDarkTextColor]];
+    [[UITextView appearance] setBackgroundColor:[UIColor zhBackgroundColor]];
     
-    [[UITextField appearance] setTextColor:[UIColor peckDarkTextColor]];
-    [[UITextField appearance] setBackgroundColor:[UIColor peckBackgroundColor]];
+    [[UITextField appearance] setTextColor:[UIColor zhDarkTextColor]];
+    [[UITextField appearance] setBackgroundColor:[UIColor zhBackgroundColor]];
     
-    [[UITableView appearance] setBackgroundColor:[UIColor peckBackgroundColor]];
-    [[UITableViewCell appearance] setBackgroundColor:[UIColor peckBackgroundColor]];
+    [[UITableView appearance] setBackgroundColor:[UIColor zhBackgroundColor]];
+    [[UITableViewCell appearance] setBackgroundColor:[UIColor zhBackgroundColor]];
     
-    [[UICollectionView appearance] setBackgroundColor:[UIColor peckBackgroundColor]];
-    [[UICollectionViewCell appearance]setBackgroundColor:[UIColor peckBackgroundColor]];
+    [[UICollectionView appearance] setBackgroundColor:[UIColor zhBackgroundColor]];
+    [[UICollectionViewCell appearance]setBackgroundColor:[UIColor zhBackgroundColor]];
     
-    [[UIButton appearance]setTintColor:[UIColor peckTintColor]];
+    [[UIButton appearance]setTintColor:[UIColor zhTintColor]];
     
 }
 @end
