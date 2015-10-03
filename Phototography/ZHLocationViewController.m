@@ -12,8 +12,10 @@
 #import "ZHAssetManager.h"
 #import "PHAsset+Utility.h"
 #import "ZHPin.h"
+#import "ZHLocationSearchTableViewController.h"
 
 typedef void (^ZHLocationViewControllerEmptyBlock)();
+typedef void (^ZHLocationViewControllerSearchResponseBlock)(MKLocalSearchResponse *response);
 
 @interface ZHLocationViewController ()
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -33,7 +35,7 @@ typedef void (^ZHLocationViewControllerEmptyBlock)();
     
     __weak typeof(self) welf = self;
     [self setPerformAfterUpdatingLocation:^(){
-        MKCoordinateSpan span = MKCoordinateSpanMake(0.05, 0.05);
+        MKCoordinateSpan span = MKCoordinateSpanMake(0.1, 0.1);
         MKCoordinateRegion region = MKCoordinateRegionMake(welf.mapView.userLocation.coordinate, span);
         [welf.mapView setRegion:region animated:YES];
     }];
@@ -68,6 +70,8 @@ typedef void (^ZHLocationViewControllerEmptyBlock)();
  }
  */
 
+#pragma mark Private methods
+
 
 #pragma mark IBActions
 - (IBAction)currentBarButtonAction:(id)sender {
@@ -76,7 +80,19 @@ typedef void (^ZHLocationViewControllerEmptyBlock)();
 
 
 - (IBAction)searchBarButtonAction:(id)sender {
-    
+    ZHLocationSearchTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZHLocationSearchTableViewController"];
+    [vc setCoordinateBlock:^(CLLocationCoordinate2D coordinate) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.mapView removeAnnotations:self.mapView.annotations];
+            ZHPin *annotation = [[ZHPin alloc] initWithCoordinate:coordinate];
+            [self.mapView addAnnotation:annotation];
+            [self.mapView setCenterCoordinate:coordinate animated:YES];
+            [self dismissViewControllerAnimated:YES completion:NULL];
+        });
+    }];
+    UISearchController *sc = [[UISearchController alloc]initWithSearchResultsController:vc];
+    sc.searchResultsUpdater = vc;
+    [self presentViewController:sc animated:YES completion:NULL];
 }
 
 - (IBAction)saveButtonAction:(id)sender {

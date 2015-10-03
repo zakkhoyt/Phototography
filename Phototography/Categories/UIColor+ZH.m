@@ -75,8 +75,8 @@
 
 
 
-// See PKDefines.h
-#if defined(PK_ALTERNATE_COLORS)
+// See ZHDefines.h
+#if defined(ZH_ALTERNATE_COLORS)
 
 
 

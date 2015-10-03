@@ -135,7 +135,7 @@
     //    PHFetchResultChangeDetails *changeDetails = [changeInstance changeDetailsForFetchResult:self.moments];
     //
     //    if(changeDetails.changedIndexes){
-    //        PK_LOG_DEBUG(@"Detected that object(s) changed at indexes: %@", changeDetails.changedIndexes.description);
+    //        ZH_LOG_DEBUG(@"Detected that object(s) changed at indexes: %@", changeDetails.changedIndexes.description);
     //        NSMutableArray *changedMoments = [[NSMutableArray alloc]initWithCapacity:changeDetails.changedIndexes.count];
     //        [changeDetails.changedIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
     //            PHAssetCollection *moment = self.moments[idx];
@@ -143,7 +143,7 @@
     //        }];
     //        if(changedMoments.count){
     //            NSDictionary *dictionary = @{@"changedMoments" : changedMoments};
-    //            [[NSNotificationCenter defaultCenter] postNotificationName:PKAssetManagerMomentsChanged object:nil userInfo:dictionary];
+    //            [[NSNotificationCenter defaultCenter] postNotificationName:ZHAssetManagerMomentsChanged object:nil userInfo:dictionary];
     //        }
     //    }
 }
@@ -208,9 +208,9 @@
         
         CGFloat scale = [[UIScreen mainScreen]scale];
         CGSize size = CGSizeMake(imageView.bounds.size.width * scale, imageView.bounds.size.height * scale);
-        //        PK_LOG_DEBUG(@"Requesting image for imageView of size %@", NSStringFromCGSize(size));
+        //        ZH_LOG_DEBUG(@"Requesting image for imageView of size %@", NSStringFromCGSize(size));
         [_imageManager requestImageForAsset:phAsset targetSize:size contentMode:PHImageContentModeAspectFit options:options resultHandler:^(UIImage *result, NSDictionary *info) {
-            //        PK_LOG_DEBUG(@"info for asset: %@", info.description);
+            //        ZH_LOG_DEBUG(@"info for asset: %@", info.description);
             if(info[PHImageResultIsInCloudKey]){
                 // Call completion block from above
                 if(result){

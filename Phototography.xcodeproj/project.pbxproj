@@ -32,6 +32,7 @@
 		C67D869F1BBF7EF800B2C4CF /* UIFont+ZH.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86901BBF7EF800B2C4CF /* UIFont+ZH.m */; };
 		C67D86A01BBF7EF800B2C4CF /* UIView+RenderToImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86921BBF7EF800B2C4CF /* UIView+RenderToImage.m */; };
 		C67D86A11BBF7EF800B2C4CF /* UIViewController+AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86941BBF7EF800B2C4CF /* UIViewController+AlertController.m */; };
+		C67D86A91BBF959800B2C4CF /* ZHLocationSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86A81BBF959800B2C4CF /* ZHLocationSearchTableViewController.m */; };
 		E2A8CCBCF0FF12260E333EE7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C6D147742AB67BDF61BB20A /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +87,8 @@
 		C67D86931BBF7EF800B2C4CF /* UIViewController+AlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+AlertController.h"; path = "Categories/UIViewController+AlertController.h"; sourceTree = "<group>"; };
 		C67D86941BBF7EF800B2C4CF /* UIViewController+AlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+AlertController.m"; path = "Categories/UIViewController+AlertController.m"; sourceTree = "<group>"; };
 		C67D86A21BBF7F3000B2C4CF /* ZHDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHDefines.h; sourceTree = "<group>"; };
+		C67D86A71BBF959800B2C4CF /* ZHLocationSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLocationSearchTableViewController.h; sourceTree = "<group>"; };
+		C67D86A81BBF959800B2C4CF /* ZHLocationSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLocationSearchTableViewController.m; sourceTree = "<group>"; };
 		E544EB3B61E1508738FF4B96 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,7 +144,7 @@
 		C67D86301BBF429800B2C4CF /* Phototography */ = {
 			isa = PBXGroup;
 			children = (
-				C67D86A21BBF7F3000B2C4CF /* ZHDefines.h */,
+				C67D86A31BBF815E00B2C4CF /* Include */,
 				C67D865F1BBF538500B2C4CF /* Categories */,
 				C67D86521BBF4C0300B2C4CF /* Controllers */,
 				C67D86541BBF4C1200B2C4CF /* Documents */,
@@ -179,10 +182,7 @@
 				C67D86381BBF429800B2C4CF /* ZHMasterViewController.m */,
 				C67D863A1BBF429800B2C4CF /* ZHAssetDetailViewController.h */,
 				C67D863B1BBF429800B2C4CF /* ZHAssetDetailViewController.m */,
-				C67D86631BBF541600B2C4CF /* ZHLocationViewController.h */,
-				C67D86641BBF541600B2C4CF /* ZHLocationViewController.m */,
-				C67D86661BBF5B2700B2C4CF /* ZHPin.h */,
-				C67D86671BBF5B2700B2C4CF /* ZHPin.m */,
+				C67D86A51BBF955600B2C4CF /* Location */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -237,6 +237,35 @@
 				C67D86941BBF7EF800B2C4CF /* UIViewController+AlertController.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		C67D86A31BBF815E00B2C4CF /* Include */ = {
+			isa = PBXGroup;
+			children = (
+				C67D86A21BBF7F3000B2C4CF /* ZHDefines.h */,
+			);
+			name = Include;
+			sourceTree = "<group>";
+		};
+		C67D86A51BBF955600B2C4CF /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				C67D86A61BBF955C00B2C4CF /* Annotation */,
+				C67D86631BBF541600B2C4CF /* ZHLocationViewController.h */,
+				C67D86641BBF541600B2C4CF /* ZHLocationViewController.m */,
+				C67D86A71BBF959800B2C4CF /* ZHLocationSearchTableViewController.h */,
+				C67D86A81BBF959800B2C4CF /* ZHLocationSearchTableViewController.m */,
+			);
+			name = Location;
+			sourceTree = "<group>";
+		};
+		C67D86A61BBF955C00B2C4CF /* Annotation */ = {
+			isa = PBXGroup;
+			children = (
+				C67D86661BBF5B2700B2C4CF /* ZHPin.h */,
+				C67D86671BBF5B2700B2C4CF /* ZHPin.m */,
+			);
+			name = Annotation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -369,6 +398,7 @@
 				C67D86991BBF7EF800B2C4CF /* NSDate+Utilities.m in Sources */,
 				C67D86A01BBF7EF800B2C4CF /* UIView+RenderToImage.m in Sources */,
 				C67D869B1BBF7EF800B2C4CF /* NSString+ZH.m in Sources */,
+				C67D86A91BBF959800B2C4CF /* ZHLocationSearchTableViewController.m in Sources */,
 				C67D869A1BBF7EF800B2C4CF /* NSError+ZH.m in Sources */,
 				C67D86391BBF429800B2C4CF /* ZHMasterViewController.m in Sources */,
 				C67D86331BBF429800B2C4CF /* main.m in Sources */,

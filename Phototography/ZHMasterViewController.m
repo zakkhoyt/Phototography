@@ -28,10 +28,10 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Nav bar
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    //    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    //    self.navigationItem.rightBarButtonItem = addButton;
-    //    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+//    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+        UIBarButtonItem *modeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(modeBarButtonAction:)];
+        self.navigationItem.leftBarButtonItem = modeButton;
+
 
     // Data
     self.mode = ZHMasterViewControllerModeMoments;
@@ -153,6 +153,27 @@ typedef enum {
 //    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 //}
 
+
+#pragma mark IBActions
+-(void)modeBarButtonAction:(UIBarButtonItem*)sender{
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    [ac addAction:[UIAlertAction actionWithTitle:self.mode == ZHMasterViewControllerModeAssets ? @"✔️Assets " : @"Assets" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        self.mode = ZHMasterViewControllerModeAssets;
+        [self readAssets];
+    }]];
+    
+    [ac addAction:[UIAlertAction actionWithTitle:self.mode == ZHMasterViewControllerModeMoments ? @"✔️Moments " : @"Moments" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        self.mode = ZHMasterViewControllerModeMoments;
+        [self readAssets];
+    }]];
+    
+    [ac addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    [self presentViewController:ac animated:YES completion:NULL];
+
+}
 
 #pragma mark - Table View
 

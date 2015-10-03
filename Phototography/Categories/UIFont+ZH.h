@@ -8,29 +8,29 @@
 
 #import <UIKit/UIKit.h>
 
-// Returns [UIFont preferredZHFontForTextStyle:...] + PKFontPointSizeDelta points
-static NSString *PKFontTextStyleHeadline = @"PKFontTextStyleHeadline";
-static NSString *PKFontTextStyleBody = @"PKFontTextStyleBody";
-static NSString *PKFontTextStyleSubheadline = @"PKFontTextStyleSubheadline";
-static NSString *PKFontTextStyleFootnote = @"PKFontTextStyleFootnote";
-static NSString *PKFontTextStyleCaption1 = @"PKFontTextStyleCaption1";
-static NSString *PKFontTextStyleCaption2 = @"PKFontTextStyleCaption2";
+// Returns [UIFont preferredZHFontForTextStyle:...] + ZHFontPointSizeDelta points
+static NSString *ZHFontTextStyleHeadline = @"ZHFontTextStyleHeadline";
+static NSString *ZHFontTextStyleBody = @"ZHFontTextStyleBody";
+static NSString *ZHFontTextStyleSubheadline = @"ZHFontTextStyleSubheadline";
+static NSString *ZHFontTextStyleFootnote = @"ZHFontTextStyleFootnote";
+static NSString *ZHFontTextStyleCaption1 = @"ZHFontTextStyleCaption1";
+static NSString *ZHFontTextStyleCaption2 = @"ZHFontTextStyleCaption2";
 
-// Returns [UIFont preferredZHFontForTextStyle:...] + PKFontPointSizeDelta points and italic
-static NSString *PKFontTextStyleHeadlineItalic = @"PKFontTextStyleHeadlineItalic";
-static NSString *PKFontTextStyleBodyItalic = @"PKFontTextStyleBodyItalic";
-static NSString *PKFontTextStyleSubheadlineItalic = @"PKFontTextStyleSubheadlineItalic";
-static NSString *PKFontTextStyleFootnoteItalic = @"PKFontTextStyleFootnoteItalic";
-static NSString *PKFontTextStyleCaption1Italic = @"PKFontTextStyleCaption1Italic";
-static NSString *PKFontTextStyleCaption2Italic = @"PKFontTextStyleCaption2Italic";
+// Returns [UIFont preferredZHFontForTextStyle:...] + ZHFontPointSizeDelta points and italic
+static NSString *ZHFontTextStyleHeadlineItalic = @"ZHFontTextStyleHeadlineItalic";
+static NSString *ZHFontTextStyleBodyItalic = @"ZHFontTextStyleBodyItalic";
+static NSString *ZHFontTextStyleSubheadlineItalic = @"ZHFontTextStyleSubheadlineItalic";
+static NSString *ZHFontTextStyleFootnoteItalic = @"ZHFontTextStyleFootnoteItalic";
+static NSString *ZHFontTextStyleCaption1Italic = @"ZHFontTextStyleCaption1Italic";
+static NSString *ZHFontTextStyleCaption2Italic = @"ZHFontTextStyleCaption2Italic";
 
-// Returns [UIFont preferredZHFontForTextStyle:...] + PKFontPointSizeDelta points and bold
-static NSString *PKFontTextStyleHeadlineBold = @"PKFontTextStyleHeadlineBold";
-static NSString *PKFontTextStyleBodyBold = @"PKFontTextStyleBodyBold";
-static NSString *PKFontTextStyleSubheadlineBold = @"PKFontTextStyleSubheadlineBold";
-static NSString *PKFontTextStyleFootnoteBold = @"PKFontTextStyleFootnoteBold";
-static NSString *PKFontTextStyleCaption1Bold = @"PKFontTextStyleCaption1Bold";
-static NSString *PKFontTextStyleCaption2Bold = @"PKFontTextStyleCaption2Bold";
+// Returns [UIFont preferredZHFontForTextStyle:...] + ZHFontPointSizeDelta points and bold
+static NSString *ZHFontTextStyleHeadlineBold = @"ZHFontTextStyleHeadlineBold";
+static NSString *ZHFontTextStyleBodyBold = @"ZHFontTextStyleBodyBold";
+static NSString *ZHFontTextStyleSubheadlineBold = @"ZHFontTextStyleSubheadlineBold";
+static NSString *ZHFontTextStyleFootnoteBold = @"ZHFontTextStyleFootnoteBold";
+static NSString *ZHFontTextStyleCaption1Bold = @"ZHFontTextStyleCaption1Bold";
+static NSString *ZHFontTextStyleCaption2Bold = @"ZHFontTextStyleCaption2Bold";
 
 @interface UIFont (ZH)
 +(UIFont*)preferredZHFontForTextStyle:(NSString *)style;

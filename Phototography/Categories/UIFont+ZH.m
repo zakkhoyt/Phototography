@@ -8,66 +8,66 @@
 
 #import "UIFont+ZH.h"
 
-const CGFloat PKFontPointSizeDelta = 0;
+const CGFloat ZHFontPointSizeDelta = 0;
 
 @implementation UIFont (ZH)
 
 +(UIFont*)preferredZHFontForTextStyle:(NSString *)style{
     
-    if([style isEqualToString:PKFontTextStyleHeadline]){
+    if([style isEqualToString:ZHFontTextStyleHeadline]){
         UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
-        return [UIFont systemFontOfSize:font.pointSize + PKFontPointSizeDelta];
-    } else if([style isEqualToString:PKFontTextStyleBody]){
+        return [UIFont systemFontOfSize:font.pointSize + ZHFontPointSizeDelta];
+    } else if([style isEqualToString:ZHFontTextStyleBody]){
         UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-        return [UIFont systemFontOfSize:font.pointSize + PKFontPointSizeDelta];
-    } else if([style isEqualToString:PKFontTextStyleSubheadline]){
+        return [UIFont systemFontOfSize:font.pointSize + ZHFontPointSizeDelta];
+    } else if([style isEqualToString:ZHFontTextStyleSubheadline]){
         UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
-        return [UIFont systemFontOfSize:font.pointSize + PKFontPointSizeDelta];
-    } else if([style isEqualToString:PKFontTextStyleFootnote]){
+        return [UIFont systemFontOfSize:font.pointSize + ZHFontPointSizeDelta];
+    } else if([style isEqualToString:ZHFontTextStyleFootnote]){
         UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
-        return [UIFont systemFontOfSize:font.pointSize + PKFontPointSizeDelta];
-    } else if([style isEqualToString:PKFontTextStyleCaption1]){
+        return [UIFont systemFontOfSize:font.pointSize + ZHFontPointSizeDelta];
+    } else if([style isEqualToString:ZHFontTextStyleCaption1]){
         UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-        return [UIFont systemFontOfSize:font.pointSize + PKFontPointSizeDelta];
-    } else if([style isEqualToString:PKFontTextStyleCaption2]){
+        return [UIFont systemFontOfSize:font.pointSize + ZHFontPointSizeDelta];
+    } else if([style isEqualToString:ZHFontTextStyleCaption2]){
         UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption2];
-        return [UIFont systemFontOfSize:font.pointSize + PKFontPointSizeDelta];
-    } else if([style isEqualToString:PKFontTextStyleHeadlineItalic]){
+        return [UIFont systemFontOfSize:font.pointSize + ZHFontPointSizeDelta];
+    } else if([style isEqualToString:ZHFontTextStyleHeadlineItalic]){
         UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
-        return [UIFont italicSystemFontOfSize:font.pointSize + PKFontPointSizeDelta];
-    } else if([style isEqualToString:PKFontTextStyleBodyItalic]){
+        return [UIFont italicSystemFontOfSize:font.pointSize + ZHFontPointSizeDelta];
+    } else if([style isEqualToString:ZHFontTextStyleBodyItalic]){
         UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-        return [UIFont italicSystemFontOfSize:font.pointSize + PKFontPointSizeDelta];
-    } else if([style isEqualToString:PKFontTextStyleSubheadlineItalic]){
+        return [UIFont italicSystemFontOfSize:font.pointSize + ZHFontPointSizeDelta];
+    } else if([style isEqualToString:ZHFontTextStyleSubheadlineItalic]){
         UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
-        return [UIFont italicSystemFontOfSize:font.pointSize + PKFontPointSizeDelta];
-    } else if([style isEqualToString:PKFontTextStyleFootnoteItalic]){
+        return [UIFont italicSystemFontOfSize:font.pointSize + ZHFontPointSizeDelta];
+    } else if([style isEqualToString:ZHFontTextStyleFootnoteItalic]){
         UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
-        return [UIFont italicSystemFontOfSize:font.pointSize + PKFontPointSizeDelta];
-    } else if([style isEqualToString:PKFontTextStyleCaption1Italic]){
+        return [UIFont italicSystemFontOfSize:font.pointSize + ZHFontPointSizeDelta];
+    } else if([style isEqualToString:ZHFontTextStyleCaption1Italic]){
         UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-        return [UIFont italicSystemFontOfSize:font.pointSize + PKFontPointSizeDelta];
-    } else if([style isEqualToString:PKFontTextStyleCaption2Italic]){
+        return [UIFont italicSystemFontOfSize:font.pointSize + ZHFontPointSizeDelta];
+    } else if([style isEqualToString:ZHFontTextStyleCaption2Italic]){
         UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption2];
-        return [UIFont italicSystemFontOfSize:font.pointSize + PKFontPointSizeDelta];
-    } else if([style isEqualToString:PKFontTextStyleHeadlineBold]){
+        return [UIFont italicSystemFontOfSize:font.pointSize + ZHFontPointSizeDelta];
+    } else if([style isEqualToString:ZHFontTextStyleHeadlineBold]){
         UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
-        return [UIFont boldSystemFontOfSize:font.pointSize + PKFontPointSizeDelta];
-    } else if([style isEqualToString:PKFontTextStyleBodyBold]){
+        return [UIFont boldSystemFontOfSize:font.pointSize + ZHFontPointSizeDelta];
+    } else if([style isEqualToString:ZHFontTextStyleBodyBold]){
         UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-        return [UIFont boldSystemFontOfSize:font.pointSize + PKFontPointSizeDelta];
-    } else if([style isEqualToString:PKFontTextStyleSubheadlineBold]){
+        return [UIFont boldSystemFontOfSize:font.pointSize + ZHFontPointSizeDelta];
+    } else if([style isEqualToString:ZHFontTextStyleSubheadlineBold]){
         UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
-        return [UIFont boldSystemFontOfSize:font.pointSize + PKFontPointSizeDelta];
-    } else if([style isEqualToString:PKFontTextStyleFootnoteBold]){
+        return [UIFont boldSystemFontOfSize:font.pointSize + ZHFontPointSizeDelta];
+    } else if([style isEqualToString:ZHFontTextStyleFootnoteBold]){
         UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
-        return [UIFont boldSystemFontOfSize:font.pointSize + PKFontPointSizeDelta];
-    } else if([style isEqualToString:PKFontTextStyleCaption1Bold]){
+        return [UIFont boldSystemFontOfSize:font.pointSize + ZHFontPointSizeDelta];
+    } else if([style isEqualToString:ZHFontTextStyleCaption1Bold]){
         UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-        return [UIFont boldSystemFontOfSize:font.pointSize + PKFontPointSizeDelta];
-    } else if([style isEqualToString:PKFontTextStyleCaption2Bold]){
+        return [UIFont boldSystemFontOfSize:font.pointSize + ZHFontPointSizeDelta];
+    } else if([style isEqualToString:ZHFontTextStyleCaption2Bold]){
         UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption2];
-        return [UIFont boldSystemFontOfSize:font.pointSize + PKFontPointSizeDelta];
+        return [UIFont boldSystemFontOfSize:font.pointSize + ZHFontPointSizeDelta];
     }
     
     return nil;
