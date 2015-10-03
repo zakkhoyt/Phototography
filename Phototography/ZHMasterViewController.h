@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class DetailViewController;
+@class ZHAssetDetailViewController;
 
 @interface ZHMasterViewController : UITableViewController
 
-@property (strong, nonatomic) DetailViewController *detailViewController;
+@property (strong, nonatomic) ZHAssetDetailViewController *detailViewController;
 
 
 @end

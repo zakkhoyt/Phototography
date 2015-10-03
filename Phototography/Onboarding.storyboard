@@ -1,7 +1,60 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9046" systemVersion="15A278b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8CJ-Ar-agw">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="7pd-gP-yOk">
+            <objects>
+                <viewController id="8CJ-Ar-agw" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rwg-zK-m3H"/>
+                        <viewControllerLayoutGuide type="bottom" id="785-2E-O62"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aCr-HW-6xj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phototography" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kjz-4F-9KV">
+                                <rect key="frame" x="243" y="289.5" width="114" height="20.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pcl-84-BmM">
+                                <rect key="frame" x="20" y="562" width="560" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <segue destination="Ywr-gh-pR4" kind="presentation" identifier="SegueOnboardingToMain" id="HIi-01-FSy"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Kjz-4F-9KV" firstAttribute="centerX" secondItem="aCr-HW-6xj" secondAttribute="centerX" id="0vi-mK-Gcu"/>
+                            <constraint firstItem="pcl-84-BmM" firstAttribute="leading" secondItem="aCr-HW-6xj" secondAttribute="leadingMargin" id="Cl4-CK-Uhu"/>
+                            <constraint firstItem="pcl-84-BmM" firstAttribute="trailing" secondItem="aCr-HW-6xj" secondAttribute="trailingMargin" id="Ipi-Ys-Kti"/>
+                            <constraint firstItem="Kjz-4F-9KV" firstAttribute="centerY" secondItem="aCr-HW-6xj" secondAttribute="centerY" id="Nsl-WG-8yC"/>
+                            <constraint firstItem="785-2E-O62" firstAttribute="top" secondItem="pcl-84-BmM" secondAttribute="bottom" constant="8" id="TXg-s8-nJ5"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aOW-5W-gah" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="672" y="474"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="UCP-fm-3bJ">
+            <objects>
+                <viewControllerPlaceholder id="Ywr-gh-pR4" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WSU-UA-aWX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1146.5" y="474"/>
+        </scene>
+    </scenes>
 </document>

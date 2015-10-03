@@ -11,18 +11,15 @@
 
 @interface ZHAssetDetailViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
-@implementation DetailViewController
-
-
-
-
+@implementation ZHAssetDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.textView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -45,6 +42,11 @@
 
 -(void)updateDescription{
     self.textView.text = self.asset.description;
+    [[ZHAssetManager sharedInstance] requestResizedImageForAsset:self.asset imageView:self.imageView progressBlock:^(float progress) {
+        
+    } completionBlock:^(NSError *error) {
+        
+    }];
 }
 
 
