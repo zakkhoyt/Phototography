@@ -19,8 +19,6 @@ typedef void (^ZHLocationViewControllerEmptyBlock)();
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) ZHLocationViewControllerEmptyBlock performAfterUpdatingLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
-
-
 @property (nonatomic) CLLocationCoordinate2D coordinate;
 @end
 

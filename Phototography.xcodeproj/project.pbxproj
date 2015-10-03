@@ -105,11 +105,11 @@
 			isa = PBXGroup;
 			children = (
 				C67D865F1BBF538500B2C4CF /* Categories */,
-				C67D86541BBF4C1200B2C4CF /* Documents */,
-				C67D86531BBF4C0800B2C4CF /* ViewControllers */,
-				C67D86551BBF4C1700B2C4CF /* UserInterface */,
-				C67D86311BBF429800B2C4CF /* Supporting Files */,
 				C67D86521BBF4C0300B2C4CF /* Controllers */,
+				C67D86541BBF4C1200B2C4CF /* Documents */,
+				C67D86311BBF429800B2C4CF /* Supporting Files */,
+				C67D86551BBF4C1700B2C4CF /* UserInterface */,
+				C67D86531BBF4C0800B2C4CF /* ViewControllers */,
 			);
 			path = Phototography;
 			sourceTree = "<group>";

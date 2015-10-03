@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 @class PHAsset;
+@class PHAssetCollection;
 
 @interface ZHAssetDetailViewController : UIViewController
 @property (strong, nonatomic) PHAsset *asset;
+-(void)setMoment:(PHAssetCollection*)moment assets:(NSMutableArray*)assets;
 @end
 

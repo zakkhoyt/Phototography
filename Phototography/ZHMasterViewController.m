@@ -12,8 +12,15 @@
 #import "VWWPermissionKit.h"
 #import "MBProgressHUD.h"
 
-@interface ZHMasterViewController ()
+typedef enum {
+    ZHMasterViewControllerModeAssets = 0,
+    ZHMasterViewControllerModeMoments = 1,
+} ZHMasterViewControllerMode;
 
+@interface ZHMasterViewController ()
+@property (nonatomic, strong) NSMutableArray *items;
+@property (nonatomic) ZHMasterViewControllerMode mode;
+@property (nonatomic, strong) NSMutableOrderedSet *selectedIndexPaths;
 @end
 
 @implementation ZHMasterViewController
@@ -26,6 +33,10 @@
     //    self.navigationItem.rightBarButtonItem = addButton;
     //    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 
+    // Data
+    self.mode = ZHMasterViewControllerModeMoments;
+    self.selectedIndexPaths = [[NSMutableOrderedSet alloc]init];
+    
     // Table View
     self.tableView.allowsMultipleSelection = YES;
     self.tableView.editing = NO;
@@ -57,6 +68,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"SegueMasterToDetail"]) {
+        ZHAssetDetailViewController *controller = (ZHAssetDetailViewController *)[[segue destinationViewController] topViewController];
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        
+        if(self.mode == ZHMasterViewControllerModeAssets){
+            PHAsset *asset = [ZHAssetManager sharedInstance].assetsNoLocation[indexPath.row];
+            [controller setAsset:asset];
+        } else if(self.mode == ZHMasterViewControllerModeMoments) {
+            NSDictionary *dictionary = self.items[indexPath.row];
+            PHAssetCollection *moment = dictionary[@"moment"];
+            NSMutableArray *assets = dictionary[@"assets"];
+            [controller setMoment:moment assets:assets];
+        }
+        controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+        controller.navigationItem.leftItemsSupplementBackButton = YES;
+    }
+}
 #pragma mark Private methods
 
 -(void)checkPermissions{
@@ -79,18 +111,36 @@
 -(void)readAssets{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Reading...";
-    [[ZHAssetManager sharedInstance] getAssetsWithoutLocationWithCompletionBlock:^(NSError *error) {
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        
-        if(error){
+    
+    if(self.mode == ZHMasterViewControllerModeAssets){
+        [[ZHAssetManager sharedInstance] getAssetsWithoutLocationWithCompletionBlock:^(NSError *error) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             
-        } else {
-            self.navigationItem.title = [NSString stringWithFormat:@"%lu/%lu",
-                                         (unsigned long)[ZHAssetManager sharedInstance].assetsNoLocation.count,
-                                         (unsigned long)[ZHAssetManager sharedInstance].assets.count];
-            [self.tableView reloadData];
-        }
-    }];
+            if(error){
+                NSLog(@"Error reading assets");
+            } else {
+                self.items = [ZHAssetManager sharedInstance].assetsNoLocation;
+                
+                self.navigationItem.title = [NSString stringWithFormat:@"%lu/%lu",
+                                             (unsigned long)[ZHAssetManager sharedInstance].assetsNoLocation.count,
+                                             (unsigned long)[ZHAssetManager sharedInstance].assets.count];
+                [self.tableView reloadData];
+            }
+        }];
+        
+    } else if(self.mode == ZHMasterViewControllerModeMoments){
+        [[ZHAssetManager sharedInstance] getMomentsWithoutLocationWithCompletionBlock:^(NSError *error) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            
+            if(error){
+                NSLog(@"Error reading moments");
+            } else {
+                self.items = [ZHAssetManager sharedInstance].moments;
+                self.navigationItem.title = [NSString stringWithFormat:@"%lu", self.items.count];
+                [self.tableView reloadData];
+            }
+        }];
+    }
 }
 
 
@@ -103,18 +153,6 @@
 //    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 //}
 
-#pragma mark - Segues
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"SegueMasterToDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        PHAsset *asset = [ZHAssetManager sharedInstance].assetsNoLocation[indexPath.row];
-        ZHAssetDetailViewController *controller = (ZHAssetDetailViewController *)[[segue destinationViewController] topViewController];
-        [controller setAsset:asset];
-        controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
-        controller.navigationItem.leftItemsSupplementBackButton = YES;
-    }
-}
 
 #pragma mark - Table View
 
@@ -123,15 +161,29 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return self.objects.count;
-    return [ZHAssetManager sharedInstance].assetsNoLocation.count;
+    return self.items.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    PHAsset *object = [ZHAssetManager sharedInstance].assetsNoLocation[indexPath.row];
-//    cell.textLabel.text = [object description];
-    cell.textLabel.text = object.creationDate.description;
+    if([self.selectedIndexPaths containsObject:indexPath]){
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
+    if(self.mode == ZHMasterViewControllerModeAssets){
+        PHAsset *asset = self.items[indexPath.row];
+        //    cell.textLabel.text = [object description];
+        cell.textLabel.text = asset.creationDate.description;
+        
+    } else if(self.mode == ZHMasterViewControllerModeMoments) {
+        
+        NSDictionary *dictionary = self.items[indexPath.row];
+        PHAssetCollection *moment = dictionary[@"moment"];
+        NSMutableArray *assets = dictionary[@"assets"];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ (#%lu)", moment.startDate.description, (unsigned long)assets.count];
+    }
     return cell;
 }
 
@@ -152,13 +204,15 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
-
+    [self.selectedIndexPaths addObject:indexPath];
+    NSLog(@"%lu selected", (unsigned long)self.selectedIndexPaths.count);
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryNone;
-    
+    [self.selectedIndexPaths removeObject:indexPath];
+    NSLog(@"%lu selected", (unsigned long)self.selectedIndexPaths.count);
 }
 
 

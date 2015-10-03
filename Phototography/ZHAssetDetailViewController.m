@@ -42,12 +42,16 @@
 }
 
 -(void)setAsset:(PHAsset *)asset{
-    if(_asset != asset){
+//    if(_asset != asset){
         _asset = asset;
-    }
+//    }
     [self updateDescription];
 }
 
+-(void)setMoment:(PHAssetCollection*)moment assets:(NSMutableArray*)assets{
+//    _moment = moment;
+//    _assets = _assets;
+}
 
 -(void)updateDescription{
     self.textView.text = self.asset.description;

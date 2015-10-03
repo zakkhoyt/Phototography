@@ -69,6 +69,52 @@
     });
 }
 
+-(void)getMomentsWithoutLocationWithCompletionBlock:(ZHAssetManagerErrorBlock)completionBlock{
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        PHFetchOptions *momentsOptions = [[PHFetchOptions alloc] init];
+        momentsOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"startDate" ascending:NO]];
+        PHFetchResult *momentsResult = [PHAssetCollection fetchMomentsWithOptions:momentsOptions];
+
+        self.moments = [[NSMutableArray alloc]initWithCapacity:momentsResult.count];
+        [momentsResult enumerateObjectsUsingBlock:^(PHAssetCollection *moment, NSUInteger idx, BOOL *stop) {
+//            if(moment.approximateLocation == nil ||
+//               (moment.approximateLocation.coordinate.latitude == 0 && moment.approximateLocation.coordinate.longitude == 0)){
+//                [momentsArray addObject:moment];
+//            }
+            if(moment.approximateLocation){
+                NSLog(@"moment.appx: %@", moment.approximateLocation.description);
+            } else {
+                NSLog(@"Moment has no appx:");
+            }
+            
+            {
+                PHFetchOptions *assetsOptions = [[PHFetchOptions alloc] init];
+                assetsOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+                PHFetchResult *assetsResults = [PHAsset fetchAssetsInAssetCollection:moment options:assetsOptions];
+                NSLog(@"moment has %lu assets", (unsigned long)assetsResults.count);
+                NSMutableArray *assetsNoLocation = [[NSMutableArray alloc]initWithCapacity:moment.estimatedAssetCount];
+                [assetsResults enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if(asset.location == nil){
+                        [assetsNoLocation addObject:asset];
+                    }
+                }];
+                if(assetsNoLocation.count){
+                    NSDictionary *dictionary = @{@"moment": moment,
+                                                 @"assets": assetsNoLocation};
+                    [self.moments addObject:dictionary];
+                }
+
+            }
+            
+        }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(nil);
+        });
+    });
+}
+
+
 -(void)writeLocation:(CLLocation*)location toAssetAtIndex:(NSUInteger)index completionBlock:(ZHAssetManagerErrorBlock)completionBlock{
     if(index > self.assetsNoLocation.count){
         NSLog(@"Index out of bounds");
