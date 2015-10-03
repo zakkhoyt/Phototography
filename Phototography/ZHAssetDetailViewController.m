@@ -13,7 +13,8 @@
 @interface ZHAssetDetailViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-
+@property (nonatomic, strong) PHAssetCollection *moment;
+@property (nonatomic, strong) NSMutableArray *assets;
 @end
 
 @implementation ZHAssetDetailViewController
@@ -49,17 +50,22 @@
 }
 
 -(void)setMoment:(PHAssetCollection*)moment assets:(NSMutableArray*)assets{
-//    _moment = moment;
-//    _assets = _assets;
+    _moment = moment;
+    _assets = assets;
+    
 }
 
 -(void)updateDescription{
-    self.textView.text = self.asset.description;
-    [[ZHAssetManager sharedInstance] requestResizedImageForAsset:self.asset imageView:self.imageView progressBlock:^(float progress) {
-        
-    } completionBlock:^(NSError *error) {
-        
-    }];
+    if(self.asset){
+        self.textView.text = self.asset.description;
+        [[ZHAssetManager sharedInstance] requestResizedImageForAsset:self.asset imageView:self.imageView progressBlock:^(float progress) {
+            
+        } completionBlock:^(NSError *error) {
+            
+        }];
+    } else if(self.moment) {
+        self.textView.text = self.moment.description;
+    }
 }
 
 

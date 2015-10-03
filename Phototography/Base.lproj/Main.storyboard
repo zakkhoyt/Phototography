@@ -113,7 +113,7 @@
                                     <action selector="searchBarButtonAction:" destination="BNN-6m-oYb" id="5TY-7X-Amh"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Save" id="v6S-9K-lW9">
+                            <barButtonItem title="Save" style="plain" id="v6S-9K-lW9">
                                 <connections>
                                     <action selector="saveButtonAction:" destination="BNN-6m-oYb" id="HEM-sj-DBB"/>
                                 </connections>

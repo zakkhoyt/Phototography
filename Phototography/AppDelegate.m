@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ZHAssetDetailViewController.h"
+#import "UIColor+Peck.h"
 
 @interface AppDelegate () <UISplitViewControllerDelegate>
 
@@ -17,6 +18,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [self setupAppearance];
+    
     // Override point for customization after application launch.
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
@@ -58,4 +61,57 @@
     }
 }
 
+
+-(void)setupAppearance{
+    
+    
+    // UIView (this is what controls the color of the back button arrow)
+    [[UIView appearance] setTintColor:[UIColor peckTintColor]];
+//    [[UIView appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:[UIColor peckBackgroundColor]];
+    [[UIView appearanceWhenContainedInInstancesOfClasses:@[[UINavigationBar class]]] setTintColor:[UIColor peckBackgroundColor]];
+    
+    // UILabel
+    [[UILabel appearance] setTintColor:[UIColor peckGreenColor]];
+    
+    // Navigation bar
+    NSDictionary *navBarAttributes = @{NSForegroundColorAttributeName : [UIColor peckBackgroundColor]};
+    [[UINavigationBar appearance] setTitleTextAttributes:navBarAttributes];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor peckTintColor]];
+    [[UINavigationBar appearance] setTintColor:[UIColor peckBackgroundColor]];
+    // The nav bar back button
+    [[UIBarButtonItem appearance] setTitleTextAttributes:navBarAttributes forState:UIControlStateNormal];
+    
+    // Tabbar
+    [[UITabBar appearance] setBarTintColor:[UIColor peckBackgroundColor]];
+    [[UITabBar appearance] setTintColor:[UIColor peckTintColor]];
+    
+    // TabbarItem
+    NSDictionary *tabBarAttributes = @{NSForegroundColorAttributeName : [UIColor peckTintColor]};
+    [[UITabBarItem appearance] setTitleTextAttributes:tabBarAttributes forState:UIControlStateNormal];
+    
+    // Segmented control
+    NSDictionary *segmentAttributes = @{NSForegroundColorAttributeName : [UIColor peckTintColor],
+                                        NSStrokeColorAttributeName : [UIColor peckBackgroundColor]};
+    [[UISegmentedControl appearance] setTitleTextAttributes:segmentAttributes forState:UIControlStateNormal];
+    
+    // Toolbar
+    [[UIToolbar appearance] setBarTintColor:[UIColor peckBackgroundColor]];
+    [[UIToolbar appearance] setTintColor:[UIColor peckTintColor]];
+    
+    // Text controls
+    [[UITextView appearance] setTextColor:[UIColor peckDarkTextColor]];
+    [[UITextView appearance] setBackgroundColor:[UIColor peckBackgroundColor]];
+    
+    [[UITextField appearance] setTextColor:[UIColor peckDarkTextColor]];
+    [[UITextField appearance] setBackgroundColor:[UIColor peckBackgroundColor]];
+    
+    [[UITableView appearance] setBackgroundColor:[UIColor peckBackgroundColor]];
+    [[UITableViewCell appearance] setBackgroundColor:[UIColor peckBackgroundColor]];
+    
+    [[UICollectionView appearance] setBackgroundColor:[UIColor peckBackgroundColor]];
+    [[UICollectionViewCell appearance]setBackgroundColor:[UIColor peckBackgroundColor]];
+    
+    [[UIButton appearance]setTintColor:[UIColor peckTintColor]];
+    
+}
 @end
