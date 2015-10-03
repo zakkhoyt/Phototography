@@ -11,6 +11,7 @@
 #import "ZHAssetManager.h"
 #import "VWWPermissionKit.h"
 #import "MBProgressHUD.h"
+#import "NSDate+ZH.h"
 
 typedef enum {
     ZHMasterViewControllerModeAssets = 0,
@@ -27,10 +28,13 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    
     // Nav bar
 //    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-        UIBarButtonItem *modeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(modeBarButtonAction:)];
-        self.navigationItem.leftBarButtonItem = modeButton;
+    UIBarButtonItem *modeButton = [[UIBarButtonItem alloc]initWithTitle:@"Mode" style:UIBarButtonItemStylePlain target:self action:@selector(modeBarButtonAction:)];
+    self.navigationItem.leftBarButtonItem = modeButton;
 
 
     // Data
@@ -40,13 +44,17 @@ typedef enum {
     // Table View
     self.tableView.allowsMultipleSelection = YES;
     self.tableView.editing = NO;
-//    self.tableView.rowHeight = UITableViewAutomaticDimension;
-//    self.tableView.estimatedRowHeight = 80;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 44;
 
     // Let's get started
     [self readAssets];
 
     
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -157,12 +165,12 @@ typedef enum {
 #pragma mark IBActions
 -(void)modeBarButtonAction:(UIBarButtonItem*)sender{
     UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    [ac addAction:[UIAlertAction actionWithTitle:self.mode == ZHMasterViewControllerModeAssets ? @"✔️Assets " : @"Assets" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [ac addAction:[UIAlertAction actionWithTitle:self.mode == ZHMasterViewControllerModeAssets ? @"👍🏼 Assets 👍🏼" : @"Assets" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         self.mode = ZHMasterViewControllerModeAssets;
         [self readAssets];
     }]];
     
-    [ac addAction:[UIAlertAction actionWithTitle:self.mode == ZHMasterViewControllerModeMoments ? @"✔️Moments " : @"Moments" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [ac addAction:[UIAlertAction actionWithTitle:self.mode == ZHMasterViewControllerModeMoments ? @"👍🏼 Moments 👍🏼" : @"Moments" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         self.mode = ZHMasterViewControllerModeMoments;
         [self readAssets];
     }]];
@@ -197,13 +205,13 @@ typedef enum {
         PHAsset *asset = self.items[indexPath.row];
         //    cell.textLabel.text = [object description];
         cell.textLabel.text = asset.creationDate.description;
-        
+        cell.textLabel.text = [asset.creationDate stringFromDateAndTime];
     } else if(self.mode == ZHMasterViewControllerModeMoments) {
         
         NSDictionary *dictionary = self.items[indexPath.row];
         PHAssetCollection *moment = dictionary[@"moment"];
         NSMutableArray *assets = dictionary[@"assets"];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ (#%lu)", moment.startDate.description, (unsigned long)assets.count];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ (#%lu)", [moment.startDate stringFromDateAndTime] , (unsigned long)assets.count];
     }
     return cell;
 }

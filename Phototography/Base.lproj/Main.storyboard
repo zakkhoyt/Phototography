@@ -60,7 +60,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM">
+                    <navigationItem key="navigationItem" id="mOI-FS-AaM">
                         <barButtonItem key="rightBarButtonItem" title="Tag" id="pIB-Ay-Ud7">
                             <connections>
                                 <action selector="tagBarButtonAction:" destination="JEX-9P-axG" id="zjp-Ko-HHO"/>
@@ -77,7 +77,7 @@
             </objects>
             <point key="canvasLocation" x="709" y="129"/>
         </scene>
-        <!--Title-->
+        <!--Location View Controller-->
         <scene sceneID="wpw-bl-YQO">
             <objects>
                 <viewController storyboardIdentifier="ZHLocationViewController" id="BNN-6m-oYb" customClass="ZHLocationViewController" sceneMemberID="viewController">
@@ -106,16 +106,16 @@
                             <constraint firstAttribute="trailing" secondItem="tqv-eg-Jhl" secondAttribute="trailing" id="cg2-WW-4M1"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="ix4-ri-RAM">
+                    <navigationItem key="navigationItem" id="ix4-ri-RAM">
                         <rightBarButtonItems>
-                            <barButtonItem style="plain" systemItem="search" id="I3G-09-L4g">
-                                <connections>
-                                    <action selector="searchBarButtonAction:" destination="BNN-6m-oYb" id="5TY-7X-Amh"/>
-                                </connections>
-                            </barButtonItem>
                             <barButtonItem title="Save" style="plain" id="v6S-9K-lW9">
                                 <connections>
                                     <action selector="saveButtonAction:" destination="BNN-6m-oYb" id="HEM-sj-DBB"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem style="plain" systemItem="search" id="I3G-09-L4g">
+                                <connections>
+                                    <action selector="searchBarButtonAction:" destination="BNN-6m-oYb" id="5TY-7X-Amh"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -149,7 +149,7 @@
                                             <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -224,7 +224,7 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8"/>
+                    <navigationItem key="navigationItem" id="Zdf-7t-Un8"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
