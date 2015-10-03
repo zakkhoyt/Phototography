@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+@class PHAsset;
 
-@interface DetailViewController : UIViewController
-
-@property (strong, nonatomic) id detailItem;
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
-
+@interface ZHAssetDetailViewController : UIViewController
+@property (strong, nonatomic) PHAsset *asset;
 @end
 

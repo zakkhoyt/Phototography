@@ -10,7 +10,7 @@
 
 @class DetailViewController;
 
-@interface MasterViewController : UITableViewController
+@interface ZHMasterViewController : UITableViewController
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 
