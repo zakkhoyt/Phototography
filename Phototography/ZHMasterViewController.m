@@ -29,7 +29,7 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     
     // Nav bar
 //    self.navigationItem.leftBarButtonItem = self.editButtonItem;
@@ -53,9 +53,6 @@ typedef enum {
     
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
-}
 
 - (void)viewWillAppear:(BOOL)animated {
     self.clearsSelectionOnViewWillAppear = self.splitViewController.isCollapsed;

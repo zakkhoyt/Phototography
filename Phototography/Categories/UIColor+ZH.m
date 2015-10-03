@@ -102,19 +102,32 @@
 
 #else 
 +(UIColor*)zhBackgroundColor{
-    return [UIColor colorWithRed:(243/(float)0xFF) green:(242/(float)0xFF) blue:(237/(float)0xFF) alpha:1.0];
+//    return [UIColor colorWithRed:(243/(float)0xFF) green:(242/(float)0xFF) blue:(237/(float)0xFF) alpha:1.0];
+//    return [UIColor colorWithRed:(0xEA/(float)0xFF) green:(0xD1/(float)0xFF) blue:(0x99/(float)0xFF) alpha:1.0];
+    
+//    E1D9D4 F1EDED
+    return [UIColor colorWithRed:(0xF1/(float)0xFF) green:(0xED/(float)0xFF) blue:(0xED/(float)0xFF) alpha:1.0];
 }
 +(UIColor*)zhTranslucentBackgroundColor{
     return [[UIColor zhBackgroundColor] colorWithAlphaComponent:0.9];
 }
 +(UIColor*)zhTintColor{
     // Blue
-    return [UIColor colorWithRed:(02/(float)0xFF) green:(0xBA/(float)0xFF) blue:(0xDB/(float)0xFF) alpha:1.0];
+//    return [UIColor colorWithRed:(02/(float)0xFF) green:(0xBA/(float)0xFF) blue:(0xDB/(float)0xFF) alpha:1.0];
+    
+//    #411C16
+//        return [UIColor colorWithRed:(0x41/(float)0xFF) green:(0x1C/(float)0xFF) blue:(0x16/(float)0xFF) alpha:1.0];
+//    7DB367
+    return [UIColor colorWithRed:(0x7D/(float)0xFF) green:(0xB3/(float)0xFF) blue:(0x67/(float)0xFF) alpha:1.0];
 }
 +(UIColor*)zhAlternateTintColor{
     // Orange
 //    return [UIColor zhOrangeColor];
-    return [UIColor zhGreenColor];
+//    return [UIColor zhGreenColor];
+//    return [UIColor colorWithRed:(0XFF/(float)0xFF) green:(0x90/(float)0xFF) blue:(0x11/(float)0xFF) alpha:1.0];
+    
+//    2D4A3B
+    return [UIColor colorWithRed:(0X2D/(float)0xFF) green:(0x4A/(float)0xFF) blue:(0x3B/(float)0xFF) alpha:1.0];
 }
 +(UIColor*)zhLightTextColor{
     return [UIColor lightTextColor];
