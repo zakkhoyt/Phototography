@@ -24,6 +24,7 @@ typedef void (^ZHAssetManagerFloatBlock)(float progress);
 
 
 -(void)getAssetsWithoutLocationWithCompletionBlock:(ZHAssetManagerErrorBlock)completionBlock;
+-(void)getAssetsWithLocationWithCompletionBlock:(ZHAssetManagerErrorBlock)completionBlock;
 -(void)getMomentsWithoutLocationWithCompletionBlock:(ZHAssetManagerErrorBlock)completionBlock;
 
 //-(void)getMomentsWithoutLocationWithCompletionBlock:(ZHAssetManagerMutableArrayBlock)completionBlock;

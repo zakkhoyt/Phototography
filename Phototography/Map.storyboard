@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A278b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="FCq-zu-GgQ">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <scenes>
+        <!--Map View Controller-->
+        <scene sceneID="cKk-kG-rI1">
+            <objects>
+                <viewController storyboardIdentifier="ZHMapViewController" id="9QU-SJ-zeb" customClass="ZHMapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Z8p-1b-VO7"/>
+                        <viewControllerLayoutGuide type="bottom" id="Dd1-7R-vkF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bA4-o1-v4O">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dnv-Vi-s4r" customClass="VWWClusteredMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="dnv-Vi-s4r" secondAttribute="trailing" id="R4E-yv-RUO"/>
+                            <constraint firstItem="dnv-Vi-s4r" firstAttribute="leading" secondItem="bA4-o1-v4O" secondAttribute="leading" id="hGp-ld-edB"/>
+                            <constraint firstItem="Dd1-7R-vkF" firstAttribute="top" secondItem="dnv-Vi-s4r" secondAttribute="bottom" id="mLy-8f-JAb"/>
+                            <constraint firstItem="dnv-Vi-s4r" firstAttribute="top" secondItem="bA4-o1-v4O" secondAttribute="top" id="wJf-2c-RdD"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="qr6-vC-9Xk"/>
+                    <connections>
+                        <outlet property="clusteredMapView" destination="dnv-Vi-s4r" id="hoe-yh-tyo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KvQ-Qd-tPC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1934" y="370"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="YB5-Qa-PSf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FCq-zu-GgQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="suk-il-sih">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9QU-SJ-zeb" kind="relationship" relationship="rootViewController" id="0or-Hp-NPt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0m3-tz-1eG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1122" y="370"/>
+        </scene>
+    </scenes>
+</document>

@@ -69,6 +69,27 @@
     });
 }
 
+-(void)getAssetsWithLocationWithCompletionBlock:(ZHAssetManagerErrorBlock)completionBlock{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        PHFetchOptions *options = [[PHFetchOptions alloc] init];
+        options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+        PHFetchResult *results = [PHAsset fetchAssetsWithOptions:options];
+        
+        self.assets = [[NSMutableArray alloc]initWithCapacity:results.count];
+        self.assetsNoLocation = [[NSMutableArray alloc]initWithCapacity:results.count];
+        [results enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.assets addObject:asset];
+            if(asset.location != nil){
+                [self.assetsNoLocation addObject:asset];
+            }
+        }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(nil);
+        });
+    });
+}
+
+
 -(void)getMomentsWithoutLocationWithCompletionBlock:(ZHAssetManagerErrorBlock)completionBlock{
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

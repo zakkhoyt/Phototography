@@ -10,6 +10,8 @@
 #import "ZHAssetDetailViewController.h"
 #import "UIColor+ZH.h"
 
+//#define ZH_MASTER_DETAIL 1
+
 @interface AppDelegate () <UISplitViewControllerDelegate>
 
 @end
@@ -20,11 +22,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self setupAppearance];
     
+#if defined(ZH_MASTER_DETAIL)
     // Override point for customization after application launch.
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
     navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
     splitViewController.delegate = self;
+#endif
     return YES;
 }
 
@@ -50,6 +54,8 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
+#if defined(ZH_MASTER_DETAIL)
 #pragma mark - Split view
 
 - (BOOL)splitViewController:(UISplitViewController *)splitViewController collapseSecondaryViewController:(UIViewController *)secondaryViewController ontoPrimaryViewController:(UIViewController *)primaryViewController {
@@ -61,6 +67,7 @@
     }
 }
 
+#endif
 
 -(void)setupAppearance{
     
@@ -71,7 +78,7 @@
     [[UIView appearanceWhenContainedInInstancesOfClasses:@[[UINavigationBar class]]] setTintColor:[UIColor zhBackgroundColor]];
     
     // UILabel
-    [[UILabel appearance] setTintColor:[UIColor zhGreenColor]];
+    [[UILabel appearance] setTextColor:[UIColor zhGreenColor]];
     
     // Navigation bar
     NSDictionary *navBarAttributes = @{NSForegroundColorAttributeName : [UIColor zhBackgroundColor]};
@@ -111,7 +118,10 @@
     [[UICollectionView appearance] setBackgroundColor:[UIColor zhBackgroundColor]];
     [[UICollectionViewCell appearance]setBackgroundColor:[UIColor zhBackgroundColor]];
     
-    [[UIButton appearance]setTintColor:[UIColor zhTintColor]];
+    [[UIButton appearance] setTintColor:[UIColor zhTintColor]];
+    [[UIButton appearance] setTitleColor:[UIColor zhTintColor] forState:UIControlStateNormal];
+    
+    [[UISearchBar appearance] setTintColor:[UIColor zhTintColor]];
     
 }
 @end

@@ -9,7 +9,7 @@
 #import "ZHMasterViewController.h"
 #import "ZHAssetDetailViewController.h"
 #import "ZHAssetManager.h"
-#import "VWWPermissionKit.h"
+
 #import "MBProgressHUD.h"
 #import "NSDate+ZH.h"
 
@@ -38,7 +38,7 @@ typedef enum {
 
 
     // Data
-    self.mode = ZHMasterViewControllerModeMoments;
+   // self.mode = ZHMasterViewControllerModeMoments;
     self.selectedIndexPaths = [[NSMutableOrderedSet alloc]init];
     
     // Table View
@@ -63,9 +63,9 @@ typedef enum {
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [self checkPermissions];
-    });
+//    dispatch_once(&onceToken, ^{
+//        [self checkPermissions];
+//    });
 }
 
 - (void)didReceiveMemoryWarning {
@@ -96,22 +96,22 @@ typedef enum {
 }
 #pragma mark Private methods
 
--(void)checkPermissions{
-    VWWPhotosPermission *photos = [VWWPhotosPermission permissionWithLabelText:@"We will read your photo library to find photos without a geotag."];
-//    VWWCoreLocationWhenInUsePermission *locationWhenInUse = [VWWCoreLocationWhenInUsePermission permissionWithLabelText:@"For obtaining your current location"];
-    VWWCoreLocationAlwaysPermission *locationAlways = [VWWCoreLocationAlwaysPermission permissionWithLabelText:@"please"];
-    NSArray *permissions = @[locationAlways, photos];
-//    NSArray *permissions = @[photos];
-    
-    [VWWPermissionsManager requirePermissions:permissions
-                                       title:@"Welcome to the Phototography! A tool to add geotags to your Apple Photo collection. Approve these permissions, then we can get started."
-                          fromViewController:self
-                                resultsBlock:^(NSArray *permissions) {
-                                    [permissions enumerateObjectsUsingBlock:^(VWWPermission *permission, NSUInteger idx, BOOL *stop) {
-                                        NSLog(@"%@ - %@", permission.type, [permission stringForStatus]);
-                                    }];
-                                }];
-}
+//-(void)checkPermissions{
+//    VWWPhotosPermission *photos = [VWWPhotosPermission permissionWithLabelText:@"We will read your photo library to find photos without a geotag."];
+////    VWWCoreLocationWhenInUsePermission *locationWhenInUse = [VWWCoreLocationWhenInUsePermission permissionWithLabelText:@"For obtaining your current location"];
+//    VWWCoreLocationAlwaysPermission *locationAlways = [VWWCoreLocationAlwaysPermission permissionWithLabelText:@"please"];
+//    NSArray *permissions = @[locationAlways, photos];
+////    NSArray *permissions = @[photos];
+//    
+//    [VWWPermissionsManager requirePermissions:permissions
+//                                       title:@"Welcome to the Phototography! A tool to add geotags to your Apple Photo collection. Approve these permissions, then we can get started."
+//                          fromViewController:self
+//                                resultsBlock:^(NSArray *permissions) {
+//                                    [permissions enumerateObjectsUsingBlock:^(VWWPermission *permission, NSUInteger idx, BOOL *stop) {
+//                                        NSLog(@"%@ - %@", permission.type, [permission stringForStatus]);
+//                                    }];
+//                                }];
+//}
 
 -(void)readAssets{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];

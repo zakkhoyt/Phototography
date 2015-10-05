@@ -13,7 +13,7 @@
 #import "PHAsset+Utility.h"
 #import "ZHPin.h"
 #import "ZHLocationSearchTableViewController.h"
-
+#import "UIColor+ZH.h"
 typedef void (^ZHLocationViewControllerEmptyBlock)();
 typedef void (^ZHLocationViewControllerSearchResponseBlock)(MKLocalSearchResponse *response);
 
@@ -32,6 +32,8 @@ typedef void (^ZHLocationViewControllerSearchResponseBlock)(MKLocalSearchRespons
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.mapView.mapType = MKMapTypeHybridFlyover;
     
     __weak typeof(self) welf = self;
     [self setPerformAfterUpdatingLocation:^(){
@@ -91,6 +93,7 @@ typedef void (^ZHLocationViewControllerSearchResponseBlock)(MKLocalSearchRespons
         });
     }];
     UISearchController *sc = [[UISearchController alloc]initWithSearchResultsController:vc];
+    sc.searchBar.tintColor = [UIColor zhTintColor];
     sc.searchResultsUpdater = vc;
     [self presentViewController:sc animated:YES completion:NULL];
 }
