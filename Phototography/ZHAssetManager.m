@@ -13,6 +13,7 @@
 
 
 
+
 @interface ZHAssetManager ()
 @property (nonatomic, strong) PHCachingImageManager *imageManager;
 
@@ -174,23 +175,23 @@
 
 @implementation ZHAssetManager (Images)
 
-//-(void)requestResizedImageForAsset:(PHAsset*)phAsset
-//                              size:(CGSize)size
-//                     progressBlock:(ZHAssetManagerFloatBlock)progressBlock
-//                   completionBlock:(ZHAssetManagerImageErrorBlock)completionBlock{
-//    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-//    options.networkAccessAllowed = YES;
-//    options.deliveryMode = PHImageRequestOptionsDeliveryModeFastFormat;
-//    options.resizeMode = PHImageRequestOptionsResizeModeFast;
-//    [options setSynchronous:YES];
-//    options.progressHandler = ^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
-//        
-//    };
-//    
-//    [_imageManager requestImageForAsset:phAsset targetSize:size contentMode:PHImageContentModeAspectFit options:options resultHandler:^(UIImage *result, NSDictionary *info) {
-//        completionBlock(result, nil);
-//    }];
-//}
+-(void)requestResizedImageForAsset:(PHAsset*)phAsset
+                              size:(CGSize)size
+                     progressBlock:(ZHAssetManagerFloatBlock)progressBlock
+                   completionBlock:(ZHAssetManagerImageErrorBlock)completionBlock{
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    options.networkAccessAllowed = YES;
+    options.deliveryMode = PHImageRequestOptionsDeliveryModeFastFormat;
+    options.resizeMode = PHImageRequestOptionsResizeModeFast;
+    [options setSynchronous:YES];
+    options.progressHandler = ^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
+        
+    };
+    
+    [_imageManager requestImageForAsset:phAsset targetSize:size contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage *result, NSDictionary *info) {
+        completionBlock(result, nil);
+    }];
+}
 
 -(void)requestResizedImageForAsset:(PHAsset*)phAsset
                          imageView:(UIImageView*)imageView

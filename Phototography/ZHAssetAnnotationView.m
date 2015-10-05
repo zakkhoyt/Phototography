@@ -9,14 +9,17 @@
 #import "ZHAssetAnnotationView.h"
 #import "UIColor+ZH.h"
 #import "ZHDefines.h"
+#import "ZHAssetManager.h"
+#import "ZHAssetAnnotation.h"
+#import "VWWClusteredAnnotation.h"
+
+#define ZH_HIDE_ANNOTATION_COUNT 1
 
 @interface ZHAssetAnnotationView ()
 @property (strong, nonatomic) UILabel *countLabel;
 @end
 
 @implementation ZHAssetAnnotationView
-
-
 - (instancetype)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -32,32 +35,19 @@
 }
 
 - (void)drawRect:(CGRect)rect{
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextSetAllowsAntialiasing(context, true);
-    
-//    UIColor *outerCircleStrokeColor = [UIColor zhAlternateTintColor];
-//    UIColor *innerCircleFillColor = [UIColor zhAlternateTintColor];
-//    outerCircleStrokeColor = outerCircleStrokeColor;
-//    UIColor *innerCircleStrokeColor = [UIColor zhBackgroundColor];
-//    
-//    CGRect circleFrame = CGRectInset(rect, 4, 4);
-//    
-//    [outerCircleStrokeColor setStroke];
-//    CGContextSetLineWidth(context, 5.0);
-//    CGContextStrokeEllipseInRect(context, circleFrame);
-//    
-//    [innerCircleStrokeColor setStroke];
-//    CGContextSetLineWidth(context, 4);
-//    CGContextStrokeEllipseInRect(context, circleFrame);
-//    
-//    [innerCircleFillColor setFill];
-//    CGContextFillEllipseInRect(context, circleFrame);
-    UIImage *image = [UIImage imageNamed:@"target"];
-    [image drawInRect:self.bounds];
-    
-    
-    
+    if([self.annotation isKindOfClass:[VWWClusteredAnnotation class]]){
+        ZHAssetAnnotation *assetAnnotation = [((VWWClusteredAnnotation*)self.annotation).annotations firstObject];
+        [[ZHAssetManager sharedInstance] requestResizedImageForAsset:assetAnnotation.asset size:self.bounds.size progressBlock:^(float progress) {
+            
+        } completionBlock:^(UIImage *image, NSError *error) {
+            self.layer.masksToBounds = YES;
+            self.layer.cornerRadius = self.bounds.size.width / 2.0;
+            [image drawInRect:self.bounds];
+        }];
+    } else {
+        UIImage *image = [UIImage imageNamed:@"target"];
+        [image drawInRect:self.bounds];
+    }
 }
 
 
@@ -84,7 +74,6 @@
     self.countLabel.hidden = self.count == 0;
 #endif
     
-    
     CGRect newBounds = CGRectMake(0, 0, roundf(44 * [self scaledValueForValue:count]), roundf(44 * [self scaledValueForValue:count]));
     self.frame = [self centerRect:newBounds onPoint:self.center];
     
@@ -94,33 +83,6 @@
     self.countLabel.text = [@(_count) stringValue];
     
     
-#if defined(ZH_FAKE_PING_RIPPLES)
-    if(self.annotationColor == [UIColor zhAlternateTintColor]){
-        // ripple stuff
-        NSMutableArray *pings = [@[]mutableCopy];
-        for(NSUInteger index = 0; index <= 10; index++){
-            NSUInteger random = arc4random() % 10;
-            random++;
-            ZHPing *ping = [[ZHPing alloc]init];
-            ping.type = random;
-            [pings addObject:ping];
-        }
-        
-        if(self.rippleView){
-            [self.rippleView stopAnimating];
-            [self.rippleView removeFromSuperview];
-            _rippleView = nil;
-        }
-        self.rippleView = [[ZHRippleView alloc]initWithFrame:self.bounds];
-        self.rippleView.pings = pings;
-        [self.rippleView.layer removeFromSuperlayer];
-        [self.layer insertSublayer:self.rippleView.layer below:self.layer];
-        [self.layer.sublayers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            NSLog(@"sublayer of type %@ at index: %lu", NSStringFromClass([obj class]), (unsigned long)idx);
-        }];
-        [self.rippleView startAnimating];
-    }
-#endif
     [self setNeedsDisplay];
 }
 
