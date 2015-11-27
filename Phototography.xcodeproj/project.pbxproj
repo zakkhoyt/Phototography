@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C6439A341C090A40006BCF73 /* schema.txt in Resources */ = {isa = PBXBuildFile; fileRef = C6439A331C090A40006BCF73 /* schema.txt */; };
 		C670921B1C08325100AE06F3 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C670921A1C08325100AE06F3 /* CloudKit.framework */; };
 		C670921E1C08330100AE06F3 /* ZHCloudManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C670921D1C08330100AE06F3 /* ZHCloudManager.m */; };
 		C67092221C08346D00AE06F3 /* ZHUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C67092211C08346D00AE06F3 /* ZHUser.m */; };
@@ -58,6 +59,7 @@
 /* Begin PBXFileReference section */
 		4C6D147742AB67BDF61BB20A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7987C76C34D294E7BC411789 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		C6439A331C090A40006BCF73 /* schema.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.txt; sourceTree = "<group>"; };
 		C67092191C08323900AE06F3 /* Phototography.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Phototography.entitlements; sourceTree = "<group>"; };
 		C670921A1C08325100AE06F3 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		C670921C1C08330100AE06F3 /* ZHCloudManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHCloudManager.h; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 		C670921F1C08346300AE06F3 /* iCloud */ = {
 			isa = PBXGroup;
 			children = (
+				C6439A331C090A40006BCF73 /* schema.txt */,
 				C670921C1C08330100AE06F3 /* ZHCloudManager.h */,
 				C670921D1C08330100AE06F3 /* ZHCloudManager.m */,
 				C67092201C08346D00AE06F3 /* ZHUser.h */,
@@ -515,6 +518,7 @@
 			files = (
 				C6BBCA3B1BC31C0A009D6887 /* Ideas.txt in Resources */,
 				C67D86441BBF429800B2C4CF /* LaunchScreen.storyboard in Resources */,
+				C6439A341C090A40006BCF73 /* schema.txt in Resources */,
 				C67D86411BBF429800B2C4CF /* Assets.xcassets in Resources */,
 				C67D863F1BBF429800B2C4CF /* Main.storyboard in Resources */,
 				C67D86571BBF4C2C00B2C4CF /* Onboarding.storyboard in Resources */,

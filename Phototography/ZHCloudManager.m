@@ -9,6 +9,7 @@
 
 #import "ZHCloudManager.h"
 #import "NSError+ZH.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface ZHCloudManager ()
 @property (nonatomic, strong) CKContainer *container;
@@ -31,6 +32,39 @@
     return self;
 }
 
+
+-(void)createUser:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock{
+//    [self getExistingUser:user completionBlock:^(ZHUser *existingUser, NSError *error) {
+//        if(existingUser != nil){
+//            // user already exists so use it
+//            NSLog(@"User account already exists");
+//            completionBlock(existingUser, nil);
+//        } else {
+            CKRecordID *recordID = [[CKRecordID alloc]initWithRecordName:user.uuid];
+            CKRecord *record = [[CKRecord alloc]initWithRecordType:@"Users" recordID:recordID];
+            record[@"FirstName"] = user.firstName;
+            record[@"LastName"] = user.lastName;
+            record[@"Email"] = user.email;
+            record[@"Phone"] = user.phone;
+            record[@"UUID"] = user.uuid;
+            record[@"Location"] = [[CLLocation alloc]initWithLatitude:37.5 longitude:-122.4];
+    
+            [self.publicDB saveRecord:record completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error) {
+                if(error != nil) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completionBlock(nil, error);
+                    });
+                } else {
+                    NSLog(@"Created new user account");
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        ZHUser *newUser = [[ZHUser alloc]initWithRecord:record];
+                        completionBlock(newUser, nil);
+                    });
+                }
+            }];
+//        }
+//    }];
+}
 
 -(void)createPhotographer:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock{
     [self getExistingUser:user completionBlock:^(ZHUser *existingUser, NSError *error) {

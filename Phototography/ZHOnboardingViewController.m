@@ -59,7 +59,8 @@
 //    user.phone = @"503-866-9212";
 //    user.uuid =  [[NSUUID UUID] UUIDString];
 
-    [self.cloudManager createPhotographer:user completionBlock:^(ZHUser *user, NSError *error) {
+//    [self.cloudManager createPhotographer:user completionBlock:^(ZHUser *user, NSError *error) {
+    [self.cloudManager createUser:user completionBlock:^(ZHUser *user, NSError *error) {
         if(error){
             NSLog(@"Error: %@", error.localizedDescription);
         } else {

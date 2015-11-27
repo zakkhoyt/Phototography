@@ -1,0 +1,19 @@
+
+
+Photographers
+* Assets <Assets>
+* Friends <Users>
+* FirstName
+* LastName
+* Email
+* Phone
+* UUID
+* Location
+
+
+Assets
+* DateCreated
+* Location
+* LocalIdentifier
+* OwnerUUID
+* SharedUUIDs <Users>
