@@ -17,5 +17,5 @@
 @property (nonatomic, strong) NSString *uuid;
 @property (nonatomic, strong) NSArray <ZHUser*> *friends;
 
-- (instancetype)initWithRecord:(CKRecord*)record database:(CKDatabase*)database;
+- (instancetype)initWithRecord:(CKRecord*)record;
 @end

@@ -9,7 +9,7 @@
 #import "ZHUser.h"
 
 @implementation ZHUser
-- (instancetype)initWithRecord:(CKRecord*)record database:(CKDatabase*)database {
+- (instancetype)initWithRecord:(CKRecord*)record{
     self = [super init];
     if (self) {
         self.firstName = [record objectForKey:@"FirstName"];

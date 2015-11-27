@@ -13,13 +13,12 @@
 @interface ZHOnboardingViewController ()
 @property (nonatomic, strong) ZHCloudManager *cloudManager;
 @end
+
 @implementation ZHOnboardingViewController
 
 -(void)viewDidLoad{
     [super viewDidLoad];
     self.cloudManager = [[ZHCloudManager alloc]init];
-    
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -37,34 +36,33 @@
             [alert addAction:[UIAlertAction actionWithTitle:@"Okay"
                                                       style:UIAlertActionStyleCancel
                                                     handler:nil]];
-            [self presentViewController:alert animated:YES completion:nil];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self presentViewController:alert animated:YES completion:nil];
+            });
         }
-        else {
-            // Insert your just-in-time schema code here
-        } }];
+    }];
 }
 
 - (IBAction)createUserButtonTouchUpInside:(id)sender {
     ZHUser *user = [[ZHUser alloc]init];
-//    user.firstName = @"Zakk";
-//    user.lastName = @"Hoyt";
-//    user.email =  @"zakkhoyt@gmail.com";
-//    user.phone = @"415-202-3907";
-//    user.uuid =  [[NSUUID UUID] UUIDString];
-    
-    user.firstName = @"Lindy";
-    user.lastName = @"Wood";
-    user.email =  @"woodlindy@gmail.com";
-    user.phone = @"503-866-9212";
+    user.firstName = @"Zakk";
+    user.lastName = @"Hoyt";
+    user.email =  @"zakkhoyt@gmail.com";
+    user.phone = @"415-202-3907";
     user.uuid =  [[NSUUID UUID] UUIDString];
+    
+//    user.firstName = @"Lindy";
+//    user.lastName = @"Wood";
+//    user.email =  @"woodlindy@gmail.com";
+//    user.phone = @"503-866-9212";
+//    user.uuid =  [[NSUUID UUID] UUIDString];
 
-    
-    
     [self.cloudManager createUser:user completionBlock:^(NSError *error) {
         if(error){
             NSLog(@"Error: %@", error.localizedDescription);
         } else {
-            NSLog(@"Created User :)");
+            NSLog(@"Success :)");
         }
     }];
 }
