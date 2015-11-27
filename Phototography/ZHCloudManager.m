@@ -33,7 +33,7 @@
 }
 
 
--(void)createUser:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock{
+-(void)updateUser:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock{
 //    [self getExistingUser:user completionBlock:^(ZHUser *existingUser, NSError *error) {
 //        if(existingUser != nil){
 //            // user already exists so use it
@@ -49,7 +49,7 @@
             record[@"UUID"] = user.uuid;
             record[@"Location"] = [[CLLocation alloc]initWithLatitude:37.5 longitude:-122.4];
     
-            [self.publicDB saveRecord:record completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error) {
+            [self.privateDB saveRecord:record completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error) {
                 if(error != nil) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         completionBlock(nil, error);

@@ -17,7 +17,7 @@ typedef void (^ZHCloudManagerUserErrorBlock)(ZHUser *user, NSError *error);
 @interface ZHCloudManager : NSObject
 
 
--(void)createUser:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock;
+-(void)updateUser:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock;
 -(void)createPhotographer:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock;
 //-(void)getFriendsWithCompletionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock;
 
