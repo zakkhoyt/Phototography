@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C670921B1C08325100AE06F3 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C670921A1C08325100AE06F3 /* CloudKit.framework */; };
+		C670921E1C08330100AE06F3 /* ZHCloudManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C670921D1C08330100AE06F3 /* ZHCloudManager.m */; };
+		C67092221C08346D00AE06F3 /* ZHUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C67092211C08346D00AE06F3 /* ZHUser.m */; };
+		C67092251C08396A00AE06F3 /* ZHOnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67092241C08396A00AE06F3 /* ZHOnboardingViewController.m */; };
 		C67D86331BBF429800B2C4CF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86321BBF429800B2C4CF /* main.m */; };
 		C67D86361BBF429800B2C4CF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86351BBF429800B2C4CF /* AppDelegate.m */; };
 		C67D86391BBF429800B2C4CF /* ZHMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86381BBF429800B2C4CF /* ZHMasterViewController.m */; };
@@ -35,25 +39,33 @@
 		C67D86A91BBF959800B2C4CF /* ZHLocationSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86A81BBF959800B2C4CF /* ZHLocationSearchTableViewController.m */; };
 		C67D86AC1BC04B2700B2C4CF /* ZHUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86AB1BC04B2700B2C4CF /* ZHUserDefaults.m */; };
 		C67D86B01BC04CDC00B2C4CF /* ZHQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86AF1BC04CDC00B2C4CF /* ZHQueueViewController.m */; };
-		C6B829781BC31CE800782468 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6B829771BC31CE800782468 /* Map.storyboard */; settings = {ASSET_TAGS = (); }; };
-		C6B8297B1BC31D0E00782468 /* ZHMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B8297A1BC31D0E00782468 /* ZHMapViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C6B829851BC3202A00782468 /* ZHAssetAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B829821BC3202A00782468 /* ZHAssetAnnotation.m */; settings = {ASSET_TAGS = (); }; };
-		C6B829861BC3202A00782468 /* ZHAssetAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B829841BC3202A00782468 /* ZHAssetAnnotationView.m */; settings = {ASSET_TAGS = (); }; };
-		C6BBCA3B1BC31C0A009D6887 /* Ideas.txt in Resources */ = {isa = PBXBuildFile; fileRef = C6BBCA281BC31C0A009D6887 /* Ideas.txt */; settings = {ASSET_TAGS = (); }; };
-		C6BBCA3C1BC31C0A009D6887 /* VWWClusteredAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA2B1BC31C0A009D6887 /* VWWClusteredAnnotation.m */; settings = {ASSET_TAGS = (); }; };
-		C6BBCA3D1BC31C0A009D6887 /* VWWCoordinateQuadTree.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA2D1BC31C0A009D6887 /* VWWCoordinateQuadTree.m */; settings = {ASSET_TAGS = (); }; };
-		C6BBCA3E1BC31C0A009D6887 /* VWWQuadTree.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA2F1BC31C0A009D6887 /* VWWQuadTree.m */; settings = {ASSET_TAGS = (); }; };
-		C6BBCA3F1BC31C0A009D6887 /* VWWAnnotationFanoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA311BC31C0A009D6887 /* VWWAnnotationFanoutView.m */; settings = {ASSET_TAGS = (); }; };
-		C6BBCA401BC31C0A009D6887 /* VWWClusteredAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA331BC31C0A009D6887 /* VWWClusteredAnnotationView.m */; settings = {ASSET_TAGS = (); }; };
-		C6BBCA411BC31C0A009D6887 /* VWWClusteredMapView+MKMapViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA361BC31C0A009D6887 /* VWWClusteredMapView+MKMapViewDelegate.m */; settings = {ASSET_TAGS = (); }; };
-		C6BBCA421BC31C0A009D6887 /* VWWClusteredMapView+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA381BC31C0A009D6887 /* VWWClusteredMapView+Private.m */; settings = {ASSET_TAGS = (); }; };
-		C6BBCA431BC31C0A009D6887 /* VWWClusteredMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA3A1BC31C0A009D6887 /* VWWClusteredMapView.m */; settings = {ASSET_TAGS = (); }; };
+		C6B829781BC31CE800782468 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6B829771BC31CE800782468 /* Map.storyboard */; };
+		C6B8297B1BC31D0E00782468 /* ZHMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B8297A1BC31D0E00782468 /* ZHMapViewController.m */; };
+		C6B829851BC3202A00782468 /* ZHAssetAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B829821BC3202A00782468 /* ZHAssetAnnotation.m */; };
+		C6B829861BC3202A00782468 /* ZHAssetAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B829841BC3202A00782468 /* ZHAssetAnnotationView.m */; };
+		C6BBCA3B1BC31C0A009D6887 /* Ideas.txt in Resources */ = {isa = PBXBuildFile; fileRef = C6BBCA281BC31C0A009D6887 /* Ideas.txt */; };
+		C6BBCA3C1BC31C0A009D6887 /* VWWClusteredAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA2B1BC31C0A009D6887 /* VWWClusteredAnnotation.m */; };
+		C6BBCA3D1BC31C0A009D6887 /* VWWCoordinateQuadTree.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA2D1BC31C0A009D6887 /* VWWCoordinateQuadTree.m */; };
+		C6BBCA3E1BC31C0A009D6887 /* VWWQuadTree.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA2F1BC31C0A009D6887 /* VWWQuadTree.m */; };
+		C6BBCA3F1BC31C0A009D6887 /* VWWAnnotationFanoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA311BC31C0A009D6887 /* VWWAnnotationFanoutView.m */; };
+		C6BBCA401BC31C0A009D6887 /* VWWClusteredAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA331BC31C0A009D6887 /* VWWClusteredAnnotationView.m */; };
+		C6BBCA411BC31C0A009D6887 /* VWWClusteredMapView+MKMapViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA361BC31C0A009D6887 /* VWWClusteredMapView+MKMapViewDelegate.m */; };
+		C6BBCA421BC31C0A009D6887 /* VWWClusteredMapView+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA381BC31C0A009D6887 /* VWWClusteredMapView+Private.m */; };
+		C6BBCA431BC31C0A009D6887 /* VWWClusteredMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA3A1BC31C0A009D6887 /* VWWClusteredMapView.m */; };
 		E2A8CCBCF0FF12260E333EE7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C6D147742AB67BDF61BB20A /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4C6D147742AB67BDF61BB20A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7987C76C34D294E7BC411789 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		C67092191C08323900AE06F3 /* Phototography.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Phototography.entitlements; sourceTree = "<group>"; };
+		C670921A1C08325100AE06F3 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		C670921C1C08330100AE06F3 /* ZHCloudManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHCloudManager.h; sourceTree = "<group>"; };
+		C670921D1C08330100AE06F3 /* ZHCloudManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHCloudManager.m; sourceTree = "<group>"; };
+		C67092201C08346D00AE06F3 /* ZHUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHUser.h; sourceTree = "<group>"; };
+		C67092211C08346D00AE06F3 /* ZHUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHUser.m; sourceTree = "<group>"; };
+		C67092231C08396A00AE06F3 /* ZHOnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHOnboardingViewController.h; sourceTree = "<group>"; };
+		C67092241C08396A00AE06F3 /* ZHOnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHOnboardingViewController.m; sourceTree = "<group>"; };
 		C67D862E1BBF429800B2C4CF /* Phototography.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phototography.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67D86321BBF429800B2C4CF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C67D86341BBF429800B2C4CF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -141,6 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C670921B1C08325100AE06F3 /* CloudKit.framework in Frameworks */,
 				C67D86591BBF4E7400B2C4CF /* MapKit.framework in Frameworks */,
 				E2A8CCBCF0FF12260E333EE7 /* libPods.a in Frameworks */,
 			);
@@ -152,6 +165,7 @@
 		69889A5A43B61404776A2A34 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C670921A1C08325100AE06F3 /* CloudKit.framework */,
 				C67D86581BBF4E7400B2C4CF /* MapKit.framework */,
 				4C6D147742AB67BDF61BB20A /* libPods.a */,
 			);
@@ -165,6 +179,26 @@
 				7987C76C34D294E7BC411789 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C670921F1C08346300AE06F3 /* iCloud */ = {
+			isa = PBXGroup;
+			children = (
+				C670921C1C08330100AE06F3 /* ZHCloudManager.h */,
+				C670921D1C08330100AE06F3 /* ZHCloudManager.m */,
+				C67092201C08346D00AE06F3 /* ZHUser.h */,
+				C67092211C08346D00AE06F3 /* ZHUser.m */,
+			);
+			name = iCloud;
+			sourceTree = "<group>";
+		};
+		C67092261C08396E00AE06F3 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				C67092231C08396A00AE06F3 /* ZHOnboardingViewController.h */,
+				C67092241C08396A00AE06F3 /* ZHOnboardingViewController.m */,
+			);
+			name = Onboarding;
 			sourceTree = "<group>";
 		};
 		C67D86251BBF429800B2C4CF = {
@@ -188,6 +222,7 @@
 		C67D86301BBF429800B2C4CF /* Phototography */ = {
 			isa = PBXGroup;
 			children = (
+				C67092191C08323900AE06F3 /* Phototography.entitlements */,
 				C67D865F1BBF538500B2C4CF /* Categories */,
 				C67D86521BBF4C0300B2C4CF /* Controllers */,
 				C67D86541BBF4C1200B2C4CF /* Documents */,
@@ -217,6 +252,7 @@
 			children = (
 				C67D864B1BBF42B100B2C4CF /* ZHAssetManager.h */,
 				C67D864C1BBF42B100B2C4CF /* ZHAssetManager.m */,
+				C670921F1C08346300AE06F3 /* iCloud */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -231,6 +267,7 @@
 				C67D86B11BC04CE100B2C4CF /* Queue */,
 				C67D86A51BBF955600B2C4CF /* Location */,
 				C6B8297C1BC31D1200782468 /* Map */,
+				C67092261C08396E00AE06F3 /* Onboarding */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -446,6 +483,9 @@
 							com.apple.Maps.iOS = {
 								enabled = 1;
 							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
 						};
 					};
 				};
@@ -538,6 +578,8 @@
 				C67D86681BBF5B2700B2C4CF /* ZHPin.m in Sources */,
 				C6B829851BC3202A00782468 /* ZHAssetAnnotation.m in Sources */,
 				C6BBCA421BC31C0A009D6887 /* VWWClusteredMapView+Private.m in Sources */,
+				C67092251C08396A00AE06F3 /* ZHOnboardingViewController.m in Sources */,
+				C67092221C08346D00AE06F3 /* ZHUser.m in Sources */,
 				C6B8297B1BC31D0E00782468 /* ZHMapViewController.m in Sources */,
 				C67D869E1BBF7EF800B2C4CF /* NSURLRequest+curl.m in Sources */,
 				C67D86951BBF7EF800B2C4CF /* PHAsset+Utility.m in Sources */,
@@ -553,6 +595,7 @@
 				C6BBCA3F1BC31C0A009D6887 /* VWWAnnotationFanoutView.m in Sources */,
 				C67D869A1BBF7EF800B2C4CF /* NSError+ZH.m in Sources */,
 				C67D86391BBF429800B2C4CF /* ZHMasterViewController.m in Sources */,
+				C670921E1C08330100AE06F3 /* ZHCloudManager.m in Sources */,
 				C67D86331BBF429800B2C4CF /* main.m in Sources */,
 				C67D86971BBF7EF800B2C4CF /* CLLocation+ZH.m in Sources */,
 				C67D863C1BBF429800B2C4CF /* ZHAssetDetailViewController.m in Sources */,
@@ -668,12 +711,15 @@
 			baseConfigurationReference = E544EB3B61E1508738FF4B96 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Phototography/Phototography.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Phototography/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vaporwarewolf.Phototography;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -682,12 +728,15 @@
 			baseConfigurationReference = 7987C76C34D294E7BC411789 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Phototography/Phototography.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Phototography/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vaporwarewolf.Phototography;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
