@@ -126,7 +126,7 @@
 
 - (void)clusteredMapView:(VWWClusteredMapView *)clusteredMapView didSelectClusteredAnnotationView:(VWWClusteredAnnotationView *)view {
     NSLog(@"annotationView.class: %@", NSStringFromClass([view class]));
-    CLLocationCoordinate2D coordinate = [view.annotation coordinate];
+//    CLLocationCoordinate2D coordinate = [view.annotation coordinate];
     
 //    [self showDetailsForAnnotationView:view coordinate:coordinate];
 }

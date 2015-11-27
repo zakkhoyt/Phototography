@@ -12,6 +12,7 @@
 
 @interface ZHOnboardingViewController ()
 @property (nonatomic, strong) ZHCloudManager *cloudManager;
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @end
 
 @implementation ZHOnboardingViewController
@@ -58,14 +59,23 @@
 //    user.phone = @"503-866-9212";
 //    user.uuid =  [[NSUUID UUID] UUIDString];
 
-    [self.cloudManager createUser:user completionBlock:^(NSError *error) {
+    [self.cloudManager createPhotographer:user completionBlock:^(ZHUser *user, NSError *error) {
         if(error){
             NSLog(@"Error: %@", error.localizedDescription);
         } else {
+// TODO: Save user object
             NSLog(@"Success :)");
         }
     }];
 }
+
+
+- (IBAction)findFriendsButtonTouchUpInside:(id)sender {
+    [self.cloudManager getPhotographersWithEmail:self.emailTextField.text completionBlock:^(NSArray *friends, NSError *error) {
+        NSLog(@"%lu friends", (unsigned long)friends.count);
+    }];
+}
+
 
 
 @end
