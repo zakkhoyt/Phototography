@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15A278b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1WQ-fE-cfn">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Find Friends-->
+        <scene sceneID="sTL-0G-Pxh">
+            <objects>
+                <viewController storyboardIdentifier="ZHFindFriendsViewController" id="rk7-gq-0fe" customClass="ZHFindFriendsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Kk4-GJ-Tko"/>
+                        <viewControllerLayoutGuide type="bottom" id="p1M-pm-YGj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hqr-02-Wen">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dLh-OK-UMT">
+                                <rect key="frame" x="20" y="72" width="560" height="29"/>
+                                <animations/>
+                                <segments>
+                                    <segment title="Use Address Book"/>
+                                    <segment title="Search by Email"/>
+                                </segments>
+                                <connections>
+                                    <action selector="findTypeSegmentValueChanged:" destination="rk7-gq-0fe" eventType="valueChanged" id="4vf-qH-e6c"/>
+                                </connections>
+                            </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m8y-7n-Vul">
+                                <rect key="frame" x="0.0" y="108" width="600" height="84"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeG-AR-8qa">
+                                        <rect key="frame" x="230" y="46" width="140" height="30"/>
+                                        <animations/>
+                                        <state key="normal" title="Search Email Adress"/>
+                                        <connections>
+                                            <action selector="emailSearchButtonTouchUpInsde:" destination="rk7-gq-0fe" eventType="touchUpInside" id="33l-OG-YMx"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QFB-uK-Exu">
+                                        <rect key="frame" x="20" y="8" width="560" height="30"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="QFB-uK-Exu" secondAttribute="trailing" constant="20" id="7dQ-z1-eYh"/>
+                                    <constraint firstAttribute="bottom" secondItem="KeG-AR-8qa" secondAttribute="bottom" constant="8" id="MbR-RU-TVc"/>
+                                    <constraint firstItem="KeG-AR-8qa" firstAttribute="centerX" secondItem="m8y-7n-Vul" secondAttribute="centerX" id="asG-no-mtJ"/>
+                                    <constraint firstItem="QFB-uK-Exu" firstAttribute="leading" secondItem="m8y-7n-Vul" secondAttribute="leading" constant="20" id="gu6-5E-d80"/>
+                                    <constraint firstItem="QFB-uK-Exu" firstAttribute="top" secondItem="m8y-7n-Vul" secondAttribute="top" constant="8" id="ix6-rc-zHi"/>
+                                    <constraint firstItem="KeG-AR-8qa" firstAttribute="top" secondItem="QFB-uK-Exu" secondAttribute="bottom" constant="8" id="kKc-Lc-cFt"/>
+                                    <constraint firstAttribute="height" constant="84" id="wQG-HQ-xKz"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ATl-wl-o0U">
+                                <rect key="frame" x="0.0" y="108" width="600" height="84"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycS-nJ-iX2">
+                                        <rect key="frame" x="227" y="27" width="147" height="30"/>
+                                        <animations/>
+                                        <state key="normal" title="Search Address Book"/>
+                                        <connections>
+                                            <action selector="addressBookButtonTouchUpInside:" destination="rk7-gq-0fe" eventType="touchUpInside" id="HiE-78-TjY"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="ycS-nJ-iX2" firstAttribute="centerY" secondItem="ATl-wl-o0U" secondAttribute="centerY" id="9HC-bh-ePM"/>
+                                    <constraint firstItem="ycS-nJ-iX2" firstAttribute="centerX" secondItem="ATl-wl-o0U" secondAttribute="centerX" id="XzL-Lu-x7L"/>
+                                    <constraint firstAttribute="height" constant="84" id="YSp-6l-FRG"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="ATl-wl-o0U" secondAttribute="trailing" constant="-20" id="2nc-BW-e7i"/>
+                            <constraint firstItem="ATl-wl-o0U" firstAttribute="top" secondItem="dLh-OK-UMT" secondAttribute="bottom" constant="8" id="2zE-A9-GIz"/>
+                            <constraint firstItem="dLh-OK-UMT" firstAttribute="leading" secondItem="hqr-02-Wen" secondAttribute="leadingMargin" id="K13-tb-kn4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="m8y-7n-Vul" secondAttribute="trailing" constant="-20" id="N2a-iS-tNT"/>
+                            <constraint firstItem="dLh-OK-UMT" firstAttribute="trailing" secondItem="hqr-02-Wen" secondAttribute="trailingMargin" id="jze-ry-f0X"/>
+                            <constraint firstItem="ATl-wl-o0U" firstAttribute="leading" secondItem="hqr-02-Wen" secondAttribute="leadingMargin" constant="-20" id="lsj-Bd-Wfv"/>
+                            <constraint firstItem="m8y-7n-Vul" firstAttribute="leading" secondItem="hqr-02-Wen" secondAttribute="leadingMargin" constant="-20" id="luW-v0-zfT"/>
+                            <constraint firstItem="dLh-OK-UMT" firstAttribute="top" secondItem="Kk4-GJ-Tko" secondAttribute="bottom" constant="8" id="vek-eP-Nxg"/>
+                            <constraint firstItem="m8y-7n-Vul" firstAttribute="top" secondItem="dLh-OK-UMT" secondAttribute="bottom" constant="8" id="von-mM-33u"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Find Friends" id="9hG-LS-6Sc"/>
+                    <connections>
+                        <outlet property="addressBookView" destination="ATl-wl-o0U" id="LpK-h6-0ai"/>
+                        <outlet property="findTypeSegment" destination="dLh-OK-UMT" id="ne4-lC-w5D"/>
+                        <outlet property="searchEmailView" destination="m8y-7n-Vul" id="ekX-UL-Ykx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WfS-G0-Ne8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1157" y="303"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ux7-RF-Rxo">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1WQ-fE-cfn" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="v2Z-gi-hjC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="rk7-gq-0fe" kind="relationship" relationship="rootViewController" id="0fp-K4-1in"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Hl-RF-nWD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="345" y="303"/>
+        </scene>
+    </scenes>
+</document>

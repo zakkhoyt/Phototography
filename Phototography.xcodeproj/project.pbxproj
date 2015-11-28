@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C6439A341C090A40006BCF73 /* schema.txt in Resources */ = {isa = PBXBuildFile; fileRef = C6439A331C090A40006BCF73 /* schema.txt */; };
+		C6439A361C0930CC006BCF73 /* FindFriends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6439A351C0930CC006BCF73 /* FindFriends.storyboard */; };
+		C6439A391C09311B006BCF73 /* ZHFindFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6439A381C09311B006BCF73 /* ZHFindFriendsViewController.m */; };
 		C670921B1C08325100AE06F3 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C670921A1C08325100AE06F3 /* CloudKit.framework */; };
 		C670921E1C08330100AE06F3 /* ZHCloudManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C670921D1C08330100AE06F3 /* ZHCloudManager.m */; };
 		C67092221C08346D00AE06F3 /* ZHUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C67092211C08346D00AE06F3 /* ZHUser.m */; };
@@ -60,6 +62,9 @@
 		4C6D147742AB67BDF61BB20A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7987C76C34D294E7BC411789 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C6439A331C090A40006BCF73 /* schema.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.txt; sourceTree = "<group>"; };
+		C6439A351C0930CC006BCF73 /* FindFriends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FindFriends.storyboard; sourceTree = "<group>"; };
+		C6439A371C09311B006BCF73 /* ZHFindFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHFindFriendsViewController.h; sourceTree = "<group>"; };
+		C6439A381C09311B006BCF73 /* ZHFindFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHFindFriendsViewController.m; sourceTree = "<group>"; };
 		C67092191C08323900AE06F3 /* Phototography.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Phototography.entitlements; sourceTree = "<group>"; };
 		C670921A1C08325100AE06F3 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		C670921C1C08330100AE06F3 /* ZHCloudManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHCloudManager.h; sourceTree = "<group>"; };
@@ -183,6 +188,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C6439A3A1C09311F006BCF73 /* FindFriends */ = {
+			isa = PBXGroup;
+			children = (
+				C6439A371C09311B006BCF73 /* ZHFindFriendsViewController.h */,
+				C6439A381C09311B006BCF73 /* ZHFindFriendsViewController.m */,
+			);
+			name = FindFriends;
+			sourceTree = "<group>";
+		};
 		C670921F1C08346300AE06F3 /* iCloud */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,6 +285,7 @@
 				C67D86A51BBF955600B2C4CF /* Location */,
 				C6B8297C1BC31D1200782468 /* Map */,
 				C67092261C08396E00AE06F3 /* Onboarding */,
+				C6439A3A1C09311F006BCF73 /* FindFriends */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -392,6 +407,7 @@
 				C67D863D1BBF429800B2C4CF /* Main.storyboard */,
 				C6B829771BC31CE800782468 /* Map.storyboard */,
 				C67D86561BBF4C2C00B2C4CF /* Onboarding.storyboard */,
+				C6439A351C0930CC006BCF73 /* FindFriends.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -521,6 +537,7 @@
 				C6439A341C090A40006BCF73 /* schema.txt in Resources */,
 				C67D86411BBF429800B2C4CF /* Assets.xcassets in Resources */,
 				C67D863F1BBF429800B2C4CF /* Main.storyboard in Resources */,
+				C6439A361C0930CC006BCF73 /* FindFriends.storyboard in Resources */,
 				C67D86571BBF4C2C00B2C4CF /* Onboarding.storyboard in Resources */,
 				C6B829781BC31CE800782468 /* Map.storyboard in Resources */,
 			);
@@ -587,6 +604,7 @@
 				C6B8297B1BC31D0E00782468 /* ZHMapViewController.m in Sources */,
 				C67D869E1BBF7EF800B2C4CF /* NSURLRequest+curl.m in Sources */,
 				C67D86951BBF7EF800B2C4CF /* PHAsset+Utility.m in Sources */,
+				C6439A391C09311B006BCF73 /* ZHFindFriendsViewController.m in Sources */,
 				C67D864D1BBF42B100B2C4CF /* ZHAssetManager.m in Sources */,
 				C6BBCA401BC31C0A009D6887 /* VWWClusteredAnnotationView.m in Sources */,
 				C6B829861BC3202A00782468 /* ZHAssetAnnotationView.m in Sources */,

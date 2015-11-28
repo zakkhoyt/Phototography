@@ -8,7 +8,20 @@
 
 #import "ZHUser.h"
 
+static ZHUser *currentUser;
+
 @implementation ZHUser
+
++(void)setCurrentUser:(ZHUser*)user{
+    currentUser = user;
+}
+
++(ZHUser*)currentUser{
+    return currentUser;
+}
+
+
+
 - (instancetype)initWithRecord:(CKRecord*)record{
     self = [super init];
     if (self) {

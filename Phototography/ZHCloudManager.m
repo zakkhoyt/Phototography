@@ -15,7 +15,7 @@
 @property (nonatomic, strong) CKContainer *container;
 @property (nonatomic, strong) CKDatabase *publicDB;
 @property (nonatomic, strong) CKDatabase *privateDB;
-
+@property (nonatomic, strong) CKRecordID *userRecordID;
 @end
 
 @implementation ZHCloudManager
@@ -33,38 +33,7 @@
 }
 
 
--(void)updateUser:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock{
-//    [self getExistingUser:user completionBlock:^(ZHUser *existingUser, NSError *error) {
-//        if(existingUser != nil){
-//            // user already exists so use it
-//            NSLog(@"User account already exists");
-//            completionBlock(existingUser, nil);
-//        } else {
-            CKRecordID *recordID = [[CKRecordID alloc]initWithRecordName:user.uuid];
-            CKRecord *record = [[CKRecord alloc]initWithRecordType:@"Users" recordID:recordID];
-            record[@"FirstName"] = user.firstName;
-            record[@"LastName"] = user.lastName;
-            record[@"Email"] = user.email;
-            record[@"Phone"] = user.phone;
-            record[@"UUID"] = user.uuid;
-            record[@"Location"] = [[CLLocation alloc]initWithLatitude:37.5 longitude:-122.4];
-    
-            [self.privateDB saveRecord:record completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error) {
-                if(error != nil) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        completionBlock(nil, error);
-                    });
-                } else {
-                    NSLog(@"Created new user account");
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        ZHUser *newUser = [[ZHUser alloc]initWithRecord:record];
-                        completionBlock(newUser, nil);
-                    });
-                }
-            }];
-//        }
-//    }];
-}
+
 
 -(void)createPhotographer:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock{
     [self getExistingUser:user completionBlock:^(ZHUser *existingUser, NSError *error) {
@@ -152,4 +121,117 @@
     }];
 }
 
+
+
+-(void)loggedInToICloud:(ZHCloudManagerBoolBlock)completionBlock{
+    [self.container accountStatusWithCompletionHandler:^(CKAccountStatus accountStatus, NSError * _Nullable error) {
+        if(accountStatus == CKAccountStatusAvailable){
+            completionBlock(YES);
+        } else {
+            NSLog(@"iCloud authentication status: %lu", (unsigned long)accountStatus);
+            completionBlock(NO);
+        }
+    }];
+}
+
+-(void)userID:(ZHCloudManagerRecordIDErrorBlock)completionBlock{
+    if(self.userRecordID != nil){
+        completionBlock(self.userRecordID, nil);
+    } else {
+        [self.container fetchUserRecordIDWithCompletionHandler:^(CKRecordID * _Nullable recordID, NSError * _Nullable error) {
+            if(error != nil) {
+                completionBlock(nil, error);
+            } else {
+                if(recordID != nil) {
+                    self.userRecordID = recordID;
+                }
+                completionBlock(self.userRecordID, nil);
+            }
+        }];
+    }
+}
+
+
+-(void)userInfo:(ZHCloudManagerUserErrorBlock)completionBlock{
+    [self requestDiscoverablity:^(BOOL discoverable) {
+        [self userID:^(CKRecordID *recordID, NSError *error) {
+            if(error != nil) {
+                completionBlock(nil, error);
+            } else {
+                [self userInfo:recordID completionBlock:^(CKDiscoveredUserInfo *discoveredUserInfo, NSError *error) {
+                    ZHUser *user = [[ZHUser alloc]init];
+                    user.firstName = discoveredUserInfo.displayContact.givenName;
+                    user.lastName = discoveredUserInfo.displayContact.familyName;
+                    [ZHUser setCurrentUser:user];
+                    completionBlock(user, nil);
+                }];
+            }
+        }];
+    }];
+}
+
+-(void)userInfo:(CKRecordID*)recordID completionBlock:(ZHCloudManagerDiscoveredUserInfoErrorBlock)completionBlock{
+    [self.container discoverUserInfoWithUserRecordID:recordID completionHandler:completionBlock];
+}
+
+
+-(void)requestDiscoverablity:(ZHCloudManagerBoolBlock)completionBlock{
+    [self.container statusForApplicationPermission:CKApplicationPermissionUserDiscoverability completionHandler:^(CKApplicationPermissionStatus applicationPermissionStatus, NSError * _Nullable error) {
+        if(error != nil || applicationPermissionStatus == CKApplicationPermissionStatusDenied) {
+            completionBlock(NO);
+        } else {
+            // This causes an iOS prompt
+            [self.container requestApplicationPermission:CKApplicationPermissionUserDiscoverability completionHandler:^(CKApplicationPermissionStatus applicationPermissionStatus, NSError * _Nullable error) {
+                completionBlock(YES);
+            }];
+        }
+    }];
+}
+
+
+-(void)findContacts:(ZHCloudManagerArrayErrorBlock)completionBlock{
+    [self.container discoverAllContactUserInfosWithCompletionHandler:^(NSArray<CKDiscoveredUserInfo *> * _Nullable userInfos, NSError * _Nullable error) {
+        NSLog(@"");
+    }];
+}
+
+-(void)updateUser:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock{
+
+    CKRecord *record = [[CKRecord alloc]initWithRecordType:@"Users" recordID:self.userRecordID];
+//    record[@"FirstName"] = user.firstName;
+//    record[@"LastName"] = user.lastName;
+    record[@"Email"] = user.email;
+    record[@"Phone"] = user.phone;
+    record[@"UUID"] = user.uuid;
+    record[@"Location"] = [[CLLocation alloc]initWithLatitude:37.5 longitude:-122.4];
+    
+
+    
+    [self.privateDB saveRecord:record completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error) {
+        if(error != nil) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(nil, error);
+            });
+        } else {
+            NSLog(@"Created new user account");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                ZHUser *newUser = [[ZHUser alloc]initWithRecord:record];
+                completionBlock(newUser, nil);
+            });
+        }
+    }];
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+

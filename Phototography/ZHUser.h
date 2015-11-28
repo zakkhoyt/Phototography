@@ -18,4 +18,8 @@
 @property (nonatomic, strong) NSArray <ZHUser*> *friends;
 
 - (instancetype)initWithRecord:(CKRecord*)record;
+
++(void)setCurrentUser:(ZHUser*)user;
++(ZHUser*)currentUser;
+
 @end
