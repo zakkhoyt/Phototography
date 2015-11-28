@@ -10,6 +10,7 @@
 		C6439A341C090A40006BCF73 /* schema.txt in Resources */ = {isa = PBXBuildFile; fileRef = C6439A331C090A40006BCF73 /* schema.txt */; };
 		C6439A361C0930CC006BCF73 /* FindFriends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6439A351C0930CC006BCF73 /* FindFriends.storyboard */; };
 		C6439A391C09311B006BCF73 /* ZHFindFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6439A381C09311B006BCF73 /* ZHFindFriendsViewController.m */; };
+		C6439A3D1C0962C4006BCF73 /* ZHYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6439A3C1C0962C4006BCF73 /* ZHYouViewController.m */; };
 		C670921B1C08325100AE06F3 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C670921A1C08325100AE06F3 /* CloudKit.framework */; };
 		C670921E1C08330100AE06F3 /* ZHCloudManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C670921D1C08330100AE06F3 /* ZHCloudManager.m */; };
 		C67092221C08346D00AE06F3 /* ZHUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C67092211C08346D00AE06F3 /* ZHUser.m */; };
@@ -65,6 +66,8 @@
 		C6439A351C0930CC006BCF73 /* FindFriends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FindFriends.storyboard; sourceTree = "<group>"; };
 		C6439A371C09311B006BCF73 /* ZHFindFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHFindFriendsViewController.h; sourceTree = "<group>"; };
 		C6439A381C09311B006BCF73 /* ZHFindFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHFindFriendsViewController.m; sourceTree = "<group>"; };
+		C6439A3B1C0962C4006BCF73 /* ZHYouViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYouViewController.h; sourceTree = "<group>"; };
+		C6439A3C1C0962C4006BCF73 /* ZHYouViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYouViewController.m; sourceTree = "<group>"; };
 		C67092191C08323900AE06F3 /* Phototography.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Phototography.entitlements; sourceTree = "<group>"; };
 		C670921A1C08325100AE06F3 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		C670921C1C08330100AE06F3 /* ZHCloudManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHCloudManager.h; sourceTree = "<group>"; };
@@ -286,6 +289,8 @@
 				C6B8297C1BC31D1200782468 /* Map */,
 				C67092261C08396E00AE06F3 /* Onboarding */,
 				C6439A3A1C09311F006BCF73 /* FindFriends */,
+				C6439A3B1C0962C4006BCF73 /* ZHYouViewController.h */,
+				C6439A3C1C0962C4006BCF73 /* ZHYouViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -589,6 +594,7 @@
 				C6BBCA411BC31C0A009D6887 /* VWWClusteredMapView+MKMapViewDelegate.m in Sources */,
 				C67D869F1BBF7EF800B2C4CF /* UIFont+ZH.m in Sources */,
 				C67D86981BBF7EF800B2C4CF /* NSDate+ZH.m in Sources */,
+				C6439A3D1C0962C4006BCF73 /* ZHYouViewController.m in Sources */,
 				C6BBCA3C1BC31C0A009D6887 /* VWWClusteredAnnotation.m in Sources */,
 				C67D86361BBF429800B2C4CF /* AppDelegate.m in Sources */,
 				C67D869C1BBF7EF800B2C4CF /* NSTimer+Blocks.m in Sources */,

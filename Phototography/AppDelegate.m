@@ -109,8 +109,8 @@
     [[UITextView appearance] setTextColor:[UIColor zhDarkTextColor]];
     [[UITextView appearance] setBackgroundColor:[UIColor zhBackgroundColor]];
     
-    [[UITextField appearance] setTextColor:[UIColor zhDarkTextColor]];
-    [[UITextField appearance] setBackgroundColor:[UIColor zhBackgroundColor]];
+//    [[UITextField appearance] setTextColor:[UIColor zhDarkTextColor]];
+//    [[UITextField appearance] setBackgroundColor:[UIColor zhBackgroundColor]];
     
     [[UITableView appearance] setBackgroundColor:[UIColor zhBackgroundColor]];
     [[UITableViewCell appearance] setBackgroundColor:[UIColor zhBackgroundColor]];

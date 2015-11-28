@@ -93,7 +93,13 @@
                             <constraint firstItem="m8y-7n-Vul" firstAttribute="top" secondItem="dLh-OK-UMT" secondAttribute="bottom" constant="8" id="von-mM-33u"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Find Friends" id="9hG-LS-6Sc"/>
+                    <navigationItem key="navigationItem" title="Find Friends" id="9hG-LS-6Sc">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="Tfv-Nn-qWB">
+                            <connections>
+                                <action selector="closeBarButtonAction:" destination="rk7-gq-0fe" id="j0y-Sv-YoK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addressBookView" destination="ATl-wl-o0U" id="LpK-h6-0ai"/>
                         <outlet property="findTypeSegment" destination="dLh-OK-UMT" id="ne4-lC-w5D"/>

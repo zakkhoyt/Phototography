@@ -51,6 +51,9 @@ typedef enum {
         self.addressBookView.hidden = YES;
     }
 }
+- (IBAction)closeBarButtonAction:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
 
 
 - (IBAction)addressBookButtonTouchUpInside:(id)sender {
