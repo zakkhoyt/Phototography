@@ -17,9 +17,11 @@
 @property (nonatomic, strong) NSString *uuid;
 @property (nonatomic, strong) NSArray <ZHUser*> *friends;
 
-- (instancetype)initWithRecord:(CKRecord*)record;
-
 +(void)setCurrentUser:(ZHUser*)user;
 +(ZHUser*)currentUser;
 
+
+- (instancetype)initWithRecord:(CKRecord*)record;
+- (instancetype)initWithDiscoveredUserInfo:(CKDiscoveredUserInfo*) userInfo;
+- (NSString*)fullName;
 @end

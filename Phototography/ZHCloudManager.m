@@ -70,7 +70,7 @@
 
 -(void)getFriendsWithEmail:(NSString*)email completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"Email == %@", email];
-//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"Email != ''", email];
+    //        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"Email != ''", email];
     CKQuery *query = [[CKQuery alloc]initWithRecordType:@"Photographers" predicate:predicate];
     
     [self.publicDB performQuery:query inZoneWithID:nil completionHandler:^(NSArray<CKRecord *> * _Nullable results, NSError * _Nullable error) {
@@ -79,7 +79,7 @@
                 completionBlock(nil, error);
             });
         } else {
-
+            
             NSMutableArray *friendsWithEmail = [[NSMutableArray alloc]initWithCapacity:results.count];
             for(CKRecord *record in results) {
                 ZHUser *user = [[ZHUser alloc]initWithRecord:record];
@@ -189,23 +189,18 @@
 }
 
 
--(void)findContacts:(ZHCloudManagerArrayErrorBlock)completionBlock{
-    [self.container discoverAllContactUserInfosWithCompletionHandler:^(NSArray<CKDiscoveredUserInfo *> * _Nullable userInfos, NSError * _Nullable error) {
-        NSLog(@"");
-    }];
-}
 
 -(void)updateUser:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock{
-
+    
     CKRecord *record = [[CKRecord alloc]initWithRecordType:@"Users" recordID:self.userRecordID];
-//    record[@"FirstName"] = user.firstName;
-//    record[@"LastName"] = user.lastName;
+    //    record[@"FirstName"] = user.firstName;
+    //    record[@"LastName"] = user.lastName;
     record[@"Email"] = user.email;
     record[@"Phone"] = user.phone;
     record[@"UUID"] = user.uuid;
     record[@"Location"] = [[CLLocation alloc]initWithLatitude:37.5 longitude:-122.4];
     
-
+    
     
     [self.privateDB saveRecord:record completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error) {
         if(error != nil) {
@@ -220,6 +215,81 @@
             });
         }
     }];
+}
+
+
+-(void)findContacts:(ZHCloudManagerArrayErrorBlock)completionBlock{
+    [self.container discoverAllContactUserInfosWithCompletionHandler:^(NSArray<CKDiscoveredUserInfo *> * _Nullable userInfos, NSError * _Nullable error) {
+        NSLog(@"");
+    }];
+}
+
+
+-(void)findUsersForEmail:(NSString*)email completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock{
+    [self.container discoverUserInfoWithEmailAddress:email completionHandler:^(CKDiscoveredUserInfo * _Nullable userInfo, NSError * _Nullable error) {
+        if(error != nil) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(nil, error);
+            });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(userInfo == nil) {
+                    completionBlock(nil, nil);
+                } else {
+                    ZHUser *user = [[ZHUser alloc]initWithDiscoveredUserInfo:userInfo];
+                    completionBlock(@[user], nil);
+                }
+            });
+        }
+    }];
+}
+
+-(void)findUsersForEmails:(NSArray*)emails completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock {
+//    [self.container discoverAllContactUserInfosWithCompletionHandler:^(NSArray<CKDiscoveredUserInfo *> * _Nullable userInfos, NSError * _Nullable error) {
+//        if(error != nil) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                completionBlock(nil, error);
+//            });
+//        } else {
+//            NSMutableSet *users = [[NSMutableSet alloc]initWithCapacity:userInfos.count * 3];
+//            [userInfos enumerateObjectsUsingBlock:^(CKDiscoveredUserInfo * _Nonnull userInfo, NSUInteger idx, BOOL * _Nonnull stop) {
+//                //            if(userInfo.displayContact.emailAddresses.count > 0) {
+//                [userInfo.displayContact.emailAddresses enumerateObjectsUsingBlock:^(CNLabeledValue<NSString *> * _Nonnull email, NSUInteger idx, BOOL * _Nonnull stop) {
+//                    if([emails containsObject:email.value]){
+//                        ZHUser *user = [[ZHUser alloc]initWithDiscoveredUserInfo:userInfo];
+//                        [users addObject:user];
+//                    }
+//                }];
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    completionBlock(users.allObjects, nil);
+//                });
+//            }];
+//        }
+//    }];
+    
+//    NSMutableSet *users = [[NSMutableSet alloc]initWithCapacity:emails.count];
+//    __block NSError *returnError;
+//    [emails enumerateObjectsUsingBlock:^(NSString*  _Nonnull email, NSUInteger idx, BOOL * _Nonnull stop) {
+//        [self.container discoverUserInfoWithEmailAddress:email completionHandler:^(CKDiscoveredUserInfo * _Nullable userInfo, NSError * _Nullable error) {
+//            if(error != nil) {
+//                returnError = error;
+//                *stop = YES;
+//            } else {
+//                ZHUser *user = [[ZHUser alloc]initWithDiscoveredUserInfo:userInfo];
+//                [users addObject:user];
+//            }
+//        }];
+//    }];
+//    
+//    if(returnError != nil) {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            completionBlock(nil, returnError);
+//        });
+//    } else {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            completionBlock(users.allObjects, nil);
+//        });
+//    }
 }
 @end
 

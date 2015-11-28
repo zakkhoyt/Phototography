@@ -34,4 +34,57 @@ static ZHUser *currentUser;
     }
     return self;
 }
+
+- (instancetype)initWithDiscoveredUserInfo:(CKDiscoveredUserInfo*) userInfo{
+    self = [super init];
+    if (self) {
+        self.firstName = userInfo.displayContact.givenName;
+        self.lastName = userInfo.displayContact.familyName;
+        self.email = [userInfo.displayContact.emailAddresses firstObject].value;
+        self.phone = [userInfo.displayContact.phoneNumbers firstObject].value.stringValue;
+        self.uuid = userInfo.userRecordID.recordName;
+//        self.uuid = [record objectForKey:@"uuid"];
+//        self.friends = [record objectForKey:@"Friends"];
+    }
+    return self;
+    
+}
+
+-(NSString*)fullName {
+    if(self.firstName && self.lastName == nil){
+        return self.firstName;
+    } else if(self.firstName == nil && self.lastName) {
+        return self.lastName;
+    } else if(self.firstName && self.lastName) {
+        return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
+    }
+    return nil;
+}
+
+-(BOOL)isEqual:(id)object {
+    if([object isKindOfClass:[ZHUser class]] == NO){
+        return NO;
+    }
+    
+    ZHUser *aUser = object;
+//    if(self.email && aUser.email) {
+//        return [self.email isEqualToString:aUser.email];
+//    } else {
+//        return [self.firstName isEqualToString:aUser.firstName] && [self.lastName isEqualToString:aUser.lastName];
+//    }
+    NSAssert(self.uuid != nil, @"uuid is nil");
+    return [self.uuid isEqualToString:aUser.uuid];
+}
+
+-(NSUInteger)hash {
+//    if(self.email){
+//        return self.email.hash;
+//    } else {
+//        return self.firstName.hash + self.lastName.hash;
+//    }
+    NSAssert(self.uuid != nil, @"uuid is nil");
+    return self.uuid.hash;
+}
+
+
 @end

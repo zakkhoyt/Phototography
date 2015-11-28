@@ -238,6 +238,46 @@
 			name = Annotations;
 			sourceTree = "<group>";
 		};
+		C6439A4D1C09732A006BCF73 /* Tagger */ = {
+			isa = PBXGroup;
+			children = (
+				C67D86371BBF429800B2C4CF /* ZHMasterViewController.h */,
+				C67D86381BBF429800B2C4CF /* ZHMasterViewController.m */,
+				C67D863A1BBF429800B2C4CF /* ZHAssetDetailViewController.h */,
+				C67D863B1BBF429800B2C4CF /* ZHAssetDetailViewController.m */,
+				C67D86B11BC04CE100B2C4CF /* Queue */,
+				C67D86A51BBF955600B2C4CF /* Location */,
+			);
+			name = Tagger;
+			sourceTree = "<group>";
+		};
+		C6439A4E1C097334006BCF73 /* You */ = {
+			isa = PBXGroup;
+			children = (
+				C6439A3B1C0962C4006BCF73 /* ZHYouViewController.h */,
+				C6439A3C1C0962C4006BCF73 /* ZHYouViewController.m */,
+			);
+			name = You;
+			sourceTree = "<group>";
+		};
+		C6439A4F1C09735D006BCF73 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				C6439A3E1C096BB6006BCF73 /* ZHContactsManager.h */,
+				C6439A3F1C096BB6006BCF73 /* ZHContactsManager.m */,
+			);
+			name = Contacts;
+			sourceTree = "<group>";
+		};
+		C6439A501C097362006BCF73 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				C67D864B1BBF42B100B2C4CF /* ZHAssetManager.h */,
+				C67D864C1BBF42B100B2C4CF /* ZHAssetManager.m */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 		C670921F1C08346300AE06F3 /* iCloud */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,11 +348,9 @@
 		C67D86521BBF4C0300B2C4CF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C67D864B1BBF42B100B2C4CF /* ZHAssetManager.h */,
-				C67D864C1BBF42B100B2C4CF /* ZHAssetManager.m */,
+				C6439A501C097362006BCF73 /* Assets */,
+				C6439A4F1C09735D006BCF73 /* Contacts */,
 				C670921F1C08346300AE06F3 /* iCloud */,
-				C6439A3E1C096BB6006BCF73 /* ZHContactsManager.h */,
-				C6439A3F1C096BB6006BCF73 /* ZHContactsManager.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -321,17 +359,11 @@
 			isa = PBXGroup;
 			children = (
 				C6439A4A1C097099006BCF73 /* Base */,
-				C67D86371BBF429800B2C4CF /* ZHMasterViewController.h */,
-				C67D86381BBF429800B2C4CF /* ZHMasterViewController.m */,
-				C67D863A1BBF429800B2C4CF /* ZHAssetDetailViewController.h */,
-				C67D863B1BBF429800B2C4CF /* ZHAssetDetailViewController.m */,
-				C67D86B11BC04CE100B2C4CF /* Queue */,
-				C67D86A51BBF955600B2C4CF /* Location */,
 				C6B8297C1BC31D1200782468 /* Map */,
 				C67092261C08396E00AE06F3 /* Onboarding */,
 				C6439A3A1C09311F006BCF73 /* FindFriends */,
-				C6439A3B1C0962C4006BCF73 /* ZHYouViewController.h */,
-				C6439A3C1C0962C4006BCF73 /* ZHYouViewController.m */,
+				C6439A4E1C097334006BCF73 /* You */,
+				C6439A4D1C09732A006BCF73 /* Tagger */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

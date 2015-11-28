@@ -24,10 +24,12 @@ typedef void (^ZHCloudManagerUserErrorBlock)(ZHUser *user, NSError *error);
 -(void)createPhotographer:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock;
 //-(void)getFriendsWithCompletionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock;
 
--(void)getPhotographersWithEmail:(NSString*)email completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock;
+//-(void)getPhotographersWithEmail:(NSString*)email completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock;
 
 
 -(void)loggedInToICloud:(ZHCloudManagerBoolBlock)completionBlock;
 -(void)userInfo:(ZHCloudManagerUserErrorBlock)completionBlock;
--(void)findContacts:(ZHCloudManagerArrayErrorBlock)completionBlock;
+
+-(void)findUsersForEmail:(NSString*)email completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock;
+//-(void)findUsersForEmails:(NSArray*)emails completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock;
 @end
