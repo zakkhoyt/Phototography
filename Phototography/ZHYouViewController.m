@@ -7,9 +7,9 @@
 //
 
 #import "ZHYouViewController.h"
-#import "ZHUser.h"
 
 @interface ZHYouViewController ()
+@property (nonatomic, strong) ZHCloudManager *cloudManager;
 @property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
@@ -17,13 +17,17 @@
 @property (weak, nonatomic) IBOutlet UITextField *uuidTextField;
 @property (weak, nonatomic) IBOutlet UITextField *locationTextField;
 @property (weak, nonatomic) IBOutlet UITextField *assetsTextField;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveBarButton;
 @end
 
 @implementation ZHYouViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    self.cloudManager = appDelegate.cloudManager;
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -42,14 +46,42 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)textFieldEditingChanged:(id)sender {
+    [self.navigationItem setRightBarButtonItem:self.saveBarButton animated:YES];
 }
-*/
+
+- (IBAction)saveBarButtonAction:(id)sender {
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    ZHUser *user = [ZHUser currentUser];
+    user.firstName = self.firstNameTextField.text;
+    user.lastName = self.lastNameTextField.text;
+    user.email = self.emailTextField.text;
+    user.phone = self.phoneTextField.text;
+    
+    
+    [self.cloudManager updateUser:user completionBlock:^(ZHUser *user, NSError *error) {
+        if(error != nil) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Could not save account"
+                                                                           message:error.localizedDescription
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"Okay"
+                                                      style:UIAlertActionStyleCancel
+                                                    handler:nil]];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self presentViewController:alert animated:YES completion:nil];
+            });
+
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+            });
+            
+        }
+    }];
+}
 
 @end

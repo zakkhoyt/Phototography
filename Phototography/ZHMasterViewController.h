@@ -6,11 +6,11 @@
 //  Copyright © 2015 Zakk Hoyt. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ZHTableViewController.h"
 
 @class ZHAssetDetailViewController;
 
-@interface ZHMasterViewController : UITableViewController
+@interface ZHMasterViewController : ZHTableViewController
 
 @property (strong, nonatomic) ZHAssetDetailViewController *detailViewController;
 

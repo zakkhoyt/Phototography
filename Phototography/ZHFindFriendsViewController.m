@@ -7,6 +7,7 @@
 //
 
 #import "ZHFindFriendsViewController.h"
+#import "ZHContactsManager.h"
 
 typedef enum {
     ZHFindFriendsViewControllerFindTypeAddressBook = 0,
@@ -17,14 +18,14 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet UIView *addressBookView;
 @property (weak, nonatomic) IBOutlet UIView *searchEmailView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *findTypeSegment;
-
+@property (nonatomic, strong) ZHContactsManager *contactManager;
 @end
 
 @implementation ZHFindFriendsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.contactManager = [[ZHContactsManager alloc]init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,6 +59,9 @@ typedef enum {
 
 - (IBAction)addressBookButtonTouchUpInside:(id)sender {
     
+    [self.contactManager getEmailContactsWithCompletionBlock:^(NSArray *contacts, NSError *error) {
+        
+    }];
 }
 
 - (IBAction)emailSearchButtonTouchUpInsde:(id)sender {

@@ -13,7 +13,7 @@
 #import "PHAsset+Utility.h"
 #import "ZHPin.h"
 #import "ZHLocationSearchTableViewController.h"
-#import "UIColor+ZH.h"
+
 typedef void (^ZHLocationViewControllerEmptyBlock)();
 typedef void (^ZHLocationViewControllerSearchResponseBlock)(MKLocalSearchResponse *response);
 

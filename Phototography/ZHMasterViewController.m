@@ -10,8 +10,6 @@
 #import "ZHAssetDetailViewController.h"
 #import "ZHAssetManager.h"
 
-#import "MBProgressHUD.h"
-#import "NSDate+ZH.h"
 
 typedef enum {
     ZHMasterViewControllerModeAssets = 0,

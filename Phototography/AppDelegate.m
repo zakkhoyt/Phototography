@@ -20,6 +20,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    self.cloudManager = [[ZHCloudManager alloc]init];
+    
     [self setupAppearance];
     
 #if defined(ZH_MASTER_DETAIL)
@@ -65,63 +68,63 @@
     } else {
         return NO;
     }
-}
+}//    // UIView (this is what controls the color of the back button arrow)
+//    [[UIView appearance] setTintColor:[UIColor zhTintColor]];
+////    [[UIView appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:[UIColor zhBackgroundColor]];
+//    [[UIView appearanceWhenContainedInInstancesOfClasses:@[[UINavigationBar class]]] setTintColor:[UIColor zhBackgroundColor]];
+//    
+//    // UILabel
+//    [[UILabel appearance] setTextColor:[UIColor zhGreenColor]];
+//    
+//    // Navigation bar
+//    NSDictionary *navBarAttributes = @{NSForegroundColorAttributeName : [UIColor zhBackgroundColor]};
+//    [[UINavigationBar appearance] setTitleTextAttributes:navBarAttributes];
+//    [[UINavigationBar appearance] setBarTintColor:[UIColor zhTintColor]];
+//    [[UINavigationBar appearance] setTintColor:[UIColor zhBackgroundColor]];
+//    // The nav bar back button
+//    [[UIBarButtonItem appearance] setTitleTextAttributes:navBarAttributes forState:UIControlStateNormal];
+//    
+//    // Tabbar
+//    [[UITabBar appearance] setBarTintColor:[UIColor zhBackgroundColor]];
+//    [[UITabBar appearance] setTintColor:[UIColor zhTintColor]];
+//    
+//    // TabbarItem
+//    NSDictionary *tabBarAttributes = @{NSForegroundColorAttributeName : [UIColor zhTintColor]};
+//    [[UITabBarItem appearance] setTitleTextAttributes:tabBarAttributes forState:UIControlStateNormal];
+//    
+//    // Segmented control
+//    NSDictionary *segmentAttributes = @{NSForegroundColorAttributeName : [UIColor zhTintColor],
+//                                        NSStrokeColorAttributeName : [UIColor zhBackgroundColor]};
+//    [[UISegmentedControl appearance] setTitleTextAttributes:segmentAttributes forState:UIControlStateNormal];
+//    
+//    // Toolbar
+//    [[UIToolbar appearance] setBarTintColor:[UIColor zhBackgroundColor]];
+//    [[UIToolbar appearance] setTintColor:[UIColor zhTintColor]];
+//    
+//    // Text controls
+//    [[UITextView appearance] setTextColor:[UIColor zhDarkTextColor]];
+//    [[UITextView appearance] setBackgroundColor:[UIColor zhBackgroundColor]];
+//    
+//    [[UITextField appearance] setTextColor:[UIColor zhDarkTextColor]];
+//    [[UITextField appearance] setBackgroundColor:[UIColor zhBackgroundColor]];
+//    
+//    [[UITableView appearance] setBackgroundColor:[UIColor zhBackgroundColor]];
+//    [[UITableViewCell appearance] setBackgroundColor:[UIColor zhBackgroundColor]];
+//    
+//    [[UICollectionView appearance] setBackgroundColor:[UIColor zhBackgroundColor]];
+//    [[UICollectionViewCell appearance]setBackgroundColor:[UIColor zhBackgroundColor]];
+//    
+//    [[UIButton appearance] setTintColor:[UIColor zhTintColor]];
+//    [[UIButton appearance] setTitleColor:[UIColor zhTintColor] forState:UIControlStateNormal];
+//    
+//    [[UISearchBar appearance] setTintColor:[UIColor zhTintColor]];
+
 
 #endif
 
 -(void)setupAppearance{
     
     
-    // UIView (this is what controls the color of the back button arrow)
-    [[UIView appearance] setTintColor:[UIColor zhTintColor]];
-//    [[UIView appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:[UIColor zhBackgroundColor]];
-    [[UIView appearanceWhenContainedInInstancesOfClasses:@[[UINavigationBar class]]] setTintColor:[UIColor zhBackgroundColor]];
-    
-    // UILabel
-    [[UILabel appearance] setTextColor:[UIColor zhGreenColor]];
-    
-    // Navigation bar
-    NSDictionary *navBarAttributes = @{NSForegroundColorAttributeName : [UIColor zhBackgroundColor]};
-    [[UINavigationBar appearance] setTitleTextAttributes:navBarAttributes];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor zhTintColor]];
-    [[UINavigationBar appearance] setTintColor:[UIColor zhBackgroundColor]];
-    // The nav bar back button
-    [[UIBarButtonItem appearance] setTitleTextAttributes:navBarAttributes forState:UIControlStateNormal];
-    
-    // Tabbar
-    [[UITabBar appearance] setBarTintColor:[UIColor zhBackgroundColor]];
-    [[UITabBar appearance] setTintColor:[UIColor zhTintColor]];
-    
-    // TabbarItem
-    NSDictionary *tabBarAttributes = @{NSForegroundColorAttributeName : [UIColor zhTintColor]};
-    [[UITabBarItem appearance] setTitleTextAttributes:tabBarAttributes forState:UIControlStateNormal];
-    
-    // Segmented control
-    NSDictionary *segmentAttributes = @{NSForegroundColorAttributeName : [UIColor zhTintColor],
-                                        NSStrokeColorAttributeName : [UIColor zhBackgroundColor]};
-    [[UISegmentedControl appearance] setTitleTextAttributes:segmentAttributes forState:UIControlStateNormal];
-    
-    // Toolbar
-    [[UIToolbar appearance] setBarTintColor:[UIColor zhBackgroundColor]];
-    [[UIToolbar appearance] setTintColor:[UIColor zhTintColor]];
-    
-    // Text controls
-    [[UITextView appearance] setTextColor:[UIColor zhDarkTextColor]];
-    [[UITextView appearance] setBackgroundColor:[UIColor zhBackgroundColor]];
-    
-//    [[UITextField appearance] setTextColor:[UIColor zhDarkTextColor]];
-//    [[UITextField appearance] setBackgroundColor:[UIColor zhBackgroundColor]];
-    
-    [[UITableView appearance] setBackgroundColor:[UIColor zhBackgroundColor]];
-    [[UITableViewCell appearance] setBackgroundColor:[UIColor zhBackgroundColor]];
-    
-    [[UICollectionView appearance] setBackgroundColor:[UIColor zhBackgroundColor]];
-    [[UICollectionViewCell appearance]setBackgroundColor:[UIColor zhBackgroundColor]];
-    
-    [[UIButton appearance] setTintColor:[UIColor zhTintColor]];
-    [[UIButton appearance] setTitleColor:[UIColor zhTintColor] forState:UIControlStateNormal];
-    
-    [[UISearchBar appearance] setTintColor:[UIColor zhTintColor]];
     
 }
 @end

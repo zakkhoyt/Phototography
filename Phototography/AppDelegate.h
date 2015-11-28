@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZHCloudManager.h"
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (nonatomic, strong) ZHCloudManager *cloudManager;
 
 @end
 

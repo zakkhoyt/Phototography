@@ -7,8 +7,6 @@
 //
 
 #import "ZHOnboardingViewController.h"
-#import "MBProgressHUD.h"
-#import "ZHCloudManager.h"
 
 
 @interface ZHOnboardingViewController ()
@@ -27,7 +25,9 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    self.cloudManager = [[ZHCloudManager alloc]init];
+    
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    self.cloudManager = appDelegate.cloudManager;
     
     [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationWillEnterForegroundNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         [self verifyAuthenticated];

@@ -6,12 +6,12 @@
 //  Copyright © 2015 Zakk Hoyt. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ZHTableViewController.h"
 @import MapKit;
 
 typedef void (^ZHLocationSearchTableViewControllerCoordinateBlock)(CLLocationCoordinate2D coordinate);
 
-@interface ZHLocationSearchTableViewController : UITableViewController
+@interface ZHLocationSearchTableViewController : ZHTableViewController
 @property (nonatomic, strong) MKMapView *mapView;
 -(void)setCoordinateBlock:(ZHLocationSearchTableViewControllerCoordinateBlock)coordinateBlock;
 @end

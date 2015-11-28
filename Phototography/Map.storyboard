@@ -153,42 +153,63 @@
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldEditingChanged:" destination="EO1-1c-0ht" eventType="editingChanged" id="pbd-EM-P0C"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rrp-mA-g1u">
                                 <rect key="frame" x="20" y="110" width="560" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldEditingChanged:" destination="EO1-1c-0ht" eventType="editingChanged" id="EI6-5c-dl8"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xze-1a-VnE">
                                 <rect key="frame" x="20" y="148" width="560" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldEditingChanged:" destination="EO1-1c-0ht" eventType="editingChanged" id="Ve5-kM-RRc"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xyr-SB-8f3">
                                 <rect key="frame" x="20" y="186" width="560" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldEditingChanged:" destination="EO1-1c-0ht" eventType="editingChanged" id="UJW-Bl-QVE"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="UUID" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vEU-w7-AjY">
                                 <rect key="frame" x="20" y="224" width="560" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldEditingChanged:" destination="EO1-1c-0ht" eventType="editingChanged" id="DLd-MG-ApN"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Assets" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aNx-Sq-cW5">
                                 <rect key="frame" x="20" y="300" width="560" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldEditingChanged:" destination="EO1-1c-0ht" eventType="editingChanged" id="eoP-TW-TtA"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o0s-IW-wWm">
                                 <rect key="frame" x="20" y="262" width="560" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldEditingChanged:" destination="EO1-1c-0ht" eventType="editingChanged" id="2n8-dS-9vA"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <animations/>
@@ -217,9 +238,7 @@
                             <constraint firstItem="xze-1a-VnE" firstAttribute="top" secondItem="rrp-mA-g1u" secondAttribute="bottom" constant="8" id="xkk-FQ-RFx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="or6-Ph-ogz">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="JTB-gO-lsK"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="or6-Ph-ogz"/>
                     <connections>
                         <outlet property="assetsTextField" destination="aNx-Sq-cW5" id="JLW-4u-h2P"/>
                         <outlet property="emailTextField" destination="xze-1a-VnE" id="J0d-ml-KoX"/>
@@ -227,10 +246,16 @@
                         <outlet property="lastNameTextField" destination="rrp-mA-g1u" id="i1w-ar-dhh"/>
                         <outlet property="locationTextField" destination="o0s-IW-wWm" id="j6J-qW-06z"/>
                         <outlet property="phoneTextField" destination="xyr-SB-8f3" id="2yV-yc-x7R"/>
+                        <outlet property="saveBarButton" destination="JTB-gO-lsK" id="qh4-uB-zsO"/>
                         <outlet property="uuidTextField" destination="vEU-w7-AjY" id="wAg-Oi-xAS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2J4-lT-4hE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <barButtonItem title="Save" id="JTB-gO-lsK">
+                    <connections>
+                        <action selector="saveBarButtonAction:" destination="EO1-1c-0ht" id="tii-cR-MsM"/>
+                    </connections>
+                </barButtonItem>
             </objects>
             <point key="canvasLocation" x="2746" y="1945"/>
         </scene>
