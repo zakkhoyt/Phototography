@@ -36,8 +36,8 @@
 }
 
 - (void)commonInitWithFrame:(CGRect)frame {
-    self.addAnnotationAnimationDuration = 0.5;
-    self.removeAnnotationAnimationDuration = 0.2;
+    self.addAnnotationAnimationDuration = 0.3;
+    self.removeAnnotationAnimationDuration = 0.1;
     self.addAnimationType = VWWClusteredMapViewAnnotationAddAnimationAutomatic;
     MKMapView *mapView = [[MKMapView alloc]initWithFrame:frame];
     mapView.delegate = (id<MKMapViewDelegate>)self;

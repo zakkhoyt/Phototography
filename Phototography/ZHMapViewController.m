@@ -34,7 +34,7 @@ static NSString *SegueMapToAssetGroup = @"SegueMapToAssetGroup";
 
     self.navigationItem.title = @"Map";
 
-
+    self.clusteredMapView.mapType = MKMapTypeHybridFlyover;
     self.clusteredMapView.delegate = self;
     self.clusteredMapView.dataSource = self;
     self.clusteredMapView.addAnimationType = VWWClusteredMapViewAnnotationAddAnimationGrowStaggered;

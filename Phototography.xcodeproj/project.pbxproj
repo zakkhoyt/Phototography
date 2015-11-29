@@ -74,6 +74,8 @@
 		C6BBCA421BC31C0A009D6887 /* VWWClusteredMapView+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA381BC31C0A009D6887 /* VWWClusteredMapView+Private.m */; };
 		C6BBCA431BC31C0A009D6887 /* VWWClusteredMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA3A1BC31C0A009D6887 /* VWWClusteredMapView.m */; };
 		C6FB1A351C0ABF5B006453C9 /* ZHLocationUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FB1A341C0ABF5B006453C9 /* ZHLocationUpdate.m */; };
+		C6FE5D6D1C0ACCC10084F758 /* ZHFullscreenAssetCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FE5D6C1C0ACCC10084F758 /* ZHFullscreenAssetCollectionViewCell.m */; };
+		C6FE5D701C0ACCC90084F758 /* ZHFullscreenAssetCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FE5D6F1C0ACCC90084F758 /* ZHFullscreenAssetCollectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -203,6 +205,10 @@
 		C6BBCA3A1BC31C0A009D6887 /* VWWClusteredMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWClusteredMapView.m; sourceTree = "<group>"; };
 		C6FB1A331C0ABF5B006453C9 /* ZHLocationUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLocationUpdate.h; sourceTree = "<group>"; };
 		C6FB1A341C0ABF5B006453C9 /* ZHLocationUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLocationUpdate.m; sourceTree = "<group>"; };
+		C6FE5D6B1C0ACCC10084F758 /* ZHFullscreenAssetCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHFullscreenAssetCollectionViewCell.h; sourceTree = "<group>"; };
+		C6FE5D6C1C0ACCC10084F758 /* ZHFullscreenAssetCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHFullscreenAssetCollectionViewCell.m; sourceTree = "<group>"; };
+		C6FE5D6E1C0ACCC90084F758 /* ZHFullscreenAssetCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHFullscreenAssetCollectionViewController.h; sourceTree = "<group>"; };
+		C6FE5D6F1C0ACCC90084F758 /* ZHFullscreenAssetCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHFullscreenAssetCollectionViewController.m; sourceTree = "<group>"; };
 		E544EB3B61E1508738FF4B96 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -532,10 +538,8 @@
 		C696B6711C0AA06B00F21D4D /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				C696B66E1C0AA06600F21D4D /* ZHAssetGroupViewController.h */,
-				C696B66F1C0AA06600F21D4D /* ZHAssetGroupViewController.m */,
-				C696B6721C0AA0A300F21D4D /* ZHAssetCollectionViewCell.h */,
-				C696B6731C0AA0A300F21D4D /* ZHAssetCollectionViewCell.m */,
+				C6FE5D721C0ACD890084F758 /* Fullscreen */,
+				C6FE5D731C0ACD920084F758 /* Group */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -639,6 +643,44 @@
 				C6BBCA2F1BC31C0A009D6887 /* VWWQuadTree.m */,
 			);
 			path = QuadTree;
+			sourceTree = "<group>";
+		};
+		C6FE5D711C0ACD850084F758 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C6FE5D6B1C0ACCC10084F758 /* ZHFullscreenAssetCollectionViewCell.h */,
+				C6FE5D6C1C0ACCC10084F758 /* ZHFullscreenAssetCollectionViewCell.m */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		C6FE5D721C0ACD890084F758 /* Fullscreen */ = {
+			isa = PBXGroup;
+			children = (
+				C6FE5D6E1C0ACCC90084F758 /* ZHFullscreenAssetCollectionViewController.h */,
+				C6FE5D6F1C0ACCC90084F758 /* ZHFullscreenAssetCollectionViewController.m */,
+				C6FE5D711C0ACD850084F758 /* Cell */,
+			);
+			name = Fullscreen;
+			sourceTree = "<group>";
+		};
+		C6FE5D731C0ACD920084F758 /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				C696B66E1C0AA06600F21D4D /* ZHAssetGroupViewController.h */,
+				C696B66F1C0AA06600F21D4D /* ZHAssetGroupViewController.m */,
+				C6FE5D741C0ACD9F0084F758 /* Cell */,
+			);
+			name = Group;
+			sourceTree = "<group>";
+		};
+		C6FE5D741C0ACD9F0084F758 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C696B6721C0AA0A300F21D4D /* ZHAssetCollectionViewCell.h */,
+				C696B6731C0AA0A300F21D4D /* ZHAssetCollectionViewCell.m */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -784,6 +826,7 @@
 				C6BBCA3E1BC31C0A009D6887 /* VWWQuadTree.m in Sources */,
 				C6FB1A351C0ABF5B006453C9 /* ZHLocationUpdate.m in Sources */,
 				C67D86651BBF541600B2C4CF /* ZHLocationViewController.m in Sources */,
+				C6FE5D701C0ACCC90084F758 /* ZHFullscreenAssetCollectionViewController.m in Sources */,
 				C696B6741C0AA0A300F21D4D /* ZHAssetCollectionViewCell.m in Sources */,
 				C67D869D1BBF7EF800B2C4CF /* NSURLRequest+AFCurlRequest.m in Sources */,
 				C67D86681BBF5B2700B2C4CF /* ZHPin.m in Sources */,
@@ -818,6 +861,7 @@
 				C670921E1C08330100AE06F3 /* ZHCloudManager.m in Sources */,
 				C67D86331BBF429800B2C4CF /* main.m in Sources */,
 				C67D86971BBF7EF800B2C4CF /* CLLocation+ZH.m in Sources */,
+				C6FE5D6D1C0ACCC10084F758 /* ZHFullscreenAssetCollectionViewCell.m in Sources */,
 				C67D863C1BBF429800B2C4CF /* ZHAssetDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

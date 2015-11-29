@@ -8,24 +8,21 @@
 
 #import "ZHAssetGroupViewController.h"
 #import "ZHAssetCollectionViewCell.h"
+#import "ZHFullscreenAssetCollectionViewController.h"
+
+static NSString *SegueAssetGroupToFullscreen = @"SegueAssetGroupToFullscreen";
 
 @interface ZHAssetGroupViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
 @end
-
 
 @interface ZHAssetGroupViewController (UICollectionViewDataSource) <UICollectionViewDataSource>
-
 @end
 
-
 @interface ZHAssetGroupViewController (UICollectionViewDelegateFlowLayout) <UICollectionViewDelegateFlowLayout>
-
 @end
 
 @interface ZHAssetGroupViewController (UICollectionViewDelegate) <UICollectionViewDelegate>
-
 @end
 
 
@@ -41,6 +38,13 @@
     self.navigationController.navigationBarHidden = NO;
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:SegueAssetGroupToFullscreen]) {
+        ZHFullscreenAssetCollectionViewController *vc = segue.destinationViewController;
+        vc.assets = self.assets;
+        vc.indexPath = sender;
+    }
+}
 @end
 
 @implementation ZHAssetGroupViewController (UICollectionViewDataSource)
@@ -82,5 +86,9 @@
 @end
 
 @implementation ZHAssetGroupViewController (UICollectionViewDelegate)
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:SegueAssetGroupToFullscreen sender:indexPath];
+}
 
 @end

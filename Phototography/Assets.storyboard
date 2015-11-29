@@ -91,14 +91,127 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="zsk-MK-Gsf" id="VWi-Aw-EqD"/>
+                        <segue destination="QQs-LY-gWx" kind="show" identifier="SegueAssetGroupToFullscreen" id="ZGt-fr-F38"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FR3-Pw-g51" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="577" y="144"/>
         </scene>
+        <!--Fullscreen Asset Collection View Controller-->
+        <scene sceneID="N55-ih-7Xd">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="QQs-LY-gWx" customClass="ZHFullscreenAssetCollectionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RNr-R7-QPH"/>
+                        <viewControllerLayoutGuide type="bottom" id="jJ4-Ic-FtH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="emf-au-TqE">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZsS-NQ-A4i">
+                                <rect key="frame" x="8" y="8" width="44" height="44"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="mnH-mg-SEJ"/>
+                                    <constraint firstAttribute="height" constant="44" id="qbl-Oz-YkO"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="close">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="closeButtonTouchUpInside:" destination="QQs-LY-gWx" eventType="touchUpInside" id="bnb-yH-gO7"/>
+                                </connections>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ggp-n3-cTY">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="vdg-rT-JLc">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ZHFullscreenAssetCollectionViewCell" id="dhv-YO-eVl" userLabel="ZHFullscreenAssetCollectionViewCell" customClass="ZHFullscreenAssetCollectionViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HK5-v8-6rz">
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                                    <animations/>
+                                                </scrollView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHi-px-eHN">
+                                                    <rect key="frame" x="248" y="248" width="44" height="44"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="44" id="cIf-fv-t7T"/>
+                                                        <constraint firstAttribute="height" constant="44" id="l1e-0a-pm9"/>
+                                                    </constraints>
+                                                    <state key="normal" backgroundImage="share"/>
+                                                    <connections>
+                                                        <action selector="shareButtonTouchUpInside:" destination="dhv-YO-eVl" eventType="touchUpInside" id="0Hr-Dm-TgS"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="HK5-v8-6rz" secondAttribute="bottom" id="4Sd-gQ-UDB"/>
+                                            <constraint firstItem="HK5-v8-6rz" firstAttribute="top" secondItem="dhv-YO-eVl" secondAttribute="top" id="7zP-zT-xds"/>
+                                            <constraint firstItem="HK5-v8-6rz" firstAttribute="leading" secondItem="dhv-YO-eVl" secondAttribute="leading" id="A5m-Av-kH2"/>
+                                            <constraint firstItem="yHi-px-eHN" firstAttribute="bottom" secondItem="dhv-YO-eVl" secondAttribute="bottomMargin" id="BgN-rc-Zlk"/>
+                                            <constraint firstItem="yHi-px-eHN" firstAttribute="trailing" secondItem="dhv-YO-eVl" secondAttribute="trailingMargin" id="WWZ-8a-Dyk"/>
+                                            <constraint firstAttribute="trailing" secondItem="HK5-v8-6rz" secondAttribute="trailing" id="kbf-2u-BaR"/>
+                                        </constraints>
+                                        <size key="customSize" width="300" height="300"/>
+                                        <connections>
+                                            <outlet property="scrollView" destination="HK5-v8-6rz" id="ySM-ZT-gv4"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="QQs-LY-gWx" id="7ME-pH-D0b"/>
+                                    <outlet property="delegate" destination="QQs-LY-gWx" id="tEN-sU-YXc"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZsS-NQ-A4i" firstAttribute="leading" secondItem="emf-au-TqE" secondAttribute="leading" constant="8" id="BW9-l2-iTK"/>
+                            <constraint firstItem="ggp-n3-cTY" firstAttribute="top" secondItem="emf-au-TqE" secondAttribute="top" id="G1s-jM-mof"/>
+                            <constraint firstItem="jJ4-Ic-FtH" firstAttribute="top" secondItem="ggp-n3-cTY" secondAttribute="bottom" id="Xyb-nG-xvC"/>
+                            <constraint firstItem="ZsS-NQ-A4i" firstAttribute="top" secondItem="emf-au-TqE" secondAttribute="top" constant="8" id="Zwx-YH-bqD"/>
+                            <constraint firstAttribute="trailing" secondItem="ggp-n3-cTY" secondAttribute="trailing" id="u8S-uP-HdO"/>
+                            <constraint firstItem="ggp-n3-cTY" firstAttribute="leading" secondItem="emf-au-TqE" secondAttribute="leading" id="v0g-TS-poI"/>
+                            <constraint firstItem="ZsS-NQ-A4i" firstAttribute="top" secondItem="emf-au-TqE" secondAttribute="top" constant="8" id="zMV-FK-0pi"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Zwx-YH-bqD"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="closeButton" destination="ZsS-NQ-A4i" id="F6I-2Z-MWH"/>
+                        <outlet property="collectionView" destination="ggp-n3-cTY" id="cyB-kX-iIn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LXt-bs-Nms" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1421" y="144"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="close" width="128" height="128"/>
         <image name="gradient" width="1024" height="1024"/>
+        <image name="share" width="128" height="128"/>
     </resources>
 </document>
