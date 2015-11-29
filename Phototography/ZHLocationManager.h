@@ -23,6 +23,6 @@ typedef void (^ZHLocationManagerLocationBlock)(CLLocation *location);
 -(void)updateToCurrentLocationWithCompletionBlock:(ZHLocationManagerLocationBlock)completionBlock;
 
 // Update to a specific location
--(void)updateToLocation:(CLLocation*)location;
+-(void)updateToLocation:(CLLocation*)location completionBlock:(ZHLocationManagerLocationBlock)completionBlock;
 
 @end

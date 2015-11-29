@@ -5,6 +5,9 @@
 //  Created by Zakk Hoyt on 10/3/15.
 //  Copyright © 2015 Zakk Hoyt. All rights reserved.
 //
+//  https://stackoverflow.com/questions/2315948/how-to-store-custom-objects-in-nsuserdefaults/2315972#2315972
+
+
 
 #import "ZHUserDefaults.h"
 

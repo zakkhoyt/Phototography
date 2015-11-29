@@ -122,8 +122,8 @@ static NSString *SegueOnboardingToMain = @"SegueOnboardingToMain";
     VWWPhotosPermission *photos = [VWWPhotosPermission permissionWithLabelText:@"We will read your photo library to find photos without a geotag."];
     VWWContactsPermission *contacts = [VWWContactsPermission permissionWithLabelText:@"Contacts to find your friends"];
 //    VWWCoreLocationWhenInUsePermission *locationWhenInUse = [VWWCoreLocationWhenInUsePermission permissionWithLabelText:@"For obtaining your current location"];
-    VWWCoreLocationAlwaysPermission *locationAlways = [VWWCoreLocationAlwaysPermission permissionWithLabelText:@"please"];
-    NSArray *permissions = @[locationAlways, photos, contacts];
+    VWWCoreLocationWhenInUsePermission *locationInUse = [VWWCoreLocationWhenInUsePermission permissionWithLabelText:@"please"];
+    NSArray *permissions = @[locationInUse, photos, contacts];
 //    NSArray *permissions = @[photos];
 
     [VWWPermissionsManager requirePermissions:permissions
@@ -139,7 +139,8 @@ static NSString *SegueOnboardingToMain = @"SegueOnboardingToMain";
 
 
 - (IBAction)startButtonTouchUpInside:(id)sender {
-    [self checkPermissions];
+//    [self checkPermissions];
+    [self performSegueWithIdentifier:SegueOnboardingToMain sender:nil];
 }
 
 

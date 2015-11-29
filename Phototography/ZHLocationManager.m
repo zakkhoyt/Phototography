@@ -87,8 +87,12 @@
     [self getAccurateLocation];
 }
 
--(void)updateToLocation:(CLLocation*)location{
-    
+-(void)updateToLocation:(CLLocation*)location completionBlock:(ZHLocationManagerLocationBlock)completionBlock{
+    ZHLocationUpdate *update = [ZHLocationUpdate new];
+    update.location = location;
+    update.date = [NSDate date];
+    [_updates addObject:update];
+    completionBlock(location);
 }
 
 

@@ -16,6 +16,7 @@
 		C6439A431C097071006BCF73 /* ZHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6439A421C097071006BCF73 /* ZHViewController.m */; };
 		C6439A461C097085006BCF73 /* ZHTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6439A451C097085006BCF73 /* ZHTableViewController.m */; };
 		C6439A491C097092006BCF73 /* ZHCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6439A481C097092006BCF73 /* ZHCollectionViewController.m */; };
+		C665D5591C0AD9F40018D988 /* ZHUpdateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C665D5581C0AD9F40018D988 /* ZHUpdateTableViewCell.m */; };
 		C670921B1C08325100AE06F3 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C670921A1C08325100AE06F3 /* CloudKit.framework */; };
 		C670921E1C08330100AE06F3 /* ZHCloudManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C670921D1C08330100AE06F3 /* ZHCloudManager.m */; };
 		C67092221C08346D00AE06F3 /* ZHUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C67092211C08346D00AE06F3 /* ZHUser.m */; };
@@ -96,6 +97,8 @@
 		C6439A471C097092006BCF73 /* ZHCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHCollectionViewController.h; sourceTree = "<group>"; };
 		C6439A481C097092006BCF73 /* ZHCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHCollectionViewController.m; sourceTree = "<group>"; };
 		C6439A4B1C0970EE006BCF73 /* ZHViewControllerImports.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHViewControllerImports.h; sourceTree = "<group>"; };
+		C665D5571C0AD9F40018D988 /* ZHUpdateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHUpdateTableViewCell.h; sourceTree = "<group>"; };
+		C665D5581C0AD9F40018D988 /* ZHUpdateTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHUpdateTableViewCell.m; sourceTree = "<group>"; };
 		C67092191C08323900AE06F3 /* Phototography.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Phototography.entitlements; sourceTree = "<group>"; };
 		C670921A1C08325100AE06F3 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		C670921C1C08330100AE06F3 /* ZHCloudManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHCloudManager.h; sourceTree = "<group>"; };
@@ -558,6 +561,8 @@
 			children = (
 				C696B6791C0AAD9A00F21D4D /* ZHUpdatesViewController.h */,
 				C696B67A1C0AAD9A00F21D4D /* ZHUpdatesViewController.m */,
+				C665D5571C0AD9F40018D988 /* ZHUpdateTableViewCell.h */,
+				C665D5581C0AD9F40018D988 /* ZHUpdateTableViewCell.m */,
 			);
 			name = Updates;
 			sourceTree = "<group>";
@@ -861,6 +866,7 @@
 				C670921E1C08330100AE06F3 /* ZHCloudManager.m in Sources */,
 				C67D86331BBF429800B2C4CF /* main.m in Sources */,
 				C67D86971BBF7EF800B2C4CF /* CLLocation+ZH.m in Sources */,
+				C665D5591C0AD9F40018D988 /* ZHUpdateTableViewCell.m in Sources */,
 				C6FE5D6D1C0ACCC10084F758 /* ZHFullscreenAssetCollectionViewCell.m in Sources */,
 				C67D863C1BBF429800B2C4CF /* ZHAssetDetailViewController.m in Sources */,
 			);

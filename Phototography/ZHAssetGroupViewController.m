@@ -36,6 +36,7 @@ static NSString *SegueAssetGroupToFullscreen = @"SegueAssetGroupToFullscreen";
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
+    [UIApplication sharedApplication].statusBarHidden = NO;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

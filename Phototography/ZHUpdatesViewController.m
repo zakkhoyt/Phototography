@@ -9,6 +9,7 @@
 #import "ZHUpdatesViewController.h"
 #import "ZHLocationUpdate.h"
 #import "ZHLocationManager.h"
+#import "ZHUpdateTableViewCell.h"
 
 @interface ZHUpdatesViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -25,7 +26,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.tableView.estimatedRowHeight = 44;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -38,10 +40,19 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Locating...";
     
+#if TARGET_IPHONE_SIMULATOR
+    CLLocation *location = [[CLLocation alloc]initWithLatitude:37.75 longitude:-122.45];
+    [[ZHLocationManager sharedInstance] updateToLocation:location completionBlock:^(CLLocation *location) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self.tableView reloadData];
+    }];
+#else
     [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self.tableView reloadData];
     }];
+#endif
+    
 }
 
 @end
@@ -54,15 +65,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UpdateCell"];
-    ZHLocationUpdate *update = [ZHLocationManager sharedInstance].updates[indexPath.row];
-    cell.textLabel.text = [update.date stringRelativeTimeFromDate];
-    
-    cell.detailTextLabel.text = @"";
-    [update.location stringLocalityCompletionBlock:^(NSString *string) {
-        cell.detailTextLabel.text = string;
-    }];
-    
+    ZHUpdateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZHUpdateTableViewCell"];
+    cell.update = [ZHLocationManager sharedInstance].updates[indexPath.row];
     return cell;
 }
 
