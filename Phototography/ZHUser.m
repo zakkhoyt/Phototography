@@ -42,7 +42,8 @@ static ZHUser *currentUser;
         self.lastName = userInfo.displayContact.familyName;
         self.email = [userInfo.displayContact.emailAddresses firstObject].value;
         self.phone = [userInfo.displayContact.phoneNumbers firstObject].value.stringValue;
-        self.uuid = userInfo.userRecordID.recordName;
+        self.uuid = [NSString stringWithFormat:@"uuid%@", userInfo.userRecordID.recordName];
+        self.recordID = userInfo.userRecordID;
 //        self.uuid = [record objectForKey:@"uuid"];
 //        self.friends = [record objectForKey:@"Friends"];
     }

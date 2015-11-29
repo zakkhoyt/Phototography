@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *phone;
 @property (nonatomic, strong) NSString *uuid;
+@property (nonatomic, strong) CKRecordID *recordID;
 @property (nonatomic, strong) NSArray <ZHUser*> *friends;
 
 +(void)setCurrentUser:(ZHUser*)user;

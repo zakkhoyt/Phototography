@@ -49,7 +49,7 @@
             </objects>
             <point key="canvasLocation" x="3329.5" y="1171"/>
         </scene>
-        <!--View Controller-->
+        <!--Friends-->
         <scene sceneID="G96-7r-03k">
             <objects>
                 <viewController id="mOo-rv-3Mn" sceneMemberID="viewController">
@@ -63,7 +63,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="FaV-S6-4L5">
+                    <navigationItem key="navigationItem" title="Friends" id="FaV-S6-4L5">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="hQR-v8-vW8">
                             <connections>
                                 <segue destination="tyz-qg-i8V" kind="show" id="20x-Y2-Kkc"/>
@@ -136,7 +136,7 @@
             </objects>
             <point key="canvasLocation" x="1934" y="1171"/>
         </scene>
-        <!--You View Controller-->
+        <!--Your Account-->
         <scene sceneID="dNo-UO-z83">
             <objects>
                 <viewController id="EO1-1c-0ht" customClass="ZHYouViewController" sceneMemberID="viewController">
@@ -238,7 +238,7 @@
                             <constraint firstItem="xze-1a-VnE" firstAttribute="top" secondItem="rrp-mA-g1u" secondAttribute="bottom" constant="8" id="xkk-FQ-RFx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="or6-Ph-ogz"/>
+                    <navigationItem key="navigationItem" title="Your Account" id="or6-Ph-ogz"/>
                     <connections>
                         <outlet property="assetsTextField" destination="aNx-Sq-cW5" id="JLW-4u-h2P"/>
                         <outlet property="emailTextField" destination="xze-1a-VnE" id="J0d-ml-KoX"/>

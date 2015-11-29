@@ -83,15 +83,28 @@
                     });
 
                 } else {
-                    NSLog(@"Retrieved user info for %@ %@", user.firstName, user.lastName);
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [MBProgressHUD hideHUDForView:self.view animated:YES];
-                        self.statusLabel.text = [NSString stringWithFormat:@"Welcome to Phototography, %@ %@!\n"
-                                                 @"This app will let you know if your friends have taken photos near your current location. You can recreate their photos and share them back. You can search for friends now using the buttons below or set that up later.",
-                                                 user.firstName, user.lastName];
-                        self.startButton.hidden = NO;
-                        self.findFriendsButton.hidden = NO;
-                    });
+                    
+                    // TODO: Now use the private Users record to create a public Photographers record
+                    
+                    [self.cloudManager createPhotographer:user completionBlock:^(ZHUser *user, NSError *error) {
+                        
+                        
+                        if(error != nil) {
+                            NSLog(@"Failed to create photographer from user");
+                        } else {
+                            NSLog(@"Retrieved user info for %@ %@", user.firstName, user.lastName);
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                self.statusLabel.text = [NSString stringWithFormat:@"Welcome to Phototography, %@ %@!\n"
+                                                         @"This app will let you know if your friends have taken photos near your current location. You can recreate their photos and share them back. You can search for friends now using the buttons below or set that up later.",
+                                                         user.firstName, user.lastName];
+                                self.startButton.hidden = NO;
+                                self.findFriendsButton.hidden = NO;
+                            });
+                        }
+                    }];
+                    
+                    
                 }
             }];
         }
