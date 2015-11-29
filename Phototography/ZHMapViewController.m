@@ -11,6 +11,9 @@
 #import "VWWClusteredMapView.h"
 #import "ZHAssetAnnotation.h"
 #import "ZHAssetAnnotationView.h"
+#import "ZHAssetGroupViewController.h"
+
+static NSString *SegueMapToAssetGroup = @"SegueMapToAssetGroup";
 
 @interface ZHMapViewController ()
 @property (weak, nonatomic) IBOutlet VWWClusteredMapView *clusteredMapView;
@@ -29,7 +32,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // Let's get started
+    self.navigationItem.title = @"Map";
+
 
     self.clusteredMapView.delegate = self;
     self.clusteredMapView.dataSource = self;
@@ -43,6 +47,8 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [UIApplication sharedApplication].statusBarHidden = YES;
+    self.navigationController.navigationBarHidden = YES;
+    self.tabBarController.tabBar.hidden = NO;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -55,15 +61,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:SegueMapToAssetGroup]){
+        ZHAssetGroupViewController *vc = segue.destinationViewController;
+        vc.assets = sender;
+        self.tabBarController.tabBar.hidden = YES;
+    }
 }
-*/
 
 #pragma mark Private methods
 
@@ -85,9 +89,9 @@
             }];
             self.items = items;
             
-            self.navigationItem.title = [NSString stringWithFormat:@"%lu/%lu",
-                                         (unsigned long)[ZHAssetManager sharedInstance].assetsNoLocation.count,
-                                         (unsigned long)[ZHAssetManager sharedInstance].assets.count];
+//            self.navigationItem.title = [NSString stringWithFormat:@"%lu/%lu",
+//                                         (unsigned long)[ZHAssetManager sharedInstance].assetsNoLocation.count,
+//                                         (unsigned long)[ZHAssetManager sharedInstance].assets.count];
             [self.clusteredMapView reloadData];
         }
     }];
@@ -134,9 +138,12 @@
 
 - (void)clusteredMapView:(VWWClusteredMapView *)clusteredMapView didSelectClusteredAnnotationView:(VWWClusteredAnnotationView *)view {
     NSLog(@"annotationView.class: %@", NSStringFromClass([view class]));
-//    CLLocationCoordinate2D coordinate = [view.annotation coordinate];
+    VWWClusteredAnnotation *annotation = (VWWClusteredAnnotation*)view.annotation;
+//    PHAssetCollection *assetCollection = [PHAssetCollection transientAssetCollectionWithAssets:annotation.annotations title:nil];
+    NSArray *assets = [annotation.annotations valueForKeyPath:@"asset"];
+    [self performSegueWithIdentifier:SegueMapToAssetGroup sender:assets];
     
-//    [self showDetailsForAnnotationView:view coordinate:coordinate];
+    
 }
 
 @end

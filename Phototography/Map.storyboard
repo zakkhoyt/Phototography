@@ -35,11 +35,20 @@
                     <navigationItem key="navigationItem" id="qr6-vC-9Xk"/>
                     <connections>
                         <outlet property="clusteredMapView" destination="dnv-Vi-s4r" id="hoe-yh-tyo"/>
+                        <segue destination="ZrY-Mx-Eq3" kind="show" identifier="SegueMapToAssetGroup" id="auY-92-Ppf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KvQ-Qd-tPC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2746" y="370"/>
+        </scene>
+        <!--Assets-->
+        <scene sceneID="ZjD-Fb-gaT">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Assets" id="ZrY-Mx-Eq3" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oT2-Xw-Kgt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3271.5" y="370"/>
         </scene>
         <!--FindFriends-->
         <scene sceneID="ol6-ZO-jrI">

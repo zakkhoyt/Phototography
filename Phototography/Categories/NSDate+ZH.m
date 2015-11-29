@@ -125,7 +125,7 @@
 
 -(NSString*)stringFromDateDayOnlyShort{
     
-    NSString *dateFormatString = @"MMM dd, YYYY";
+    NSString *dateFormatString = @"MMM dd, YYYY HH:mm";
     
     NSDateFormatter* dateLocal = [[NSDateFormatter alloc] init];
     [dateLocal setTimeZone:[NSTimeZone localTimeZone]];

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15A278b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="c1T-mJ-h9K">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Asset Group View Controller-->
+        <scene sceneID="oHh-4Q-AbY">
+            <objects>
+                <viewController id="c1T-mJ-h9K" customClass="ZHAssetGroupViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1ka-Hl-MTH"/>
+                        <viewControllerLayoutGuide type="bottom" id="iQT-cU-SUp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QK4-fa-osI">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zsk-MK-Gsf">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gb5-Ye-zT1">
+                                    <size key="itemSize" width="202" height="194"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ZHAssetCollectionViewCell" id="s16-OU-mTT" customClass="ZHAssetCollectionViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="202" height="194"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="202" height="194"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KNF-us-CF2" customClass="ZHAssetImageView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="202" height="194"/>
+                                                    <animations/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient" translatesAutoresizingMaskIntoConstraints="NO" id="Grb-6z-Fhm">
+                                                    <rect key="frame" x="0.0" y="0.0" width="202" height="194"/>
+                                                    <animations/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EkV-BT-Ayf">
+                                                    <rect key="frame" x="8" y="172.5" width="186" height="13.5"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottomMargin" secondItem="Grb-6z-Fhm" secondAttribute="bottom" constant="-8" id="0uM-rc-Gfa"/>
+                                            <constraint firstItem="Grb-6z-Fhm" firstAttribute="leading" secondItem="s16-OU-mTT" secondAttribute="leadingMargin" constant="-8" id="D0X-bd-k3g"/>
+                                            <constraint firstItem="Grb-6z-Fhm" firstAttribute="top" secondItem="s16-OU-mTT" secondAttribute="topMargin" constant="-8" id="D7m-ez-T9j"/>
+                                            <constraint firstItem="KNF-us-CF2" firstAttribute="leading" secondItem="s16-OU-mTT" secondAttribute="leadingMargin" constant="-8" id="KVl-gK-wkK"/>
+                                            <constraint firstItem="EkV-BT-Ayf" firstAttribute="trailing" secondItem="s16-OU-mTT" secondAttribute="trailingMargin" id="SQ2-0D-tbx"/>
+                                            <constraint firstItem="EkV-BT-Ayf" firstAttribute="bottom" secondItem="s16-OU-mTT" secondAttribute="bottomMargin" id="WMw-36-K4n"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="Grb-6z-Fhm" secondAttribute="trailing" constant="-8" id="cuc-iH-mbP"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="KNF-us-CF2" secondAttribute="bottom" constant="-8" id="eK6-Sx-m3N"/>
+                                            <constraint firstItem="EkV-BT-Ayf" firstAttribute="leading" secondItem="s16-OU-mTT" secondAttribute="leadingMargin" id="hu3-dx-2iy"/>
+                                            <constraint firstItem="KNF-us-CF2" firstAttribute="top" secondItem="s16-OU-mTT" secondAttribute="topMargin" constant="-8" id="kOo-Fw-yfr"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="KNF-us-CF2" secondAttribute="trailing" constant="-8" id="rsF-R0-ADX"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="assetImageView" destination="KNF-us-CF2" id="qxP-B7-QNd"/>
+                                            <outlet property="dateLabel" destination="EkV-BT-Ayf" id="Ukf-GI-qQE"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="c1T-mJ-h9K" id="aqC-mo-hrE"/>
+                                    <outlet property="delegate" destination="c1T-mJ-h9K" id="pSd-Tp-Hkf"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="iQT-cU-SUp" firstAttribute="top" secondItem="zsk-MK-Gsf" secondAttribute="bottom" id="1r8-tx-DoP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zsk-MK-Gsf" secondAttribute="trailing" constant="-20" id="QKG-br-Tto"/>
+                            <constraint firstItem="zsk-MK-Gsf" firstAttribute="top" secondItem="QK4-fa-osI" secondAttribute="topMargin" id="See-Ri-9Ry"/>
+                            <constraint firstItem="zsk-MK-Gsf" firstAttribute="leading" secondItem="QK4-fa-osI" secondAttribute="leadingMargin" constant="-20" id="bOj-PZ-PbS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="zsk-MK-Gsf" id="VWi-Aw-EqD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FR3-Pw-g51" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="577" y="144"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="gradient" width="1024" height="1024"/>
+    </resources>
+</document>
