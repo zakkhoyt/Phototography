@@ -13,6 +13,7 @@
 
 
 
+
 @interface ZHAssetManager ()
 @property (nonatomic, strong) PHCachingImageManager *imageManager;
 
@@ -68,6 +69,27 @@
         });
     });
 }
+
+-(void)getAssetsWithLocationWithCompletionBlock:(ZHAssetManagerErrorBlock)completionBlock{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        PHFetchOptions *options = [[PHFetchOptions alloc] init];
+        options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+        PHFetchResult *results = [PHAsset fetchAssetsWithOptions:options];
+        
+        self.assets = [[NSMutableArray alloc]initWithCapacity:results.count];
+        self.assetsNoLocation = [[NSMutableArray alloc]initWithCapacity:results.count];
+        [results enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.assets addObject:asset];
+            if(asset.location != nil){
+                [self.assetsNoLocation addObject:asset];
+            }
+        }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(nil);
+        });
+    });
+}
+
 
 -(void)getMomentsWithoutLocationWithCompletionBlock:(ZHAssetManagerErrorBlock)completionBlock{
 
@@ -135,7 +157,7 @@
     //    PHFetchResultChangeDetails *changeDetails = [changeInstance changeDetailsForFetchResult:self.moments];
     //
     //    if(changeDetails.changedIndexes){
-    //        PK_LOG_DEBUG(@"Detected that object(s) changed at indexes: %@", changeDetails.changedIndexes.description);
+    //        ZH_LOG_DEBUG(@"Detected that object(s) changed at indexes: %@", changeDetails.changedIndexes.description);
     //        NSMutableArray *changedMoments = [[NSMutableArray alloc]initWithCapacity:changeDetails.changedIndexes.count];
     //        [changeDetails.changedIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
     //            PHAssetCollection *moment = self.moments[idx];
@@ -143,7 +165,7 @@
     //        }];
     //        if(changedMoments.count){
     //            NSDictionary *dictionary = @{@"changedMoments" : changedMoments};
-    //            [[NSNotificationCenter defaultCenter] postNotificationName:PKAssetManagerMomentsChanged object:nil userInfo:dictionary];
+    //            [[NSNotificationCenter defaultCenter] postNotificationName:ZHAssetManagerMomentsChanged object:nil userInfo:dictionary];
     //        }
     //    }
 }
@@ -153,23 +175,23 @@
 
 @implementation ZHAssetManager (Images)
 
-//-(void)requestResizedImageForAsset:(PHAsset*)phAsset
-//                              size:(CGSize)size
-//                     progressBlock:(ZHAssetManagerFloatBlock)progressBlock
-//                   completionBlock:(ZHAssetManagerImageErrorBlock)completionBlock{
-//    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-//    options.networkAccessAllowed = YES;
-//    options.deliveryMode = PHImageRequestOptionsDeliveryModeFastFormat;
-//    options.resizeMode = PHImageRequestOptionsResizeModeFast;
-//    [options setSynchronous:YES];
-//    options.progressHandler = ^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
-//        
-//    };
-//    
-//    [_imageManager requestImageForAsset:phAsset targetSize:size contentMode:PHImageContentModeAspectFit options:options resultHandler:^(UIImage *result, NSDictionary *info) {
-//        completionBlock(result, nil);
-//    }];
-//}
+-(void)requestResizedImageForAsset:(PHAsset*)phAsset
+                              size:(CGSize)size
+                     progressBlock:(ZHAssetManagerFloatBlock)progressBlock
+                   completionBlock:(ZHAssetManagerImageErrorBlock)completionBlock{
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    options.networkAccessAllowed = YES;
+    options.deliveryMode = PHImageRequestOptionsDeliveryModeFastFormat;
+    options.resizeMode = PHImageRequestOptionsResizeModeFast;
+    [options setSynchronous:YES];
+    options.progressHandler = ^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
+        
+    };
+    
+    [_imageManager requestImageForAsset:phAsset targetSize:size contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage *result, NSDictionary *info) {
+        completionBlock(result, nil);
+    }];
+}
 
 -(void)requestResizedImageForAsset:(PHAsset*)phAsset
                          imageView:(UIImageView*)imageView
@@ -208,9 +230,9 @@
         
         CGFloat scale = [[UIScreen mainScreen]scale];
         CGSize size = CGSizeMake(imageView.bounds.size.width * scale, imageView.bounds.size.height * scale);
-        //        PK_LOG_DEBUG(@"Requesting image for imageView of size %@", NSStringFromCGSize(size));
+        //        ZH_LOG_DEBUG(@"Requesting image for imageView of size %@", NSStringFromCGSize(size));
         [_imageManager requestImageForAsset:phAsset targetSize:size contentMode:PHImageContentModeAspectFit options:options resultHandler:^(UIImage *result, NSDictionary *info) {
-            //        PK_LOG_DEBUG(@"info for asset: %@", info.description);
+            //        ZH_LOG_DEBUG(@"info for asset: %@", info.description);
             if(info[PHImageResultIsInCloudKey]){
                 // Call completion block from above
                 if(result){

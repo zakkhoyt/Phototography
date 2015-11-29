@@ -6,9 +6,9 @@
 //  Copyright © 2015 Zakk Hoyt. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ZHViewController.h"
 @class PHAsset;
 
-@interface ZHLocationViewController : UIViewController
+@interface ZHLocationViewController : ZHViewController
 @property (strong, nonatomic) PHAsset *asset;
 @end

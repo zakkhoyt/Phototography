@@ -1,0 +1,267 @@
+//
+//  ZHYouViewController.m
+//  Phototography
+//
+//  Created by Zakk Hoyt on 11/27/15.
+//  Copyright © 2015 Zakk Hoyt. All rights reserved.
+//
+
+#import "ZHYouViewController.h"
+#import "ZHFriendTableViewCell.h"
+#import "ZHAssetManager.h"
+#import "ZHYouViewControllerFriendsHeaderView.h"
+#import "ZHYouViewControllerUserDetailHeaderView.h"
+
+static NSString *SegueYouToFindFriends = @"SegueYouToFindFriends";
+
+typedef enum {
+    ZHYouViewControllerSectionUserDetails = 0,
+    ZHYouViewControllerSectionFriends = 1,
+} ZHYouViewControllerSection;
+
+typedef enum {
+    ZHYouViewControllerUserDetailFullName = 0,
+    ZHYouViewControllerUserDetailLocation = 1,
+    ZHYouViewControllerUserDetailAssetCount = 2,
+    ZHYouViewControllerUserDetailSharedAssetCount = 3,
+} ZHYouViewControllerUserDetail;
+
+
+@interface ZHYouViewController ()
+@property (nonatomic, strong) ZHCloudManager *cloudManager;
+@property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
+@property (weak, nonatomic) IBOutlet UITextField *uuidTextField;
+@property (weak, nonatomic) IBOutlet UITextField *locationTextField;
+@property (weak, nonatomic) IBOutlet UITextField *assetsTextField;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveBarButton;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSArray *users;
+@end
+
+
+@interface ZHYouViewController (UITableViewDataSource) <UITableViewDataSource>
+@end
+
+@interface ZHYouViewController (UITableViewDelegate) <UITableViewDelegate>
+@end
+
+
+@implementation ZHYouViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    self.cloudManager = appDelegate.cloudManager;
+
+    self.users = @[[ZHUser currentUser]];
+    
+    CGFloat top = [UIApplication sharedApplication].statusBarFrame.size.height + self.navigationController.navigationBar.frame.size.height;
+    self.tableView.contentInset = UIEdgeInsetsMake(top, 0, 0, 0);
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.firstNameTextField.text = [ZHUser currentUser].firstName;
+    self.lastNameTextField.text = [ZHUser currentUser].lastName;
+    self.uuidTextField.text = [ZHUser currentUser].uuid;
+    //    self.locationTextField.text = [ZHUser currentUser].loc
+    
+    [self.tableView reloadData];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    if([segue.identifier isEqualToString:SegueYouToFindFriends]){
+//        
+//    }
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)textFieldEditingChanged:(id)sender {
+    [self.navigationItem setRightBarButtonItem:self.saveBarButton animated:YES];
+}
+
+- (IBAction)saveBarButtonAction:(id)sender {
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    ZHUser *user = [ZHUser currentUser];
+    user.firstName = self.firstNameTextField.text;
+    user.lastName = self.lastNameTextField.text;
+    
+    
+    [self.cloudManager updateUser:user completionBlock:^(ZHUser *user, NSError *error) {
+        if(error != nil) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Could not save account"
+                                                                           message:error.localizedDescription
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"Okay"
+                                                      style:UIAlertActionStyleCancel
+                                                    handler:nil]];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self presentViewController:alert animated:YES completion:nil];
+            });
+            
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+            });
+            
+        }
+    }];
+}
+
+@end
+
+
+@implementation ZHYouViewController (UITableViewDataSource)
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    switch (section) {
+        case ZHYouViewControllerSectionUserDetails:
+            return 4;
+        case ZHYouViewControllerSectionFriends:
+            return self.users.count;
+        default:
+            return 0;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    switch (indexPath.section) {
+        case ZHYouViewControllerSectionUserDetails: {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserDetailCell" forIndexPath:indexPath];
+            switch (indexPath.row) {
+                case ZHYouViewControllerUserDetailFullName:
+                    cell.textLabel.text = @"FullName";
+                    cell.detailTextLabel.text = [ZHUser currentUser].fullName;
+                    break;
+                case ZHYouViewControllerUserDetailLocation:{
+                    cell.textLabel.text = @"Location";
+                    cell.detailTextLabel.text = @"";
+                    [[ZHUser currentUser].location stringLocalityCompletionBlock:^(NSString *string) {
+                        cell.detailTextLabel.text = string;
+                    }];
+                }
+                    break;
+                case ZHYouViewControllerUserDetailAssetCount:{
+                    cell.textLabel.text = @"# Assets";
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long) [ZHAssetManager sharedInstance].assets.count];
+                }
+                    break;
+                case ZHYouViewControllerUserDetailSharedAssetCount:{
+                    cell.textLabel.text = @"# Shared Assets";
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"TODO:"];
+                }
+                    break;
+
+                    
+                default:
+                    break;
+            }
+            return cell;
+            
+        }
+            break;
+        case ZHYouViewControllerSectionFriends: {
+            ZHFriendTableViewCell *cell = [ZHFriendTableViewCell cellForTableView:tableView];
+            cell.user = self.users[indexPath.item];
+            return cell;
+        }
+            break;
+        default:
+            NSAssert(NO, @"Invalid table view index");
+            return [UITableViewCell new];
+    }
+}
+
+@end
+
+
+@implementation ZHYouViewController (UITableViewDelegate)
+
+#pragma mark UITableViewDelegate (header)
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    switch (section) {
+        case ZHYouViewControllerSectionUserDetails:
+            return 44;
+        case ZHYouViewControllerSectionFriends:
+            return 44;
+        default:
+            return 0;
+    }
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+
+    NSLog(@"");
+    switch (section) {
+        case ZHYouViewControllerSectionUserDetails: {
+            ZHYouViewControllerUserDetailHeaderView *headerView = [[[NSBundle mainBundle] loadNibNamed:@"ZHYouViewControllerUserDetailHeaderView" owner:self options:nil] firstObject];
+            return headerView;
+        }
+            break;
+        case ZHYouViewControllerSectionFriends:{
+            ZHYouViewControllerFriendsHeaderView *headerView = [[[NSBundle mainBundle] loadNibNamed:@"ZHYouViewControllerFriendsHeaderView" owner:self options:nil] firstObject];
+            [headerView setAddButtonClickedBlock:^{
+                [self performSegueWithIdentifier:SegueYouToFindFriends sender:nil];
+            }];
+            return headerView;
+        }
+            break;
+        default:
+            return nil;
+    }
+
+    
+}
+
+#pragma mark UITableViewDelegate (editing)
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    // Empty implementation required
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.section) {
+        case ZHYouViewControllerSectionUserDetails:
+            return NO;
+        case ZHYouViewControllerSectionFriends:
+            return YES;
+        default:
+            return 0;
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return NO;
+}
+
+- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.section) {
+        case ZHYouViewControllerSectionFriends: {
+            UITableViewRowAction *unfollowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Unfollow" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+                [self presentAlertDialogWithMessage:@"TODO: Unfollow"];
+            }];
+            unfollowAction.backgroundColor = [UIColor zhRedColor];
+            return @[unfollowAction];
+        }
+            break;
+        default:
+            return nil;
+    }
+
+}
+@end

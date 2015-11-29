@@ -1,0 +1,29 @@
+
+* Input is a list of id<MKAnnotation>
+* Refresh mechanism as user scrolls or programmatically
+* Output is clustered annotations. Each indexPath.section is it's own "layer"
+* Annotations must animate nicely for add and remove
+
+
+* Add delegate/reloadData type mechanism for annotations. EX:
+-(void)mapView annotationForItemAtIndexPath:(NSIndexPath*)indexPath
+
+* This way each section can be an independent layer (and have it's own tree)
+
+
+
+********* Optional (nice to have)
+* Ability to uncluster (use as normal map view)
+* Ability to animate between clustered and unclustered
+* Have a couple of nice built in animations
+* Let subclasser override the animations
+
+
+
+*************** Debugging
+* Print size of quadtree (make sure it's the same after reclustering)
+
+
+
+
+

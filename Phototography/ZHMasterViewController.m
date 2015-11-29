@@ -9,8 +9,7 @@
 #import "ZHMasterViewController.h"
 #import "ZHAssetDetailViewController.h"
 #import "ZHAssetManager.h"
-#import "VWWPermissionKit.h"
-#import "MBProgressHUD.h"
+
 
 typedef enum {
     ZHMasterViewControllerModeAssets = 0,
@@ -27,27 +26,31 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    
     // Nav bar
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    //    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    //    self.navigationItem.rightBarButtonItem = addButton;
-    //    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+//    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    UIBarButtonItem *modeButton = [[UIBarButtonItem alloc]initWithTitle:@"Mode" style:UIBarButtonItemStylePlain target:self action:@selector(modeBarButtonAction:)];
+    self.navigationItem.leftBarButtonItem = modeButton;
+
 
     // Data
-    self.mode = ZHMasterViewControllerModeMoments;
+   // self.mode = ZHMasterViewControllerModeMoments;
     self.selectedIndexPaths = [[NSMutableOrderedSet alloc]init];
     
     // Table View
     self.tableView.allowsMultipleSelection = YES;
     self.tableView.editing = NO;
-//    self.tableView.rowHeight = UITableViewAutomaticDimension;
-//    self.tableView.estimatedRowHeight = 80;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 44;
 
     // Let's get started
     [self readAssets];
 
     
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
     self.clearsSelectionOnViewWillAppear = self.splitViewController.isCollapsed;
@@ -57,10 +60,10 @@ typedef enum {
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [self checkPermissions];
-    });
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        [self checkPermissions];
+//    });
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,22 +94,22 @@ typedef enum {
 }
 #pragma mark Private methods
 
--(void)checkPermissions{
-    VWWPhotosPermission *photos = [VWWPhotosPermission permissionWithLabelText:@"We will read your photo library to find photos without a geotag."];
-//    VWWCoreLocationWhenInUsePermission *locationWhenInUse = [VWWCoreLocationWhenInUsePermission permissionWithLabelText:@"For obtaining your current location"];
-    VWWCoreLocationAlwaysPermission *locationAlways = [VWWCoreLocationAlwaysPermission permissionWithLabelText:@"please"];
-    NSArray *permissions = @[locationAlways, photos];
-//    NSArray *permissions = @[photos];
-    
-    [VWWPermissionsManager requirePermissions:permissions
-                                       title:@"Welcome to the Phototography! A tool to add geotags to your Apple Photo collection. Approve these permissions, then we can get started."
-                          fromViewController:self
-                                resultsBlock:^(NSArray *permissions) {
-                                    [permissions enumerateObjectsUsingBlock:^(VWWPermission *permission, NSUInteger idx, BOOL *stop) {
-                                        NSLog(@"%@ - %@", permission.type, [permission stringForStatus]);
-                                    }];
-                                }];
-}
+//-(void)checkPermissions{
+//    VWWPhotosPermission *photos = [VWWPhotosPermission permissionWithLabelText:@"We will read your photo library to find photos without a geotag."];
+////    VWWCoreLocationWhenInUsePermission *locationWhenInUse = [VWWCoreLocationWhenInUsePermission permissionWithLabelText:@"For obtaining your current location"];
+//    VWWCoreLocationAlwaysPermission *locationAlways = [VWWCoreLocationAlwaysPermission permissionWithLabelText:@"please"];
+//    NSArray *permissions = @[locationAlways, photos];
+////    NSArray *permissions = @[photos];
+//    
+//    [VWWPermissionsManager requirePermissions:permissions
+//                                       title:@"Welcome to the Phototography! A tool to add geotags to your Apple Photo collection. Approve these permissions, then we can get started."
+//                          fromViewController:self
+//                                resultsBlock:^(NSArray *permissions) {
+//                                    [permissions enumerateObjectsUsingBlock:^(VWWPermission *permission, NSUInteger idx, BOOL *stop) {
+//                                        NSLog(@"%@ - %@", permission.type, [permission stringForStatus]);
+//                                    }];
+//                                }];
+//}
 
 -(void)readAssets{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -154,6 +157,27 @@ typedef enum {
 //}
 
 
+#pragma mark IBActions
+-(void)modeBarButtonAction:(UIBarButtonItem*)sender{
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    [ac addAction:[UIAlertAction actionWithTitle:self.mode == ZHMasterViewControllerModeAssets ? @"👍🏼 Assets 👍🏼" : @"Assets" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        self.mode = ZHMasterViewControllerModeAssets;
+        [self readAssets];
+    }]];
+    
+    [ac addAction:[UIAlertAction actionWithTitle:self.mode == ZHMasterViewControllerModeMoments ? @"👍🏼 Moments 👍🏼" : @"Moments" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        self.mode = ZHMasterViewControllerModeMoments;
+        [self readAssets];
+    }]];
+    
+    [ac addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    [self presentViewController:ac animated:YES completion:NULL];
+
+}
+
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -176,13 +200,13 @@ typedef enum {
         PHAsset *asset = self.items[indexPath.row];
         //    cell.textLabel.text = [object description];
         cell.textLabel.text = asset.creationDate.description;
-        
+        cell.textLabel.text = [asset.creationDate stringFromDateAndTime];
     } else if(self.mode == ZHMasterViewControllerModeMoments) {
         
         NSDictionary *dictionary = self.items[indexPath.row];
         PHAssetCollection *moment = dictionary[@"moment"];
         NSMutableArray *assets = dictionary[@"assets"];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ (#%lu)", moment.startDate.description, (unsigned long)assets.count];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ (#%lu)", [moment.startDate stringFromDateAndTime] , (unsigned long)assets.count];
     }
     return cell;
 }

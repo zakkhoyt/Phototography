@@ -11,7 +11,7 @@
 
 typedef void (^ZHAssetManagerErrorBlock)(NSError *error);
 typedef void (^ZHAssetManagerFloatBlock)(float progress);
-
+typedef void (^ZHAssetManagerImageErrorBlock)(UIImage *image, NSError *error);
 
 
 @interface ZHAssetManager : NSObject
@@ -24,6 +24,7 @@ typedef void (^ZHAssetManagerFloatBlock)(float progress);
 
 
 -(void)getAssetsWithoutLocationWithCompletionBlock:(ZHAssetManagerErrorBlock)completionBlock;
+-(void)getAssetsWithLocationWithCompletionBlock:(ZHAssetManagerErrorBlock)completionBlock;
 -(void)getMomentsWithoutLocationWithCompletionBlock:(ZHAssetManagerErrorBlock)completionBlock;
 
 //-(void)getMomentsWithoutLocationWithCompletionBlock:(ZHAssetManagerMutableArrayBlock)completionBlock;
@@ -34,7 +35,12 @@ typedef void (^ZHAssetManagerFloatBlock)(float progress);
 
 
 @interface ZHAssetManager (Images)
+-(void)requestResizedImageForAsset:(PHAsset*)phAsset
+                              size:(CGSize)size
+                     progressBlock:(ZHAssetManagerFloatBlock)progressBlock
+                   completionBlock:(ZHAssetManagerImageErrorBlock)completionBlock;
 
+    
 -(void)requestResizedImageForAsset:(PHAsset*)asset
                          imageView:(UIImageView*)imageView
                      progressBlock:(ZHAssetManagerFloatBlock)progressBlock
