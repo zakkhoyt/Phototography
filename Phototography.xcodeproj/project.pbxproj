@@ -47,6 +47,12 @@
 		C67D86A91BBF959800B2C4CF /* ZHLocationSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86A81BBF959800B2C4CF /* ZHLocationSearchTableViewController.m */; };
 		C67D86AC1BC04B2700B2C4CF /* ZHUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86AB1BC04B2700B2C4CF /* ZHUserDefaults.m */; };
 		C67D86B01BC04CDC00B2C4CF /* ZHQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86AF1BC04CDC00B2C4CF /* ZHQueueViewController.m */; };
+		C696B65B1C0A91DA00F21D4D /* ZHFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C696B65A1C0A91DA00F21D4D /* ZHFriendTableViewCell.m */; };
+		C696B65E1C0A976E00F21D4D /* ZHYouViewControllerFriendsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C696B65D1C0A976E00F21D4D /* ZHYouViewControllerFriendsHeaderView.m */; };
+		C696B6601C0A977900F21D4D /* ZHYouViewControllerFriendsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C696B65F1C0A977900F21D4D /* ZHYouViewControllerFriendsHeaderView.xib */; };
+		C696B6641C0A9B8900F21D4D /* ZHYouViewControllerUserDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C696B6631C0A9B8900F21D4D /* ZHYouViewControllerUserDetailHeaderView.xib */; };
+		C696B6671C0A9B9600F21D4D /* ZHYouViewControllerUserDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C696B6661C0A9B9600F21D4D /* ZHYouViewControllerUserDetailHeaderView.m */; };
+		C696B66B1C0A9D1B00F21D4D /* ZHFriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C696B66A1C0A9D1B00F21D4D /* ZHFriendTableViewCell.xib */; };
 		C6B829781BC31CE800782468 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6B829771BC31CE800782468 /* Map.storyboard */; };
 		C6B8297B1BC31D0E00782468 /* ZHMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B8297A1BC31D0E00782468 /* ZHMapViewController.m */; };
 		C6B829851BC3202A00782468 /* ZHAssetAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B829821BC3202A00782468 /* ZHAssetAnnotation.m */; };
@@ -143,6 +149,15 @@
 		C67D86AB1BC04B2700B2C4CF /* ZHUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHUserDefaults.m; sourceTree = "<group>"; };
 		C67D86AE1BC04CDC00B2C4CF /* ZHQueueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHQueueViewController.h; sourceTree = "<group>"; };
 		C67D86AF1BC04CDC00B2C4CF /* ZHQueueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHQueueViewController.m; sourceTree = "<group>"; };
+		C696B6591C0A91DA00F21D4D /* ZHFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHFriendTableViewCell.h; sourceTree = "<group>"; };
+		C696B65A1C0A91DA00F21D4D /* ZHFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHFriendTableViewCell.m; sourceTree = "<group>"; };
+		C696B65C1C0A976E00F21D4D /* ZHYouViewControllerFriendsHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYouViewControllerFriendsHeaderView.h; sourceTree = "<group>"; };
+		C696B65D1C0A976E00F21D4D /* ZHYouViewControllerFriendsHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYouViewControllerFriendsHeaderView.m; sourceTree = "<group>"; };
+		C696B65F1C0A977900F21D4D /* ZHYouViewControllerFriendsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHYouViewControllerFriendsHeaderView.xib; sourceTree = "<group>"; };
+		C696B6631C0A9B8900F21D4D /* ZHYouViewControllerUserDetailHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHYouViewControllerUserDetailHeaderView.xib; sourceTree = "<group>"; };
+		C696B6651C0A9B9600F21D4D /* ZHYouViewControllerUserDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYouViewControllerUserDetailHeaderView.h; sourceTree = "<group>"; };
+		C696B6661C0A9B9600F21D4D /* ZHYouViewControllerUserDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYouViewControllerUserDetailHeaderView.m; sourceTree = "<group>"; };
+		C696B66A1C0A9D1B00F21D4D /* ZHFriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHFriendTableViewCell.xib; sourceTree = "<group>"; };
 		C6B829771BC31CE800782468 /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		C6B829791BC31D0E00782468 /* ZHMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHMapViewController.h; sourceTree = "<group>"; };
 		C6B8297A1BC31D0E00782468 /* ZHMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHMapViewController.m; sourceTree = "<group>"; };
@@ -256,6 +271,8 @@
 			children = (
 				C6439A3B1C0962C4006BCF73 /* ZHYouViewController.h */,
 				C6439A3C1C0962C4006BCF73 /* ZHYouViewController.m */,
+				C696B6621C0A978100F21D4D /* Cell */,
+				C696B6611C0A977D00F21D4D /* View */,
 			);
 			name = You;
 			sourceTree = "<group>";
@@ -465,6 +482,29 @@
 			name = Queue;
 			sourceTree = "<group>";
 		};
+		C696B6611C0A977D00F21D4D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C696B65C1C0A976E00F21D4D /* ZHYouViewControllerFriendsHeaderView.h */,
+				C696B65D1C0A976E00F21D4D /* ZHYouViewControllerFriendsHeaderView.m */,
+				C696B65F1C0A977900F21D4D /* ZHYouViewControllerFriendsHeaderView.xib */,
+				C696B6651C0A9B9600F21D4D /* ZHYouViewControllerUserDetailHeaderView.h */,
+				C696B6661C0A9B9600F21D4D /* ZHYouViewControllerUserDetailHeaderView.m */,
+				C696B6631C0A9B8900F21D4D /* ZHYouViewControllerUserDetailHeaderView.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C696B6621C0A978100F21D4D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C696B6591C0A91DA00F21D4D /* ZHFriendTableViewCell.h */,
+				C696B65A1C0A91DA00F21D4D /* ZHFriendTableViewCell.m */,
+				C696B66A1C0A9D1B00F21D4D /* ZHFriendTableViewCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		C6B8297C1BC31D1200782468 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -609,11 +649,14 @@
 			files = (
 				C6BBCA3B1BC31C0A009D6887 /* Ideas.txt in Resources */,
 				C67D86441BBF429800B2C4CF /* LaunchScreen.storyboard in Resources */,
+				C696B66B1C0A9D1B00F21D4D /* ZHFriendTableViewCell.xib in Resources */,
+				C696B6601C0A977900F21D4D /* ZHYouViewControllerFriendsHeaderView.xib in Resources */,
 				C6439A341C090A40006BCF73 /* schema.txt in Resources */,
 				C67D86411BBF429800B2C4CF /* Assets.xcassets in Resources */,
 				C67D863F1BBF429800B2C4CF /* Main.storyboard in Resources */,
 				C6439A361C0930CC006BCF73 /* FindFriends.storyboard in Resources */,
 				C67D86571BBF4C2C00B2C4CF /* Onboarding.storyboard in Resources */,
+				C696B6641C0A9B8900F21D4D /* ZHYouViewControllerUserDetailHeaderView.xib in Resources */,
 				C6B829781BC31CE800782468 /* Map.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -690,13 +733,16 @@
 				C6439A461C097085006BCF73 /* ZHTableViewController.m in Sources */,
 				C6BBCA3D1BC31C0A009D6887 /* VWWCoordinateQuadTree.m in Sources */,
 				C67D86991BBF7EF800B2C4CF /* NSDate+Utilities.m in Sources */,
+				C696B6671C0A9B9600F21D4D /* ZHYouViewControllerUserDetailHeaderView.m in Sources */,
 				C6439A491C097092006BCF73 /* ZHCollectionViewController.m in Sources */,
+				C696B65E1C0A976E00F21D4D /* ZHYouViewControllerFriendsHeaderView.m in Sources */,
 				C67D86A01BBF7EF800B2C4CF /* UIView+RenderToImage.m in Sources */,
 				C67D869B1BBF7EF800B2C4CF /* NSString+ZH.m in Sources */,
 				C67D86A91BBF959800B2C4CF /* ZHLocationSearchTableViewController.m in Sources */,
 				C6BBCA3F1BC31C0A009D6887 /* VWWAnnotationFanoutView.m in Sources */,
 				C67D869A1BBF7EF800B2C4CF /* NSError+ZH.m in Sources */,
 				C67D86391BBF429800B2C4CF /* ZHMasterViewController.m in Sources */,
+				C696B65B1C0A91DA00F21D4D /* ZHFriendTableViewCell.m in Sources */,
 				C670921E1C08330100AE06F3 /* ZHCloudManager.m in Sources */,
 				C67D86331BBF429800B2C4CF /* main.m in Sources */,
 				C67D86971BBF7EF800B2C4CF /* CLLocation+ZH.m in Sources */,

@@ -29,7 +29,7 @@ static ZHUser *currentUser;
         self.lastName = [record objectForKey:@"LastName"];
         self.email = [record objectForKey:@"Email"];
         self.phone = [record objectForKey:@"Phone"];
-        self.uuid = [record objectForKey:@"uuid"];
+        self.uuid = [record objectForKey:@"UUID"];
         self.friends = [record objectForKey:@"Friends"];
     }
     return self;
@@ -87,5 +87,7 @@ static ZHUser *currentUser;
     return self.uuid.hash;
 }
 
-
+-(NSString*)description{
+    return  [NSString stringWithFormat:@"%@ %@ %@", self.firstName, self.lastName, self.uuid];
+}
 @end

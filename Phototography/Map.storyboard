@@ -47,7 +47,7 @@
                 <viewControllerPlaceholder storyboardName="FindFriends" id="tyz-qg-i8V" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nuo-La-25t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3329.5" y="1171"/>
+            <point key="canvasLocation" x="3337" y="1217"/>
         </scene>
         <!--Friends-->
         <scene sceneID="G96-7r-03k">
@@ -211,11 +211,51 @@
                                     <action selector="textFieldEditingChanged:" destination="EO1-1c-0ht" eventType="editingChanged" id="2n8-dS-9vA"/>
                                 </connections>
                             </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mhe-8g-7Mk">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserDetailCell" textLabel="699-ZL-GW3" detailTextLabel="2A8-6e-xr8" style="IBUITableViewCellStyleValue1" id="VPB-HL-4NY">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VPB-HL-4NY" id="ZO7-uz-fpk">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="699-ZL-GW3">
+                                                    <rect key="frame" x="15" y="12" width="31.5" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2A8-6e-xr8">
+                                                    <rect key="frame" x="529" y="12" width="56" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="EO1-1c-0ht" id="bUI-BK-9cF"/>
+                                    <outlet property="delegate" destination="EO1-1c-0ht" id="mL2-MH-lDz"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="rrp-mA-g1u" firstAttribute="trailing" secondItem="gMF-Ca-Dfd" secondAttribute="trailingMargin" id="24Y-fq-qUl"/>
+                            <constraint firstItem="Mhe-8g-7Mk" firstAttribute="bottom" secondItem="gMF-Ca-Dfd" secondAttribute="bottomMargin" id="4tI-iU-UGP"/>
                             <constraint firstItem="aNx-Sq-cW5" firstAttribute="top" secondItem="o0s-IW-wWm" secondAttribute="bottom" constant="8" id="5dO-oM-Cza"/>
                             <constraint firstItem="o0s-IW-wWm" firstAttribute="trailing" secondItem="gMF-Ca-Dfd" secondAttribute="trailingMargin" id="D8O-8w-ZA1"/>
                             <constraint firstItem="tvT-cP-OHY" firstAttribute="top" secondItem="bTb-EG-gLx" secondAttribute="bottom" constant="8" id="D8S-iV-Hl8"/>
@@ -231,10 +271,13 @@
                             <constraint firstItem="xze-1a-VnE" firstAttribute="leading" secondItem="gMF-Ca-Dfd" secondAttribute="leadingMargin" id="adA-CO-hl9"/>
                             <constraint firstItem="aNx-Sq-cW5" firstAttribute="trailing" secondItem="gMF-Ca-Dfd" secondAttribute="trailingMargin" id="e6Q-8c-wke"/>
                             <constraint firstItem="vEU-w7-AjY" firstAttribute="top" secondItem="xyr-SB-8f3" secondAttribute="bottom" constant="8" id="hzu-IE-byV"/>
+                            <constraint firstItem="Mhe-8g-7Mk" firstAttribute="leading" secondItem="gMF-Ca-Dfd" secondAttribute="leadingMargin" constant="-20" id="iWN-he-sgF"/>
                             <constraint firstItem="rrp-mA-g1u" firstAttribute="top" secondItem="tvT-cP-OHY" secondAttribute="bottom" constant="8" id="lw0-Hy-LUL"/>
                             <constraint firstItem="tvT-cP-OHY" firstAttribute="trailing" secondItem="gMF-Ca-Dfd" secondAttribute="trailingMargin" id="nyU-AG-q02"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Mhe-8g-7Mk" secondAttribute="trailing" constant="-20" id="o3n-ei-hca"/>
                             <constraint firstItem="xyr-SB-8f3" firstAttribute="trailing" secondItem="gMF-Ca-Dfd" secondAttribute="trailingMargin" id="ppW-iW-7l2"/>
                             <constraint firstItem="xyr-SB-8f3" firstAttribute="top" secondItem="xze-1a-VnE" secondAttribute="bottom" constant="8" id="r0z-TZ-WBb"/>
+                            <constraint firstItem="Mhe-8g-7Mk" firstAttribute="top" secondItem="gMF-Ca-Dfd" secondAttribute="topMargin" id="veV-HF-aAL"/>
                             <constraint firstItem="xze-1a-VnE" firstAttribute="top" secondItem="rrp-mA-g1u" secondAttribute="bottom" constant="8" id="xkk-FQ-RFx"/>
                         </constraints>
                     </view>
@@ -247,7 +290,9 @@
                         <outlet property="locationTextField" destination="o0s-IW-wWm" id="j6J-qW-06z"/>
                         <outlet property="phoneTextField" destination="xyr-SB-8f3" id="2yV-yc-x7R"/>
                         <outlet property="saveBarButton" destination="JTB-gO-lsK" id="qh4-uB-zsO"/>
+                        <outlet property="tableView" destination="Mhe-8g-7Mk" id="mUp-f0-cQm"/>
                         <outlet property="uuidTextField" destination="vEU-w7-AjY" id="wAg-Oi-xAS"/>
+                        <segue destination="XWV-4O-OSR" kind="show" identifier="SegueYouToFindFriends" id="dkL-GD-y4W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2J4-lT-4hE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -278,6 +323,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PCZ-ZT-WYd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1934" y="1945"/>
+        </scene>
+        <!--FindFriends-->
+        <scene sceneID="usB-93-7bM">
+            <objects>
+                <viewControllerPlaceholder storyboardName="FindFriends" id="XWV-4O-OSR" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q2d-zB-GmO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3314" y="1945"/>
         </scene>
     </scenes>
 </document>

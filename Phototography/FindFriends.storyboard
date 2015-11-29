@@ -17,69 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dLh-OK-UMT">
-                                <rect key="frame" x="20" y="72" width="560" height="29"/>
-                                <animations/>
-                                <segments>
-                                    <segment title="Use Address Book"/>
-                                    <segment title="Search by Email"/>
-                                </segments>
-                                <connections>
-                                    <action selector="findTypeSegmentValueChanged:" destination="rk7-gq-0fe" eventType="valueChanged" id="4vf-qH-e6c"/>
-                                </connections>
-                            </segmentedControl>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m8y-7n-Vul">
-                                <rect key="frame" x="0.0" y="108" width="600" height="84"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeG-AR-8qa">
-                                        <rect key="frame" x="230" y="46" width="140" height="30"/>
-                                        <animations/>
-                                        <state key="normal" title="Search Email Adress"/>
-                                        <connections>
-                                            <action selector="emailSearchButtonTouchUpInsde:" destination="rk7-gq-0fe" eventType="touchUpInside" id="33l-OG-YMx"/>
-                                        </connections>
-                                    </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QFB-uK-Exu">
-                                        <rect key="frame" x="20" y="8" width="560" height="30"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="QFB-uK-Exu" secondAttribute="trailing" constant="20" id="7dQ-z1-eYh"/>
-                                    <constraint firstAttribute="bottom" secondItem="KeG-AR-8qa" secondAttribute="bottom" constant="8" id="MbR-RU-TVc"/>
-                                    <constraint firstItem="KeG-AR-8qa" firstAttribute="centerX" secondItem="m8y-7n-Vul" secondAttribute="centerX" id="asG-no-mtJ"/>
-                                    <constraint firstItem="QFB-uK-Exu" firstAttribute="leading" secondItem="m8y-7n-Vul" secondAttribute="leading" constant="20" id="gu6-5E-d80"/>
-                                    <constraint firstItem="QFB-uK-Exu" firstAttribute="top" secondItem="m8y-7n-Vul" secondAttribute="top" constant="8" id="ix6-rc-zHi"/>
-                                    <constraint firstItem="KeG-AR-8qa" firstAttribute="top" secondItem="QFB-uK-Exu" secondAttribute="bottom" constant="8" id="kKc-Lc-cFt"/>
-                                    <constraint firstAttribute="height" constant="84" id="wQG-HQ-xKz"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ATl-wl-o0U">
-                                <rect key="frame" x="0.0" y="108" width="600" height="84"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycS-nJ-iX2">
-                                        <rect key="frame" x="227" y="27" width="147" height="30"/>
-                                        <animations/>
-                                        <state key="normal" title="Search Address Book"/>
-                                        <connections>
-                                            <action selector="addressBookButtonTouchUpInside:" destination="rk7-gq-0fe" eventType="touchUpInside" id="HiE-78-TjY"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="ycS-nJ-iX2" firstAttribute="centerY" secondItem="ATl-wl-o0U" secondAttribute="centerY" id="9HC-bh-ePM"/>
-                                    <constraint firstItem="ycS-nJ-iX2" firstAttribute="centerX" secondItem="ATl-wl-o0U" secondAttribute="centerX" id="XzL-Lu-x7L"/>
-                                    <constraint firstAttribute="height" constant="84" id="YSp-6l-FRG"/>
-                                </constraints>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xBM-sn-Be1">
-                                <rect key="frame" x="0.0" y="200" width="600" height="400"/>
+                                <rect key="frame" x="0.0" y="156" width="600" height="444"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -117,23 +56,46 @@
                                     <outlet property="delegate" destination="rk7-gq-0fe" id="50l-A6-bln"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m8y-7n-Vul">
+                                <rect key="frame" x="0.0" y="64" width="600" height="84"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeG-AR-8qa">
+                                        <rect key="frame" x="230" y="46" width="140" height="30"/>
+                                        <animations/>
+                                        <state key="normal" title="Search Email Adress"/>
+                                        <connections>
+                                            <action selector="emailSearchButtonTouchUpInsde:" destination="rk7-gq-0fe" eventType="touchUpInside" id="33l-OG-YMx"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QFB-uK-Exu">
+                                        <rect key="frame" x="20" y="8" width="560" height="30"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="KeG-AR-8qa" firstAttribute="top" secondItem="QFB-uK-Exu" secondAttribute="bottom" constant="8" id="13N-sl-CDQ"/>
+                                    <constraint firstItem="KeG-AR-8qa" firstAttribute="centerX" secondItem="m8y-7n-Vul" secondAttribute="centerX" id="DgF-Mu-WFj"/>
+                                    <constraint firstItem="QFB-uK-Exu" firstAttribute="top" secondItem="m8y-7n-Vul" secondAttribute="top" constant="8" id="Fx0-wc-rDb"/>
+                                    <constraint firstAttribute="height" constant="84" id="VYU-ux-BfB"/>
+                                    <constraint firstItem="QFB-uK-Exu" firstAttribute="leading" secondItem="m8y-7n-Vul" secondAttribute="leading" constant="20" id="yDt-gy-g1h"/>
+                                    <constraint firstAttribute="trailing" secondItem="QFB-uK-Exu" secondAttribute="trailing" constant="20" id="zfW-iw-4Fu"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="ATl-wl-o0U" secondAttribute="trailing" constant="-20" id="2nc-BW-e7i"/>
-                            <constraint firstItem="ATl-wl-o0U" firstAttribute="top" secondItem="dLh-OK-UMT" secondAttribute="bottom" constant="8" id="2zE-A9-GIz"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="xBM-sn-Be1" secondAttribute="trailing" constant="-20" id="5y5-5S-7xs"/>
-                            <constraint firstItem="xBM-sn-Be1" firstAttribute="top" secondItem="ATl-wl-o0U" secondAttribute="bottom" constant="8" id="GmV-Yw-G3h"/>
-                            <constraint firstItem="dLh-OK-UMT" firstAttribute="leading" secondItem="hqr-02-Wen" secondAttribute="leadingMargin" id="K13-tb-kn4"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="m8y-7n-Vul" secondAttribute="trailing" constant="-20" id="N2a-iS-tNT"/>
-                            <constraint firstItem="xBM-sn-Be1" firstAttribute="leading" secondItem="hqr-02-Wen" secondAttribute="leadingMargin" constant="-20" id="ZKO-3f-bAD"/>
-                            <constraint firstItem="dLh-OK-UMT" firstAttribute="trailing" secondItem="hqr-02-Wen" secondAttribute="trailingMargin" id="jze-ry-f0X"/>
-                            <constraint firstItem="ATl-wl-o0U" firstAttribute="leading" secondItem="hqr-02-Wen" secondAttribute="leadingMargin" constant="-20" id="lsj-Bd-Wfv"/>
-                            <constraint firstItem="m8y-7n-Vul" firstAttribute="leading" secondItem="hqr-02-Wen" secondAttribute="leadingMargin" constant="-20" id="luW-v0-zfT"/>
-                            <constraint firstItem="dLh-OK-UMT" firstAttribute="top" secondItem="Kk4-GJ-Tko" secondAttribute="bottom" constant="8" id="vek-eP-Nxg"/>
-                            <constraint firstItem="m8y-7n-Vul" firstAttribute="top" secondItem="dLh-OK-UMT" secondAttribute="bottom" constant="8" id="von-mM-33u"/>
-                            <constraint firstItem="p1M-pm-YGj" firstAttribute="top" secondItem="xBM-sn-Be1" secondAttribute="bottom" id="x1E-4F-ReB"/>
+                            <constraint firstItem="p1M-pm-YGj" firstAttribute="top" secondItem="xBM-sn-Be1" secondAttribute="bottom" id="BOT-Kz-ei4"/>
+                            <constraint firstItem="m8y-7n-Vul" firstAttribute="leading" secondItem="hqr-02-Wen" secondAttribute="leadingMargin" constant="-20" id="BaL-l3-t9w"/>
+                            <constraint firstItem="m8y-7n-Vul" firstAttribute="top" secondItem="Kk4-GJ-Tko" secondAttribute="bottom" id="QSm-A8-oeY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="m8y-7n-Vul" secondAttribute="trailing" constant="-20" id="RfJ-l7-eZh"/>
+                            <constraint firstItem="xBM-sn-Be1" firstAttribute="leading" secondItem="hqr-02-Wen" secondAttribute="leadingMargin" constant="-20" id="mfJ-Ph-92O"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xBM-sn-Be1" secondAttribute="trailing" constant="-20" id="pUl-W9-mJz"/>
+                            <constraint firstItem="xBM-sn-Be1" firstAttribute="top" secondItem="m8y-7n-Vul" secondAttribute="bottom" constant="8" id="y3d-oE-HvW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Find Friends" id="9hG-LS-6Sc">
@@ -152,6 +114,38 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WfS-G0-Ne8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="dLh-OK-UMT">
+                    <rect key="frame" x="0.0" y="0.0" width="560" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <animations/>
+                    <segments>
+                        <segment title="Use Address Book"/>
+                        <segment title="Search by Email"/>
+                    </segments>
+                    <connections>
+                        <action selector="findTypeSegmentValueChanged:" destination="rk7-gq-0fe" eventType="valueChanged" id="4vf-qH-e6c"/>
+                    </connections>
+                </segmentedControl>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ATl-wl-o0U">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="84"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycS-nJ-iX2">
+                            <rect key="frame" x="227" y="27" width="147" height="30"/>
+                            <animations/>
+                            <state key="normal" title="Search Address Book"/>
+                            <connections>
+                                <action selector="addressBookButtonTouchUpInside:" destination="rk7-gq-0fe" eventType="touchUpInside" id="HiE-78-TjY"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="ycS-nJ-iX2" firstAttribute="centerY" secondItem="ATl-wl-o0U" secondAttribute="centerY" id="9HC-bh-ePM"/>
+                        <constraint firstItem="ycS-nJ-iX2" firstAttribute="centerX" secondItem="ATl-wl-o0U" secondAttribute="centerX" id="XzL-Lu-x7L"/>
+                        <constraint firstAttribute="height" constant="84" id="YSp-6l-FRG"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="1157" y="303"/>
         </scene>

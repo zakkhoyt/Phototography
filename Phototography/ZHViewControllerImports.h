@@ -22,5 +22,7 @@
 #import "AppDelegate.h"
 #import "ZHCloudManager.h"
 #import "ZHUser.h"
+#import "CLLocation+ZH.h"
+
 
 #endif /* ZHViewControllerImports_h */
