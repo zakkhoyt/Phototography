@@ -7,7 +7,9 @@
 //
 
 #import "ZHOnboardingViewController.h"
+#import "VWWPermissionKit.h"
 
+static NSString *SegueOnboardingToMain = @"SegueOnboardingToMain";
 
 @interface ZHOnboardingViewController ()
 
@@ -25,6 +27,12 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    
+    
+    self.view.backgroundColor = [UIColor zhTintColor];
+    self.titleLabel.textColor = [UIColor zhBackgroundColor];
+    self.statusLabel.textColor = [UIColor zhBackgroundColor];
+    [self.startButton setTitleColor:[UIColor yellowColor] forState:UIControlStateNormal];
     
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     self.cloudManager = appDelegate.cloudManager;
@@ -109,19 +117,30 @@
     }];
 }
 
-- (IBAction)createUserButtonTouchUpInside:(id)sender {
+
+-(void)checkPermissions{
+    VWWPhotosPermission *photos = [VWWPhotosPermission permissionWithLabelText:@"We will read your photo library to find photos without a geotag."];
+    VWWContactsPermission *contacts = [VWWContactsPermission permissionWithLabelText:@"Contacts to find your friends"];
+//    VWWCoreLocationWhenInUsePermission *locationWhenInUse = [VWWCoreLocationWhenInUsePermission permissionWithLabelText:@"For obtaining your current location"];
+    VWWCoreLocationAlwaysPermission *locationAlways = [VWWCoreLocationAlwaysPermission permissionWithLabelText:@"please"];
+    NSArray *permissions = @[locationAlways, photos, contacts];
+//    NSArray *permissions = @[photos];
+
+    [VWWPermissionsManager requirePermissions:permissions
+                                       title:@"Welcome to the Phototography! A tool to add geotags to your Apple Photo collection. Approve these permissions, then we can get started."
+                          fromViewController:self
+                                resultsBlock:^(NSArray *permissions) {
+                                    [permissions enumerateObjectsUsingBlock:^(VWWPermission *permission, NSUInteger idx, BOOL *stop) {
+                                        NSLog(@"%@ - %@", permission.type, [permission stringForStatus]);
+                                        [self performSegueWithIdentifier:SegueOnboardingToMain sender:nil];
+                                    }];
+                                }];
 }
 
 
-- (IBAction)findFriendsButtonTouchUpInside:(id)sender {
-//    [self.cloudManager getPhotographersWithEmail:self.emailTextField.text completionBlock:^(NSArray *friends, NSError *error) {
-//        NSLog(@"%lu friends", (unsigned long)friends.count);
-//    }];
-//    [self.cloudManager findContacts:^(NSArray *c, NSError *error) {
-//        
-//    }];
+- (IBAction)startButtonTouchUpInside:(id)sender {
+    [self checkPermissions];
 }
-
 
 
 @end

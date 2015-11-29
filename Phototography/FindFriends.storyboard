@@ -18,12 +18,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xBM-sn-Be1">
-                                <rect key="frame" x="0.0" y="156" width="600" height="444"/>
+                                <rect key="frame" x="0.0" y="148" width="600" height="452"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="User" textLabel="rzw-lT-i6r" detailTextLabel="aox-jR-EyP" style="IBUITableViewCellStyleSubtitle" id="fB0-j2-4oh">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fB0-j2-4oh" id="NXL-6m-ypY">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -60,18 +60,18 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="84"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeG-AR-8qa">
-                                        <rect key="frame" x="230" y="46" width="140" height="30"/>
+                                        <rect key="frame" x="226" y="46" width="149" height="30"/>
                                         <animations/>
-                                        <state key="normal" title="Search Email Adress"/>
+                                        <state key="normal" title="Search Email Address"/>
                                         <connections>
                                             <action selector="emailSearchButtonTouchUpInsde:" destination="rk7-gq-0fe" eventType="touchUpInside" id="33l-OG-YMx"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QFB-uK-Exu">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="vaporwarewolf@gmail.com" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QFB-uK-Exu">
                                         <rect key="frame" x="20" y="8" width="560" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
                                 </subviews>
                                 <animations/>
@@ -95,7 +95,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="m8y-7n-Vul" secondAttribute="trailing" constant="-20" id="RfJ-l7-eZh"/>
                             <constraint firstItem="xBM-sn-Be1" firstAttribute="leading" secondItem="hqr-02-Wen" secondAttribute="leadingMargin" constant="-20" id="mfJ-Ph-92O"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xBM-sn-Be1" secondAttribute="trailing" constant="-20" id="pUl-W9-mJz"/>
-                            <constraint firstItem="xBM-sn-Be1" firstAttribute="top" secondItem="m8y-7n-Vul" secondAttribute="bottom" constant="8" id="y3d-oE-HvW"/>
+                            <constraint firstItem="xBM-sn-Be1" firstAttribute="top" secondItem="m8y-7n-Vul" secondAttribute="bottom" id="y3d-oE-HvW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Find Friends" id="9hG-LS-6Sc">

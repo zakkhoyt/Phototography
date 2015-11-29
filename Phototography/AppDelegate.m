@@ -21,6 +21,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    // TODO: Check for UIApplicationLaunchOptionsLocationKey
+    
+    
+    
     self.cloudManager = [[ZHCloudManager alloc]init];
     
     [self setupAppearance];

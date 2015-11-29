@@ -125,6 +125,83 @@
     //    }];
 }
 
+-(void)getPhotographerWithUUID:(NSString*)uuid completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"UUID == %@", uuid];
+    CKQuery *query = [[CKQuery alloc]initWithRecordType:@"Photographers" predicate:predicate];
+    
+    [self.publicDB performQuery:query inZoneWithID:nil completionHandler:^(NSArray<CKRecord *> * _Nullable results, NSError * _Nullable error) {
+        if(error != nil) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(nil, error);
+            });
+        } else {
+            
+            NSMutableArray *friendsWithEmail = [[NSMutableArray alloc]initWithCapacity:results.count];
+            for(CKRecord *record in results) {
+                ZHUser *user = [[ZHUser alloc]initWithRecord:record];
+                [friendsWithEmail addObject:user];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock([friendsWithEmail firstObject], nil);
+            });
+        }
+    }];
+
+}
+
+-(void)followPhotographer:(ZHUser*)photographer completionBlock:(ZHCloudManagerErrorBlock)completionBlock{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"UUID == %@", [ZHUser currentUser].uuid];
+    CKQuery *query = [[CKQuery alloc]initWithRecordType:@"Photographers" predicate:predicate];
+    [self.publicDB performQuery:query inZoneWithID:nil completionHandler:^(NSArray<CKRecord *> * _Nullable results, NSError * _Nullable error) {
+        if(error != nil) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(error);
+            });
+        } else {
+            CKRecord *record = [results firstObject];
+            if(record == nil) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSError *error = [NSError zhErrorWithCode:-1001 localizedFailureReason:@"CurrentUser account could not be found"];
+                    completionBlock(error);
+                });
+                return;
+            }
+            
+            ZHUser *currentUser = [ZHUser currentUser];
+            if([currentUser.friends containsObject:photographer] == YES) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // Already a friend
+                    completionBlock(nil);
+                });
+                return;
+            }
+            
+            // Add to friends and write back out
+            NSMutableArray *friends = [currentUser.friends mutableCopy];
+            [friends addObject:photographer];
+            [record setValue:friends forKey:@"Friends"];
+            [self.publicDB saveRecord:record completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error) {
+                if(error != nil) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completionBlock(error);
+                    });
+                } else {
+                    currentUser.friends = friends;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completionBlock(nil);
+                    });
+                }
+            }];
+        }
+    }];
+}
+
+-(void)unfollowPhotographer:(ZHUser*)photographer completionBlock:(ZHCloudManagerErrorBlock)completionBlock{
+    
+}
+
+
+
 -(void)getFriendsWithEmail:(NSString*)email completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"Email == %@", email];
     //        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"Email != ''", email];
@@ -145,35 +222,6 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 completionBlock(friendsWithEmail, nil);
             });
-        }
-    }];
-}
-
-#pragma mark Private methods
-
--(void)getExistingUser:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock{
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"Email == %@", user.email];
-    CKQuery *query = [[CKQuery alloc]initWithRecordType:@"Photographers" predicate:predicate];
-    
-    [self.publicDB performQuery:query inZoneWithID:nil completionHandler:^(NSArray<CKRecord *> * _Nullable results, NSError * _Nullable error) {
-        if(error != nil) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                completionBlock(nil, error);
-            });
-        } else {
-            if(results.count == 0){
-                completionBlock(nil, nil);
-            } else {
-                for(CKRecord *record in results) {
-                    ZHUser *retrievedUser = [[ZHUser alloc]initWithRecord:record];
-                    if([user.email isEqualToString:retrievedUser.email]){
-                        completionBlock(retrievedUser, nil);
-                        break;
-                    } else {
-                        completionBlock(nil, nil);
-                    }
-                }
-            }
         }
     }];
 }
@@ -250,8 +298,6 @@
     CKRecord *record = [[CKRecord alloc]initWithRecordType:@"Users" recordID:self.userRecordID];
     //    record[@"FirstName"] = user.firstName;
     //    record[@"LastName"] = user.lastName;
-    record[@"Email"] = user.email;
-    record[@"Phone"] = user.phone;
     record[@"UUID"] = user.uuid;
     record[@"Location"] = [[CLLocation alloc]initWithLatitude:37.5 longitude:-122.4];
     
@@ -292,7 +338,10 @@
                     completionBlock(nil, nil);
                 } else {
                     ZHUser *user = [[ZHUser alloc]initWithDiscoveredUserInfo:userInfo];
-                    completionBlock(@[user], nil);
+                    // Now get Photographer from user.uuid
+                    [self getPhotographerWithUUID:user.uuid completionBlock:^(ZHUser *photographer, NSError *error) {
+                        completionBlock(@[photographer], nil);
+                    }];
                 }
             });
         }

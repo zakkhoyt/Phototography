@@ -58,6 +58,8 @@
 		C696B6701C0AA06600F21D4D /* ZHAssetGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C696B66F1C0AA06600F21D4D /* ZHAssetGroupViewController.m */; };
 		C696B6741C0AA0A300F21D4D /* ZHAssetCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C696B6731C0AA0A300F21D4D /* ZHAssetCollectionViewCell.m */; };
 		C696B6781C0AA0C400F21D4D /* ZHAssetImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C696B6771C0AA0C400F21D4D /* ZHAssetImageView.m */; };
+		C696B67B1C0AAD9A00F21D4D /* ZHUpdatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C696B67A1C0AAD9A00F21D4D /* ZHUpdatesViewController.m */; };
+		C696B67F1C0AADE700F21D4D /* ZHLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C696B67E1C0AADE700F21D4D /* ZHLocationManager.m */; };
 		C6B829781BC31CE800782468 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6B829771BC31CE800782468 /* Map.storyboard */; };
 		C6B8297B1BC31D0E00782468 /* ZHMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B8297A1BC31D0E00782468 /* ZHMapViewController.m */; };
 		C6B829851BC3202A00782468 /* ZHAssetAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B829821BC3202A00782468 /* ZHAssetAnnotation.m */; };
@@ -71,6 +73,7 @@
 		C6BBCA411BC31C0A009D6887 /* VWWClusteredMapView+MKMapViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA361BC31C0A009D6887 /* VWWClusteredMapView+MKMapViewDelegate.m */; };
 		C6BBCA421BC31C0A009D6887 /* VWWClusteredMapView+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA381BC31C0A009D6887 /* VWWClusteredMapView+Private.m */; };
 		C6BBCA431BC31C0A009D6887 /* VWWClusteredMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA3A1BC31C0A009D6887 /* VWWClusteredMapView.m */; };
+		C6FB1A351C0ABF5B006453C9 /* ZHLocationUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FB1A341C0ABF5B006453C9 /* ZHLocationUpdate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -169,6 +172,10 @@
 		C696B6731C0AA0A300F21D4D /* ZHAssetCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHAssetCollectionViewCell.m; sourceTree = "<group>"; };
 		C696B6761C0AA0C400F21D4D /* ZHAssetImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHAssetImageView.h; sourceTree = "<group>"; };
 		C696B6771C0AA0C400F21D4D /* ZHAssetImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHAssetImageView.m; sourceTree = "<group>"; };
+		C696B6791C0AAD9A00F21D4D /* ZHUpdatesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHUpdatesViewController.h; sourceTree = "<group>"; };
+		C696B67A1C0AAD9A00F21D4D /* ZHUpdatesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHUpdatesViewController.m; sourceTree = "<group>"; };
+		C696B67D1C0AADE700F21D4D /* ZHLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLocationManager.h; sourceTree = "<group>"; };
+		C696B67E1C0AADE700F21D4D /* ZHLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLocationManager.m; sourceTree = "<group>"; };
 		C6B829771BC31CE800782468 /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		C6B829791BC31D0E00782468 /* ZHMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHMapViewController.h; sourceTree = "<group>"; };
 		C6B8297A1BC31D0E00782468 /* ZHMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHMapViewController.m; sourceTree = "<group>"; };
@@ -194,6 +201,8 @@
 		C6BBCA381BC31C0A009D6887 /* VWWClusteredMapView+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VWWClusteredMapView+Private.m"; sourceTree = "<group>"; };
 		C6BBCA391BC31C0A009D6887 /* VWWClusteredMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWClusteredMapView.h; sourceTree = "<group>"; };
 		C6BBCA3A1BC31C0A009D6887 /* VWWClusteredMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWClusteredMapView.m; sourceTree = "<group>"; };
+		C6FB1A331C0ABF5B006453C9 /* ZHLocationUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLocationUpdate.h; sourceTree = "<group>"; };
+		C6FB1A341C0ABF5B006453C9 /* ZHLocationUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLocationUpdate.m; sourceTree = "<group>"; };
 		E544EB3B61E1508738FF4B96 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -380,6 +389,7 @@
 				C6439A501C097362006BCF73 /* Assets */,
 				C6439A4F1C09735D006BCF73 /* Contacts */,
 				C670921F1C08346300AE06F3 /* iCloud */,
+				C696B6801C0AADEA00F21D4D /* Location */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -394,6 +404,7 @@
 				C6439A4E1C097334006BCF73 /* You */,
 				C6439A4D1C09732A006BCF73 /* Tagger */,
 				C696B6711C0AA06B00F21D4D /* Assets */,
+				C696B67C1C0AAD9E00F21D4D /* Updates */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -536,6 +547,26 @@
 				C696B6771C0AA0C400F21D4D /* ZHAssetImageView.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		C696B67C1C0AAD9E00F21D4D /* Updates */ = {
+			isa = PBXGroup;
+			children = (
+				C696B6791C0AAD9A00F21D4D /* ZHUpdatesViewController.h */,
+				C696B67A1C0AAD9A00F21D4D /* ZHUpdatesViewController.m */,
+			);
+			name = Updates;
+			sourceTree = "<group>";
+		};
+		C696B6801C0AADEA00F21D4D /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				C696B67D1C0AADE700F21D4D /* ZHLocationManager.h */,
+				C696B67E1C0AADE700F21D4D /* ZHLocationManager.m */,
+				C6FB1A331C0ABF5B006453C9 /* ZHLocationUpdate.h */,
+				C6FB1A341C0ABF5B006453C9 /* ZHLocationUpdate.m */,
+			);
+			name = Location;
 			sourceTree = "<group>";
 		};
 		C6B8297C1BC31D1200782468 /* Map */ = {
@@ -747,9 +778,11 @@
 				C6439A3D1C0962C4006BCF73 /* ZHYouViewController.m in Sources */,
 				C6BBCA3C1BC31C0A009D6887 /* VWWClusteredAnnotation.m in Sources */,
 				C67D86361BBF429800B2C4CF /* AppDelegate.m in Sources */,
+				C696B67B1C0AAD9A00F21D4D /* ZHUpdatesViewController.m in Sources */,
 				C67D869C1BBF7EF800B2C4CF /* NSTimer+Blocks.m in Sources */,
 				C67D86AC1BC04B2700B2C4CF /* ZHUserDefaults.m in Sources */,
 				C6BBCA3E1BC31C0A009D6887 /* VWWQuadTree.m in Sources */,
+				C6FB1A351C0ABF5B006453C9 /* ZHLocationUpdate.m in Sources */,
 				C67D86651BBF541600B2C4CF /* ZHLocationViewController.m in Sources */,
 				C696B6741C0AA0A300F21D4D /* ZHAssetCollectionViewCell.m in Sources */,
 				C67D869D1BBF7EF800B2C4CF /* NSURLRequest+AFCurlRequest.m in Sources */,
@@ -773,6 +806,7 @@
 				C67D86991BBF7EF800B2C4CF /* NSDate+Utilities.m in Sources */,
 				C696B6671C0A9B9600F21D4D /* ZHYouViewControllerUserDetailHeaderView.m in Sources */,
 				C6439A491C097092006BCF73 /* ZHCollectionViewController.m in Sources */,
+				C696B67F1C0AADE700F21D4D /* ZHLocationManager.m in Sources */,
 				C696B65E1C0A976E00F21D4D /* ZHYouViewControllerFriendsHeaderView.m in Sources */,
 				C67D86A01BBF7EF800B2C4CF /* UIView+RenderToImage.m in Sources */,
 				C67D869B1BBF7EF800B2C4CF /* NSString+ZH.m in Sources */,

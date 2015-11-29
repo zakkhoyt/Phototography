@@ -20,35 +20,65 @@ static ZHUser *currentUser;
     return currentUser;
 }
 
+- (void)encodeWithCoder:(NSCoder *)aCoder{
+    [aCoder encodeObject:self.firstName forKey:@"FirstName"];
+    [aCoder encodeObject:self.lastName forKey:@"LastName"];
+    [aCoder encodeObject:self.uuid forKey:@"UUID"];
+    [aCoder encodeObject:self.location forKey:@"Location"];
+    [aCoder encodeObject:self.friends forKey:@"Friends"];
+}
 
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super init];
+    if (self) {
+        self.firstName = [coder decodeObjectForKey:@"FirstName"];
+        self.lastName = [coder decodeObjectForKey:@"LastName"];
+        self.uuid = [coder decodeObjectForKey:@"UUID"];
+        self.location = [coder decodeObjectForKey:@"Location"];
+        self.friends = [coder decodeObjectForKey:@"Friends"];
+    }
+    return self;
+}
 
 - (instancetype)initWithRecord:(CKRecord*)record{
     self = [super init];
     if (self) {
+        
         self.firstName = [record objectForKey:@"FirstName"];
         self.lastName = [record objectForKey:@"LastName"];
-        self.email = [record objectForKey:@"Email"];
-        self.phone = [record objectForKey:@"Phone"];
         self.uuid = [record objectForKey:@"UUID"];
         self.friends = [record objectForKey:@"Friends"];
+        if(self.friends == nil) {
+            self.friends = [@[]mutableCopy];
+        }
     }
     return self;
 }
+
 
 - (instancetype)initWithDiscoveredUserInfo:(CKDiscoveredUserInfo*) userInfo{
     self = [super init];
     if (self) {
         self.firstName = userInfo.displayContact.givenName;
         self.lastName = userInfo.displayContact.familyName;
-        self.email = [userInfo.displayContact.emailAddresses firstObject].value;
-        self.phone = [userInfo.displayContact.phoneNumbers firstObject].value.stringValue;
         self.uuid = [NSString stringWithFormat:@"uuid%@", userInfo.userRecordID.recordName];
         self.recordID = userInfo.userRecordID;
 //        self.uuid = [record objectForKey:@"uuid"];
-//        self.friends = [record objectForKey:@"Friends"];
+        self.friends = [@[]mutableCopy];
+
     }
     return self;
     
+}
+
+- (CKRecord*)recordRepresentation{
+    CKRecord *record = [[CKRecord alloc]initWithRecordType:@"Photographers" recordID:self.recordID];
+    record[@"FirstName"] = self.firstName;
+    record[@"LastName"] = self.lastName;
+    record[@"UUID"] = self.uuid;
+//    record[@"Location"] = self.location;
+    record[@"Friends"] = self.friends;
+    return record;
 }
 
 -(NSString*)fullName {
@@ -89,5 +119,9 @@ static ZHUser *currentUser;
 
 -(NSString*)description{
     return  [NSString stringWithFormat:@"%@ %@ %@", self.firstName, self.lastName, self.uuid];
+}
+
++ (BOOL)supportsSecureCoding{
+    return YES;
 }
 @end

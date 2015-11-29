@@ -68,8 +68,6 @@ typedef enum {
     
     self.firstNameTextField.text = [ZHUser currentUser].firstName;
     self.lastNameTextField.text = [ZHUser currentUser].lastName;
-    self.emailTextField.text = [ZHUser currentUser].email;
-    self.phoneTextField.text = [ZHUser currentUser].phone;
     self.uuidTextField.text = [ZHUser currentUser].uuid;
     //    self.locationTextField.text = [ZHUser currentUser].loc
     
@@ -97,8 +95,6 @@ typedef enum {
     ZHUser *user = [ZHUser currentUser];
     user.firstName = self.firstNameTextField.text;
     user.lastName = self.lastNameTextField.text;
-    user.email = self.emailTextField.text;
-    user.phone = self.phoneTextField.text;
     
     
     [self.cloudManager updateUser:user completionBlock:^(ZHUser *user, NSError *error) {

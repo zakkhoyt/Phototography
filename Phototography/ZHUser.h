@@ -10,22 +10,22 @@
 #import <CloudKit/CloudKit.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface ZHUser : NSObject
+@interface ZHUser : NSObject <CKRecordValue, NSSecureCoding>
 @property (nonatomic, strong) NSString *firstName;
 @property (nonatomic, strong) NSString *lastName;
-@property (nonatomic, strong) NSString *email;
-@property (nonatomic, strong) NSString *phone;
 @property (nonatomic, strong) NSString *uuid;
 @property (nonatomic, strong) CLLocation *location;
-@property (nonatomic, strong) CKRecordID *recordID;
+@property (nonatomic, strong) NSMutableArray <ZHUser*> *friends;
 
-@property (nonatomic, strong) NSArray <ZHUser*> *friends;
+@property (nonatomic, strong) CKRecordID *recordID;
 
 +(void)setCurrentUser:(ZHUser*)user;
 +(ZHUser*)currentUser;
 
-
 - (instancetype)initWithRecord:(CKRecord*)record;
 - (instancetype)initWithDiscoveredUserInfo:(CKDiscoveredUserInfo*) userInfo;
 - (NSString*)fullName;
+
+
+- (CKRecord*)recordRepresentation;
 @end

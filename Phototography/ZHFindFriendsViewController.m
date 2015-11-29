@@ -20,7 +20,7 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet UITextField *emailSearchTextField;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *findTypeSegment;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) ZHContactsManager *contactManager;
+//@property (nonatomic, strong) ZHContactsManager *contactManager;
 @property (nonatomic, strong) NSArray *users;
 @end
 
@@ -35,8 +35,9 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.contactManager = [[ZHContactsManager alloc]init];
+    //    self.contactManager = [[ZHContactsManager alloc]init];
     self.tableView.hidden = YES;
+    self.tableView.contentInset = UIEdgeInsetsZero;
 }
 
 
@@ -56,50 +57,53 @@ typedef enum {
 
 
 - (IBAction)addressBookButtonTouchUpInside:(id)sender {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"Reading contacts...";
-    [self.contactManager getEmailContactsWithCompletionBlock:^(NSArray<CNContact*> *contacts, NSError *error) {
-        if(error != nil) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-                [self presentAlertDialogWithTitle:@"Could not read contacts" errorAsMessage:error];
-            });
-        } else {
-            // Let's just assume there is an average of 3 emails per contact for initial capacity
-            NSMutableArray *emails = [[NSMutableArray alloc]initWithCapacity:contacts.count * 3];
-            NSLog(@"Foudn the following email addresses: ");
-            [contacts enumerateObjectsUsingBlock:^(CNContact * _Nonnull contact, NSUInteger idx, BOOL * _Nonnull stop) {
-                [contact.emailAddresses enumerateObjectsUsingBlock:^(CNLabeledValue<NSString *> * _Nonnull emailAddress, NSUInteger idx, BOOL * _Nonnull stop) {
-                    NSLog(@"%@", emailAddress.value);
-                    [emails addObject:emailAddress.value];
-                }];
-            }];
-            
-            
-//            AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-//            [appDelegate.cloudManager findUsersForEmails:emails completionBlock:^(NSArray *users, NSError *error) {
-//                if(users.count == 0) {
-//                    [self presentAlertDialogWithMessage:@"No users found :("];
-//                } else {
-//                    self.users = users;
-//                    [self.tableView reloadData];
-//                    self.tableView.hidden = NO;
-//                }
-//            }];
-
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-//                [self presentAlertDialogWithMessage:@"TODO: search iCloud"];
-                
-            });
-        }
-    }];
+    //    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    //    hud.labelText = @"Reading contacts...";
+    //    [self.contactManager getEmailContactsWithCompletionBlock:^(NSArray<CNContact*> *contacts, NSError *error) {
+    //        if(error != nil) {
+    //            dispatch_async(dispatch_get_main_queue(), ^{
+    //                [MBProgressHUD hideHUDForView:self.view animated:YES];
+    //                [self presentAlertDialogWithTitle:@"Could not read contacts" errorAsMessage:error];
+    //            });
+    //        } else {
+    //            // Let's just assume there is an average of 3 emails per contact for initial capacity
+    //            NSMutableArray *emails = [[NSMutableArray alloc]initWithCapacity:contacts.count * 3];
+    //            NSLog(@"Foudn the following email addresses: ");
+    //            [contacts enumerateObjectsUsingBlock:^(CNContact * _Nonnull contact, NSUInteger idx, BOOL * _Nonnull stop) {
+    //                [contact.emailAddresses enumerateObjectsUsingBlock:^(CNLabeledValue<NSString *> * _Nonnull emailAddress, NSUInteger idx, BOOL * _Nonnull stop) {
+    //                    NSLog(@"%@", emailAddress.value);
+    //                    [emails addObject:emailAddress.value];
+    //                }];
+    //            }];
+    //
+    //
+    ////            AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    ////            [appDelegate.cloudManager findUsersForEmails:emails completionBlock:^(NSArray *users, NSError *error) {
+    ////                if(users.count == 0) {
+    ////                    [self presentAlertDialogWithMessage:@"No users found :("];
+    ////                } else {
+    ////                    self.users = users;
+    ////                    [self.tableView reloadData];
+    ////                    self.tableView.hidden = NO;
+    ////                }
+    ////            }];
+    //
+    //            dispatch_async(dispatch_get_main_queue(), ^{
+    //                [MBProgressHUD hideHUDForView:self.view animated:YES];
+    ////                [self presentAlertDialogWithMessage:@"TODO: search iCloud"];
+    //
+    //            });
+    //        }
+    //    }];
 }
 
 - (IBAction)emailSearchButtonTouchUpInsde:(id)sender {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Searching...";
     
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     [appDelegate.cloudManager findUsersForEmail:self.emailSearchTextField.text completionBlock:^(NSArray *users, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         if(users.count == 0) {
             [self presentAlertDialogWithMessage:@"No users found :("];
         } else {
@@ -142,8 +146,18 @@ typedef enum {
 }
 
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+    __weak typeof(self) welf = self;
+    
     UITableViewRowAction *followAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Follow" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        [self presentAlertDialogWithMessage:@"TODO: Add"];
+        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        [appDelegate.cloudManager followPhotographer:self.users[indexPath.row] completionBlock:^(NSError *error) {
+            if(error != nil) {
+                [self presentAlertDialogWithTitle:@"Could not follow user" errorAsMessage:error];
+            } else {
+                [welf.tableView setEditing:NO animated:YES];
+            }
+        }];
+        
     }];
     followAction.backgroundColor = [UIColor zhGreenColor];
     return @[followAction];
