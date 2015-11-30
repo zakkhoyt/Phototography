@@ -10,7 +10,7 @@
 		27681B1F71AD3CA0DC6A4566 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A9B1888187AEF86278BB82 /* libPods.a */; };
 		C62E2E6A1C0BD4E50026695C /* ZHUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C62E2E691C0BD4E50026695C /* ZHUpdateViewController.m */; };
 		C62E2E701C0BF64D0026695C /* ZHTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C62E2E6F1C0BF64D0026695C /* ZHTabBarController.m */; };
-		C62E2E781C0C13BE0026695C /* ZHUserAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = C62E2E771C0C13BE0026695C /* ZHUserAsset.m */; };
+		C62E2E781C0C13BE0026695C /* ZHAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = C62E2E771C0C13BE0026695C /* ZHAsset.m */; };
 		C6439A341C090A40006BCF73 /* schema.txt in Resources */ = {isa = PBXBuildFile; fileRef = C6439A331C090A40006BCF73 /* schema.txt */; };
 		C6439A361C0930CC006BCF73 /* FindFriends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6439A351C0930CC006BCF73 /* FindFriends.storyboard */; };
 		C6439A391C09311B006BCF73 /* ZHFindFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6439A381C09311B006BCF73 /* ZHFindFriendsViewController.m */; };
@@ -90,8 +90,8 @@
 		C62E2E6D1C0BF18E0026695C /* ZHNotificationNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHNotificationNames.h; sourceTree = "<group>"; };
 		C62E2E6E1C0BF64D0026695C /* ZHTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHTabBarController.h; sourceTree = "<group>"; };
 		C62E2E6F1C0BF64D0026695C /* ZHTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHTabBarController.m; sourceTree = "<group>"; };
-		C62E2E761C0C13BE0026695C /* ZHUserAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHUserAsset.h; sourceTree = "<group>"; };
-		C62E2E771C0C13BE0026695C /* ZHUserAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHUserAsset.m; sourceTree = "<group>"; };
+		C62E2E761C0C13BE0026695C /* ZHAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHAsset.h; sourceTree = "<group>"; };
+		C62E2E771C0C13BE0026695C /* ZHAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHAsset.m; sourceTree = "<group>"; };
 		C6439A331C090A40006BCF73 /* schema.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.txt; sourceTree = "<group>"; };
 		C6439A351C0930CC006BCF73 /* FindFriends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FindFriends.storyboard; sourceTree = "<group>"; };
 		C6439A371C09311B006BCF73 /* ZHFindFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHFindFriendsViewController.h; sourceTree = "<group>"; };
@@ -292,8 +292,8 @@
 			children = (
 				C67092201C08346D00AE06F3 /* ZHUser.h */,
 				C67092211C08346D00AE06F3 /* ZHUser.m */,
-				C62E2E761C0C13BE0026695C /* ZHUserAsset.h */,
-				C62E2E771C0C13BE0026695C /* ZHUserAsset.m */,
+				C62E2E761C0C13BE0026695C /* ZHAsset.h */,
+				C62E2E771C0C13BE0026695C /* ZHAsset.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -910,7 +910,7 @@
 				C67D86A01BBF7EF800B2C4CF /* UIView+RenderToImage.m in Sources */,
 				C67D869B1BBF7EF800B2C4CF /* NSString+ZH.m in Sources */,
 				C67D86A91BBF959800B2C4CF /* ZHLocationSearchTableViewController.m in Sources */,
-				C62E2E781C0C13BE0026695C /* ZHUserAsset.m in Sources */,
+				C62E2E781C0C13BE0026695C /* ZHAsset.m in Sources */,
 				C6BBCA3F1BC31C0A009D6887 /* VWWAnnotationFanoutView.m in Sources */,
 				C67D869A1BBF7EF800B2C4CF /* NSError+ZH.m in Sources */,
 				C67D86391BBF429800B2C4CF /* ZHMasterViewController.m in Sources */,

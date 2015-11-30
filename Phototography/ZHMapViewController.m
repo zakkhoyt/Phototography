@@ -12,7 +12,8 @@
 #import "ZHAssetAnnotation.h"
 #import "ZHAssetAnnotationView.h"
 #import "ZHAssetGroupViewController.h"
-#import "ZHUserAsset.h"
+#import "ZHAsset.h"
+
 static NSString *SegueMapToAssetGroup = @"SegueMapToAssetGroup";
 
 @interface ZHMapViewController ()
@@ -91,24 +92,24 @@ static NSString *SegueMapToAssetGroup = @"SegueMapToAssetGroup";
             [self.clusteredMapView reloadData];
         }
         
-        // Write assets to Photographer's record
+//        // Write assets to Photographer's record
         NSMutableArray *userAssets = [[NSMutableArray alloc]initWithCapacity:[ZHAssetManager sharedInstance].assetsWithLocation.count];
-        [[ZHAssetManager sharedInstance].assetsWithLocation enumerateObjectsUsingBlock:^(PHAsset*  _Nonnull asset, NSUInteger idx, BOOL * _Nonnull stop) {
-//            ZHUserAsset *userAsset = [[ZHUserAsset alloc]initWithAsset:asset];
-//            NSDictionary *userAsset = @{@"date": asset.creationDate,
-//                                        @"localIdentifier": asset.localIdentifier};
-            
-            [userAssets addObject:asset.location];
+        [[ZHAssetManager sharedInstance].assetsWithLocation enumerateObjectsUsingBlock:^(PHAsset*  _Nonnull phAsset, NSUInteger idx, BOOL * _Nonnull stop) {
+            ZHAsset *asset = [[ZHAsset alloc]initWithAsset:phAsset];
+            [userAssets addObject:asset];
         }];
         [ZHUser currentUser].assets = userAssets;
+        
         AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-        [appDelegate.cloudManager updateUserAssets:[ZHUser currentUser] completionBlock:^(ZHUser *user, NSError *error) {
-            if(error != nil) {
-                [self presentAlertDialogWithTitle:@"Error updating assets" errorAsMessage:error];
+        [appDelegate.cloudManager updateAssets:[ZHUser currentUser].assets completionBlock:^(NSError *error) {
+            if(error) {
+                [self presentAlertDialogWithTitle:@"Failed to save assets" errorAsMessage:error];
             } else {
-                [self presentAlertDialogWithMessage:@"Updated assets"];
+                [self presentAlertDialogWithMessage:@"Saved asset(s)"];
             }
         }];
+        
+        
     }];
 }
 

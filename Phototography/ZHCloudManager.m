@@ -237,39 +237,6 @@
 }
 
 
--(void)updateAssets:(NSArray*)assets forUser:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock{
-    
-}
-
--(void)updateUserAssets:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock{
-    
-    CKRecord *record = user.recordRepresentation;
-    CKModifyRecordsOperation *modifyRecordsOperation = [[CKModifyRecordsOperation alloc] initWithRecordsToSave:@[record] recordIDsToDelete:nil];
-    modifyRecordsOperation.savePolicy = CKRecordSaveAllKeys;
-    [modifyRecordsOperation setModifyRecordsCompletionBlock:^(NSArray <CKRecord *> * __nullable savedRecords,
-                                                              NSArray <CKRecordID *> * __nullable deletedRecordIDs,
-                                                              NSError * __nullable operationError){
-        if(operationError != nil){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                completionBlock(nil, operationError);
-            });
-        } else {
-            NSLog(@"Updated photographer record");
-            dispatch_async(dispatch_get_main_queue(), ^{
-                ZHUser *newUser = [[ZHUser alloc]initWithRecord:record];
-                
-                if([user isEqual:[ZHUser currentUser]]) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:ZHNotificationNamesCurrentUserUpdated object:nil];
-                }
-                
-                completionBlock(newUser, nil);
-            });
-        }
-    }];
-    
-    [self.publicDB addOperation:modifyRecordsOperation];
-}
-
 
 
 -(void)findContacts:(ZHCloudManagerArrayErrorBlock)completionBlock{
@@ -394,6 +361,77 @@
         }
     }];
 }
+
+
+
+-(void)updateAssets:(NSArray*)assets completionBlock:(ZHCloudManagerErrorBlock)completionBlock {
+    
+//    ZHAsset *asset = [assets firstObject];
+//    CKRecord *record = [asset recordRepresentation];
+//    
+//    [self.publicDB saveRecord:record completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error) {
+//        if(error != nil) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                completionBlock(error);
+//            });
+//        } else {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                completionBlock(nil);
+//            });
+//        }
+//    }];
+
+
+    
+    
+//    const NSUInteger kBatchSize = 400;
+//    for(NSUInteger index = 0; index < assets.count / kBatchSize; index++){
+//        NSUInteger startIndex = index * 400;
+//        NSUInteger endIndex = MIN(assets.count, startIndex + kBatchSize);
+//        for(NSUInteger i = startIndex; i < endIndex; i++) {
+//            
+//        }
+//    }
+    
+    
+    NSMutableArray *records = [[NSMutableArray alloc]initWithCapacity:assets.count];
+    [assets enumerateObjectsUsingBlock:^(ZHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
+        if(idx == 400) {
+            *stop = YES;
+            return;
+        }
+
+        CKRecord *record = [asset recordRepresentation];
+        [records addObject:record];
+    }];
+    
+    
+    CKModifyRecordsOperation *modifyRecordsOperation = [[CKModifyRecordsOperation alloc] initWithRecordsToSave:records recordIDsToDelete:nil];
+    modifyRecordsOperation.savePolicy = CKRecordSaveAllKeys;
+    [modifyRecordsOperation setModifyRecordsCompletionBlock:^(NSArray <CKRecord *> * __nullable savedRecords,
+                                                              NSArray <CKRecordID *> * __nullable deletedRecordIDs,
+                                                              NSError * __nullable operationError){
+        if(operationError != nil){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(operationError);
+            });
+        } else {
+            NSLog(@"Updated asset records");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(nil);
+            });
+        }
+    }];
+    
+    [self.publicDB addOperation:modifyRecordsOperation];
+
+    
+    
+    
+}
+
+
+
 @end
 
 

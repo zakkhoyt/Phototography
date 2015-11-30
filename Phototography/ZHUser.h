@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CloudKit/CloudKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "ZHUserAsset.h"
+#import "ZHAsset.h"
 
 @interface ZHUser : NSObject <CKRecordValue>
 @property (nonatomic, strong) NSString *firstName;
@@ -17,7 +17,7 @@
 @property (nonatomic, strong) NSString *uuid;
 @property (nonatomic, strong) CLLocation *location;
 @property (nonatomic, strong) NSMutableArray <NSString*> *friendUUIDs;
-@property (nonatomic, strong) NSMutableArray <ZHUserAsset*> *assets;
+@property (nonatomic, strong) NSMutableArray <ZHAsset*> *assets;
 
 //@property (nonatomic, strong) CKRecordID *recordID;
 

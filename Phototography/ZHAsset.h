@@ -9,15 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import <Photos/Photos.h>
+#import <CloudKit/CloudKit.h>
 
-@interface ZHUserAsset : NSObject
-@property (nonatomic, strong) NSDate *date;
+@interface ZHAsset : NSObject
+@property (nonatomic, strong) NSDate *dateCreated;
 @property (nonatomic, strong) CLLocation *location;
 @property (nonatomic, strong) NSString *localIdentifier;
-- (instancetype)initWithAsset:(PHAsset*)asset;
+@property (nonatomic, strong) CKReference *ownerUUID;
 
+- (instancetype)initWithAsset:(PHAsset*)asset;
+- (CKRecord*)recordRepresentation;
 @end
 
-@interface ZHUserAsset (NSSecureCoding) <NSSecureCoding>
+@interface ZHAsset (NSSecureCoding) <NSSecureCoding>
 
 @end
