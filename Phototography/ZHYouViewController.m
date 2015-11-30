@@ -11,6 +11,7 @@
 #import "ZHAssetManager.h"
 #import "ZHYouViewControllerFriendsHeaderView.h"
 #import "ZHYouViewControllerUserDetailHeaderView.h"
+#import "ZHPhotographerViewController.h"
 
 static NSString *SegueYouToFindFriends = @"SegueYouToFindFriends";
 
@@ -205,13 +206,12 @@ typedef enum {
 @implementation ZHYouViewController (UITableViewDelegate)
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString *userUUID = [ZHUser currentUser].friendUUIDs[indexPath.row];
-    [self.cloudManager getAssetsForUserUUID:userUUID completionBlock:^(NSArray *assets, NSError *error) {
-        if(error != nil) {
-            [self presentAlertDialogWithTitle:@"Nope" errorAsMessage:error];
-        } else {
-            [self presentAlertDialogWithTitle:@"Yep" message:[NSString stringWithFormat:@"%lu", (unsigned long)assets.count]];
-        }
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Photographer" bundle:[NSBundle mainBundle]];
+    ZHPhotographerViewController *vc = [storyboard instantiateInitialViewController];
+    NSString *uuid = [ZHUser currentUser].friendUUIDs[indexPath.row];
+    [self.cloudManager getPhotographerWithUUID:uuid completionBlock:^(ZHUser *user, NSError *error) {
+        vc.user = user;
+        [self.navigationController pushViewController:vc animated:YES];
     }];
 }
 

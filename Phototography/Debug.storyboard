@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15A278b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Y4J-h0-qk3">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <scenes>
+        <!--Debug Table View Controller-->
+        <scene sceneID="lc2-ZH-t8Q">
+            <objects>
+                <tableViewController id="Y4J-h0-qk3" customClass="ZHDebugTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cDi-Mp-dRU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="TgR-lN-BEA">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="xLK-aO-Ts4">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xLK-aO-Ts4" id="1SS-ZN-I3I">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TNX-jL-38c">
+                                                    <rect key="frame" x="183" y="7" width="234" height="30"/>
+                                                    <animations/>
+                                                    <state key="normal" title="Get nearby photos from all friends"/>
+                                                    <connections>
+                                                        <action selector="getFriendsAssetsButtonTouchUpInside:" destination="Y4J-h0-qk3" eventType="touchUpInside" id="wED-SN-gsl"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="TNX-jL-38c" firstAttribute="centerX" secondItem="1SS-ZN-I3I" secondAttribute="centerX" id="gST-4t-5c5"/>
+                                                <constraint firstItem="TNX-jL-38c" firstAttribute="centerY" secondItem="1SS-ZN-I3I" secondAttribute="centerY" id="sDO-V5-maH"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="VkD-m7-onK">
+                                        <rect key="frame" x="0.0" y="44" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VkD-m7-onK" id="Rmh-2c-KJU">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zil-eG-JVh">
+                                                    <rect key="frame" x="217" y="7" width="166" height="30"/>
+                                                    <animations/>
+                                                    <state key="normal" title="Get nearby your photos "/>
+                                                    <connections>
+                                                        <action selector="getYourAssetsButtonTouchUpInside:" destination="Y4J-h0-qk3" eventType="touchUpInside" id="5Ah-EB-8VV"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="Zil-eG-JVh" firstAttribute="centerX" secondItem="Rmh-2c-KJU" secondAttribute="centerX" id="2Vw-Uw-PRc"/>
+                                                <constraint firstItem="Zil-eG-JVh" firstAttribute="centerY" secondItem="Rmh-2c-KJU" secondAttribute="centerY" id="Qxi-cV-trC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="fQ0-e8-cWn">
+                                        <rect key="frame" x="0.0" y="88" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fQ0-e8-cWn" id="Bxg-NQ-ukV">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n2W-Rb-Xna">
+                                                    <rect key="frame" x="229" y="7" width="143" height="30"/>
+                                                    <animations/>
+                                                    <state key="normal" title="Update your location"/>
+                                                    <connections>
+                                                        <action selector="updateLocationButtonTouchUpInside:" destination="Y4J-h0-qk3" eventType="touchUpInside" id="PHI-Pc-X46"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="n2W-Rb-Xna" firstAttribute="centerY" secondItem="Bxg-NQ-ukV" secondAttribute="centerY" id="hDO-id-qrU"/>
+                                                <constraint firstItem="n2W-Rb-Xna" firstAttribute="centerX" secondItem="Bxg-NQ-ukV" secondAttribute="centerX" id="svM-LG-19J"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Cls-Hh-Ehj">
+                                        <rect key="frame" x="0.0" y="132" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cls-Hh-Ehj" id="piw-ZU-orX">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ufu-cH-wKs">
+                                                    <rect key="frame" x="199" y="7" width="202" height="30"/>
+                                                    <animations/>
+                                                    <state key="normal" title="Update your assets on iCloud"/>
+                                                    <connections>
+                                                        <action selector="updateAssetsButtonTouchUpInside:" destination="Y4J-h0-qk3" eventType="touchUpInside" id="KwU-wv-c8q"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="Ufu-cH-wKs" firstAttribute="centerY" secondItem="piw-ZU-orX" secondAttribute="centerY" id="RtO-uC-ShF"/>
+                                                <constraint firstItem="Ufu-cH-wKs" firstAttribute="centerX" secondItem="piw-ZU-orX" secondAttribute="centerX" id="gDz-Rk-MHx"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Y4J-h0-qk3" id="2ls-Te-JUG"/>
+                            <outlet property="delegate" destination="Y4J-h0-qk3" id="owW-Qz-WN9"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="By3-a1-Ea4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="680" y="369"/>
+        </scene>
+    </scenes>
+</document>

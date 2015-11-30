@@ -39,20 +39,17 @@
 
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self findNearbyPhotos];
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 -(void)findNearbyPhotos{
     
@@ -66,7 +63,7 @@
         ZHUser *currentUser = [ZHUser currentUser];
         currentUser.location = location;
         
-        // Get assets for self near location
+        /// ** Updates currentUser's location
 //        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
 //        [appDelegate.cloudManager updateUser:currentUser completionBlock:^(ZHUser *user, NSError *error) {
 //            [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -94,26 +91,39 @@
     
 #else
     [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location) {
+        
+        MKCoordinateSpan span = MKCoordinateSpanMake(0.1, 0.1);
+        MKCoordinateRegion region = MKCoordinateRegionMake(location.coordinate, span);
+        [self.clusteredMapView setRegion:region animated:YES];
+        
         ZHUser *currentUser = [ZHUser currentUser];
         currentUser.location = location;
+        
+        /// ** Updates currentUser's location
+//        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+//        [appDelegate.cloudManager updateUser:currentUser completionBlock:^(ZHUser *user, NSError *error) {
+//            [MBProgressHUD hideHUDForView:self.view animated:YES];
+//            if(error != nil) {
+//                [self presentAlertDialogWithTitle:@"Could not update location" errorAsMessage:error];
+//            } else {
+//                [self.clusteredMapView reloadData];
+//            }
+//        }];
+        
+        /// ******* get assets for all friends near location
         AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-        [appDelegate.cloudManager updateUser:currentUser completionBlock:^(ZHUser *user, NSError *error) {
+        [appDelegate.cloudManager getAssetsNearLocation:location completionBlock:^(NSArray *userAssets, NSError *error) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if(error != nil) {
                 [self presentAlertDialogWithTitle:@"Could not update location" errorAsMessage:error];
             } else {
+                [self presentAlertDialogWithMessage:[NSString stringWithFormat:@"Found %lu users with assets", (unsigned long)userAssets.count]];
                 [self.clusteredMapView reloadData];
             }
         }];
+
     }];
 #endif
-    
-    
-    
-
-//    -(void)getAssetsNearLocation:(CLLocation*)location ownerUUID:(NSString*)ownerUUID completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock
-    
-
 
 }
 

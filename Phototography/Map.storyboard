@@ -150,6 +150,7 @@
                         <segue destination="WyM-ZA-Q5c" kind="relationship" relationship="viewControllers" id="9Iz-CZ-1gj"/>
                         <segue destination="rSs-GE-l6u" kind="relationship" relationship="viewControllers" id="RdO-BV-Ijz"/>
                         <segue destination="V92-0T-QgU" kind="relationship" relationship="viewControllers" id="nF2-sq-2Kb"/>
+                        <segue destination="Lq2-GO-Rml" kind="relationship" relationship="viewControllers" id="aKs-dO-8Yp"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8by-r6-dnB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -238,7 +239,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n7N-xq-ISX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2665" y="1165"/>
+            <point key="canvasLocation" x="2757" y="1171"/>
         </scene>
         <!--Your Account-->
         <scene sceneID="dNo-UO-z83">
@@ -407,6 +408,34 @@
                 </barButtonItem>
             </objects>
             <point key="canvasLocation" x="2746" y="1945"/>
+        </scene>
+        <!--Debug-->
+        <scene sceneID="BcN-LG-Ybn">
+            <objects>
+                <navigationController id="Lq2-GO-Rml" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Debug" id="CE5-gO-UfS"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WZU-FN-NTD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="xMe-6I-Ssh" kind="relationship" relationship="rootViewController" id="G8z-b1-7SE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LwK-73-tAw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1934" y="2750"/>
+        </scene>
+        <!--Debug-->
+        <scene sceneID="tk4-aV-UHH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Debug" id="xMe-6I-Ssh" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="0rC-ya-1Ku"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Odq-T8-TNT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2466" y="2750"/>
         </scene>
         <!--You-->
         <scene sceneID="Yi2-Sc-rqQ">
