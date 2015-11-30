@@ -320,7 +320,7 @@
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserDetailCell" textLabel="699-ZL-GW3" detailTextLabel="2A8-6e-xr8" style="IBUITableViewCellStyleValue1" id="VPB-HL-4NY">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserDetailCell" textLabel="699-ZL-GW3" detailTextLabel="2A8-6e-xr8" style="IBUITableViewCellStyleValue1" id="VPB-HL-4NY">
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VPB-HL-4NY" id="ZO7-uz-fpk">

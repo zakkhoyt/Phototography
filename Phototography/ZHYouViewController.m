@@ -38,7 +38,6 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet UITextField *assetsTextField;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *saveBarButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSArray *users;
 @end
 
 
@@ -57,10 +56,18 @@ typedef enum {
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     self.cloudManager = appDelegate.cloudManager;
 
-    self.users = @[[ZHUser currentUser]];
     
     CGFloat top = [UIApplication sharedApplication].statusBarFrame.size.height + self.navigationController.navigationBar.frame.size.height;
     self.tableView.contentInset = UIEdgeInsetsMake(top, 0, 0, 0);
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:ZHNotificationNamesCurrentUserUpdated object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+        [self.tableView reloadData];
+    }];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:ZHNotificationNamesFriendsUpdated object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+        [self.tableView reloadData];
+    }];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -134,7 +141,7 @@ typedef enum {
         case ZHYouViewControllerSectionUserDetails:
             return 4;
         case ZHYouViewControllerSectionFriends:
-            return self.users.count;
+            return [ZHUser currentUser].friendUUIDs.count;
         default:
             return 0;
     }
@@ -179,7 +186,10 @@ typedef enum {
             break;
         case ZHYouViewControllerSectionFriends: {
             ZHFriendTableViewCell *cell = [ZHFriendTableViewCell cellForTableView:tableView];
-            cell.user = self.users[indexPath.item];
+            NSString *uuid = [ZHUser currentUser].friendUUIDs[indexPath.row];
+            [self.cloudManager getPhotographerWithUUID:uuid completionBlock:^(ZHUser *user, NSError *error) {
+                cell.user = user;
+            }];
             return cell;
         }
             break;
@@ -254,7 +264,18 @@ typedef enum {
     switch (indexPath.section) {
         case ZHYouViewControllerSectionFriends: {
             UITableViewRowAction *unfollowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Unfollow" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-                [self presentAlertDialogWithMessage:@"TODO: Unfollow"];
+                NSString *uuidToRemove = [ZHUser currentUser].friendUUIDs[indexPath.row];
+                ZHUser *currentUser = [[ZHUser currentUser] copy];
+                [currentUser.friendUUIDs removeObject:uuidToRemove];
+                [self.cloudManager updateUser:currentUser completionBlock:^(ZHUser *user, NSError *error) {
+                    if(error != nil) {
+                        [self presentAlertDialogWithTitle:@"Could not unfollow user" errorAsMessage:error];
+                    } else {
+                        [ZHUser setCurrentUser:currentUser];
+                        [self.tableView reloadData];
+                    }
+                }];
+                [self.tableView setEditing:NO animated:YES];
             }];
             unfollowAction.backgroundColor = [UIColor zhRedColor];
             return @[unfollowAction];

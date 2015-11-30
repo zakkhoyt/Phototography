@@ -8,6 +8,7 @@
 
 #import "ZHFindFriendsViewController.h"
 #import "ZHContactsManager.h"
+#import "ZHFriendTableViewCell.h"
 
 typedef enum {
     ZHFindFriendsViewControllerFindTypeAddressBook = 0,
@@ -21,7 +22,7 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet UISegmentedControl *findTypeSegment;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 //@property (nonatomic, strong) ZHContactsManager *contactManager;
-@property (nonatomic, strong) NSArray *users;
+@property (nonatomic, strong) NSMutableArray *users;
 @end
 
 
@@ -102,12 +103,12 @@ typedef enum {
     hud.labelText = @"Searching...";
     
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    [appDelegate.cloudManager findUsersForEmail:self.emailSearchTextField.text completionBlock:^(NSArray *users, NSError *error) {
+    [appDelegate.cloudManager findUsersForEmail:self.emailSearchTextField.text completionBlock:^(NSArray *potentialFriends, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        if(users.count == 0) {
+        if(potentialFriends.count == 0) {
             [self presentAlertDialogWithMessage:@"No users found :("];
         } else {
-            self.users = users;
+            self.users = [potentialFriends mutableCopy];
             [self.tableView reloadData];
             self.tableView.hidden = NO;
         }
@@ -122,9 +123,9 @@ typedef enum {
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"User" forIndexPath:indexPath];
+    ZHFriendTableViewCell *cell = [ZHFriendTableViewCell cellForTableView:tableView];
     ZHUser *user = self.users[indexPath.row];
-    cell.textLabel.text = user.fullName;
+    [cell setUser:user];
     return cell;
 }
 
@@ -150,14 +151,29 @@ typedef enum {
     
     UITableViewRowAction *followAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Follow" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-        [appDelegate.cloudManager followPhotographer:self.users[indexPath.row] completionBlock:^(NSError *error) {
-            if(error != nil) {
-                [self presentAlertDialogWithTitle:@"Could not follow user" errorAsMessage:error];
-            } else {
-                [welf.tableView setEditing:NO animated:YES];
-            }
-        }];
+        ZHUser *currentUser = [[ZHUser currentUser] copy];
+        ZHUser *friendToAdd = self.users[indexPath.row];
         
+        if([currentUser.friendUUIDs containsObject:friendToAdd.uuid] == YES) {
+            NSLog(@"Already friends!");
+        } else {
+            [currentUser.friendUUIDs addObject:friendToAdd.uuid];
+            [appDelegate.cloudManager updateUser:currentUser completionBlock:^(ZHUser *user, NSError *error) {
+                if(error != nil) {
+                    [self presentAlertDialogWithTitle:@"Could not follow user" errorAsMessage:error];
+                } else {
+                    // Update user
+                    [ZHUser setCurrentUser:currentUser];
+                    
+                    // Update tableView
+                    [welf.tableView setEditing:NO animated:YES];
+                    
+                    // Tell other view controllers and cells
+                    [[NSNotificationCenter defaultCenter] postNotificationName:ZHNotificationNamesFriendsUpdated object:nil];
+                }
+            }];
+        }
+        [self.tableView setEditing:NO animated:YES];
     }];
     followAction.backgroundColor = [UIColor zhGreenColor];
     return @[followAction];

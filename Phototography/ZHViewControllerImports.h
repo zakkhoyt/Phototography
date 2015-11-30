@@ -23,6 +23,6 @@
 #import "ZHCloudManager.h"
 #import "ZHUser.h"
 #import "CLLocation+ZH.h"
-
+#import "ZHNotificationNames.h"
 
 #endif /* ZHViewControllerImports_h */

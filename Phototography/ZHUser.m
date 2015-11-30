@@ -29,9 +29,11 @@ static ZHUser *currentUser;
         self.lastName = [record objectForKey:@"LastName"];
         self.uuid = [record objectForKey:@"UUID"];
 //        self.recordID = [[CKRecordID alloc]initWithRecordName:self.uuid];
-        self.friends = [record objectForKey:@"Friends"];
-        if(self.friends == nil) {
-            self.friends = [@[]mutableCopy];
+        NSArray *friends = [record objectForKey:@"FriendUUIDs"];
+        if(friends == nil) {
+            self.friendUUIDs = [@[]mutableCopy];
+        } else {
+            self.friendUUIDs = [friends mutableCopy];
         }
     }
     return self;
@@ -46,7 +48,7 @@ static ZHUser *currentUser;
         self.uuid = [NSString stringWithFormat:@"uuid%@", userInfo.userRecordID.recordName];
 //        self.recordID = [[CKRecordID alloc]initWithRecordName:self.uuid];
 
-        self.friends = [@[]mutableCopy];
+        self.friendUUIDs = [@[]mutableCopy];
 
     }
     return self;
@@ -60,7 +62,7 @@ static ZHUser *currentUser;
     record[@"LastName"] = self.lastName;
     record[@"UUID"] = self.uuid;
     record[@"Location"] = self.location;
-    record[@"Friends"] = self.friends;
+    record[@"FriendUUIDs"] = self.friendUUIDs;
     return record;
 }
 
@@ -117,7 +119,7 @@ static ZHUser *currentUser;
     [aCoder encodeObject:self.lastName forKey:@"LastName"];
     [aCoder encodeObject:self.uuid forKey:@"UUID"];
     [aCoder encodeObject:self.location forKey:@"Location"];
-    [aCoder encodeObject:self.friends forKey:@"Friends"];
+    [aCoder encodeObject:self.friendUUIDs forKey:@"FriendUUIDs"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
@@ -127,10 +129,26 @@ static ZHUser *currentUser;
         self.lastName = [coder decodeObjectForKey:@"LastName"];
         self.uuid = [coder decodeObjectForKey:@"UUID"];
         self.location = [coder decodeObjectForKey:@"Location"];
-        self.friends = [coder decodeObjectForKey:@"Friends"];
+        NSArray *friendUUIDs = [coder decodeObjectForKey:@"FriendUUIDs"];
+        self.friendUUIDs = [friendUUIDs mutableCopy];
     }
     return self;
 }
 
+
+@end
+
+
+@implementation ZHUser (NSCopying)
+
+- (id)copyWithZone:(nullable NSZone *)zone{
+    ZHUser *user = [ZHUser new];
+    user.uuid = [self.uuid copy];
+    user.firstName = [self.firstName copy];
+    user.lastName = [self.lastName copy];
+    user.friendUUIDs = [self.friendUUIDs mutableCopy];
+    user.location = [self.location copy];
+    return user;
+}
 
 @end

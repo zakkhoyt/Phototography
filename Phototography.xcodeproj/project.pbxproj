@@ -85,6 +85,7 @@
 		79A9B1888187AEF86278BB82 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C62E2E681C0BD4E50026695C /* ZHUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHUpdateViewController.h; sourceTree = "<group>"; };
 		C62E2E691C0BD4E50026695C /* ZHUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHUpdateViewController.m; sourceTree = "<group>"; };
+		C62E2E6D1C0BF18E0026695C /* ZHNotificationNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHNotificationNames.h; sourceTree = "<group>"; };
 		C6439A331C090A40006BCF73 /* schema.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.txt; sourceTree = "<group>"; };
 		C6439A351C0930CC006BCF73 /* FindFriends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FindFriends.storyboard; sourceTree = "<group>"; };
 		C6439A371C09311B006BCF73 /* ZHFindFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHFindFriendsViewController.h; sourceTree = "<group>"; };
@@ -495,6 +496,7 @@
 			isa = PBXGroup;
 			children = (
 				C67D86A21BBF7F3000B2C4CF /* ZHDefines.h */,
+				C62E2E6D1C0BF18E0026695C /* ZHNotificationNames.h */,
 			);
 			name = Include;
 			sourceTree = "<group>";

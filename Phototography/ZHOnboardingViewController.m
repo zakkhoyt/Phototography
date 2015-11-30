@@ -101,6 +101,7 @@ static NSString *SegueOnboardingToMain = @"SegueOnboardingToMain";
                             NSLog(@"Failed to create photographer from user");
                         } else {
                             NSLog(@"Retrieved user info for %@ %@", user.firstName, user.lastName);
+                            [ZHUser setCurrentUser:user];
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                                 self.statusLabel.text = [NSString stringWithFormat:@"Welcome to Phototography, %@ %@!\n"

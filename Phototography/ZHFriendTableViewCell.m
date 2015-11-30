@@ -22,15 +22,25 @@
     return cell;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserverForName:ZHNotificationNamesFriendsUpdated object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+            [self setUser:_user];
+        }];
+    }
+    return self;
+}
 
 -(void)setUser:(ZHUser *)user{
     _user = user;
     self.textLabel.text = user.fullName;
     
-    self.detailTextLabel.text = @"";
-    [user.location stringLocalityCompletionBlock:^(NSString *string) {
-        self.detailTextLabel.text = string;
-    }];
+    if([[ZHUser currentUser].friendUUIDs containsObject:user.uuid]){
+        self.detailTextLabel.text = @"👍🏼";
+    } else {
+        self.detailTextLabel.text = @"";
+    }
 }
 
 @end

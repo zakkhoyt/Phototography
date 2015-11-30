@@ -10,6 +10,7 @@
 #import "ZHCloudManager.h"
 #import "NSError+ZH.h"
 #import <CoreLocation/CoreLocation.h>
+#import "ZHNotificationNames.h"
 
 @interface ZHCloudManager ()
 @property (nonatomic, strong) CKContainer *container;
@@ -62,17 +63,19 @@
                 }];
             } else {
                 BOOL userFound = NO;
+                ZHUser *foundUser;
                 for(CKRecord *record in results) {
                     ZHUser *retrievedUser = [[ZHUser alloc]initWithRecord:record];
                     if([user isEqual:retrievedUser]) {
                         userFound = YES;
+                        foundUser = retrievedUser;
                         break;
                     }
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if(userFound == YES) {
-                        completionBlock(user, nil);
+                        completionBlock(foundUser, nil);
                     } else {
                         completionBlock(nil, nil);
                     }
@@ -82,115 +85,31 @@
             }
         }
     }];
-    
-    
-    
-    //    [self getExistingUser:user completionBlock:^(ZHUser *existingUser, NSError *error) {
-    //        if(existingUser != nil){
-    //            // user already exists so use it
-    //            NSLog(@"User account already exists");
-    //            completionBlock(existingUser, nil);
-    //        } else {
-    //            CKRecordID *recordID = [[CKRecordID alloc]initWithRecordName:user.uuid];
-    //            CKRecord *record = [[CKRecord alloc]initWithRecordType:@"Photographers" recordID:recordID];
-    //            record[@"FirstName"] = user.firstName;
-    //            record[@"LastName"] = user.lastName;
-    //            record[@"Email"] = user.email;
-    //            record[@"Phone"] = user.phone;
-    //            record[@"UUID"] = user.uuid;
-    //
-    //
-    //            [self.publicDB saveRecord:record completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error) {
-    //                if(error != nil) {
-    //                    dispatch_async(dispatch_get_main_queue(), ^{
-    //                        completionBlock(nil, error);
-    //                    });
-    //                } else {
-    //                    NSLog(@"Created new user account");
-    //                    dispatch_async(dispatch_get_main_queue(), ^{
-    //                        ZHUser *newUser = [[ZHUser alloc]initWithRecord:record];
-    //                        completionBlock(newUser, nil);
-    //                    });
-    //                }
-    //            }];
-    //        }
-    //    }];
 }
 
 -(void)getPhotographerWithUUID:(NSString*)uuid completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock{
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"UUID == %@", uuid];
-    CKQuery *query = [[CKQuery alloc]initWithRecordType:@"Photographers" predicate:predicate];
-    
-    [self.publicDB performQuery:query inZoneWithID:nil completionHandler:^(NSArray<CKRecord *> * _Nullable results, NSError * _Nullable error) {
+    CKRecordID *recordID = [[CKRecordID alloc]initWithRecordName:uuid];
+    [self.publicDB fetchRecordWithID:recordID completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error) {
         if(error != nil) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                completionBlock(nil, error);
-            });
-        } else {
-            
-            NSMutableArray *friendsWithEmail = [[NSMutableArray alloc]initWithCapacity:results.count];
-            for(CKRecord *record in results) {
-                ZHUser *user = [[ZHUser alloc]initWithRecord:record];
-                [friendsWithEmail addObject:user];
+            if(error.code == 11) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completionBlock(nil, nil);
+                });
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completionBlock(nil, error);
+                });
             }
+        } else {
+            ZHUser *photographer = [[ZHUser alloc]initWithRecord:record];
             dispatch_async(dispatch_get_main_queue(), ^{
-                completionBlock([friendsWithEmail firstObject], nil);
+                completionBlock(photographer, nil);
             });
         }
     }];
 
 }
 
--(void)followPhotographer:(ZHUser*)photographer completionBlock:(ZHCloudManagerErrorBlock)completionBlock{
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"UUID == %@", [ZHUser currentUser].uuid];
-    CKQuery *query = [[CKQuery alloc]initWithRecordType:@"Photographers" predicate:predicate];
-    [self.publicDB performQuery:query inZoneWithID:nil completionHandler:^(NSArray<CKRecord *> * _Nullable results, NSError * _Nullable error) {
-        if(error != nil) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                completionBlock(error);
-            });
-        } else {
-            CKRecord *record = [results firstObject];
-            if(record == nil) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    NSError *error = [NSError zhErrorWithCode:-1001 localizedFailureReason:@"CurrentUser account could not be found"];
-                    completionBlock(error);
-                });
-                return;
-            }
-            
-            ZHUser *currentUser = [ZHUser currentUser];
-            if([currentUser.friends containsObject:photographer] == YES) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    // Already a friend
-                    completionBlock(nil);
-                });
-                return;
-            }
-            
-            // Add to friends and write back out
-            NSMutableArray *friends = [currentUser.friends mutableCopy];
-            [friends addObject:photographer];
-            [record setValue:friends forKey:@"Friends"];
-            [self.publicDB saveRecord:record completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error) {
-                if(error != nil) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        completionBlock(error);
-                    });
-                } else {
-                    currentUser.friends = friends;
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        completionBlock(nil);
-                    });
-                }
-            }];
-        }
-    }];
-}
-
--(void)unfollowPhotographer:(ZHUser*)photographer completionBlock:(ZHCloudManagerErrorBlock)completionBlock{
-    
-}
 
 
 
@@ -257,7 +176,6 @@
             } else {
                 [self userInfo:recordID completionBlock:^(CKDiscoveredUserInfo *discoveredUserInfo, NSError *error) {
                     ZHUser *user = [[ZHUser alloc]initWithDiscoveredUserInfo:discoveredUserInfo];
-                    [ZHUser setCurrentUser:user];
                     completionBlock(user, nil);
                 }];
             }
@@ -287,79 +205,33 @@
 
 -(void)updateUser:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock{
     
-    CKRecordID *recordID = [[CKRecordID alloc]initWithRecordName:user.uuid];
-    [self.publicDB fetchRecordWithID:recordID completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error) {
-        if(error != nil) {
+    CKRecord *record = user.recordRepresentation;
+    CKModifyRecordsOperation *modifyRecordsOperation = [[CKModifyRecordsOperation alloc] initWithRecordsToSave:@[record] recordIDsToDelete:nil];
+    modifyRecordsOperation.savePolicy = CKRecordSaveAllKeys;
+    [modifyRecordsOperation setModifyRecordsCompletionBlock:^(NSArray <CKRecord *> * __nullable savedRecords,
+                                                              NSArray <CKRecordID *> * __nullable deletedRecordIDs,
+                                                              NSError * __nullable operationError){
+        if(operationError != nil){
             dispatch_async(dispatch_get_main_queue(), ^{
-                completionBlock(nil, error);
+                completionBlock(nil, operationError);
             });
         } else {
-
-            CKRecord *record = user.recordRepresentation;
-            
-//            [self.publicDB saveRecord:record completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error) {
-//                if(error != nil) {
-//                    dispatch_async(dispatch_get_main_queue(), ^{
-//                        completionBlock(nil, error);
-//                    });
-//                } else {
-//                    NSLog(@"Updated photographer record");
-//                    dispatch_async(dispatch_get_main_queue(), ^{
-//                        ZHUser *newUser = [[ZHUser alloc]initWithRecord:record];
-//                        completionBlock(newUser, nil);
-//                    });
-//                }
-//            }];
-
-
-            CKModifyRecordsOperation *modifyRecordsOperation = [[CKModifyRecordsOperation alloc] initWithRecordsToSave:@[record] recordIDsToDelete:nil];
-            modifyRecordsOperation.savePolicy = CKRecordSaveAllKeys;
-            [modifyRecordsOperation setModifyRecordsCompletionBlock:^(NSArray <CKRecord *> * __nullable savedRecords,
-                                                                      NSArray <CKRecordID *> * __nullable deletedRecordIDs,
-                                                                      NSError * __nullable operationError){
-                if(error != nil){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        completionBlock(nil, error);
-                    });
-                } else {
-                    NSLog(@"Updated photographer record");
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        ZHUser *newUser = [[ZHUser alloc]initWithRecord:record];
-                        completionBlock(newUser, nil);
-                    });
+            NSLog(@"Updated photographer record");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                ZHUser *newUser = [[ZHUser alloc]initWithRecord:record];
+                
+                if([user isEqual:[ZHUser currentUser]]) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:ZHNotificationNamesCurrentUserUpdated object:nil];
                 }
-            }];
-            
-            [self.publicDB addOperation:modifyRecordsOperation];
 
-//            // Initialize the data
-//            NSArray *localChanges = self.localChanges;
-//            NSArray *localDeletions = self.localDeletions;
-//            
-//            // Initialize the database and modify records operation
-//            CKDatabase *database = [CKContainer defaultContainer].privateCloudDatabase;
-//            CKModifyRecordsOperation *modifyRecordsOperation = [[CKModifyRecordsOperation alloc] initWithRecordsToSave:localChanges recordIDsToDelete:localDeletions];
-//            modifyRecordsOperation.savePolicy = CKRecordSaveAllKeys;
-//            
-//            NSLog(@"CLOUDKIT Changes Uploading: %d", localChanges.count);
-//            
-//            // Add the completion block
-//            modifyRecordsOperation.modifyRecordsCompletionBlock = ^(NSArray *savedRecords, NSArray *deletedRecordIDs, NSError *error) {
-//                if (error) {
-//                    NSLog(@"[%@] Error pushing local data: %@", self.class, error);
-//                }
-//                
-//                [self.localChanges removeObjectsInArray:savedRecords];
-//                [self.localDeletions removeObjectsInArray:deletedRecordIDs];
-//                
-//                completionBlock(error);
-//            };
-//            
-//            // Start the operation
-//            [database addOperation:modifyRecordsOperation];
+                completionBlock(newUser, nil);
+            });
         }
     }];
     
+    [self.publicDB addOperation:modifyRecordsOperation];
+
+
 }
 
 
@@ -384,7 +256,11 @@
                     ZHUser *user = [[ZHUser alloc]initWithDiscoveredUserInfo:userInfo];
                     // Now get Photographer from user.uuid
                     [self getPhotographerWithUUID:user.uuid completionBlock:^(ZHUser *photographer, NSError *error) {
-                        completionBlock(@[photographer], nil);
+                        if(photographer == nil) {
+                            completionBlock(nil, nil);
+                        } else {
+                            completionBlock(@[photographer], nil);
+                        }
                     }];
                 }
             });

@@ -15,7 +15,7 @@
 @property (nonatomic, strong) NSString *lastName;
 @property (nonatomic, strong) NSString *uuid;
 @property (nonatomic, strong) CLLocation *location;
-@property (nonatomic, strong) NSMutableArray <ZHUser*> *friends;
+@property (nonatomic, strong) NSMutableArray <NSString*> *friendUUIDs;
 
 //@property (nonatomic, strong) CKRecordID *recordID;
 
@@ -26,8 +26,14 @@
 - (instancetype)initWithDiscoveredUserInfo:(CKDiscoveredUserInfo*) userInfo;
 - (NSString*)fullName;
 - (CKRecord*)recordRepresentation;
+
+
 @end
 
 @interface ZHUser (NSSecureCoding) <NSSecureCoding>
+
+@end
+
+@interface ZHUser (NSCopying) <NSCopying>
 
 @end
