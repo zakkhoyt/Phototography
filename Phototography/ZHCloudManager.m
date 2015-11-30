@@ -6,6 +6,8 @@
 //  Copyright © 2015 Zakk Hoyt. All rights reserved.
 //
 //  Documentation: https://developer.apple.com/library/ios/documentation/DataManagement/Conceptual/CloudKitQuickStart/CloudKit_Quick_Start.pdf
+//  Subscriptions: https://developer.apple.com/library/prerelease/ios/documentation/DataManagement/Conceptual/CloudKitQuickStart/SubscribingtoRecordChanges/SubscribingtoRecordChanges.html
+//  One to many: https://www.hackingwithswift.com/read/33/7/working-with-cloudkit-records-ckreference-fetchrecordwithid-and-
 
 #import "ZHCloudManager.h"
 #import "NSError+ZH.h"
@@ -235,6 +237,41 @@
 }
 
 
+-(void)updateAssets:(NSArray*)assets forUser:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock{
+    
+}
+
+-(void)updateUserAssets:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock{
+    
+    CKRecord *record = user.recordRepresentation;
+    CKModifyRecordsOperation *modifyRecordsOperation = [[CKModifyRecordsOperation alloc] initWithRecordsToSave:@[record] recordIDsToDelete:nil];
+    modifyRecordsOperation.savePolicy = CKRecordSaveAllKeys;
+    [modifyRecordsOperation setModifyRecordsCompletionBlock:^(NSArray <CKRecord *> * __nullable savedRecords,
+                                                              NSArray <CKRecordID *> * __nullable deletedRecordIDs,
+                                                              NSError * __nullable operationError){
+        if(operationError != nil){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(nil, operationError);
+            });
+        } else {
+            NSLog(@"Updated photographer record");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                ZHUser *newUser = [[ZHUser alloc]initWithRecord:record];
+                
+                if([user isEqual:[ZHUser currentUser]]) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:ZHNotificationNamesCurrentUserUpdated object:nil];
+                }
+                
+                completionBlock(newUser, nil);
+            });
+        }
+    }];
+    
+    [self.publicDB addOperation:modifyRecordsOperation];
+}
+
+
+
 -(void)findContacts:(ZHCloudManagerArrayErrorBlock)completionBlock{
     [self.container discoverAllContactUserInfosWithCompletionHandler:^(NSArray<CKDiscoveredUserInfo *> * _Nullable userInfos, NSError * _Nullable error) {
         NSLog(@"");
@@ -314,6 +351,48 @@
     //            completionBlock(users.allObjects, nil);
     //        });
     //    }
+}
+
+
+-(void)subscribeToLocationUpdatesForPhotographer:(ZHUser*)photographer completionBlock:(ZHCloudManagerErrorBlock)completionBlock {
+ 
+    // 1
+    CKRecordID *artistRecordID = [[CKRecordID alloc] initWithRecordName:@"Mei Chen"];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"artist = %@", artistRecordID];
+    
+    // 2
+    CKSubscription *subscription = [[CKSubscription alloc]
+                                    
+                                    initWithRecordType:@"Artwork"
+                                    
+                                    predicate:predicate
+                                    
+                                    options:CKSubscriptionOptionsFiresOnRecordCreation];
+    
+    // 3
+    CKNotificationInfo *notificationInfo = [CKNotificationInfo new];
+    
+    notificationInfo.alertLocalizationKey = @"New artwork by your favorite artist.";
+    
+    notificationInfo.shouldBadge = YES;
+    
+    // 4
+    subscription.notificationInfo = notificationInfo;
+    
+    // 5
+    [self.publicDB saveSubscription:subscription completionHandler:^(CKSubscription * _Nullable subscription, NSError * _Nullable error) {
+        if(error != nil) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(error);
+            });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(nil);
+            });
+            
+        }
+    }];
 }
 @end
 

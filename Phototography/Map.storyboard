@@ -160,7 +160,7 @@
         <scene sceneID="aYS-4U-g1I">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="WyM-ZA-Q5c" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Photos" selectedImage="tab_map" id="741-Sb-EIj"/>
+                    <tabBarItem key="tabBarItem" title="Photos" id="741-Sb-EIj"/>
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uTm-jP-yuo">
@@ -181,7 +181,7 @@
         <scene sceneID="HL9-Yn-Jvl">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rSs-GE-l6u" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Updates" selectedImage="ic_ping" id="NYD-GX-ziG"/>
+                    <tabBarItem key="tabBarItem" title="Updates" id="NYD-GX-ziG"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="H2u-hz-q0s">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -412,7 +412,7 @@
         <scene sceneID="Yi2-Sc-rqQ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="V92-0T-QgU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="You" selectedImage="tab_you" id="6lS-kF-qEx"/>
+                    <tabBarItem key="tabBarItem" title="You" id="6lS-kF-qEx"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XBb-PS-eFl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -437,9 +437,4 @@
             <point key="canvasLocation" x="3314" y="1945"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="ic_ping" width="44" height="44"/>
-        <image name="tab_map" width="50" height="50"/>
-        <image name="tab_you" width="50" height="50"/>
-    </resources>
 </document>

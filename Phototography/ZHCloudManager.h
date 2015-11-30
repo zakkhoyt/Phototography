@@ -19,9 +19,11 @@ typedef void (^ZHCloudManagerUserErrorBlock)(ZHUser *user, NSError *error);
 
 @interface ZHCloudManager : NSObject
 -(void)updateUser:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock;
+-(void)updateUserAssets:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock;
 -(void)createPhotographer:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock;
 -(void)loggedInToICloud:(ZHCloudManagerBoolBlock)completionBlock;
 -(void)userInfo:(ZHCloudManagerUserErrorBlock)completionBlock;
 -(void)findUsersForEmail:(NSString*)email completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock;
 -(void)getPhotographerWithUUID:(NSString*)uuid completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock;
+-(void)subscribeToLocationUpdatesForPhotographer:(ZHUser*)photographer completionBlock:(ZHCloudManagerErrorBlock)completionBlock;
 @end

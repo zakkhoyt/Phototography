@@ -12,7 +12,7 @@
 #import "ZHAssetAnnotation.h"
 #import "ZHAssetAnnotationView.h"
 #import "ZHAssetGroupViewController.h"
-
+#import "ZHUserAsset.h"
 static NSString *SegueMapToAssetGroup = @"SegueMapToAssetGroup";
 
 @interface ZHMapViewController ()
@@ -81,7 +81,6 @@ static NSString *SegueMapToAssetGroup = @"SegueMapToAssetGroup";
         if(error){
             NSLog(@"Error reading assets");
         } else {
-//            self.items = [ZHAssetManager sharedInstance].assetsNoLocation;
             NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:[ZHAssetManager sharedInstance].assetsNoLocation.count];
             [[ZHAssetManager sharedInstance].assetsWithLocation enumerateObjectsUsingBlock:^(PHAsset *_Nonnull asset, NSUInteger idx, BOOL * _Nonnull stop) {
                 ZHAssetAnnotation *annotation = [[ZHAssetAnnotation alloc]initWithAsset:asset];
@@ -89,11 +88,27 @@ static NSString *SegueMapToAssetGroup = @"SegueMapToAssetGroup";
             }];
             self.items = items;
             
-//            self.navigationItem.title = [NSString stringWithFormat:@"%lu/%lu",
-//                                         (unsigned long)[ZHAssetManager sharedInstance].assetsNoLocation.count,
-//                                         (unsigned long)[ZHAssetManager sharedInstance].assets.count];
             [self.clusteredMapView reloadData];
         }
+        
+        // Write assets to Photographer's record
+        NSMutableArray *userAssets = [[NSMutableArray alloc]initWithCapacity:[ZHAssetManager sharedInstance].assetsWithLocation.count];
+        [[ZHAssetManager sharedInstance].assetsWithLocation enumerateObjectsUsingBlock:^(PHAsset*  _Nonnull asset, NSUInteger idx, BOOL * _Nonnull stop) {
+//            ZHUserAsset *userAsset = [[ZHUserAsset alloc]initWithAsset:asset];
+//            NSDictionary *userAsset = @{@"date": asset.creationDate,
+//                                        @"localIdentifier": asset.localIdentifier};
+            
+            [userAssets addObject:asset.location];
+        }];
+        [ZHUser currentUser].assets = userAssets;
+        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        [appDelegate.cloudManager updateUserAssets:[ZHUser currentUser] completionBlock:^(ZHUser *user, NSError *error) {
+            if(error != nil) {
+                [self presentAlertDialogWithTitle:@"Error updating assets" errorAsMessage:error];
+            } else {
+                [self presentAlertDialogWithMessage:@"Updated assets"];
+            }
+        }];
     }];
 }
 

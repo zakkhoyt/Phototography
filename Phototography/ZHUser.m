@@ -28,13 +28,21 @@ static ZHUser *currentUser;
         self.firstName = [record objectForKey:@"FirstName"];
         self.lastName = [record objectForKey:@"LastName"];
         self.uuid = [record objectForKey:@"UUID"];
-//        self.recordID = [[CKRecordID alloc]initWithRecordName:self.uuid];
+
         NSArray *friends = [record objectForKey:@"FriendUUIDs"];
         if(friends == nil) {
             self.friendUUIDs = [@[]mutableCopy];
         } else {
             self.friendUUIDs = [friends mutableCopy];
         }
+        
+        NSArray *assets = [record objectForKey:@"Assets"];
+        if(assets == nil) {
+            self.assets = [@[]mutableCopy];
+        } else {
+            self.assets = [assets mutableCopy];
+        }
+
     }
     return self;
 }
@@ -46,9 +54,8 @@ static ZHUser *currentUser;
         self.firstName = userInfo.displayContact.givenName;
         self.lastName = userInfo.displayContact.familyName;
         self.uuid = [NSString stringWithFormat:@"uuid%@", userInfo.userRecordID.recordName];
-//        self.recordID = [[CKRecordID alloc]initWithRecordName:self.uuid];
-
         self.friendUUIDs = [@[]mutableCopy];
+        self.assets = [@[]mutableCopy];
 
     }
     return self;
@@ -63,6 +70,7 @@ static ZHUser *currentUser;
     record[@"UUID"] = self.uuid;
     record[@"Location"] = self.location;
     record[@"FriendUUIDs"] = self.friendUUIDs;
+    record[@"Assets"] = self.assets;
     return record;
 }
 
@@ -83,21 +91,11 @@ static ZHUser *currentUser;
     }
     
     ZHUser *aUser = object;
-//    if(self.email && aUser.email) {
-//        return [self.email isEqualToString:aUser.email];
-//    } else {
-//        return [self.firstName isEqualToString:aUser.firstName] && [self.lastName isEqualToString:aUser.lastName];
-//    }
     NSAssert(self.uuid != nil, @"uuid is nil");
     return [self.uuid isEqualToString:aUser.uuid];
 }
 
 -(NSUInteger)hash {
-//    if(self.email){
-//        return self.email.hash;
-//    } else {
-//        return self.firstName.hash + self.lastName.hash;
-//    }
     NSAssert(self.uuid != nil, @"uuid is nil");
     return self.uuid.hash;
 }
@@ -120,6 +118,7 @@ static ZHUser *currentUser;
     [aCoder encodeObject:self.uuid forKey:@"UUID"];
     [aCoder encodeObject:self.location forKey:@"Location"];
     [aCoder encodeObject:self.friendUUIDs forKey:@"FriendUUIDs"];
+    [aCoder encodeObject:self.assets forKey:@"Assets"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
@@ -129,8 +128,13 @@ static ZHUser *currentUser;
         self.lastName = [coder decodeObjectForKey:@"LastName"];
         self.uuid = [coder decodeObjectForKey:@"UUID"];
         self.location = [coder decodeObjectForKey:@"Location"];
+        
         NSArray *friendUUIDs = [coder decodeObjectForKey:@"FriendUUIDs"];
         self.friendUUIDs = [friendUUIDs mutableCopy];
+        
+        NSArray *assets = [coder decodeObjectForKey:@"Assets"];
+        self.assets = [assets mutableCopy];
+
     }
     return self;
 }
@@ -148,6 +152,7 @@ static ZHUser *currentUser;
     user.lastName = [self.lastName copy];
     user.friendUUIDs = [self.friendUUIDs mutableCopy];
     user.location = [self.location copy];
+    user.assets = [self.assets copy];
     return user;
 }
 
