@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		27681B1F71AD3CA0DC6A4566 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A9B1888187AEF86278BB82 /* libPods.a */; };
+		C62E2E6A1C0BD4E50026695C /* ZHUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C62E2E691C0BD4E50026695C /* ZHUpdateViewController.m */; };
 		C6439A341C090A40006BCF73 /* schema.txt in Resources */ = {isa = PBXBuildFile; fileRef = C6439A331C090A40006BCF73 /* schema.txt */; };
 		C6439A361C0930CC006BCF73 /* FindFriends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6439A351C0930CC006BCF73 /* FindFriends.storyboard */; };
 		C6439A391C09311B006BCF73 /* ZHFindFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6439A381C09311B006BCF73 /* ZHFindFriendsViewController.m */; };
@@ -82,6 +83,8 @@
 /* Begin PBXFileReference section */
 		7987C76C34D294E7BC411789 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		79A9B1888187AEF86278BB82 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C62E2E681C0BD4E50026695C /* ZHUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHUpdateViewController.h; sourceTree = "<group>"; };
+		C62E2E691C0BD4E50026695C /* ZHUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHUpdateViewController.m; sourceTree = "<group>"; };
 		C6439A331C090A40006BCF73 /* schema.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.txt; sourceTree = "<group>"; };
 		C6439A351C0930CC006BCF73 /* FindFriends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FindFriends.storyboard; sourceTree = "<group>"; };
 		C6439A371C09311B006BCF73 /* ZHFindFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHFindFriendsViewController.h; sourceTree = "<group>"; };
@@ -246,6 +249,26 @@
 				7987C76C34D294E7BC411789 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C62E2E6B1C0BD4EC0026695C /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				C62E2E681C0BD4E50026695C /* ZHUpdateViewController.h */,
+				C62E2E691C0BD4E50026695C /* ZHUpdateViewController.m */,
+			);
+			name = Update;
+			sourceTree = "<group>";
+		};
+		C62E2E6C1C0BD4FD0026695C /* History */ = {
+			isa = PBXGroup;
+			children = (
+				C696B6791C0AAD9A00F21D4D /* ZHUpdatesViewController.h */,
+				C696B67A1C0AAD9A00F21D4D /* ZHUpdatesViewController.m */,
+				C665D5571C0AD9F40018D988 /* ZHUpdateTableViewCell.h */,
+				C665D5581C0AD9F40018D988 /* ZHUpdateTableViewCell.m */,
+			);
+			name = History;
 			sourceTree = "<group>";
 		};
 		C6439A3A1C09311F006BCF73 /* FindFriends */ = {
@@ -559,10 +582,8 @@
 		C696B67C1C0AAD9E00F21D4D /* Updates */ = {
 			isa = PBXGroup;
 			children = (
-				C696B6791C0AAD9A00F21D4D /* ZHUpdatesViewController.h */,
-				C696B67A1C0AAD9A00F21D4D /* ZHUpdatesViewController.m */,
-				C665D5571C0AD9F40018D988 /* ZHUpdateTableViewCell.h */,
-				C665D5581C0AD9F40018D988 /* ZHUpdateTableViewCell.m */,
+				C62E2E6B1C0BD4EC0026695C /* Update */,
+				C62E2E6C1C0BD4FD0026695C /* History */,
 			);
 			name = Updates;
 			sourceTree = "<group>";
@@ -821,6 +842,7 @@
 				C67D86B01BC04CDC00B2C4CF /* ZHQueueViewController.m in Sources */,
 				C6BBCA411BC31C0A009D6887 /* VWWClusteredMapView+MKMapViewDelegate.m in Sources */,
 				C67D869F1BBF7EF800B2C4CF /* UIFont+ZH.m in Sources */,
+				C62E2E6A1C0BD4E50026695C /* ZHUpdateViewController.m in Sources */,
 				C67D86981BBF7EF800B2C4CF /* NSDate+ZH.m in Sources */,
 				C6439A3D1C0962C4006BCF73 /* ZHYouViewController.m in Sources */,
 				C6BBCA3C1BC31C0A009D6887 /* VWWClusteredAnnotation.m in Sources */,

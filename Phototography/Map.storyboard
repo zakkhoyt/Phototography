@@ -68,7 +68,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ZHUpdateTableViewCell" rowHeight="71" id="vAr-hR-5mN" customClass="ZHUpdateTableViewCell">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="71"/>
+                                        <rect key="frame" x="0.0" y="28" width="600" height="71"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vAr-hR-5mN" id="kc8-o6-nie">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="70.5"/>
@@ -135,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CuQ-cg-m0W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2746" y="1171"/>
+            <point key="canvasLocation" x="4201" y="1171"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="cCF-bJ-sgR">
@@ -191,12 +191,54 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="mOo-rv-3Mn" kind="relationship" relationship="rootViewController" id="WoE-To-T4y"/>
+                        <segue destination="r47-ua-kq7" kind="relationship" relationship="rootViewController" id="vR2-lh-mXf"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n1W-Bt-X6M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1934" y="1171"/>
+        </scene>
+        <!--Updates-->
+        <scene sceneID="a1g-Gw-OmM">
+            <objects>
+                <viewController id="r47-ua-kq7" customClass="ZHUpdateViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DiS-qr-3Ko"/>
+                        <viewControllerLayoutGuide type="bottom" id="R7m-Bv-1e7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JEU-IW-dLo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xGf-f2-AYr" customClass="VWWClusteredMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xGf-f2-AYr" firstAttribute="top" secondItem="JEU-IW-dLo" secondAttribute="topMargin" id="6A4-LK-UlC"/>
+                            <constraint firstItem="xGf-f2-AYr" firstAttribute="leading" secondItem="JEU-IW-dLo" secondAttribute="leadingMargin" constant="-20" id="7IW-Nz-DyQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xGf-f2-AYr" secondAttribute="trailing" constant="-20" id="LD9-wJ-5zG"/>
+                            <constraint firstItem="xGf-f2-AYr" firstAttribute="bottom" secondItem="JEU-IW-dLo" secondAttribute="bottomMargin" id="jgk-sR-389"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Updates" id="R27-n7-bSf">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="jFB-mo-qS5">
+                            <connections>
+                                <action selector="refreshBarButtonAction:" destination="r47-ua-kq7" id="1Ua-nx-gYc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="clusteredMapView" destination="xGf-f2-AYr" id="iSa-Sc-a2D"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n7N-xq-ISX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2665" y="1165"/>
         </scene>
         <!--Your Account-->
         <scene sceneID="dNo-UO-z83">

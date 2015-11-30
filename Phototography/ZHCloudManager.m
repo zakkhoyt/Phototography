@@ -48,15 +48,7 @@
         } else {
             if(results.count == 0){
                 // Photographer not found. Create a new entry
-                CKRecordID *recordID = [[CKRecordID alloc]initWithRecordName:user.uuid];
-                CKRecord *record = [[CKRecord alloc]initWithRecordType:@"Photographers" recordID:recordID];
-                record[@"FirstName"] = user.firstName;
-                record[@"LastName"] = user.lastName;
-                //                record[@"Email"] = user.email;
-                //                record[@"Phone"] = user.phone;
-                record[@"UUID"] = user.uuid;
-                record[@"Location"] = [[CLLocation alloc]initWithLatitude:37.5 longitude:-122.4];
-                
+                CKRecord *record = [user recordRepresentation];
                 [self.publicDB saveRecord:record completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error) {
                     if(error != nil) {
                         dispatch_async(dispatch_get_main_queue(), ^{
@@ -295,27 +287,79 @@
 
 -(void)updateUser:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock{
     
-    CKRecord *record = [[CKRecord alloc]initWithRecordType:@"Users" recordID:self.userRecordID];
-    //    record[@"FirstName"] = user.firstName;
-    //    record[@"LastName"] = user.lastName;
-    record[@"UUID"] = user.uuid;
-    record[@"Location"] = [[CLLocation alloc]initWithLatitude:37.5 longitude:-122.4];
-    
-    
-    
-    [self.privateDB saveRecord:record completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error) {
+    CKRecordID *recordID = [[CKRecordID alloc]initWithRecordName:user.uuid];
+    [self.publicDB fetchRecordWithID:recordID completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error) {
         if(error != nil) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 completionBlock(nil, error);
             });
         } else {
-            NSLog(@"Created new user account");
-            dispatch_async(dispatch_get_main_queue(), ^{
-                ZHUser *newUser = [[ZHUser alloc]initWithRecord:record];
-                completionBlock(newUser, nil);
-            });
+
+            CKRecord *record = user.recordRepresentation;
+            
+//            [self.publicDB saveRecord:record completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error) {
+//                if(error != nil) {
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        completionBlock(nil, error);
+//                    });
+//                } else {
+//                    NSLog(@"Updated photographer record");
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        ZHUser *newUser = [[ZHUser alloc]initWithRecord:record];
+//                        completionBlock(newUser, nil);
+//                    });
+//                }
+//            }];
+
+
+            CKModifyRecordsOperation *modifyRecordsOperation = [[CKModifyRecordsOperation alloc] initWithRecordsToSave:@[record] recordIDsToDelete:nil];
+            modifyRecordsOperation.savePolicy = CKRecordSaveAllKeys;
+            [modifyRecordsOperation setModifyRecordsCompletionBlock:^(NSArray <CKRecord *> * __nullable savedRecords,
+                                                                      NSArray <CKRecordID *> * __nullable deletedRecordIDs,
+                                                                      NSError * __nullable operationError){
+                if(error != nil){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completionBlock(nil, error);
+                    });
+                } else {
+                    NSLog(@"Updated photographer record");
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        ZHUser *newUser = [[ZHUser alloc]initWithRecord:record];
+                        completionBlock(newUser, nil);
+                    });
+                }
+            }];
+            
+            [self.publicDB addOperation:modifyRecordsOperation];
+
+//            // Initialize the data
+//            NSArray *localChanges = self.localChanges;
+//            NSArray *localDeletions = self.localDeletions;
+//            
+//            // Initialize the database and modify records operation
+//            CKDatabase *database = [CKContainer defaultContainer].privateCloudDatabase;
+//            CKModifyRecordsOperation *modifyRecordsOperation = [[CKModifyRecordsOperation alloc] initWithRecordsToSave:localChanges recordIDsToDelete:localDeletions];
+//            modifyRecordsOperation.savePolicy = CKRecordSaveAllKeys;
+//            
+//            NSLog(@"CLOUDKIT Changes Uploading: %d", localChanges.count);
+//            
+//            // Add the completion block
+//            modifyRecordsOperation.modifyRecordsCompletionBlock = ^(NSArray *savedRecords, NSArray *deletedRecordIDs, NSError *error) {
+//                if (error) {
+//                    NSLog(@"[%@] Error pushing local data: %@", self.class, error);
+//                }
+//                
+//                [self.localChanges removeObjectsInArray:savedRecords];
+//                [self.localDeletions removeObjectsInArray:deletedRecordIDs];
+//                
+//                completionBlock(error);
+//            };
+//            
+//            // Start the operation
+//            [database addOperation:modifyRecordsOperation];
         }
     }];
+    
 }
 
 

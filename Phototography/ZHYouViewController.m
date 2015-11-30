@@ -90,34 +90,35 @@ typedef enum {
 
 - (IBAction)saveBarButtonAction:(id)sender {
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    ZHUser *user = [ZHUser currentUser];
-    user.firstName = self.firstNameTextField.text;
-    user.lastName = self.lastNameTextField.text;
-    
-    
-    [self.cloudManager updateUser:user completionBlock:^(ZHUser *user, NSError *error) {
-        if(error != nil) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Could not save account"
-                                                                           message:error.localizedDescription
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-            [alert addAction:[UIAlertAction actionWithTitle:@"Okay"
-                                                      style:UIAlertActionStyleCancel
-                                                    handler:nil]];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-                [self presentViewController:alert animated:YES completion:nil];
-            });
-            
-        } else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-            });
-            
-        }
-    }];
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    
+//    ZHUser *user = [ZHUser currentUser];
+//    user.firstName = self.firstNameTextField.text;
+//    user.lastName = self.lastNameTextField.text;
+//    
+//    
+//    [self.cloudManager updateUser:user completionBlock:^(ZHUser *user, NSError *error) {
+//        if(error != nil) {
+//            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Could not save account"
+//                                                                           message:error.localizedDescription
+//                                                                    preferredStyle:UIAlertControllerStyleAlert];
+//            [alert addAction:[UIAlertAction actionWithTitle:@"Okay"
+//                                                      style:UIAlertActionStyleCancel
+//                                                    handler:nil]];
+//            
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [MBProgressHUD hideHUDForView:self.view animated:YES];
+//                [self presentViewController:alert animated:YES completion:nil];
+//            });
+//            
+//        } else {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [MBProgressHUD hideHUDForView:self.view animated:YES];
+//            });
+//            
+//        }
+//    }];
+    [self presentAlertDialogWithMessage:@"TODO"];
 }
 
 @end

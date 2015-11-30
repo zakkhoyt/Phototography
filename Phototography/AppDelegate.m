@@ -98,11 +98,11 @@
     [[UIBarButtonItem appearance] setTitleTextAttributes:navBarAttributes forState:UIControlStateNormal];
     
     // Tabbar
-    [[UITabBar appearance] setBarTintColor:[UIColor zhBackgroundColor]];
-    [[UITabBar appearance] setTintColor:[UIColor zhTintColor]];
+    [[UITabBar appearance] setBarTintColor:[UIColor zhTintColor]];
+    [[UITabBar appearance] setTintColor:[UIColor zhBackgroundColor]];
     
     // TabbarItem
-    NSDictionary *tabBarAttributes = @{NSForegroundColorAttributeName : [UIColor zhTintColor]};
+    NSDictionary *tabBarAttributes = @{NSForegroundColorAttributeName : [UIColor zhBackgroundColor]};
     [[UITabBarItem appearance] setTitleTextAttributes:tabBarAttributes forState:UIControlStateNormal];
     
     // Segmented control

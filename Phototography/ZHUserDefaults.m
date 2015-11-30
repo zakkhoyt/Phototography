@@ -28,5 +28,55 @@ static NSString *ZHUserDefaultsMapType = @"ZHUserDefaultsMapType";
 }
 
 
+static NSString *ZHUserDefaultsUpdates = @"ZHUserDefaultsUpdates";
+
+
+
+
++(void)setUpdates:(NSArray<ZHLocationUpdate*>*)updates {
+    
+    NSMutableArray *updatesData = [[NSMutableArray alloc]initWithCapacity:updates.count];
+    [updates enumerateObjectsUsingBlock:^(ZHLocationUpdate * _Nonnull update, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSData *updateData = [NSKeyedArchiver archivedDataWithRootObject:updates];
+        [updatesData addObject:updateData];
+    }];
+    
+    
+    
+    [[NSUserDefaults standardUserDefaults] setObject:updatesData forKey:ZHUserDefaultsUpdates];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++(NSArray<ZHLocationUpdate*>*)updates {
+    NSArray<NSData*> *updatesData = [[NSUserDefaults standardUserDefaults] objectForKey:ZHUserDefaultsUpdates];
+    if(updatesData == nil){
+        return @[];
+    } else {
+        NSMutableArray<ZHLocationUpdate*> *updates = [[NSMutableArray alloc]initWithCapacity:updatesData.count];
+        [updatesData enumerateObjectsUsingBlock:^(NSData * _Nonnull updateData, NSUInteger idx, BOOL * _Nonnull stop) {
+            ZHLocationUpdate *update = [[NSKeyedUnarchiver unarchiveObjectWithData:updateData] firstObject];
+            [updates addObject:update];
+        }];
+        return updates;
+    }
+}
+
+
+
+
+//- (void)saveCustomObject:(MyObject *)object key:(NSString *)key {
+//    NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:object];
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    [defaults setObject:encodedObject forKey:key];
+//    [defaults synchronize];
+//    
+//}
+//
+//- (MyObject *)loadCustomObjectWithKey:(NSString *)key {
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSData *encodedObject = [defaults objectForKey:key];
+//    MyObject *object = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
+//    return object;
+//}
 
 @end

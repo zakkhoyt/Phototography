@@ -8,6 +8,7 @@
 
 #import "ZHLocationManager.h"
 #import "ZHLocationUpdate.h"
+#import "ZHUserDefaults.h"
 
 @interface ZHLocationManager ()
 @property (nonatomic, strong) NSMutableArray *updates;
@@ -36,7 +37,7 @@
 -(id)init{
     self = [super init];
     if(self){
-        _updates = [@[]mutableCopy];
+        _updates = [[ZHUserDefaults updates] mutableCopy];
         _locationManager = [[CLLocationManager alloc]init];
         _locationManager.delegate = self;
         [_locationManager requestWhenInUseAuthorization];
@@ -92,6 +93,8 @@
     update.location = location;
     update.date = [NSDate date];
     [_updates addObject:update];
+    
+    [ZHUserDefaults setUpdates:_updates];
     completionBlock(location);
 }
 
@@ -112,6 +115,7 @@
         update.location = newLocation;
         update.date = [NSDate date];
         [_updates addObject:update];
+        [ZHUserDefaults setUpdates:_updates];
         
         if(self.accurateLocationBlock){
             self.accurateLocationBlock(newLocation);

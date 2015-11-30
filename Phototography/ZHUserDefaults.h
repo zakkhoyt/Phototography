@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 @import MapKit;
+@class ZHLocationUpdate;
 
 @interface ZHUserDefaults : NSObject
 
 
 +(MKMapType)mapType;
 +(void)setMapType:(MKMapType)mapType;
+
++(void)setUpdates:(NSArray<ZHLocationUpdate*>*)updates;
++(NSArray<ZHLocationUpdate*>*)updates;
 
 @end

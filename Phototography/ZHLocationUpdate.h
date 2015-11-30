@@ -10,7 +10,13 @@
 #import <CoreLocation/CoreLocation.h>
 
 @interface ZHLocationUpdate : NSObject
+
 @property (nonatomic, strong) CLLocation *location;
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, strong) NSArray *results;
 @end
+
+@interface ZHLocationUpdate (NSSecureCoding) <NSSecureCoding>
+@end
+
+

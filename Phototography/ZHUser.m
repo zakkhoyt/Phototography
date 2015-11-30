@@ -20,25 +20,6 @@ static ZHUser *currentUser;
     return currentUser;
 }
 
-- (void)encodeWithCoder:(NSCoder *)aCoder{
-    [aCoder encodeObject:self.firstName forKey:@"FirstName"];
-    [aCoder encodeObject:self.lastName forKey:@"LastName"];
-    [aCoder encodeObject:self.uuid forKey:@"UUID"];
-    [aCoder encodeObject:self.location forKey:@"Location"];
-    [aCoder encodeObject:self.friends forKey:@"Friends"];
-}
-
-- (instancetype)initWithCoder:(NSCoder *)coder {
-    self = [super init];
-    if (self) {
-        self.firstName = [coder decodeObjectForKey:@"FirstName"];
-        self.lastName = [coder decodeObjectForKey:@"LastName"];
-        self.uuid = [coder decodeObjectForKey:@"UUID"];
-        self.location = [coder decodeObjectForKey:@"Location"];
-        self.friends = [coder decodeObjectForKey:@"Friends"];
-    }
-    return self;
-}
 
 - (instancetype)initWithRecord:(CKRecord*)record{
     self = [super init];
@@ -47,6 +28,7 @@ static ZHUser *currentUser;
         self.firstName = [record objectForKey:@"FirstName"];
         self.lastName = [record objectForKey:@"LastName"];
         self.uuid = [record objectForKey:@"UUID"];
+//        self.recordID = [[CKRecordID alloc]initWithRecordName:self.uuid];
         self.friends = [record objectForKey:@"Friends"];
         if(self.friends == nil) {
             self.friends = [@[]mutableCopy];
@@ -62,8 +44,8 @@ static ZHUser *currentUser;
         self.firstName = userInfo.displayContact.givenName;
         self.lastName = userInfo.displayContact.familyName;
         self.uuid = [NSString stringWithFormat:@"uuid%@", userInfo.userRecordID.recordName];
-        self.recordID = userInfo.userRecordID;
-//        self.uuid = [record objectForKey:@"uuid"];
+//        self.recordID = [[CKRecordID alloc]initWithRecordName:self.uuid];
+
         self.friends = [@[]mutableCopy];
 
     }
@@ -72,11 +54,12 @@ static ZHUser *currentUser;
 }
 
 - (CKRecord*)recordRepresentation{
-    CKRecord *record = [[CKRecord alloc]initWithRecordType:@"Photographers" recordID:self.recordID];
+    CKRecordID *recordID = [[CKRecordID alloc]initWithRecordName:self.uuid];
+    CKRecord *record = [[CKRecord alloc]initWithRecordType:@"Photographers" recordID:recordID];
     record[@"FirstName"] = self.firstName;
     record[@"LastName"] = self.lastName;
     record[@"UUID"] = self.uuid;
-//    record[@"Location"] = self.location;
+    record[@"Location"] = self.location;
     record[@"Friends"] = self.friends;
     return record;
 }
@@ -121,7 +104,33 @@ static ZHUser *currentUser;
     return  [NSString stringWithFormat:@"%@ %@ %@", self.firstName, self.lastName, self.uuid];
 }
 
+@end
+
+
+@implementation ZHUser (NSSecureCoding)
 + (BOOL)supportsSecureCoding{
     return YES;
 }
+
+- (void)encodeWithCoder:(NSCoder *)aCoder{
+    [aCoder encodeObject:self.firstName forKey:@"FirstName"];
+    [aCoder encodeObject:self.lastName forKey:@"LastName"];
+    [aCoder encodeObject:self.uuid forKey:@"UUID"];
+    [aCoder encodeObject:self.location forKey:@"Location"];
+    [aCoder encodeObject:self.friends forKey:@"Friends"];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super init];
+    if (self) {
+        self.firstName = [coder decodeObjectForKey:@"FirstName"];
+        self.lastName = [coder decodeObjectForKey:@"LastName"];
+        self.uuid = [coder decodeObjectForKey:@"UUID"];
+        self.location = [coder decodeObjectForKey:@"Location"];
+        self.friends = [coder decodeObjectForKey:@"Friends"];
+    }
+    return self;
+}
+
+
 @end
