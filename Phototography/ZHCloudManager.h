@@ -16,6 +16,7 @@ typedef void (^ZHCloudManagerDiscoveredUserInfoErrorBlock)(CKDiscoveredUserInfo 
 typedef void (^ZHCloudManagerRecordIDErrorBlock)(CKRecordID *recordID, NSError *error);
 typedef void (^ZHCloudManagerErrorBlock)(NSError *error);
 typedef void (^ZHCloudManagerUserErrorBlock)(ZHUser *user, NSError *error);
+typedef void (^ZHCloudManagerProgressBlock)(NSUInteger uploadedCount, NSUInteger totalCount);
 
 @interface ZHCloudManager : NSObject
 
@@ -29,7 +30,7 @@ typedef void (^ZHCloudManagerUserErrorBlock)(ZHUser *user, NSError *error);
 -(void)subscribeToLocationUpdatesForPhotographer:(ZHUser*)photographer completionBlock:(ZHCloudManagerErrorBlock)completionBlock;
 
 
--(void)updateAssets:(NSArray*)assets completionBlock:(ZHCloudManagerErrorBlock)completionBlock;
+-(void)updateAssets:(NSArray*)assets progressBlock:(ZHCloudManagerProgressBlock)progressBlock completionBlock:(ZHCloudManagerErrorBlock)completionBlock;
 
 -(void)getAssetsForUserUUID:(NSString*)userUUID completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock;
 

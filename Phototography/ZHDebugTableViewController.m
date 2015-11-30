@@ -148,10 +148,13 @@
         ZHAsset *asset = [[ZHAsset alloc]initWithAsset:phAsset];
         [userAssets addObject:asset];
     }];
-    [ZHUser currentUser].assets = userAssets;
+    //[ZHUser currentUser].assets = userAssets;
+    
     
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    [appDelegate.cloudManager updateAssets:[ZHUser currentUser].assets completionBlock:^(NSError *error) {
+    [appDelegate.cloudManager updateAssets:userAssets progressBlock:^(NSUInteger uploadedCount, NSUInteger totalCount) {
+        NSLog(@"%lu out of %lu uploaded", (unsigned long)uploadedCount, (unsigned long)totalCount);
+    } completionBlock:^(NSError *error) {
         if(error) {
             [self presentAlertDialogWithTitle:@"Failed to save assets" errorAsMessage:error];
         } else {
@@ -160,5 +163,10 @@
     }];
 
 }
+
+- (IBAction)assetCountButtonTouchUpInside:(id)sender {
+    
+}
+
 
 @end

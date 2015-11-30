@@ -112,6 +112,30 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="hX3-HT-3Cx">
+                                        <rect key="frame" x="0.0" y="176" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hX3-HT-3Cx" id="bL1-46-hSr">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zmy-TG-Ixt">
+                                                    <rect key="frame" x="211" y="7" width="178" height="30"/>
+                                                    <animations/>
+                                                    <state key="normal" title="Get asset count on iCloud"/>
+                                                    <connections>
+                                                        <action selector="assetCountButtonTouchUpInside:" destination="Y4J-h0-qk3" eventType="touchUpInside" id="Wxm-a6-Ur0"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="zmy-TG-Ixt" firstAttribute="centerX" secondItem="bL1-46-hSr" secondAttribute="centerX" id="Jhb-Pu-U9p"/>
+                                                <constraint firstItem="zmy-TG-Ixt" firstAttribute="centerY" secondItem="bL1-46-hSr" secondAttribute="centerY" id="qKy-Ha-hem"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>

@@ -24,7 +24,7 @@
     [super viewDidLoad];
     [self setupTabBarIcons];
 //    [self registerForPushNotifications];
-    [self setSelectedIndex:1];
+//    [self setSelectedIndex:1];
 }
 
 
@@ -37,21 +37,6 @@
     for(NSUInteger index = 0; index < self.viewControllers.count; index++){
         UITabBarItem *item = self.tabBar.items[index];
         switch (index) {
-//            case 0:{
-//                item.image = [[UIImage imageNamed:@"ic_map"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-//                item.selectedImage = [UIImage imageNamed:@"ic_map_selected"];
-//                break;
-//            }
-//            case 1:{
-//                item.image = [[UIImage imageNamed:@"ic_ping"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-//                item.selectedImage = [UIImage imageNamed:@"ic_ping_selected"];
-//            }
-//                break;
-//            case 2:{
-//                item.image = [[UIImage imageNamed:@"ic_profile"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-//                item.selectedImage = [UIImage imageNamed:@"ic_profile_selected"];
-//            }
-//                break;
             case 0:{
                 item.image = [[UIImage imageNamed:@"tab_map"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 //                item.selectedImage = [UIImage imageNamed:@"ic_map_selected"];

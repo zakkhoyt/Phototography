@@ -364,68 +364,62 @@
 
 
 
--(void)updateAssets:(NSArray*)assets completionBlock:(ZHCloudManagerErrorBlock)completionBlock {
-    
-//    ZHAsset *asset = [assets firstObject];
-//    CKRecord *record = [asset recordRepresentation];
-//    
-//    [self.publicDB saveRecord:record completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error) {
-//        if(error != nil) {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                completionBlock(error);
-//            });
-//        } else {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                completionBlock(nil);
-//            });
-//        }
-//    }];
-
-
-    
-    
-//    const NSUInteger kBatchSize = 400;
-//    for(NSUInteger index = 0; index < assets.count / kBatchSize; index++){
-//        NSUInteger startIndex = index * 400;
-//        NSUInteger endIndex = MIN(assets.count, startIndex + kBatchSize);
-//        for(NSUInteger i = startIndex; i < endIndex; i++) {
-//            
-//        }
-//    }
-    
-    
-    NSMutableArray *records = [[NSMutableArray alloc]initWithCapacity:assets.count];
-    [assets enumerateObjectsUsingBlock:^(ZHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
-        if(idx == 400) {
-            *stop = YES;
-            return;
+-(void)updateAssets:(NSArray*)assets progressBlock:(ZHCloudManagerProgressBlock)progressBlock completionBlock:(ZHCloudManagerErrorBlock)completionBlock {
+        
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        const NSUInteger kBatchSize = 100;
+        __block NSError *error;
+        __block NSUInteger uploadedCount = 0;
+        for(NSUInteger index = 0; index < assets.count / kBatchSize; index++){
+            NSUInteger startIndex = index * kBatchSize;                             // 0 * 10 = 0
+            NSUInteger endIndex = MIN(assets.count, startIndex + kBatchSize - 1);   // 0 + 10 - 1 = 9
+            NSUInteger batchSize = (endIndex - startIndex) + 1;                     // 9 - 0 + 1 = 10
+            
+            NSLog(@"Uploading assets from %lu to %lu", (unsigned long) startIndex, (unsigned long) endIndex);
+            // Get sub array of assets
+            NSMutableArray *records = [[NSMutableArray alloc]initWithCapacity:assets.count];
+            for(NSUInteger i = startIndex; i < endIndex; i++) {
+                ZHAsset *asset = assets[i];
+                CKRecord *record = [asset recordRepresentation];
+                [records addObject:record];
+            }
+            
+            
+            dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+            
+            CKModifyRecordsOperation *modifyRecordsOperation = [[CKModifyRecordsOperation alloc] initWithRecordsToSave:records recordIDsToDelete:nil];
+            modifyRecordsOperation.savePolicy = CKRecordSaveAllKeys;
+            [modifyRecordsOperation setModifyRecordsCompletionBlock:^(NSArray <CKRecord *> * __nullable savedRecords,
+                                                                      NSArray <CKRecordID *> * __nullable deletedRecordIDs,
+                                                                      NSError * __nullable operationError){
+                if(operationError != nil){
+                    NSLog(@"Error: %@", operationError);
+                    error = operationError;
+                }
+                dispatch_semaphore_signal(semaphore);
+            }];
+            
+            [self.publicDB addOperation:modifyRecordsOperation];
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+            
+            if(progressBlock) {
+                uploadedCount += batchSize;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    progressBlock(uploadedCount, assets.count);
+                });
+            }
         }
-
-        CKRecord *record = [asset recordRepresentation];
-        [records addObject:record];
-    }];
-    
-    
-    CKModifyRecordsOperation *modifyRecordsOperation = [[CKModifyRecordsOperation alloc] initWithRecordsToSave:records recordIDsToDelete:nil];
-    modifyRecordsOperation.savePolicy = CKRecordSaveAllKeys;
-    [modifyRecordsOperation setModifyRecordsCompletionBlock:^(NSArray <CKRecord *> * __nullable savedRecords,
-                                                              NSArray <CKRecordID *> * __nullable deletedRecordIDs,
-                                                              NSError * __nullable operationError){
-        if(operationError != nil){
+        
+        if(error != nil) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                completionBlock(operationError);
+                completionBlock(error);
             });
         } else {
-            NSLog(@"Updated asset records");
             dispatch_async(dispatch_get_main_queue(), ^{
                 completionBlock(nil);
             });
         }
-    }];
-    
-    [self.publicDB addOperation:modifyRecordsOperation];
-
-    
+    });
 }
 
 
