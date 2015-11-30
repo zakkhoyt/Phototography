@@ -14,6 +14,7 @@
 #import "ZHAssetAnnotation.h"
 #import "VWWClusteredAnnotation.h"
 
+#define ZH_HIDE_ANNOTATION_COUNT 1
 
 @interface ZHUserAnnotationView ()
 @property (strong, nonatomic) UILabel *countLabel;
@@ -58,17 +59,17 @@
 
 
 - (void)setupLabel{
-//    _countLabel = [[UILabel alloc] initWithFrame:self.frame];
-//    _countLabel.backgroundColor = [UIColor clearColor];
-//    _countLabel.textColor = [UIColor zhBackgroundColor];
-//    _countLabel.textAlignment = NSTextAlignmentCenter;
-//    //    _countLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.75];
-//    //    _countLabel.shadowOffset = CGSizeMake(0, -1);
-//    _countLabel.adjustsFontSizeToFitWidth = YES;
-//    _countLabel.numberOfLines = 1;
-//    _countLabel.font = [UIFont boldSystemFontOfSize:12];
-//    _countLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
-//    [self addSubview:_countLabel];
+    _countLabel = [[UILabel alloc] initWithFrame:self.frame];
+    _countLabel.backgroundColor = [UIColor clearColor];
+    _countLabel.textColor = [UIColor zhBackgroundColor];
+    _countLabel.textAlignment = NSTextAlignmentCenter;
+    //    _countLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.75];
+    //    _countLabel.shadowOffset = CGSizeMake(0, -1);
+    _countLabel.adjustsFontSizeToFitWidth = YES;
+    _countLabel.numberOfLines = 1;
+    _countLabel.font = [UIFont boldSystemFontOfSize:12];
+    _countLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+    [self addSubview:_countLabel];
 }
 
 - (void)setCount:(NSUInteger)count{
