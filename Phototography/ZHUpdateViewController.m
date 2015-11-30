@@ -12,10 +12,13 @@
 #import "ZHAssetAnnotationView.h"
 #import "ZHLocationManager.h"
 #import "ZHCloudManager.h"
+#import "ZHAssetAnnotation.h"
+#import "ZHAssetAnnotationView.h"
+#import "ZHUserAnnotationView.h"
 
 @interface ZHUpdateViewController ()
 @property (weak, nonatomic) IBOutlet VWWClusteredMapView *clusteredMapView;
-@property (nonatomic, strong) NSArray *assets;
+@property (nonatomic, strong) NSArray *userAssets;
 @end
 
 @interface ZHUpdateViewController (VWWClusteredMapViewDataSource) <VWWClusteredMapViewDataSource>
@@ -82,11 +85,10 @@
                 [self presentAlertDialogWithTitle:@"Could not update location" errorAsMessage:error];
             } else {
                 [self presentAlertDialogWithMessage:[NSString stringWithFormat:@"Found %lu assets", (unsigned long)userAssets.count]];
+                self.userAssets = userAssets;
                 [self.clusteredMapView reloadData];
             }
-            
         }];
-
     }];
     
 #else
@@ -118,6 +120,7 @@
                 [self presentAlertDialogWithTitle:@"Could not update location" errorAsMessage:error];
             } else {
                 [self presentAlertDialogWithMessage:[NSString stringWithFormat:@"Found %lu users with assets", (unsigned long)userAssets.count]];
+                self.userAssets = userAssets;
                 [self.clusteredMapView reloadData];
             }
         }];
@@ -138,15 +141,19 @@
 
 @implementation ZHUpdateViewController (VWWClusteredMapViewDataSource)
 - (NSInteger)numberOfSectionsInMapView:(VWWClusteredMapView*)mapView{
-    return 1;
+    return self.userAssets.count;
 }
 - (NSInteger)mapView:(VWWClusteredMapView*)mapView numberOfAnnotationsInSection:(NSInteger)section{
-    
-    return self.assets.count;
+    NSDictionary *dictionary = self.userAssets[section];
+    NSArray *assets = dictionary[@"assets"];
+    return assets.count;
 }
 
 - (id<MKAnnotation>)mapView:(VWWClusteredMapView*)mapView annotationForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return self.assets[indexPath.item];
+    NSDictionary *dictionary = self.userAssets[indexPath.section];
+    NSArray *assets = dictionary[@"assets"];
+    ZHAssetAnnotation *annotation = [[ZHAssetAnnotation alloc]initWithAsset:assets[indexPath.row]];
+    return annotation;
 }
 
 @end
@@ -161,15 +168,16 @@
     
     id obj = [annotation.annotations firstObject];
     if([obj isKindOfClass:[ZHAssetAnnotation class]]){
-        ZHAssetAnnotationView *annotationView = (ZHAssetAnnotationView*)[clusteredMapView dequeueReusableAnnotationViewWithIdentifier:@"ZHAssetAnnotationView"];
+        ZHUserAnnotationView *annotationView = (ZHUserAnnotationView*)[clusteredMapView dequeueReusableAnnotationViewWithIdentifier:@"ZHUserAnnotationView"];
         if(annotationView == nil){
-            annotationView = [[ZHAssetAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"ZHAssetAnnotationView"];
+            annotationView = [[ZHUserAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"ZHUserAnnotationView"];
             annotationView.annotation = annotation;
+            annotationView.user = [ZHUser currentUser];
         }
         annotationView.count = annotation.annotations.count;
         return annotationView;
     }
-    
+
     return nil;
 }
 

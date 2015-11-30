@@ -470,7 +470,7 @@
 
                 if(error != nil) {
                     retError = error;
-                } else {
+                } else if(assets != nil) {
                     NSDictionary *dictionary = @{@"uuid": uuid,
                                                  @"assets": assets};
                     [userAssets addObject:dictionary];
@@ -506,9 +506,11 @@
     
     
     
-    NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"OwnerUUID = %@", ownerUUID];
-    NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"distanceToLocation:fromLocation:(Location, %@) < %f", location, 10000];
-    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[predicate1, predicate2]];
+//    NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"OwnerUUID = %@", ownerUUID];
+//    NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"distanceToLocation:fromLocation:(Location, %@) < %f", location, 100000];
+//    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[predicate1, predicate2]];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"OwnerUUID = %@", ownerUUID];
     CKQuery *query = [[CKQuery alloc] initWithRecordType:@"Assets" predicate:predicate];
     
     [self.publicDB performQuery:query inZoneWithID:nil completionHandler:^(NSArray *results, NSError *error) {\
@@ -525,7 +527,7 @@
                 [assets addObject:asset];
             }
             dispatch_async(dispatch_get_main_queue(), ^{
-                completionBlock(assets, nil);
+                completionBlock(assets.count > 0 ? assets : nil, nil);
             });
         }
     }];

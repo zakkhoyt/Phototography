@@ -7,8 +7,19 @@
 //
 
 #import "ZHUser.h"
-
+#import "ZHAvatarImageView.h"
 static ZHUser *currentUser;
+
+
+
+static NSString *ZHUserFirstNameKey = @"FirstName";
+static NSString *ZHUserLastNameKey = @"LastName";
+static NSString *ZHUserUUIDKey = @"UUID";
+static NSString *ZHUserAvatarNameKey = @"AvatarName";
+static NSString *ZHUserLocationKey = @"Location";
+static NSString *ZHUserFriendUUIDsKey = @"FriendUUIDs";
+static NSString *ZHUserAssetsKey = @"Assets";
+
 
 @implementation ZHUser
 
@@ -28,7 +39,7 @@ static ZHUser *currentUser;
         self.firstName = [record objectForKey:@"FirstName"];
         self.lastName = [record objectForKey:@"LastName"];
         self.uuid = [record objectForKey:@"UUID"];
-
+        self.avatarName = [record objectForKey:@"AvatarName"];
         NSArray *friends = [record objectForKey:@"FriendUUIDs"];
         if(friends == nil) {
             self.friendUUIDs = [@[]mutableCopy];
@@ -54,6 +65,7 @@ static ZHUser *currentUser;
         self.firstName = userInfo.displayContact.givenName;
         self.lastName = userInfo.displayContact.familyName;
         self.uuid = [NSString stringWithFormat:@"uuid%@", userInfo.userRecordID.recordName];
+        self.avatarName = [ZHAvatarImageView randomAvatarName];
         self.friendUUIDs = [@[]mutableCopy];
         self.assets = [@[]mutableCopy];
 
@@ -68,6 +80,7 @@ static ZHUser *currentUser;
     record[@"FirstName"] = self.firstName;
     record[@"LastName"] = self.lastName;
     record[@"UUID"] = self.uuid;
+    record[@"AvatarName"] = self.avatarName;
     record[@"Location"] = self.location;
     record[@"FriendUUIDs"] = self.friendUUIDs;
     record[@"Assets"] = self.assets;
@@ -116,6 +129,7 @@ static ZHUser *currentUser;
     [aCoder encodeObject:self.firstName forKey:@"FirstName"];
     [aCoder encodeObject:self.lastName forKey:@"LastName"];
     [aCoder encodeObject:self.uuid forKey:@"UUID"];
+    [aCoder encodeObject:self.avatarName forKey:@"AvatarName"];
     [aCoder encodeObject:self.location forKey:@"Location"];
     [aCoder encodeObject:self.friendUUIDs forKey:@"FriendUUIDs"];
     [aCoder encodeObject:self.assets forKey:@"Assets"];
@@ -127,6 +141,7 @@ static ZHUser *currentUser;
         self.firstName = [coder decodeObjectForKey:@"FirstName"];
         self.lastName = [coder decodeObjectForKey:@"LastName"];
         self.uuid = [coder decodeObjectForKey:@"UUID"];
+        self.avatarName = [coder decodeObjectForKey:@"AvatarName"];
         self.location = [coder decodeObjectForKey:@"Location"];
         
         NSArray *friendUUIDs = [coder decodeObjectForKey:@"FriendUUIDs"];

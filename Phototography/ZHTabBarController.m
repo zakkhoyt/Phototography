@@ -24,6 +24,7 @@
     [super viewDidLoad];
     [self setupTabBarIcons];
     [self registerForPushNotifications];
+    [self setSelectedIndex:1];
 }
 
 
