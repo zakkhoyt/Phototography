@@ -22,11 +22,24 @@ static NSString *ZHUserAssetLocalOwnerUUIDKey = @"OwnerUUID";
         self.location = asset.location;
         self.localIdentifier = asset.localIdentifier;
 
-        CKRecord *record = [[ZHUser currentUser] recordRepresentation];
-        self.ownerUUID = [[CKReference alloc]initWithRecord:record action:CKReferenceActionDeleteSelf];
+//        CKRecord *record = [[ZHUser currentUser] recordRepresentation];
+//        self.ownerUUID = [[CKReference alloc]initWithRecord:record action:CKReferenceActionDeleteSelf];
+        self.ownerUUID = [ZHUser currentUser].uuid;
     }
     return self;
 }
+
+- (instancetype)initWithRecord:(CKRecord*)record{
+    self = [super init];
+    if (self) {
+        self.dateCreated = [record objectForKey:ZHUserAssetDateCreatedKey];
+        self.location = [record objectForKey:ZHUserAssetLocationKey];
+        self.localIdentifier = [record objectForKey:ZHUserAssetLocalIdentifierKey];
+        self.ownerUUID = [record objectForKey:ZHUserAssetLocalOwnerUUIDKey];
+    }
+    return self;
+}
+
 
 - (CKRecord*)recordRepresentation{
     CKRecordID *recordID = [[CKRecordID alloc]initWithRecordName:self.localIdentifier];

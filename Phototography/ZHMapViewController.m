@@ -92,24 +92,21 @@ static NSString *SegueMapToAssetGroup = @"SegueMapToAssetGroup";
             [self.clusteredMapView reloadData];
         }
         
-//        // Write assets to Photographer's record
-        NSMutableArray *userAssets = [[NSMutableArray alloc]initWithCapacity:[ZHAssetManager sharedInstance].assetsWithLocation.count];
-        [[ZHAssetManager sharedInstance].assetsWithLocation enumerateObjectsUsingBlock:^(PHAsset*  _Nonnull phAsset, NSUInteger idx, BOOL * _Nonnull stop) {
-            ZHAsset *asset = [[ZHAsset alloc]initWithAsset:phAsset];
-            [userAssets addObject:asset];
-        }];
-        [ZHUser currentUser].assets = userAssets;
-        
-        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-        [appDelegate.cloudManager updateAssets:[ZHUser currentUser].assets completionBlock:^(NSError *error) {
-            if(error) {
-                [self presentAlertDialogWithTitle:@"Failed to save assets" errorAsMessage:error];
-            } else {
-                [self presentAlertDialogWithMessage:@"Saved asset(s)"];
-            }
-        }];
-        
-        
+//        NSMutableArray *userAssets = [[NSMutableArray alloc]initWithCapacity:[ZHAssetManager sharedInstance].assetsWithLocation.count];
+//        [[ZHAssetManager sharedInstance].assetsWithLocation enumerateObjectsUsingBlock:^(PHAsset*  _Nonnull phAsset, NSUInteger idx, BOOL * _Nonnull stop) {
+//            ZHAsset *asset = [[ZHAsset alloc]initWithAsset:phAsset];
+//            [userAssets addObject:asset];
+//        }];
+//        [ZHUser currentUser].assets = userAssets;
+//        
+//        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+//        [appDelegate.cloudManager updateAssets:[ZHUser currentUser].assets completionBlock:^(NSError *error) {
+//            if(error) {
+//                [self presentAlertDialogWithTitle:@"Failed to save assets" errorAsMessage:error];
+//            } else {
+//                [self presentAlertDialogWithMessage:@"Saved asset(s)"];
+//            }
+//        }];
     }];
 }
 
@@ -155,7 +152,6 @@ static NSString *SegueMapToAssetGroup = @"SegueMapToAssetGroup";
 - (void)clusteredMapView:(VWWClusteredMapView *)clusteredMapView didSelectClusteredAnnotationView:(VWWClusteredAnnotationView *)view {
     NSLog(@"annotationView.class: %@", NSStringFromClass([view class]));
     VWWClusteredAnnotation *annotation = (VWWClusteredAnnotation*)view.annotation;
-//    PHAssetCollection *assetCollection = [PHAssetCollection transientAssetCollectionWithAssets:annotation.annotations title:nil];
     NSArray *assets = [annotation.annotations valueForKeyPath:@"asset"];
     [self performSegueWithIdentifier:SegueMapToAssetGroup sender:assets];
     

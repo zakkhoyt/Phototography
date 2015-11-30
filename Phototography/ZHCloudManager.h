@@ -29,4 +29,12 @@ typedef void (^ZHCloudManagerUserErrorBlock)(ZHUser *user, NSError *error);
 
 
 -(void)updateAssets:(NSArray*)assets completionBlock:(ZHCloudManagerErrorBlock)completionBlock;
+
+-(void)getAssetsForUserUUID:(NSString*)userUUID completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock;
+
+
+-(void)getAssetsNearLocation:(CLLocation*)location completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock;
+-(void)getAssetsNearLocation:(CLLocation*)location ownerUUID:(NSString*)ownerUUID completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock;
+
+
 @end

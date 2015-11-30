@@ -426,12 +426,111 @@
     [self.publicDB addOperation:modifyRecordsOperation];
 
     
+}
+
+
+-(void)getAssetsForUserUUID:(NSString*)userUUID completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"OwnerUUID = %@", userUUID];
+    CKQuery *query = [[CKQuery alloc] initWithRecordType:@"Assets" predicate:predicate];
     
-    
+    [self.publicDB performQuery:query inZoneWithID:nil completionHandler:^(NSArray *results, NSError *error) {\
+        
+        if(error != nil) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(nil, error);
+            });
+        } else {
+            
+            NSMutableArray *assets = [[NSMutableArray alloc]initWithCapacity:results.count];
+            for (CKRecord *record in results) {
+                ZHAsset *asset = [[ZHAsset alloc]initWithRecord:record];
+                [assets addObject:asset];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(assets, nil);
+            });
+        }
+    }];
 }
 
 
 
+-(void)getAssetsNearLocation:(CLLocation*)location completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock {
+    
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+
+    NSUInteger count = [ZHUser currentUser].friendUUIDs.count;
+    NSMutableArray *userAssets = [[NSMutableArray alloc]initWithCapacity:count];
+    __block NSError *retError;
+    [[ZHUser currentUser].friendUUIDs enumerateObjectsUsingBlock:^(NSString * _Nonnull uuid, NSUInteger idx, BOOL * _Nonnull stop) {
+        dispatch_group_enter(group);
+        dispatch_async(queue, ^{
+            [self getAssetsNearLocation:location ownerUUID:uuid completionBlock:^(NSArray *assets, NSError *error) {
+
+                if(error != nil) {
+                    retError = error;
+                } else {
+                    NSDictionary *dictionary = @{@"uuid": uuid,
+                                                 @"assets": assets};
+                    [userAssets addObject:dictionary];
+                }
+                
+                dispatch_group_leave(group);
+            }];
+        });
+
+    }];
+    
+    dispatch_group_notify(group, queue, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                if(retError != nil) {
+                    completionBlock(nil, retError);
+                } else {
+                    completionBlock(userAssets, nil);
+                }
+            });
+        });
+    });
+
+}
+
+-(void)getAssetsNearLocation:(CLLocation*)location ownerUUID:(NSString*)ownerUUID completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock{
+    
+    
+//    let locationPredicate = NSPredicate(format: "distanceToLocation:fromLocation:(%K,%@) < %f",
+//                                        "Location",
+//                                        location,
+//                                        radiusInKilometers)
+    
+    
+    
+    NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"OwnerUUID = %@", ownerUUID];
+    NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"distanceToLocation:fromLocation:(Location, %@) < %f", location, 10000];
+    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[predicate1, predicate2]];
+    CKQuery *query = [[CKQuery alloc] initWithRecordType:@"Assets" predicate:predicate];
+    
+    [self.publicDB performQuery:query inZoneWithID:nil completionHandler:^(NSArray *results, NSError *error) {\
+        
+        if(error != nil) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(nil, error);
+            });
+        } else {
+            
+            NSMutableArray *assets = [[NSMutableArray alloc]initWithCapacity:results.count];
+            for (CKRecord *record in results) {
+                ZHAsset *asset = [[ZHAsset alloc]initWithRecord:record];
+                [assets addObject:asset];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(assets, nil);
+            });
+        }
+    }];
+    
+}
 @end
 
 

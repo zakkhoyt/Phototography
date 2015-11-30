@@ -65,15 +65,31 @@
 
         ZHUser *currentUser = [ZHUser currentUser];
         currentUser.location = location;
+        
+        // Get assets for self near location
+//        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+//        [appDelegate.cloudManager updateUser:currentUser completionBlock:^(ZHUser *user, NSError *error) {
+//            [MBProgressHUD hideHUDForView:self.view animated:YES];
+//            if(error != nil) {
+//                [self presentAlertDialogWithTitle:@"Could not update location" errorAsMessage:error];
+//            } else {
+//                [self.clusteredMapView reloadData];
+//            }
+//        }];
+        
+        /// ******* get assets for all friends near location
         AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-        [appDelegate.cloudManager updateUser:currentUser completionBlock:^(ZHUser *user, NSError *error) {
+        [appDelegate.cloudManager getAssetsNearLocation:location completionBlock:^(NSArray *userAssets, NSError *error) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if(error != nil) {
                 [self presentAlertDialogWithTitle:@"Could not update location" errorAsMessage:error];
             } else {
+                [self presentAlertDialogWithMessage:[NSString stringWithFormat:@"Found %lu assets", (unsigned long)userAssets.count]];
                 [self.clusteredMapView reloadData];
             }
+            
         }];
+
     }];
     
 #else
@@ -91,6 +107,13 @@
         }];
     }];
 #endif
+    
+    
+    
+
+//    -(void)getAssetsNearLocation:(CLLocation*)location ownerUUID:(NSString*)ownerUUID completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock
+    
+
 
 }
 

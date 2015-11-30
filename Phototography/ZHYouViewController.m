@@ -204,6 +204,17 @@ typedef enum {
 
 @implementation ZHYouViewController (UITableViewDelegate)
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *userUUID = [ZHUser currentUser].friendUUIDs[indexPath.row];
+    [self.cloudManager getAssetsForUserUUID:userUUID completionBlock:^(NSArray *assets, NSError *error) {
+        if(error != nil) {
+            [self presentAlertDialogWithTitle:@"Nope" errorAsMessage:error];
+        } else {
+            [self presentAlertDialogWithTitle:@"Yep" message:[NSString stringWithFormat:@"%lu", (unsigned long)assets.count]];
+        }
+    }];
+}
+
 #pragma mark UITableViewDelegate (header)
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     switch (section) {

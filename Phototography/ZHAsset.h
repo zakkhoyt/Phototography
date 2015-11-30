@@ -15,9 +15,10 @@
 @property (nonatomic, strong) NSDate *dateCreated;
 @property (nonatomic, strong) CLLocation *location;
 @property (nonatomic, strong) NSString *localIdentifier;
-@property (nonatomic, strong) CKReference *ownerUUID;
+@property (nonatomic, strong) NSString *ownerUUID;
 
 - (instancetype)initWithAsset:(PHAsset*)asset;
+- (instancetype)initWithRecord:(CKRecord*)record;
 - (CKRecord*)recordRepresentation;
 @end
 
