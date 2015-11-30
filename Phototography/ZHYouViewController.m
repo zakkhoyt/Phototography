@@ -172,7 +172,7 @@ typedef enum {
                     break;
                 case ZHYouViewControllerUserDetailSharedAssetCount:{
                     cell.textLabel.text = @"# Shared Assets";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"TODO:"];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@""];
                 }
                     break;
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		27681B1F71AD3CA0DC6A4566 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A9B1888187AEF86278BB82 /* libPods.a */; };
 		C62E2E6A1C0BD4E50026695C /* ZHUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C62E2E691C0BD4E50026695C /* ZHUpdateViewController.m */; };
+		C62E2E701C0BF64D0026695C /* ZHTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C62E2E6F1C0BF64D0026695C /* ZHTabBarController.m */; };
 		C6439A341C090A40006BCF73 /* schema.txt in Resources */ = {isa = PBXBuildFile; fileRef = C6439A331C090A40006BCF73 /* schema.txt */; };
 		C6439A361C0930CC006BCF73 /* FindFriends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6439A351C0930CC006BCF73 /* FindFriends.storyboard */; };
 		C6439A391C09311B006BCF73 /* ZHFindFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6439A381C09311B006BCF73 /* ZHFindFriendsViewController.m */; };
@@ -86,6 +87,8 @@
 		C62E2E681C0BD4E50026695C /* ZHUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHUpdateViewController.h; sourceTree = "<group>"; };
 		C62E2E691C0BD4E50026695C /* ZHUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHUpdateViewController.m; sourceTree = "<group>"; };
 		C62E2E6D1C0BF18E0026695C /* ZHNotificationNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHNotificationNames.h; sourceTree = "<group>"; };
+		C62E2E6E1C0BF64D0026695C /* ZHTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHTabBarController.h; sourceTree = "<group>"; };
+		C62E2E6F1C0BF64D0026695C /* ZHTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHTabBarController.m; sourceTree = "<group>"; };
 		C6439A331C090A40006BCF73 /* schema.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.txt; sourceTree = "<group>"; };
 		C6439A351C0930CC006BCF73 /* FindFriends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FindFriends.storyboard; sourceTree = "<group>"; };
 		C6439A371C09311B006BCF73 /* ZHFindFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHFindFriendsViewController.h; sourceTree = "<group>"; };
@@ -272,6 +275,15 @@
 			name = History;
 			sourceTree = "<group>";
 		};
+		C62E2E711C0BF6510026695C /* Tab */ = {
+			isa = PBXGroup;
+			children = (
+				C62E2E6E1C0BF64D0026695C /* ZHTabBarController.h */,
+				C62E2E6F1C0BF64D0026695C /* ZHTabBarController.m */,
+			);
+			name = Tab;
+			sourceTree = "<group>";
+		};
 		C6439A3A1C09311F006BCF73 /* FindFriends */ = {
 			isa = PBXGroup;
 			children = (
@@ -430,14 +442,15 @@
 		C67D86531BBF4C0800B2C4CF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C696B6711C0AA06B00F21D4D /* Assets */,
 				C6439A4A1C097099006BCF73 /* Base */,
+				C6439A3A1C09311F006BCF73 /* FindFriends */,
 				C6B8297C1BC31D1200782468 /* Map */,
 				C67092261C08396E00AE06F3 /* Onboarding */,
-				C6439A3A1C09311F006BCF73 /* FindFriends */,
-				C6439A4E1C097334006BCF73 /* You */,
+				C62E2E711C0BF6510026695C /* Tab */,
 				C6439A4D1C09732A006BCF73 /* Tagger */,
-				C696B6711C0AA06B00F21D4D /* Assets */,
 				C696B67C1C0AAD9E00F21D4D /* Updates */,
+				C6439A4E1C097334006BCF73 /* You */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -847,6 +860,7 @@
 				C62E2E6A1C0BD4E50026695C /* ZHUpdateViewController.m in Sources */,
 				C67D86981BBF7EF800B2C4CF /* NSDate+ZH.m in Sources */,
 				C6439A3D1C0962C4006BCF73 /* ZHYouViewController.m in Sources */,
+				C62E2E701C0BF64D0026695C /* ZHTabBarController.m in Sources */,
 				C6BBCA3C1BC31C0A009D6887 /* VWWClusteredAnnotation.m in Sources */,
 				C67D86361BBF429800B2C4CF /* AppDelegate.m in Sources */,
 				C696B67B1C0AAD9A00F21D4D /* ZHUpdatesViewController.m in Sources */,

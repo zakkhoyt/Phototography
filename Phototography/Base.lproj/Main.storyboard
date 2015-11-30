@@ -80,7 +80,7 @@
         <!--View Controller-->
         <scene sceneID="Lbl-ce-GQ3">
             <objects>
-                <viewController id="mfu-vk-ozD" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="temp" id="mfu-vk-ozD" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dTd-fP-RRK"/>
                         <viewControllerLayoutGuide type="bottom" id="81U-zz-qlL"/>
@@ -99,7 +99,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="HsS-S0-DLr">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="temp" id="HsS-S0-DLr">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">

@@ -25,8 +25,11 @@
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     if (self) {
+        self.detailTextLabel.text = @"";
+        
         [[NSNotificationCenter defaultCenter] addObserverForName:ZHNotificationNamesFriendsUpdated object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
             [self setUser:_user];
+            [self setNeedsDisplay];
         }];
     }
     return self;

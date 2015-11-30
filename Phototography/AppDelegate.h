@@ -11,9 +11,12 @@
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, strong) ZHCloudManager *cloudManager;
-
 @end
 
+@interface AppDelegate (Utility)
+-(NSString*)buildAndVersionString;
+-(NSString*)executableString;
+-(void)setupNotifications;
+@end

@@ -68,20 +68,20 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ZHUpdateTableViewCell" rowHeight="71" id="vAr-hR-5mN" customClass="ZHUpdateTableViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="71"/>
+                                        <rect key="frame" x="0.0" y="92" width="600" height="71"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vAr-hR-5mN" id="kc8-o6-nie">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="70.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQn-9N-Vkk">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQn-9N-Vkk">
                                                     <rect key="frame" x="8" y="8" width="584" height="19.5"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQ3-d8-dWB">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQ3-d8-dWB">
                                                     <rect key="frame" x="8" y="30" width="584" height="13.5"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
@@ -91,13 +91,12 @@
                                             </subviews>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="MQ3-d8-dWB" secondAttribute="bottom" id="HB8-AE-QyM"/>
-                                                <constraint firstItem="iQn-9N-Vkk" firstAttribute="leading" secondItem="kc8-o6-nie" secondAttribute="leadingMargin" id="I6Z-fA-XC0"/>
-                                                <constraint firstItem="MQ3-d8-dWB" firstAttribute="top" secondItem="iQn-9N-Vkk" secondAttribute="bottom" constant="2.5" id="KMu-Gk-UzO"/>
-                                                <constraint firstItem="iQn-9N-Vkk" firstAttribute="top" secondItem="kc8-o6-nie" secondAttribute="topMargin" id="WtT-9E-HaB"/>
-                                                <constraint firstItem="iQn-9N-Vkk" firstAttribute="trailing" secondItem="kc8-o6-nie" secondAttribute="trailingMargin" id="kbd-az-GCO"/>
-                                                <constraint firstItem="MQ3-d8-dWB" firstAttribute="trailing" secondItem="kc8-o6-nie" secondAttribute="trailingMargin" id="s0T-xM-4t5"/>
-                                                <constraint firstItem="MQ3-d8-dWB" firstAttribute="leading" secondItem="kc8-o6-nie" secondAttribute="leadingMargin" id="yeT-9g-MAf"/>
+                                                <constraint firstItem="MQ3-d8-dWB" firstAttribute="trailing" secondItem="kc8-o6-nie" secondAttribute="trailingMargin" id="Ayk-ZV-5YF"/>
+                                                <constraint firstItem="MQ3-d8-dWB" firstAttribute="leading" secondItem="kc8-o6-nie" secondAttribute="leadingMargin" id="Kzx-dG-JU5"/>
+                                                <constraint firstItem="iQn-9N-Vkk" firstAttribute="leading" secondItem="kc8-o6-nie" secondAttribute="leadingMargin" id="RsB-aU-IGc"/>
+                                                <constraint firstItem="iQn-9N-Vkk" firstAttribute="top" secondItem="kc8-o6-nie" secondAttribute="topMargin" id="fWD-Nz-4Du"/>
+                                                <constraint firstItem="iQn-9N-Vkk" firstAttribute="trailing" secondItem="kc8-o6-nie" secondAttribute="trailingMargin" id="i4V-XQ-LdU"/>
+                                                <constraint firstItem="MQ3-d8-dWB" firstAttribute="top" secondItem="iQn-9N-Vkk" secondAttribute="bottom" constant="2.5" id="vFp-dC-myP"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
@@ -135,12 +134,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CuQ-cg-m0W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4201" y="1171"/>
+            <point key="canvasLocation" x="3562" y="1171"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="cCF-bJ-sgR">
             <objects>
-                <tabBarController id="SLD-Ay-zBI" sceneMemberID="viewController">
+                <tabBarController id="SLD-Ay-zBI" customClass="ZHTabBarController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="maD-qP-LVq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -234,6 +233,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="clusteredMapView" destination="xGf-f2-AYr" id="iSa-Sc-a2D"/>
+                        <segue destination="mOo-rv-3Mn" kind="show" identifier="SegueUpdateToHistory" action="showDetailViewController:sender:" id="P9h-oC-aqx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n7N-xq-ISX" userLabel="First Responder" sceneMemberID="firstResponder"/>

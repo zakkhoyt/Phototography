@@ -19,12 +19,13 @@ typedef void (^ZHAssetManagerImageErrorBlock)(UIImage *image, NSError *error);
 
 @property (nonatomic, strong) NSMutableArray *moments;
 @property (nonatomic, strong) NSMutableArray *assets;
+@property (nonatomic, strong) NSMutableArray *assetsWithLocation;
 @property (nonatomic, strong) NSMutableArray *assetsNoLocation;
 
 
 
--(void)getAssetsWithoutLocationWithCompletionBlock:(ZHAssetManagerErrorBlock)completionBlock;
--(void)getAssetsWithLocationWithCompletionBlock:(ZHAssetManagerErrorBlock)completionBlock;
+-(void)getAssetsWithCompletionBlock:(ZHAssetManagerErrorBlock)completionBlock;
+//-(void)getAssetsWithLocationWithCompletionBlock:(ZHAssetManagerErrorBlock)completionBlock;
 -(void)getMomentsWithoutLocationWithCompletionBlock:(ZHAssetManagerErrorBlock)completionBlock;
 
 //-(void)getMomentsWithoutLocationWithCompletionBlock:(ZHAssetManagerMutableArrayBlock)completionBlock;

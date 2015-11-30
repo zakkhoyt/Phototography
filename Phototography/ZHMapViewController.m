@@ -75,7 +75,7 @@ static NSString *SegueMapToAssetGroup = @"SegueMapToAssetGroup";
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Reading...";
     
-    [[ZHAssetManager sharedInstance] getAssetsWithLocationWithCompletionBlock:^(NSError *error) {
+    [[ZHAssetManager sharedInstance] getAssetsWithCompletionBlock:^(NSError *error) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         
         if(error){
@@ -83,7 +83,7 @@ static NSString *SegueMapToAssetGroup = @"SegueMapToAssetGroup";
         } else {
 //            self.items = [ZHAssetManager sharedInstance].assetsNoLocation;
             NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:[ZHAssetManager sharedInstance].assetsNoLocation.count];
-            [[ZHAssetManager sharedInstance].assetsNoLocation enumerateObjectsUsingBlock:^(PHAsset *_Nonnull asset, NSUInteger idx, BOOL * _Nonnull stop) {
+            [[ZHAssetManager sharedInstance].assetsWithLocation enumerateObjectsUsingBlock:^(PHAsset *_Nonnull asset, NSUInteger idx, BOOL * _Nonnull stop) {
                 ZHAssetAnnotation *annotation = [[ZHAssetAnnotation alloc]initWithAsset:asset];
                 [items addObject:annotation];
             }];

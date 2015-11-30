@@ -10,10 +10,11 @@
 #import "ZHAssetDetailViewController.h"
 #import "UIColor+ZH.h"
 
-//#define ZH_MASTER_DETAIL 1
 
 @interface AppDelegate () <UISplitViewControllerDelegate>
+@end
 
+@interface AppDelegate (Notifications)
 @end
 
 @implementation AppDelegate
@@ -132,4 +133,89 @@
     
     [[UISearchBar appearance] setTintColor:[UIColor zhTintColor]];
 }
+@end
+
+
+
+
+@implementation AppDelegate (Notifications)
+-(void)application:(nonnull UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(nonnull NSData *)pushToken {
+    // Format the push token
+    NSString *pushTokenString = [pushToken description];
+    pushTokenString = [pushTokenString stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    pushTokenString = [pushTokenString stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    if(pushTokenString){
+        NSLog(@"Registered for push notifications with token: %@", pushTokenString);
+    } else {
+        NSLog(@"Registered for push notifications but was not issued an apsToken. Returning...");
+    }
+}
+
+
+
+-(void)application:(nonnull UIApplication *)application didRegisterUserNotificationSettings:(nonnull UIUserNotificationSettings *)notificationSettings{
+    NSLog(@"Registered for user notifications");
+    [application registerForRemoteNotifications];
+}
+
+-(void)application:(nonnull UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(nonnull NSError *)error {
+    NSLog(@"Error! Failed to register for remote notifications");
+}
+
+-(void)application:(nonnull UIApplication *)application didReceiveLocalNotification:(nonnull UILocalNotification *)notification {
+    NSLog(@"Received local notification with userInfo: %@", notification.userInfo.description);
+}
+
+-(void)application:(nonnull UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo {
+    NSLog(@"Received remote notification with userInfo: %@", userInfo.description);
+}
+
+// Good reading about handling notifications: http://www.annema.me/problems-with-ios-push-notifications
+-(void)application:(nonnull UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler {
+    NSLog(@"Received remote notification with userInfo: %@", userInfo.description);
+    
+    // Currently there is no need to wait around. Consider adding completion block to handleNot:
+    completionHandler(UIBackgroundFetchResultNoData);
+}
+
+
+#pragma mark Private helpers
+
+-(void)handleNotificationDictionary:(NSDictionary*)dictionary {
+    //    [PKNotificationManager sharedInstance] receivedNotification
+}
+
+
+@end
+
+
+
+@implementation AppDelegate (Utility)
+
+-(void)setupNotifications{
+    
+    // Register for remote notificaitons
+    UIUserNotificationType types = (UIUserNotificationTypeAlert|
+                                    UIUserNotificationTypeSound|
+                                    UIUserNotificationTypeBadge);
+    
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+}
+
+
+
+-(NSString*)buildAndVersionString{
+    NSBundle* bundle = [NSBundle mainBundle];
+    NSString* appVersion = [bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    NSString* appBuild = [bundle objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
+    return [NSString stringWithFormat:@"v%@ b%@", appVersion, appBuild];
+}
+-(NSString*)executableString{
+    NSBundle* bundle = [NSBundle mainBundle];
+    NSString *executable = [bundle objectForInfoDictionaryKey:(NSString *)kCFBundleExecutableKey];
+    return executable;
+}
+
 @end

@@ -116,13 +116,13 @@ typedef enum {
     hud.labelText = @"Reading...";
     
     if(self.mode == ZHMasterViewControllerModeAssets){
-        [[ZHAssetManager sharedInstance] getAssetsWithoutLocationWithCompletionBlock:^(NSError *error) {
+        [[ZHAssetManager sharedInstance] getAssetsWithCompletionBlock:^(NSError *error) {
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             
             if(error){
                 NSLog(@"Error reading assets");
             } else {
-                self.items = [ZHAssetManager sharedInstance].assetsNoLocation;
+                self.items = [ZHAssetManager sharedInstance].assetsWithLocation;
                 
                 self.navigationItem.title = [NSString stringWithFormat:@"%lu/%lu",
                                              (unsigned long)[ZHAssetManager sharedInstance].assetsNoLocation.count,

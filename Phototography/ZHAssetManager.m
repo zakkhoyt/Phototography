@@ -50,37 +50,39 @@
     [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
 }
 
--(void)getAssetsWithoutLocationWithCompletionBlock:(ZHAssetManagerErrorBlock)completionBlock{
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        PHFetchOptions *options = [[PHFetchOptions alloc] init];
-        options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
-        PHFetchResult *results = [PHAsset fetchAssetsWithOptions:options];
-        
-        self.assets = [[NSMutableArray alloc]initWithCapacity:results.count];
-        self.assetsNoLocation = [[NSMutableArray alloc]initWithCapacity:results.count];
-        [results enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
-            [self.assets addObject:asset];
-            if(asset.location == nil){
-                [self.assetsNoLocation addObject:asset];
-            }
-        }];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            completionBlock(nil);
-        });
-    });
-}
+//-(void)getAssetsWithoutLocationWithCompletionBlock:(ZHAssetManagerErrorBlock)completionBlock{
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        PHFetchOptions *options = [[PHFetchOptions alloc] init];
+//        options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+//        PHFetchResult *results = [PHAsset fetchAssetsWithOptions:options];
+//        
+//        self.assets = [[NSMutableArray alloc]initWithCapacity:results.count];
+//        self.assetsWithLocation = [[NSMutableArray alloc]initWithCapacity:results.count];
+//        [results enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
+//            [self.assets addObject:asset];
+//            if(asset.location == nil){
+//                [self.assetsWithLocation addObject:asset];
+//            }
+//        }];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            completionBlock(nil);
+//        });
+//    });
+//}
 
--(void)getAssetsWithLocationWithCompletionBlock:(ZHAssetManagerErrorBlock)completionBlock{
+-(void)getAssetsWithCompletionBlock:(ZHAssetManagerErrorBlock)completionBlock{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         PHFetchOptions *options = [[PHFetchOptions alloc] init];
         options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
         PHFetchResult *results = [PHAsset fetchAssetsWithOptions:options];
         
         self.assets = [[NSMutableArray alloc]initWithCapacity:results.count];
-        self.assetsNoLocation = [[NSMutableArray alloc]initWithCapacity:results.count];
+        self.assetsWithLocation = [[NSMutableArray alloc]initWithCapacity:results.count];
         [results enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
             [self.assets addObject:asset];
             if(asset.location != nil){
+                [self.assetsWithLocation addObject:asset];
+            } else {
                 [self.assetsNoLocation addObject:asset];
             }
         }];
@@ -138,12 +140,12 @@
 
 
 -(void)writeLocation:(CLLocation*)location toAssetAtIndex:(NSUInteger)index completionBlock:(ZHAssetManagerErrorBlock)completionBlock{
-    if(index > self.assetsNoLocation.count){
+    if(index > self.assetsWithLocation.count){
         NSLog(@"Index out of bounds");
         return completionBlock([NSError errorWithDomain:@"ZH" code:777 userInfo:nil]);
     }
     
-    PHAsset *asset = self.assetsNoLocation[index];
+    PHAsset *asset = self.assetsWithLocation[index];
     [asset updateLocation:location creationDate:nil completionBlock:^(BOOL success) {
         return completionBlock(nil);
     }];
