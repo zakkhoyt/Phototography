@@ -22,21 +22,15 @@ typedef enum {
 
 typedef enum {
     ZHYouViewControllerUserDetailFullName = 0,
-    ZHYouViewControllerUserDetailLocation = 1,
-    ZHYouViewControllerUserDetailAssetCount = 2,
-    ZHYouViewControllerUserDetailSharedAssetCount = 3,
+    ZHYouViewControllerUserDetailAvatar = 1,
+    ZHYouViewControllerUserDetailLocation = 2,
+    ZHYouViewControllerUserDetailAssetCount = 3,
+    ZHYouViewControllerUserDetailSharedAssetCount = 4,
 } ZHYouViewControllerUserDetail;
 
 
 @interface ZHYouViewController ()
 @property (nonatomic, strong) ZHCloudManager *cloudManager;
-@property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
-@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
-@property (weak, nonatomic) IBOutlet UITextField *uuidTextField;
-@property (weak, nonatomic) IBOutlet UITextField *locationTextField;
-@property (weak, nonatomic) IBOutlet UITextField *assetsTextField;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *saveBarButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
@@ -73,11 +67,6 @@ typedef enum {
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    self.firstNameTextField.text = [ZHUser currentUser].firstName;
-    self.lastNameTextField.text = [ZHUser currentUser].lastName;
-    self.uuidTextField.text = [ZHUser currentUser].uuid;
-    //    self.locationTextField.text = [ZHUser currentUser].loc
     
     [self.tableView reloadData];
 }
@@ -140,7 +129,7 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case ZHYouViewControllerSectionUserDetails:
-            return 4;
+            return 5;
         case ZHYouViewControllerSectionFriends:
             return [ZHUser currentUser].friendUUIDs.count;
         default:
@@ -157,6 +146,10 @@ typedef enum {
                 case ZHYouViewControllerUserDetailFullName:
                     cell.textLabel.text = @"FullName";
                     cell.detailTextLabel.text = [ZHUser currentUser].fullName;
+                    break;
+                case ZHYouViewControllerUserDetailAvatar:
+                    cell.textLabel.text = @"Avatar";
+                    cell.imageView.image = [UIImage imageNamed:[ZHUser currentUser].avatarName];
                     break;
                 case ZHYouViewControllerUserDetailLocation:{
                     cell.textLabel.text = @"Location";

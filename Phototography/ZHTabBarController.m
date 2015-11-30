@@ -23,7 +23,7 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self setupTabBarIcons];
-    [self registerForPushNotifications];
+//    [self registerForPushNotifications];
     [self setSelectedIndex:1];
 }
 

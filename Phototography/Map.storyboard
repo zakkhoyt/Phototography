@@ -253,76 +253,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tvT-cP-OHY">
-                                <rect key="frame" x="20" y="72" width="560" height="30"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="textFieldEditingChanged:" destination="EO1-1c-0ht" eventType="editingChanged" id="pbd-EM-P0C"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rrp-mA-g1u">
-                                <rect key="frame" x="20" y="110" width="560" height="30"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="textFieldEditingChanged:" destination="EO1-1c-0ht" eventType="editingChanged" id="EI6-5c-dl8"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xze-1a-VnE">
-                                <rect key="frame" x="20" y="148" width="560" height="30"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="textFieldEditingChanged:" destination="EO1-1c-0ht" eventType="editingChanged" id="Ve5-kM-RRc"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xyr-SB-8f3">
-                                <rect key="frame" x="20" y="186" width="560" height="30"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="textFieldEditingChanged:" destination="EO1-1c-0ht" eventType="editingChanged" id="UJW-Bl-QVE"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="UUID" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vEU-w7-AjY">
-                                <rect key="frame" x="20" y="224" width="560" height="30"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="textFieldEditingChanged:" destination="EO1-1c-0ht" eventType="editingChanged" id="DLd-MG-ApN"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Assets" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aNx-Sq-cW5">
-                                <rect key="frame" x="20" y="300" width="560" height="30"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="textFieldEditingChanged:" destination="EO1-1c-0ht" eventType="editingChanged" id="eoP-TW-TtA"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o0s-IW-wWm">
-                                <rect key="frame" x="20" y="262" width="560" height="30"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="textFieldEditingChanged:" destination="EO1-1c-0ht" eventType="editingChanged" id="2n8-dS-9vA"/>
-                                </connections>
-                            </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mhe-8g-7Mk">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserDetailCell" textLabel="699-ZL-GW3" detailTextLabel="2A8-6e-xr8" style="IBUITableViewCellStyleValue1" id="VPB-HL-4NY">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VPB-HL-4NY" id="ZO7-uz-fpk">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -359,44 +296,16 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="rrp-mA-g1u" firstAttribute="trailing" secondItem="gMF-Ca-Dfd" secondAttribute="trailingMargin" id="24Y-fq-qUl"/>
                             <constraint firstItem="Mhe-8g-7Mk" firstAttribute="bottom" secondItem="gMF-Ca-Dfd" secondAttribute="bottomMargin" id="4tI-iU-UGP"/>
-                            <constraint firstItem="aNx-Sq-cW5" firstAttribute="top" secondItem="o0s-IW-wWm" secondAttribute="bottom" constant="8" id="5dO-oM-Cza"/>
-                            <constraint firstItem="o0s-IW-wWm" firstAttribute="trailing" secondItem="gMF-Ca-Dfd" secondAttribute="trailingMargin" id="D8O-8w-ZA1"/>
-                            <constraint firstItem="tvT-cP-OHY" firstAttribute="top" secondItem="bTb-EG-gLx" secondAttribute="bottom" constant="8" id="D8S-iV-Hl8"/>
-                            <constraint firstItem="o0s-IW-wWm" firstAttribute="leading" secondItem="gMF-Ca-Dfd" secondAttribute="leadingMargin" id="GOj-uV-VAt"/>
-                            <constraint firstItem="vEU-w7-AjY" firstAttribute="leading" secondItem="gMF-Ca-Dfd" secondAttribute="leadingMargin" id="GdC-Zw-b4T"/>
-                            <constraint firstItem="rrp-mA-g1u" firstAttribute="leading" secondItem="gMF-Ca-Dfd" secondAttribute="leadingMargin" id="H6P-S3-DJC"/>
-                            <constraint firstItem="tvT-cP-OHY" firstAttribute="leading" secondItem="gMF-Ca-Dfd" secondAttribute="leadingMargin" id="JPG-gc-xvW"/>
-                            <constraint firstItem="xyr-SB-8f3" firstAttribute="leading" secondItem="gMF-Ca-Dfd" secondAttribute="leadingMargin" id="JPp-HV-3a2"/>
-                            <constraint firstItem="vEU-w7-AjY" firstAttribute="trailing" secondItem="gMF-Ca-Dfd" secondAttribute="trailingMargin" id="L00-Mt-iZq"/>
-                            <constraint firstItem="o0s-IW-wWm" firstAttribute="top" secondItem="vEU-w7-AjY" secondAttribute="bottom" constant="8" id="LEt-wp-jpW"/>
-                            <constraint firstItem="xze-1a-VnE" firstAttribute="trailing" secondItem="gMF-Ca-Dfd" secondAttribute="trailingMargin" id="Ns7-MJ-r2x"/>
-                            <constraint firstItem="aNx-Sq-cW5" firstAttribute="leading" secondItem="gMF-Ca-Dfd" secondAttribute="leadingMargin" id="OTr-0r-41h"/>
-                            <constraint firstItem="xze-1a-VnE" firstAttribute="leading" secondItem="gMF-Ca-Dfd" secondAttribute="leadingMargin" id="adA-CO-hl9"/>
-                            <constraint firstItem="aNx-Sq-cW5" firstAttribute="trailing" secondItem="gMF-Ca-Dfd" secondAttribute="trailingMargin" id="e6Q-8c-wke"/>
-                            <constraint firstItem="vEU-w7-AjY" firstAttribute="top" secondItem="xyr-SB-8f3" secondAttribute="bottom" constant="8" id="hzu-IE-byV"/>
                             <constraint firstItem="Mhe-8g-7Mk" firstAttribute="leading" secondItem="gMF-Ca-Dfd" secondAttribute="leadingMargin" constant="-20" id="iWN-he-sgF"/>
-                            <constraint firstItem="rrp-mA-g1u" firstAttribute="top" secondItem="tvT-cP-OHY" secondAttribute="bottom" constant="8" id="lw0-Hy-LUL"/>
-                            <constraint firstItem="tvT-cP-OHY" firstAttribute="trailing" secondItem="gMF-Ca-Dfd" secondAttribute="trailingMargin" id="nyU-AG-q02"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Mhe-8g-7Mk" secondAttribute="trailing" constant="-20" id="o3n-ei-hca"/>
-                            <constraint firstItem="xyr-SB-8f3" firstAttribute="trailing" secondItem="gMF-Ca-Dfd" secondAttribute="trailingMargin" id="ppW-iW-7l2"/>
-                            <constraint firstItem="xyr-SB-8f3" firstAttribute="top" secondItem="xze-1a-VnE" secondAttribute="bottom" constant="8" id="r0z-TZ-WBb"/>
                             <constraint firstItem="Mhe-8g-7Mk" firstAttribute="top" secondItem="gMF-Ca-Dfd" secondAttribute="topMargin" id="veV-HF-aAL"/>
-                            <constraint firstItem="xze-1a-VnE" firstAttribute="top" secondItem="rrp-mA-g1u" secondAttribute="bottom" constant="8" id="xkk-FQ-RFx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Your Account" id="or6-Ph-ogz"/>
                     <connections>
-                        <outlet property="assetsTextField" destination="aNx-Sq-cW5" id="JLW-4u-h2P"/>
-                        <outlet property="emailTextField" destination="xze-1a-VnE" id="J0d-ml-KoX"/>
-                        <outlet property="firstNameTextField" destination="tvT-cP-OHY" id="Pt8-oK-nMg"/>
-                        <outlet property="lastNameTextField" destination="rrp-mA-g1u" id="i1w-ar-dhh"/>
-                        <outlet property="locationTextField" destination="o0s-IW-wWm" id="j6J-qW-06z"/>
-                        <outlet property="phoneTextField" destination="xyr-SB-8f3" id="2yV-yc-x7R"/>
                         <outlet property="saveBarButton" destination="JTB-gO-lsK" id="qh4-uB-zsO"/>
                         <outlet property="tableView" destination="Mhe-8g-7Mk" id="mUp-f0-cQm"/>
-                        <outlet property="uuidTextField" destination="vEU-w7-AjY" id="wAg-Oi-xAS"/>
                         <segue destination="XWV-4O-OSR" kind="show" identifier="SegueYouToFindFriends" id="dkL-GD-y4W"/>
                     </connections>
                 </viewController>
