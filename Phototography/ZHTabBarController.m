@@ -8,6 +8,7 @@
 
 #import "ZHTabBarController.h"
 #import "ZHViewControllerImports.h"
+#import "ZHLocationManager.h"
 
 @interface ZHTabBarController ()
 
@@ -23,9 +24,19 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self setupTabBarIcons];
-//    [self registerForPushNotifications];
+    [self registerForPushNotifications];
 //    [self setSelectedIndex:1];
+    
+    [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location, NSError *error) {
+        if(error != nil) {
+            [self presentAlertDialogWithTitle:@"Failed to update location" errorAsMessage:error];
+        } else {
+            [self presentAlertDialogWithMessage:@"Updated Location"];
+        }
+    }];
 }
+
+
 
 
 

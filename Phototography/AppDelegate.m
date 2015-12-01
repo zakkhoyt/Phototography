@@ -175,6 +175,32 @@
 -(void)application:(nonnull UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler {
     NSLog(@"Received remote notification with userInfo: %@", userInfo.description);
     
+    
+    
+//    {
+//        aps =     {
+//            alert =         {
+//                "loc-key" = "Lindy Hoyt is at new location.";
+//            };
+//            badge = 11;
+//            "content-available" = 1;
+//        };
+//        ck =     {
+//            ce = 2;
+//            cid = "iCloud.com.vaporwarewolf.Phototography";
+//            nid = "d2ec2764-1e50-4a11-9999-8c0eab5faffd";
+//            qry =         {
+//                dbs = 2;
+//                fo = 2;
+//                rid = "uuid_eec0c72dc3ba00e79a2d9da2a750e1e5";
+//                sid = "CBD3FE7C-A950-4699-AFA8-E2C6A2793AF6";
+//                zid = "_defaultZone";
+//                zoid = "_defaultOwner";
+//            };
+//        };
+//    }
+    
+    
     // Currently there is no need to wait around. Consider adding completion block to handleNot:
     completionHandler(UIBackgroundFetchResultNoData);
 }

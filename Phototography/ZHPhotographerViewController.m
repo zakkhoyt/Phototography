@@ -36,4 +36,16 @@
 }
 */
 
+- (IBAction)subscribeButtonTouchUpInside:(id)sender {
+    
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    [appDelegate.cloudManager subscribeToLocationUpdatesForPhotographer:self.user completionBlock:^(NSError *error) {
+        if(error != nil) {
+            [self presentAlertDialogWithTitle:@"Failed" errorAsMessage:error];
+        } else {
+            [self presentAlertDialogWithMessage:@"Success"];
+        }
+    }];
+}
+
 @end

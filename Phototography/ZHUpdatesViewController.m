@@ -42,12 +42,12 @@
     
 #if TARGET_IPHONE_SIMULATOR
     CLLocation *location = [[CLLocation alloc]initWithLatitude:37.75 longitude:-122.45];
-    [[ZHLocationManager sharedInstance] updateToLocation:location completionBlock:^(CLLocation *location) {
+    [[ZHLocationManager sharedInstance] updateToLocation:location completionBlock:^(CLLocation *location, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self.tableView reloadData];
     }];
 #else
-    [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location) {
+    [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self.tableView reloadData];
     }];

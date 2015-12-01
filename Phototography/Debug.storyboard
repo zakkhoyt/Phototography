@@ -136,6 +136,30 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="FNL-j4-bIr">
+                                        <rect key="frame" x="0.0" y="220" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FNL-j4-bIr" id="JVW-Sp-AHT">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSv-c7-4JM">
+                                                    <rect key="frame" x="220" y="7" width="160" height="30"/>
+                                                    <animations/>
+                                                    <state key="normal" title="Delete all subscriptions"/>
+                                                    <connections>
+                                                        <action selector="deleteAllSubcriptionsButtonTouchUpInside:" destination="Y4J-h0-qk3" eventType="touchUpInside" id="RTs-XT-d94"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="cSv-c7-4JM" firstAttribute="centerX" secondItem="JVW-Sp-AHT" secondAttribute="centerX" id="4Gg-wV-f1Z"/>
+                                                <constraint firstItem="cSv-c7-4JM" firstAttribute="centerY" secondItem="JVW-Sp-AHT" secondAttribute="centerY" id="yuj-75-0DE"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>

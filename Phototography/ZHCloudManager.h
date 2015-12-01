@@ -27,8 +27,10 @@ typedef void (^ZHCloudManagerProgressBlock)(NSUInteger uploadedCount, NSUInteger
 -(void)userInfo:(ZHCloudManagerUserErrorBlock)completionBlock;
 -(void)findUsersForEmail:(NSString*)email completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock;
 -(void)getPhotographerWithUUID:(NSString*)uuid completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock;
--(void)subscribeToLocationUpdatesForPhotographer:(ZHUser*)photographer completionBlock:(ZHCloudManagerErrorBlock)completionBlock;
 
+
+-(void)subscribeToLocationUpdatesForPhotographer:(ZHUser*)photographer completionBlock:(ZHCloudManagerErrorBlock)completionBlock;
+-(void)deleteAllSubscriptionsWithCompletionBlock:(ZHCloudManagerErrorBlock)completionBlock;
 
 -(void)updateAssets:(NSArray*)assets progressBlock:(ZHCloudManagerProgressBlock)progressBlock completionBlock:(ZHCloudManagerErrorBlock)completionBlock;
 

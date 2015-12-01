@@ -116,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHCloudManager.m"
-            timestampString = "470553227.575264"
+            timestampString = "470631813.81134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "-createPhotographer:completionBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -132,11 +132,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHCloudManager.m"
-            timestampString = "470553227.575264"
+            timestampString = "470631813.81134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "-createPhotographer:completionBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -148,7 +148,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHCloudManager.m"
-            timestampString = "470553227.575264"
+            timestampString = "470631813.81134"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "-createPhotographer:completionBlock:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Phototography/ZHCloudManager.m"
+            timestampString = "470631813.81134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
@@ -164,27 +180,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHCloudManager.m"
-            timestampString = "470553227.575264"
+            timestampString = "470631813.81134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "-createPhotographer:completionBlock:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Phototography/ZHCloudManager.m"
-            timestampString = "470553227.575264"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "-createPhotographer:completionBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -196,11 +196,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHCloudManager.m"
-            timestampString = "470553227.575264"
+            timestampString = "470631813.81134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "-createPhotographer:completionBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -212,11 +212,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHCloudManager.m"
-            timestampString = "470553227.575264"
+            timestampString = "470631813.81134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "212"
-            endingLineNumber = "212"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
             landmarkName = "-updateUser:completionBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -228,11 +228,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHCloudManager.m"
-            timestampString = "470553227.575264"
+            timestampString = "470631813.81134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
             landmarkName = "-updateUser:completionBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -244,11 +244,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHCloudManager.m"
-            timestampString = "470553227.575264"
+            timestampString = "470631813.81134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
             landmarkName = "-updateUser:completionBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -260,11 +260,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHCloudManager.m"
-            timestampString = "470553227.575264"
+            timestampString = "470631813.81134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "-updateUser:completionBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -276,11 +276,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHCloudManager.m"
-            timestampString = "470556802.134408"
+            timestampString = "470631813.81134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
             landmarkName = "-findUsersForEmail:completionBlock:"
             landmarkType = "5">
             <Locations>
@@ -324,11 +324,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHCloudManager.m"
-            timestampString = "470553227.575264"
+            timestampString = "470631813.81134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "-getPhotographerWithUUID:completionBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -340,11 +340,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHCloudManager.m"
-            timestampString = "470553227.575264"
+            timestampString = "470631813.81134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "-getPhotographerWithUUID:completionBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -356,11 +356,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHCloudManager.m"
-            timestampString = "470553227.575264"
+            timestampString = "470631813.81134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "-getPhotographerWithUUID:completionBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -484,11 +484,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHCloudManager.m"
-            timestampString = "470553227.575264"
+            timestampString = "470631813.81134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
             landmarkName = "-updateUser:completionBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -628,28 +628,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHCloudManager.m"
-            timestampString = "470619964.735721"
+            timestampString = "470632870.533184"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "512"
-            endingLineNumber = "512"
+            startingLineNumber = "530"
+            endingLineNumber = "530"
             landmarkName = "-getAssetsNearLocation:ownerUUID:completionBlock:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Phototography/ZHDebugTableViewController.m"
-            timestampString = "470562491.038184"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "-getFriendsAssetsButtonTouchUpInside:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -676,11 +660,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHCloudManager.m"
-            timestampString = "470619964.735721"
+            timestampString = "470632870.533184"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "483"
-            endingLineNumber = "483"
+            startingLineNumber = "501"
+            endingLineNumber = "501"
             landmarkName = "-getAssetsNearLocation:completionBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -692,11 +676,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHCloudManager.m"
-            timestampString = "470619964.735721"
+            timestampString = "470632870.533184"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "485"
-            endingLineNumber = "485"
+            startingLineNumber = "503"
+            endingLineNumber = "503"
             landmarkName = "-getAssetsNearLocation:completionBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -708,11 +692,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHCloudManager.m"
-            timestampString = "470619964.735721"
+            timestampString = "470632870.533184"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "520"
-            endingLineNumber = "520"
+            startingLineNumber = "538"
+            endingLineNumber = "538"
             landmarkName = "-getAssetsNearLocation:ownerUUID:completionBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -724,11 +708,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHCloudManager.m"
-            timestampString = "470619964.735721"
+            timestampString = "470632870.533184"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "470"
-            endingLineNumber = "470"
+            startingLineNumber = "488"
+            endingLineNumber = "488"
             landmarkName = "-getAssetsNearLocation:completionBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -740,11 +724,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHCloudManager.m"
-            timestampString = "470619964.735721"
+            timestampString = "470632870.533184"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "482"
-            endingLineNumber = "482"
+            startingLineNumber = "500"
+            endingLineNumber = "500"
             landmarkName = "-getAssetsNearLocation:completionBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -788,11 +772,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHDebugTableViewController.m"
-            timestampString = "470619186.382589"
+            timestampString = "470633875.453436"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "-updateAssetsButtonTouchUpInside:"
             landmarkType = "5">
          </BreakpointContent>
@@ -804,11 +788,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHDebugTableViewController.m"
-            timestampString = "470619186.382589"
+            timestampString = "470633875.453436"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "-updateAssetsButtonTouchUpInside:"
             landmarkType = "5">
          </BreakpointContent>
@@ -820,11 +804,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHDebugTableViewController.m"
-            timestampString = "470619186.382589"
+            timestampString = "470633875.453436"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "-updateAssetsButtonTouchUpInside:"
             landmarkType = "5">
          </BreakpointContent>
@@ -836,11 +820,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHDebugTableViewController.m"
-            timestampString = "470619186.382589"
+            timestampString = "470633875.453436"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "-updateAssetsButtonTouchUpInside:"
             landmarkType = "5">
          </BreakpointContent>
@@ -852,11 +836,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ZHDebugTableViewController.m"
-            timestampString = "470619177.51471"
+            timestampString = "470633875.453436"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "-updateAssetsButtonTouchUpInside:"
             landmarkType = "5">
          </BreakpointContent>
@@ -904,6 +888,102 @@
             startingLineNumber = "154"
             endingLineNumber = "154"
             landmarkName = "-clusteredMapView:viewForClusteredAnnotation:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Phototography/ZHCloudManager.m"
+            timestampString = "470632870.533184"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "358"
+            endingLineNumber = "358"
+            landmarkName = "-subscribeToLocationUpdatesForPhotographer:completionBlock:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Phototography/AppDelegate.m"
+            timestampString = "470631991.204769"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "-application:didReceiveLocalNotification:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Phototography/AppDelegate.m"
+            timestampString = "470631991.935177"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "-application:didReceiveRemoteNotification:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Phototography/AppDelegate.m"
+            timestampString = "470631992.936502"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "-application:didReceiveRemoteNotification:fetchCompletionHandler:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Phototography/ZHCloudManager.m"
+            timestampString = "470632716.986492"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "335"
+            endingLineNumber = "335"
+            landmarkName = "-deleteAllSubscriptionsWithCompletionBlock:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Phototography/ZHCloudManager.m"
+            timestampString = "470632718.114348"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "344"
+            endingLineNumber = "344"
+            landmarkName = "-deleteAllSubscriptionsWithCompletionBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

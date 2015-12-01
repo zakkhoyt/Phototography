@@ -42,7 +42,7 @@ const CLLocationDistance kRadius = 10000;
     self.clusteredMapView.addAnimationType = VWWClusteredMapViewAnnotationAddAnimationGrowStaggered;
     self.clusteredMapView.removeAnimationType = VWWClusteredMapViewAnnotationRemoveAnimationAutomatic;
     self.clusteredMapView.showsUserLocation = YES;
-    [self findNearbyPhotos];
+//    [self findNearbyPhotos];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -101,7 +101,7 @@ const CLLocationDistance kRadius = 10000;
         findAssets(location);
     }];
 #else
-    [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location) {
+    [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location, NSError *error) {
         findAssets(location);
     }];
 #endif

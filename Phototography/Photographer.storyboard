@@ -24,11 +24,21 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z90-9t-4Bu">
+                                <rect key="frame" x="265" y="550" width="70" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Subscribe"/>
+                                <connections>
+                                    <action selector="subscribeButtonTouchUpInside:" destination="KPI-Ie-1XD" eventType="touchUpInside" id="cAN-ZK-gcM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Gyq-EU-H4w" firstAttribute="top" secondItem="z90-9t-4Bu" secondAttribute="bottom" constant="20" id="1BD-zs-CDO"/>
                             <constraint firstItem="kaL-Ec-rqa" firstAttribute="trailing" secondItem="aAY-Kv-laf" secondAttribute="trailingMargin" id="Jql-L3-1YZ"/>
+                            <constraint firstItem="z90-9t-4Bu" firstAttribute="centerX" secondItem="aAY-Kv-laf" secondAttribute="centerX" id="OQL-mQ-NRZ"/>
                             <constraint firstItem="kaL-Ec-rqa" firstAttribute="leading" secondItem="aAY-Kv-laf" secondAttribute="leadingMargin" id="fPS-Oc-7JD"/>
                             <constraint firstItem="kaL-Ec-rqa" firstAttribute="top" secondItem="CdE-y4-hS9" secondAttribute="bottom" id="kbb-zz-mTC"/>
                         </constraints>

@@ -14,6 +14,10 @@
 #import <CoreLocation/CoreLocation.h>
 #import "ZHNotificationNames.h"
 
+static NSString *ZHCloudManagerPhotographersKey = @"Photographers";
+static NSString *ZHCloudManagerUsersKey = @"Users";
+static NSString *ZHCloudManagerAssetsKey = @"Assets";
+
 @interface ZHCloudManager ()
 @property (nonatomic, strong) CKContainer *container;
 @property (nonatomic, strong) CKDatabase *publicDB;
@@ -41,7 +45,7 @@
 -(void)createPhotographer:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock{
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"UUID == %@", user.uuid];
-    CKQuery *query = [[CKQuery alloc]initWithRecordType:@"Photographers" predicate:predicate];
+    CKQuery *query = [[CKQuery alloc]initWithRecordType:ZHCloudManagerPhotographersKey predicate:predicate];
     
     [self.publicDB performQuery:query inZoneWithID:nil completionHandler:^(NSArray<CKRecord *> * _Nullable results, NSError * _Nullable error) {
         if(error != nil) {
@@ -118,7 +122,7 @@
 -(void)getFriendsWithEmail:(NSString*)email completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"Email == %@", email];
     //        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"Email != ''", email];
-    CKQuery *query = [[CKQuery alloc]initWithRecordType:@"Photographers" predicate:predicate];
+    CKQuery *query = [[CKQuery alloc]initWithRecordType:ZHCloudManagerPhotographersKey predicate:predicate];
     
     [self.publicDB performQuery:query inZoneWithID:nil completionHandler:^(NSArray<CKRecord *> * _Nullable results, NSError * _Nullable error) {
         if(error != nil) {
@@ -321,28 +325,43 @@
 }
 
 
+-(void)deleteAllSubscriptionsWithCompletionBlock:(ZHCloudManagerErrorBlock)completionBlock {
+    __block NSError *totalError;
+    [self.publicDB fetchAllSubscriptionsWithCompletionHandler:^(NSArray<CKSubscription *> * _Nullable subscriptions, NSError * _Nullable error) {
+        
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        [subscriptions enumerateObjectsUsingBlock:^(CKSubscription * _Nonnull subscription, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.publicDB deleteSubscriptionWithID:subscription.subscriptionID completionHandler:^(NSString * _Nullable subscriptionID, NSError * _Nullable error) {
+                if(error != nil) {
+                    totalError = error;
+                }
+                dispatch_semaphore_signal(semaphore);
+            }];
+        }];
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(totalError);
+        });
+    }];
+}
+
+
 -(void)subscribeToLocationUpdatesForPhotographer:(ZHUser*)photographer completionBlock:(ZHCloudManagerErrorBlock)completionBlock {
  
     // 1
-    CKRecordID *artistRecordID = [[CKRecordID alloc] initWithRecordName:@"Mei Chen"];
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"artist = %@", artistRecordID];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"UUID = %@", photographer.uuid];
+//    NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"Location != nil"];
+//    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[predicate1, predicate2]];
     
     // 2
-    CKSubscription *subscription = [[CKSubscription alloc]
-                                    
-                                    initWithRecordType:@"Artwork"
-                                    
-                                    predicate:predicate
-                                    
-                                    options:CKSubscriptionOptionsFiresOnRecordCreation];
+    CKSubscription *subscription = [[CKSubscription alloc] initWithRecordType:ZHCloudManagerPhotographersKey predicate:predicate options:CKSubscriptionOptionsFiresOnRecordUpdate];
     
     // 3
     CKNotificationInfo *notificationInfo = [CKNotificationInfo new];
-    
-    notificationInfo.alertLocalizationKey = @"New artwork by your favorite artist.";
-    
+    notificationInfo.alertLocalizationKey = [NSString stringWithFormat:@"%@ is at new location.", photographer.fullName];
     notificationInfo.shouldBadge = YES;
+    notificationInfo.shouldSendContentAvailable = YES;
     
     // 4
     subscription.notificationInfo = notificationInfo;
@@ -357,7 +376,6 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 completionBlock(nil);
             });
-            
         }
     }];
 }
@@ -425,7 +443,7 @@
 
 -(void)getAssetsForUserUUID:(NSString*)userUUID completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"OwnerUUID = %@", userUUID];
-    CKQuery *query = [[CKQuery alloc] initWithRecordType:@"Assets" predicate:predicate];
+    CKQuery *query = [[CKQuery alloc] initWithRecordType:ZHCloudManagerAssetsKey predicate:predicate];
     
     [self.publicDB performQuery:query inZoneWithID:nil completionHandler:^(NSArray *results, NSError *error) {\
         
@@ -505,7 +523,7 @@
 //    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[predicate1, predicate2]];
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"OwnerUUID = %@", ownerUUID];
-    CKQuery *query = [[CKQuery alloc] initWithRecordType:@"Assets" predicate:predicate];
+    CKQuery *query = [[CKQuery alloc] initWithRecordType:ZHCloudManagerAssetsKey predicate:predicate];
     
     [self.publicDB performQuery:query inZoneWithID:nil completionHandler:^(NSArray *results, NSError *error) {\
         
