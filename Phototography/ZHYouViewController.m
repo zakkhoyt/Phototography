@@ -14,6 +14,7 @@
 #import "ZHPhotographerViewController.h"
 
 static NSString *SegueYouToFindFriends = @"SegueYouToFindFriends";
+static NSString *SegueYouToAvatarPicker = @"SegueYouToAvatarPicker";
 
 typedef enum {
     ZHYouViewControllerSectionUserDetails = 0,
@@ -199,13 +200,29 @@ typedef enum {
 @implementation ZHYouViewController (UITableViewDelegate)
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Photographer" bundle:[NSBundle mainBundle]];
-    ZHPhotographerViewController *vc = [storyboard instantiateInitialViewController];
-    NSString *uuid = [ZHUser currentUser].friendUUIDs[indexPath.row];
-    [self.cloudManager getPhotographerWithUUID:uuid completionBlock:^(ZHUser *user, NSError *error) {
-        vc.user = user;
-        [self.navigationController pushViewController:vc animated:YES];
-    }];
+    switch (indexPath.section) {
+        case ZHYouViewControllerSectionUserDetails:{
+            if(indexPath.item == ZHYouViewControllerUserDetailAvatar) {
+                [self performSegueWithIdentifier:SegueYouToAvatarPicker sender:nil];
+            }
+        }
+
+            break;
+        case ZHYouViewControllerSectionFriends:{
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Photographer" bundle:[NSBundle mainBundle]];
+            ZHPhotographerViewController *vc = [storyboard instantiateInitialViewController];
+            NSString *uuid = [ZHUser currentUser].friendUUIDs[indexPath.row];
+            [self.cloudManager getPhotographerWithUUID:uuid completionBlock:^(ZHUser *user, NSError *error) {
+                vc.user = user;
+                [self.navigationController pushViewController:vc animated:YES];
+            }];
+        }
+            break;
+        default:
+            break;
+    }
+        
+
 }
 
 #pragma mark UITableViewDelegate (header)

@@ -307,6 +307,7 @@
                         <outlet property="saveBarButton" destination="JTB-gO-lsK" id="qh4-uB-zsO"/>
                         <outlet property="tableView" destination="Mhe-8g-7Mk" id="mUp-f0-cQm"/>
                         <segue destination="XWV-4O-OSR" kind="show" identifier="SegueYouToFindFriends" id="dkL-GD-y4W"/>
+                        <segue destination="X2w-Ca-IUI" kind="presentation" identifier="SegueYouToAvatarPicker" id="hOJ-IZ-5OP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2J4-lT-4hE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -373,6 +374,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q2d-zB-GmO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3314" y="1945"/>
+        </scene>
+        <!--Avatar Picker Collection View Controller-->
+        <scene sceneID="fuY-rW-Noj">
+            <objects>
+                <collectionViewController id="X2w-Ca-IUI" customClass="ZHAvatarPickerCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="I66-zO-KJf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IrO-BH-0ao">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ZHAvatarCollectionViewCell" id="8kr-Oy-0Hs" customClass="ZHAvatarCollectionViewCell">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AFM-3p-EYg">
+                                            <rect key="frame" x="8" y="8" width="34" height="34"/>
+                                            <animations/>
+                                        </imageView>
+                                    </subviews>
+                                    <animations/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstItem="AFM-3p-EYg" firstAttribute="bottom" secondItem="8kr-Oy-0Hs" secondAttribute="bottomMargin" id="2QI-v1-yQk"/>
+                                    <constraint firstItem="AFM-3p-EYg" firstAttribute="top" secondItem="8kr-Oy-0Hs" secondAttribute="topMargin" id="QPt-nm-vR1"/>
+                                    <constraint firstItem="AFM-3p-EYg" firstAttribute="trailing" secondItem="8kr-Oy-0Hs" secondAttribute="trailingMargin" id="W7S-pu-rzR"/>
+                                    <constraint firstItem="AFM-3p-EYg" firstAttribute="leading" secondItem="8kr-Oy-0Hs" secondAttribute="leadingMargin" id="mWB-9h-9gn"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="AFM-3p-EYg" id="xdw-oA-J0v"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="X2w-Ca-IUI" id="gQK-7V-WPY"/>
+                            <outlet property="delegate" destination="X2w-Ca-IUI" id="h6I-fg-U75"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aHE-Ct-WWM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3438" y="2430"/>
         </scene>
     </scenes>
 </document>

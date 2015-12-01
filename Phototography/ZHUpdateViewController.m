@@ -15,6 +15,9 @@
 #import "ZHAssetAnnotation.h"
 #import "ZHAssetAnnotationView.h"
 #import "ZHUserAnnotationView.h"
+#import "ZHPhotographerViewController.h"
+
+const CLLocationDistance kRadius = 10000;
 
 @interface ZHUpdateViewController ()
 @property (weak, nonatomic) IBOutlet VWWClusteredMapView *clusteredMapView;
@@ -39,12 +42,12 @@
     self.clusteredMapView.addAnimationType = VWWClusteredMapViewAnnotationAddAnimationGrowStaggered;
     self.clusteredMapView.removeAnimationType = VWWClusteredMapViewAnnotationRemoveAnimationAutomatic;
     self.clusteredMapView.showsUserLocation = YES;
-
+    [self findNearbyPhotos];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self findNearbyPhotos];
+
     
 }
 
@@ -59,58 +62,23 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Locating...";
     
-#if TARGET_IPHONE_SIMULATOR
-    CLLocation *location = [[CLLocation alloc]initWithLatitude:37.75 longitude:-122.45];
-    [[ZHLocationManager sharedInstance] updateToLocation:location completionBlock:^(CLLocation *location) {
-
-        ZHUser *currentUser = [ZHUser currentUser];
-        currentUser.location = location;
-        
-        /// ** Updates currentUser's location
-//        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-//        [appDelegate.cloudManager updateUser:currentUser completionBlock:^(ZHUser *user, NSError *error) {
-//            [MBProgressHUD hideHUDForView:self.view animated:YES];
-//            if(error != nil) {
-//                [self presentAlertDialogWithTitle:@"Could not update location" errorAsMessage:error];
-//            } else {
-//                [self.clusteredMapView reloadData];
-//            }
-//        }];
-        
-        /// ******* get assets for all friends near location
-        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-        [appDelegate.cloudManager getAssetsNearLocation:location completionBlock:^(NSArray *userAssets, NSError *error) {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            if(error != nil) {
-                [self presentAlertDialogWithTitle:@"Could not update location" errorAsMessage:error];
-            } else {
-                [self presentAlertDialogWithMessage:[NSString stringWithFormat:@"Found %lu assets", (unsigned long)userAssets.count]];
-                self.userAssets = userAssets;
-                [self.clusteredMapView reloadData];
-            }
-        }];
-    }];
-    
-#else
-    [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location) {
-        
-        MKCoordinateSpan span = MKCoordinateSpanMake(0.1, 0.1);
-        MKCoordinateRegion region = MKCoordinateRegionMake(location.coordinate, span);
+    void (^findAssets)(CLLocation *location) = ^(CLLocation *location){
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 2*kRadius, 2*kRadius*self.view.bounds.size.height / self.view.bounds.size.width);
         [self.clusteredMapView setRegion:region animated:YES];
         
         ZHUser *currentUser = [ZHUser currentUser];
         currentUser.location = location;
         
         /// ** Updates currentUser's location
-//        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-//        [appDelegate.cloudManager updateUser:currentUser completionBlock:^(ZHUser *user, NSError *error) {
-//            [MBProgressHUD hideHUDForView:self.view animated:YES];
-//            if(error != nil) {
-//                [self presentAlertDialogWithTitle:@"Could not update location" errorAsMessage:error];
-//            } else {
-//                [self.clusteredMapView reloadData];
-//            }
-//        }];
+        //        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        //        [appDelegate.cloudManager updateUser:currentUser completionBlock:^(ZHUser *user, NSError *error) {
+        //            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        //            if(error != nil) {
+        //                [self presentAlertDialogWithTitle:@"Could not update location" errorAsMessage:error];
+        //            } else {
+        //                [self.clusteredMapView reloadData];
+        //            }
+        //        }];
         
         /// ******* get assets for all friends near location
         AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
@@ -125,6 +93,16 @@
             }
         }];
 
+    };
+    
+#if TARGET_IPHONE_SIMULATOR
+    CLLocation *location = [[CLLocation alloc]initWithLatitude:37.75 longitude:-122.45];
+    [[ZHLocationManager sharedInstance] updateToLocation:location completionBlock:^(CLLocation *location) {
+        findAssets(location);
+    }];
+#else
+    [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location) {
+        findAssets(location);
     }];
 #endif
 
@@ -171,9 +149,9 @@
         ZHUserAnnotationView *annotationView = (ZHUserAnnotationView*)[clusteredMapView dequeueReusableAnnotationViewWithIdentifier:@"ZHUserAnnotationView"];
         if(annotationView == nil){
             annotationView = [[ZHUserAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"ZHUserAnnotationView"];
-            annotationView.annotation = annotation;
-            annotationView.user = [ZHUser currentUser];
         }
+        annotationView.annotation = annotation;
+        annotationView.user = [ZHUser currentUser];
         annotationView.count = annotation.annotations.count;
         return annotationView;
     }
@@ -182,13 +160,18 @@
 }
 
 - (void)clusteredMapView:(VWWClusteredMapView *)clusteredMapView didSelectClusteredAnnotationView:(VWWClusteredAnnotationView *)view {
-//    NSLog(@"annotationView.class: %@", NSStringFromClass([view class]));
-//    VWWClusteredAnnotation *annotation = (VWWClusteredAnnotation*)view.annotation;
-//    //    PHAssetCollection *assetCollection = [PHAssetCollection transientAssetCollectionWithAssets:annotation.annotations title:nil];
-//    NSArray *assets = [annotation.annotations valueForKeyPath:@"asset"];
-//    [self performSegueWithIdentifier:SegueMapToAssetGroup sender:assets];
+    NSLog(@"annotationView.class: %@", NSStringFromClass([view class]));
     
-    [self presentAlertDialogWithMessage:@"TODO: Show photos"];
+    if([view isKindOfClass:[ZHUserAnnotationView class]]) {
+        ZHUserAnnotationView *userAnnotationView = (ZHUserAnnotationView*)view;
+        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        [appDelegate.cloudManager getPhotographerWithUUID:userAnnotationView.user.uuid completionBlock:^(ZHUser *user, NSError *error) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Photographer" bundle:[NSBundle mainBundle]];
+            ZHPhotographerViewController *vc = [storyboard instantiateInitialViewController];
+            vc.user = user;
+            [self.navigationController pushViewController:vc animated:YES];
+        }];
+    }
 }
 
 @end

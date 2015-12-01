@@ -12,7 +12,7 @@
 @implementation ZHAvatarImageView
 
 +(NSString*)randomAvatarName{
-    NSUInteger random = arc4random() % 115 + 1;
+    NSUInteger random = arc4random() % 115;
     return [NSString stringWithFormat:@"avatar_%05lu", (unsigned long)random];
 }
 

@@ -84,6 +84,8 @@
 		C6C099641C0CF2DC004B862F /* ZHAvatarImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6C099631C0CF2DC004B862F /* ZHAvatarImageView.m */; };
 		C6C099671C0CF42F004B862F /* ZHUserAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6C099661C0CF42F004B862F /* ZHUserAnnotationView.m */; };
 		C6C0996A1C0CF864004B862F /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = C6C099691C0CF864004B862F /* todo.txt */; };
+		C6C099711C0D19AC004B862F /* ZHAvatarPickerCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6C099701C0D19AC004B862F /* ZHAvatarPickerCollectionViewController.m */; };
+		C6C099751C0D1A31004B862F /* ZHAvatarCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C6C099741C0D1A31004B862F /* ZHAvatarCollectionViewCell.m */; };
 		C6FB1A351C0ABF5B006453C9 /* ZHLocationUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FB1A341C0ABF5B006453C9 /* ZHLocationUpdate.m */; };
 		C6FE5D6D1C0ACCC10084F758 /* ZHFullscreenAssetCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FE5D6C1C0ACCC10084F758 /* ZHFullscreenAssetCollectionViewCell.m */; };
 		C6FE5D701C0ACCC90084F758 /* ZHFullscreenAssetCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FE5D6F1C0ACCC90084F758 /* ZHFullscreenAssetCollectionViewController.m */; };
@@ -234,6 +236,10 @@
 		C6C099651C0CF42F004B862F /* ZHUserAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHUserAnnotationView.h; sourceTree = "<group>"; };
 		C6C099661C0CF42F004B862F /* ZHUserAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHUserAnnotationView.m; sourceTree = "<group>"; };
 		C6C099691C0CF864004B862F /* todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo.txt; sourceTree = "<group>"; };
+		C6C0996F1C0D19AC004B862F /* ZHAvatarPickerCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHAvatarPickerCollectionViewController.h; sourceTree = "<group>"; };
+		C6C099701C0D19AC004B862F /* ZHAvatarPickerCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHAvatarPickerCollectionViewController.m; sourceTree = "<group>"; };
+		C6C099731C0D1A31004B862F /* ZHAvatarCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHAvatarCollectionViewCell.h; sourceTree = "<group>"; };
+		C6C099741C0D1A31004B862F /* ZHAvatarCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHAvatarCollectionViewCell.m; sourceTree = "<group>"; };
 		C6FB1A331C0ABF5B006453C9 /* ZHLocationUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLocationUpdate.h; sourceTree = "<group>"; };
 		C6FB1A341C0ABF5B006453C9 /* ZHLocationUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLocationUpdate.m; sourceTree = "<group>"; };
 		C6FE5D6B1C0ACCC10084F758 /* ZHFullscreenAssetCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHFullscreenAssetCollectionViewCell.h; sourceTree = "<group>"; };
@@ -389,6 +395,7 @@
 				C6439A3C1C0962C4006BCF73 /* ZHYouViewController.m */,
 				C696B6621C0A978100F21D4D /* Cell */,
 				C696B6611C0A977D00F21D4D /* View */,
+				C6C099721C0D1A18004B862F /* AvatarPicker */,
 			);
 			name = You;
 			sourceTree = "<group>";
@@ -752,6 +759,25 @@
 			name = Annotations;
 			sourceTree = "<group>";
 		};
+		C6C099721C0D1A18004B862F /* AvatarPicker */ = {
+			isa = PBXGroup;
+			children = (
+				C6C0996F1C0D19AC004B862F /* ZHAvatarPickerCollectionViewController.h */,
+				C6C099701C0D19AC004B862F /* ZHAvatarPickerCollectionViewController.m */,
+				C6C099761C0D1C61004B862F /* Cell */,
+			);
+			name = AvatarPicker;
+			sourceTree = "<group>";
+		};
+		C6C099761C0D1C61004B862F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C6C099731C0D1A31004B862F /* ZHAvatarCollectionViewCell.h */,
+				C6C099741C0D1A31004B862F /* ZHAvatarCollectionViewCell.m */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		C6FE5D711C0ACD850084F758 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -919,6 +945,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6C099711C0D19AC004B862F /* ZHAvatarPickerCollectionViewController.m in Sources */,
 				C67D86961BBF7EF800B2C4CF /* UIColor+ZH.m in Sources */,
 				C67D86A11BBF7EF800B2C4CF /* UIViewController+AlertController.m in Sources */,
 				C6439A401C096BB7006BCF73 /* ZHContactsManager.m in Sources */,
@@ -949,6 +976,7 @@
 				C6BBCA421BC31C0A009D6887 /* VWWClusteredMapView+Private.m in Sources */,
 				C67092251C08396A00AE06F3 /* ZHOnboardingViewController.m in Sources */,
 				C696B6781C0AA0C400F21D4D /* ZHAssetImageView.m in Sources */,
+				C6C099751C0D1A31004B862F /* ZHAvatarCollectionViewCell.m in Sources */,
 				C67092221C08346D00AE06F3 /* ZHUser.m in Sources */,
 				C6B8297B1BC31D0E00782468 /* ZHMapViewController.m in Sources */,
 				C67D869E1BBF7EF800B2C4CF /* NSURLRequest+curl.m in Sources */,

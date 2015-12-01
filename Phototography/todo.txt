@@ -1,3 +1,12 @@
+
+
+
+1.0
+
+User must use iCloud
+User's assets are uploaded
+Update is triggered when you visit the update tab'
+
 Assets
 * Need to push all assets in batches of 400
 * Need to update asset records (new, deleted)

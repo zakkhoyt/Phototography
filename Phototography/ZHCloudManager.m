@@ -365,7 +365,7 @@
 
 
 -(void)updateAssets:(NSArray*)assets progressBlock:(ZHCloudManagerProgressBlock)progressBlock completionBlock:(ZHCloudManagerErrorBlock)completionBlock {
-        
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         const NSUInteger kBatchSize = 100;
         __block NSError *error;
