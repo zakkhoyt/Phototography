@@ -13,6 +13,7 @@
 #import "NSError+ZH.h"
 #import <CoreLocation/CoreLocation.h>
 #import "ZHNotificationNames.h"
+#import "ZHLocationManager.h"
 
 @interface ZHCloudManager ()
 @property (nonatomic, strong) CKContainer *container;
@@ -476,7 +477,8 @@
 
 
 
--(void)getAssetsNearLocation:(CLLocation*)location completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock {
+-(void)getAssetsNearLocation:(CLLocation*)location distance:(CLLocationDistance)distance completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock {
+    // TODO: This can be done without looping with a fetchOperation
     
     dispatch_group_t group = dispatch_group_create();
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -487,7 +489,7 @@
     [[ZHUser currentUser].friends enumerateObjectsUsingBlock:^(ZHUser * _Nonnull user, NSUInteger idx, BOOL * _Nonnull stop) {
         dispatch_group_enter(group);
         dispatch_async(queue, ^{
-            [self getAssetsNearLocation:location ownerUUID:user.uuid completionBlock:^(NSArray *assets, NSError *error) {
+            [self getAssetsNearLocation:location distance:ZHLocationManagerRadiusInMeters ownerUUID:user.uuid completionBlock:^(NSArray *assets, NSError *error) {
 
                 if(error != nil) {
                     retError = error;
@@ -517,21 +519,12 @@
 
 }
 
--(void)getAssetsNearLocation:(CLLocation*)location ownerUUID:(NSString*)ownerUUID completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock{
+-(void)getAssetsNearLocation:(CLLocation*)location
+                    distance:(CLLocationDistance)distance
+                   ownerUUID:(NSString*)ownerUUID completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock{
     
-    
-//    let locationPredicate = NSPredicate(format: "distanceToLocation:fromLocation:(%K,%@) < %f",
-//                                        "Location",
-//                                        location,
-//                                        radiusInKilometers)
-    
-    
-    
-//    NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"OwnerUUID = %@", ownerUUID];
-//    NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"distanceToLocation:fromLocation:(Location, %@) < %f", location, 100000];
-//    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[predicate1, predicate2]];
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"OwnerUUID = %@", ownerUUID];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"distanceToLocation:fromLocation:(Location, %@) < %f", location, distance];
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"OwnerUUID = %@", ownerUUID];
     CKQuery *query = [[CKQuery alloc] initWithRecordType:@"Assets" predicate:predicate];
     
     [self.publicDB performQuery:query inZoneWithID:nil completionHandler:^(NSArray *results, NSError *error) {\

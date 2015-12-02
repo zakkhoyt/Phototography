@@ -88,7 +88,7 @@
 -(void)updateToCurrentLocationWithCompletionBlock:(ZHLocationManagerLocationErrorBlock)completionBlock {
     
     _accurateLocationBlock = ^(CLLocation *location, NSError *error) {
-        ZHUser *currentUser = [ZHUser currentUser];
+        ZHUser *currentUser = [[ZHUser currentUser] copy];
         currentUser.location = location;
         
         // ** Updates currentUser's location
@@ -99,6 +99,7 @@
                     completionBlock(nil, error);
                 });
             } else {
+                [ZHUser setCurrentUser:currentUser];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     completionBlock(location, nil);
                 });

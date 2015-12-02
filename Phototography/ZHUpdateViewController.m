@@ -16,7 +16,7 @@
 #import "ZHUserAssetAnnotationView.h"
 #import "ZHPhotographerViewController.h"
 
-const CLLocationDistance kRadius = 100;
+
 
 @interface ZHUpdateViewController ()
 @property (weak, nonatomic) IBOutlet VWWClusteredMapView *clusteredMapView;
@@ -62,26 +62,15 @@ const CLLocationDistance kRadius = 100;
     hud.labelText = @"Locating...";
     
     void (^findAssets)(CLLocation *location) = ^(CLLocation *location){
-        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 2*kRadius, 2*kRadius*self.view.bounds.size.height / self.view.bounds.size.width);
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 2*ZHLocationManagerRadiusInMeters, 2*ZHLocationManagerRadiusInMeters*self.view.bounds.size.height / self.view.bounds.size.width);
         [self.clusteredMapView setRegion:region animated:YES];
         
         ZHUser *currentUser = [ZHUser currentUser];
         currentUser.location = location;
-        
-        /// ** Updates currentUser's location
-        //        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-        //        [appDelegate.cloudManager updateUser:currentUser completionBlock:^(ZHUser *user, NSError *error) {
-        //            [MBProgressHUD hideHUDForView:self.view animated:YES];
-        //            if(error != nil) {
-        //                [self presentAlertDialogWithTitle:@"Could not update location" errorAsMessage:error];
-        //            } else {
-        //                [self.clusteredMapView reloadData];
-        //            }
-        //        }];
-        
+
         /// ******* get assets for all friends near location
         AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-        [appDelegate.cloudManager getAssetsNearLocation:location completionBlock:^(NSArray *userAssets, NSError *error) {
+        [appDelegate.cloudManager getAssetsNearLocation:location distance:ZHLocationManagerRadiusInMeters completionBlock:^(NSArray *userAssets, NSError *error) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if(error != nil) {
                 [self presentAlertDialogWithTitle:@"Could not update location" errorAsMessage:error];

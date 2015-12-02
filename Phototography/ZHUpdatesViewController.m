@@ -52,7 +52,7 @@
         updateTableView();
     }];
 #else
-    [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location) {
+    [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location, NSError *error) {
         updateTableView();
     }];
 #endif

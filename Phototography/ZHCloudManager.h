@@ -37,8 +37,8 @@ typedef void (^ZHCloudManagerProgressBlock)(NSUInteger uploadedCount, NSUInteger
 -(void)getAssetsForUserUUID:(NSString*)userUUID completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock;
 
 
--(void)getAssetsNearLocation:(CLLocation*)location completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock;
--(void)getAssetsNearLocation:(CLLocation*)location ownerUUID:(NSString*)ownerUUID completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock;
+-(void)getAssetsNearLocation:(CLLocation*)location distance:(CLLocationDistance)distance completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock;
+-(void)getAssetsNearLocation:(CLLocation*)location distance:(CLLocationDistance)distance ownerUUID:(NSString*)ownerUUID completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock;
 
 
 @end

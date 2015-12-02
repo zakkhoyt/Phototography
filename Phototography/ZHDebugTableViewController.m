@@ -35,7 +35,7 @@
         
         /// ******* get assets for all friends near location
         AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-        [appDelegate.cloudManager getAssetsNearLocation:location completionBlock:^(NSArray *userAssets, NSError *error) {
+        [appDelegate.cloudManager getAssetsNearLocation:location distance:ZHLocationManagerRadiusInMeters completionBlock:^(NSArray *userAssets, NSError *error) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if(error != nil) {
                 [self presentAlertDialogWithTitle:@"Failed to get assets" errorAsMessage:error];
@@ -52,7 +52,7 @@
         locationUpdated(location);
     }];
 #else
-    [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location) {
+    [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location, NSError *error) {
         locationUpdated(location);
     }];
 #endif
@@ -82,13 +82,13 @@
         }];
     }];
 #else
-    [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location) {
+    [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location, NSError *error) {
         ZHUser *currentUser = [ZHUser currentUser];
         currentUser.location = location;
         
         /// ******* get assets for all friends near location
         AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-        [appDelegate.cloudManager getAssetsNearLocation:location ownerUUID:currentUser.uuid completionBlock:^(NSArray *assets, NSError *error) {
+        [appDelegate.cloudManager getAssetsNearLocation:location distance:ZHLocationManagerRadiusInMeters ownerUUID:currentUser.uuid completionBlock:^(NSArray *assets, NSError *error) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if(error != nil) {
                 [self presentAlertDialogWithTitle:@"Failed to get assets" errorAsMessage:error];
