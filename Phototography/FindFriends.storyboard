@@ -17,15 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xBM-sn-Be1">
-                                <rect key="frame" x="0.0" y="148" width="600" height="452"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="rk7-gq-0fe" id="LzV-d8-E84"/>
-                                    <outlet property="delegate" destination="rk7-gq-0fe" id="50l-A6-bln"/>
-                                </connections>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m8y-7n-Vul">
                                 <rect key="frame" x="0.0" y="64" width="600" height="84"/>
                                 <subviews>
@@ -55,17 +46,26 @@
                                     <constraint firstAttribute="trailing" secondItem="QFB-uK-Exu" secondAttribute="trailing" constant="20" id="zfW-iw-4Fu"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GJz-IC-IRc">
+                                <rect key="frame" x="0.0" y="148" width="600" height="452"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="rk7-gq-0fe" id="Cqc-OW-Md4"/>
+                                    <outlet property="delegate" destination="rk7-gq-0fe" id="MdL-Wy-thx"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="p1M-pm-YGj" firstAttribute="top" secondItem="xBM-sn-Be1" secondAttribute="bottom" id="BOT-Kz-ei4"/>
                             <constraint firstItem="m8y-7n-Vul" firstAttribute="leading" secondItem="hqr-02-Wen" secondAttribute="leadingMargin" constant="-20" id="BaL-l3-t9w"/>
+                            <constraint firstItem="GJz-IC-IRc" firstAttribute="top" secondItem="m8y-7n-Vul" secondAttribute="bottom" id="Jpn-ot-nQ0"/>
+                            <constraint firstItem="GJz-IC-IRc" firstAttribute="leading" secondItem="hqr-02-Wen" secondAttribute="leading" id="QNg-hi-zTd"/>
                             <constraint firstItem="m8y-7n-Vul" firstAttribute="top" secondItem="Kk4-GJ-Tko" secondAttribute="bottom" id="QSm-A8-oeY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="m8y-7n-Vul" secondAttribute="trailing" constant="-20" id="RfJ-l7-eZh"/>
-                            <constraint firstItem="xBM-sn-Be1" firstAttribute="leading" secondItem="hqr-02-Wen" secondAttribute="leadingMargin" constant="-20" id="mfJ-Ph-92O"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="xBM-sn-Be1" secondAttribute="trailing" constant="-20" id="pUl-W9-mJz"/>
-                            <constraint firstItem="xBM-sn-Be1" firstAttribute="top" secondItem="m8y-7n-Vul" secondAttribute="bottom" id="y3d-oE-HvW"/>
+                            <constraint firstAttribute="trailing" secondItem="GJz-IC-IRc" secondAttribute="trailing" id="ewi-7q-0dA"/>
+                            <constraint firstItem="p1M-pm-YGj" firstAttribute="top" secondItem="GJz-IC-IRc" secondAttribute="bottom" id="q1y-rb-Jn4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Find Friends" id="9hG-LS-6Sc">
@@ -80,7 +80,7 @@
                         <outlet property="emailSearchTextField" destination="QFB-uK-Exu" id="rh6-Kg-zoc"/>
                         <outlet property="findTypeSegment" destination="dLh-OK-UMT" id="ne4-lC-w5D"/>
                         <outlet property="searchEmailView" destination="m8y-7n-Vul" id="ekX-UL-Ykx"/>
-                        <outlet property="tableView" destination="xBM-sn-Be1" id="Rp6-TT-5tu"/>
+                        <outlet property="tableView" destination="GJz-IC-IRc" id="9FO-1p-9NN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WfS-G0-Ne8" userLabel="First Responder" sceneMemberID="firstResponder"/>

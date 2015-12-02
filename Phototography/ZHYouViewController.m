@@ -53,8 +53,8 @@ typedef enum {
     self.cloudManager = appDelegate.cloudManager;
 
     
-    CGFloat top = [UIApplication sharedApplication].statusBarFrame.size.height + self.navigationController.navigationBar.frame.size.height;
-    self.tableView.contentInset = UIEdgeInsetsMake(top, 0, 0, 0);
+//    CGFloat top = [UIApplication sharedApplication].statusBarFrame.size.height + self.navigationController.navigationBar.frame.size.height;
+//    self.tableView.contentInset = UIEdgeInsetsMake(top, 0, 0, 0);
     
     [[NSNotificationCenter defaultCenter] addObserverForName:ZHNotificationNamesCurrentUserUpdated object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         [self.tableView reloadData];

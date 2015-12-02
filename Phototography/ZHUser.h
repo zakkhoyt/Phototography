@@ -17,14 +17,16 @@
 @property (nonatomic, strong) NSString *uuid;
 @property (nonatomic, strong) NSString *avatarName;
 @property (nonatomic, strong) CLLocation *location;
+@property (nonatomic, strong) NSDate *locationDate;
 @property (nonatomic, strong) NSMutableArray <ZHUser*> *friends;
 @property (nonatomic, strong) NSMutableArray <ZHAsset*> *assets;
+
 
 //@property (nonatomic, strong) CKRecordID *recordID;
 
 +(void)setCurrentUser:(ZHUser*)user;
 +(ZHUser*)currentUser;
-
++(BOOL)isCurrentUser:(ZHUser*)user;
 - (instancetype)initWithRecord:(CKRecord*)record;
 - (instancetype)initWithDiscoveredUserInfo:(CKDiscoveredUserInfo*) userInfo;
 - (NSString*)fullName;

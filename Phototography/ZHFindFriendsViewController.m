@@ -37,6 +37,8 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
     //    self.contactManager = [[ZHContactsManager alloc]init];
+    self.view.backgroundColor = [UIColor zhBackgroundColor];
+    self.searchEmailView.backgroundColor = [UIColor zhBackgroundColor];
     self.tableView.hidden = YES;
     self.tableView.contentInset = UIEdgeInsetsZero;
 }
@@ -102,15 +104,31 @@ typedef enum {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Searching...";
     
+    // Remove all rows animated
+    NSMutableArray *indexPaths = [[NSMutableArray alloc]initWithCapacity:self.users.count];
+    for(NSUInteger index = 0; index < self.users.count; index++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+        [indexPaths addObject:indexPath];
+    }
+    [self.users removeAllObjects];
+    [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationRight];
+
+    
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     [appDelegate.cloudManager findUsersForEmail:self.emailSearchTextField.text completionBlock:^(NSArray *potentialFriends, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if(potentialFriends.count == 0) {
             [self presentAlertDialogWithMessage:@"No users found :("];
         } else {
-            self.users = [potentialFriends mutableCopy];
-            [self.tableView reloadData];
             self.tableView.hidden = NO;
+            // Insert all rows animated
+            self.users = [potentialFriends mutableCopy];
+            NSMutableArray *indexPaths = [[NSMutableArray alloc]initWithCapacity:self.users.count];
+            for(NSUInteger index = 0; index < self.users.count; index++) {
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+                [indexPaths addObject:indexPath];
+            }
+            [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationRight];
         }
     }];
 }
@@ -150,6 +168,8 @@ typedef enum {
     __weak typeof(self) welf = self;
     
     UITableViewRowAction *followAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Follow" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        
+        
         AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
         ZHUser *currentUser = [[ZHUser currentUser] copy];
         ZHUser *friendToAdd = self.users[indexPath.row];
@@ -157,8 +177,10 @@ typedef enum {
         if([currentUser.friends containsObject:friendToAdd] == YES) {
             NSLog(@"Already friends!");
         } else {
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             [currentUser.friends addObject:friendToAdd];
             [appDelegate.cloudManager updateUser:currentUser completionBlock:^(ZHUser *user, NSError *error) {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 if(error != nil) {
                     [self presentAlertDialogWithTitle:@"Could not follow user" errorAsMessage:error];
                 } else {
@@ -167,10 +189,12 @@ typedef enum {
                     
                     // Update tableView
                     [welf.tableView setEditing:NO animated:YES];
+                    [welf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                     
                     // Tell other view controllers and cells
                     [[NSNotificationCenter defaultCenter] postNotificationName:ZHNotificationNamesFriendsUpdated object:nil];
                 }
+                
             }];
         }
         [self.tableView setEditing:NO animated:YES];

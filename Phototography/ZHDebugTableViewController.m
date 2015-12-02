@@ -165,11 +165,15 @@
 }
 
 - (IBAction)assetCountButtonTouchUpInside:(id)sender {
-//    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-//    [appDelegate.cloudManager getFriendsForCurrentUserWithCompletionBlock:^(NSArray *friends, NSError *error) {
-//        NSLog(@"Inspecct friends");
-//    }];
-
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    [appDelegate.cloudManager getFriendsForReferences:[ZHUser currentUser].friends completionBlock:^(NSArray *friends, NSError *error) {
+        if(error) {
+            [self presentAlertDialogWithTitle:@"Failed to get friends" errorAsMessage:error];
+        } else {
+            [self presentAlertDialogWithMessage:@"Success"];
+        }
+        
+    }];
 }
 
 
