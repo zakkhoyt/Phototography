@@ -129,9 +129,9 @@ const CLLocationDistance kRadius = 100;
 - (id<MKAnnotation>)mapView:(VWWClusteredMapView*)mapView annotationForItemAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *dictionary = self.userAssets[indexPath.section];
     NSArray *assets = dictionary[@"assets"];
-    NSString *userUUID = dictionary[@"userUUID"];
+    ZHUser *user = dictionary[@"user"];
     
-    ZHUserAssetAnnotation *annotation = [[ZHUserAssetAnnotation alloc]initWithAsset:assets[indexPath.row] userUUID:userUUID];
+    ZHUserAssetAnnotation *annotation = [[ZHUserAssetAnnotation alloc]initWithAsset:assets[indexPath.row] user:user];
     return annotation;
 }
 
@@ -153,9 +153,7 @@ const CLLocationDistance kRadius = 100;
             annotationView = [[ZHUserAssetAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"ZHUserAssetAnnotationView"];
         }
         annotationView.annotation = userAssetAnnotation;
-//        annotationView.user = userAssetAnnotation.userUUID;
-
-
+        annotationView.user = userAssetAnnotation.user;
         annotationView.count = annotation.annotations.count;
         return annotationView;
     }

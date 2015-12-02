@@ -11,13 +11,13 @@
 #import "ZHUser.h"
 
 @implementation ZHUserAssetAnnotation
--(instancetype)initWithAsset:(PHAsset*)asset userUUID:(NSString*)userUUID{
+-(instancetype)initWithAsset:(PHAsset*)asset user:(ZHUser*)user {
     self = [super init];
     if(self){
         _asset = asset;
-        _userUUID = userUUID;
+        _user = user;
         _coordinate = _asset.location.coordinate;
-        _title = @"?";
+        _title = user.fullName;
     }
     return self;
 }

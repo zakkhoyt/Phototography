@@ -11,12 +11,12 @@
 @class ZHUser;
 
 @interface ZHUserAssetAnnotation : NSObject <MKAnnotation>
--(instancetype)initWithAsset:(PHAsset*)asset userUUID:(NSString*)userUUID;
+-(instancetype)initWithAsset:(PHAsset*)asset user:(ZHUser*)user;
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, copy) NSString *subtitle;
 
 @property (nonatomic, strong, readonly) PHAsset *asset;
-@property (nonatomic, strong, readonly) NSString *userUUID;
+@property (nonatomic, strong, readonly) ZHUser *user;
 @end
