@@ -40,16 +40,20 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Locating...";
     
-#if TARGET_IPHONE_SIMULATOR
-    CLLocation *location = [[CLLocation alloc]initWithLatitude:37.75 longitude:-122.45];
-    [[ZHLocationManager sharedInstance] updateToLocation:location completionBlock:^(CLLocation *location) {
+    void (^updateTableView)() = ^(){
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self.tableView reloadData];
+        
+    };
+    
+#if TARGET_IPHONE_SIMULATOR
+    CLLocation *location = [[CLLocation alloc]initWithLatitude:37.75 longitude:-122.45];
+    [[ZHLocationManager sharedInstance] updateToLocation:location completionBlock:^(CLLocation *location, NSError *error) {
+        updateTableView();
     }];
 #else
     [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [self.tableView reloadData];
+        updateTableView();
     }];
 #endif
     

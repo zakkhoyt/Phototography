@@ -30,16 +30,11 @@
 		C67092251C08396A00AE06F3 /* ZHOnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67092241C08396A00AE06F3 /* ZHOnboardingViewController.m */; };
 		C67D86331BBF429800B2C4CF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86321BBF429800B2C4CF /* main.m */; };
 		C67D86361BBF429800B2C4CF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86351BBF429800B2C4CF /* AppDelegate.m */; };
-		C67D86391BBF429800B2C4CF /* ZHMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86381BBF429800B2C4CF /* ZHMasterViewController.m */; };
-		C67D863C1BBF429800B2C4CF /* ZHAssetDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D863B1BBF429800B2C4CF /* ZHAssetDetailViewController.m */; };
-		C67D863F1BBF429800B2C4CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C67D863D1BBF429800B2C4CF /* Main.storyboard */; };
 		C67D86411BBF429800B2C4CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C67D86401BBF429800B2C4CF /* Assets.xcassets */; };
 		C67D86441BBF429800B2C4CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C67D86421BBF429800B2C4CF /* LaunchScreen.storyboard */; };
 		C67D864D1BBF42B100B2C4CF /* ZHAssetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D864C1BBF42B100B2C4CF /* ZHAssetManager.m */; };
 		C67D86571BBF4C2C00B2C4CF /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C67D86561BBF4C2C00B2C4CF /* Onboarding.storyboard */; };
 		C67D86591BBF4E7400B2C4CF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C67D86581BBF4E7400B2C4CF /* MapKit.framework */; };
-		C67D86651BBF541600B2C4CF /* ZHLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86641BBF541600B2C4CF /* ZHLocationViewController.m */; };
-		C67D86681BBF5B2700B2C4CF /* ZHPin.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86671BBF5B2700B2C4CF /* ZHPin.m */; };
 		C67D86951BBF7EF800B2C4CF /* PHAsset+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D867C1BBF7EF800B2C4CF /* PHAsset+Utility.m */; };
 		C67D86961BBF7EF800B2C4CF /* UIColor+ZH.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D867D1BBF7EF800B2C4CF /* UIColor+ZH.m */; };
 		C67D86971BBF7EF800B2C4CF /* CLLocation+ZH.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86801BBF7EF800B2C4CF /* CLLocation+ZH.m */; };
@@ -53,9 +48,7 @@
 		C67D869F1BBF7EF800B2C4CF /* UIFont+ZH.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86901BBF7EF800B2C4CF /* UIFont+ZH.m */; };
 		C67D86A01BBF7EF800B2C4CF /* UIView+RenderToImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86921BBF7EF800B2C4CF /* UIView+RenderToImage.m */; };
 		C67D86A11BBF7EF800B2C4CF /* UIViewController+AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86941BBF7EF800B2C4CF /* UIViewController+AlertController.m */; };
-		C67D86A91BBF959800B2C4CF /* ZHLocationSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86A81BBF959800B2C4CF /* ZHLocationSearchTableViewController.m */; };
 		C67D86AC1BC04B2700B2C4CF /* ZHUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86AB1BC04B2700B2C4CF /* ZHUserDefaults.m */; };
-		C67D86B01BC04CDC00B2C4CF /* ZHQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86AF1BC04CDC00B2C4CF /* ZHQueueViewController.m */; };
 		C696B65B1C0A91DA00F21D4D /* ZHFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C696B65A1C0A91DA00F21D4D /* ZHFriendTableViewCell.m */; };
 		C696B65E1C0A976E00F21D4D /* ZHYouViewControllerFriendsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C696B65D1C0A976E00F21D4D /* ZHYouViewControllerFriendsHeaderView.m */; };
 		C696B6601C0A977900F21D4D /* ZHYouViewControllerFriendsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C696B65F1C0A977900F21D4D /* ZHYouViewControllerFriendsHeaderView.xib */; };
@@ -137,11 +130,6 @@
 		C67D86321BBF429800B2C4CF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C67D86341BBF429800B2C4CF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C67D86351BBF429800B2C4CF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C67D86371BBF429800B2C4CF /* ZHMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHMasterViewController.h; sourceTree = "<group>"; };
-		C67D86381BBF429800B2C4CF /* ZHMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHMasterViewController.m; sourceTree = "<group>"; };
-		C67D863A1BBF429800B2C4CF /* ZHAssetDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHAssetDetailViewController.h; sourceTree = "<group>"; };
-		C67D863B1BBF429800B2C4CF /* ZHAssetDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHAssetDetailViewController.m; sourceTree = "<group>"; };
-		C67D863E1BBF429800B2C4CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C67D86401BBF429800B2C4CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C67D86431BBF429800B2C4CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C67D86451BBF429800B2C4CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -150,10 +138,6 @@
 		C67D86511BBF4A7B00B2C4CF /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C67D86561BBF4C2C00B2C4CF /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		C67D86581BBF4E7400B2C4CF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		C67D86631BBF541600B2C4CF /* ZHLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLocationViewController.h; sourceTree = "<group>"; };
-		C67D86641BBF541600B2C4CF /* ZHLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLocationViewController.m; sourceTree = "<group>"; };
-		C67D86661BBF5B2700B2C4CF /* ZHPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHPin.h; sourceTree = "<group>"; };
-		C67D86671BBF5B2700B2C4CF /* ZHPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHPin.m; sourceTree = "<group>"; };
 		C67D867B1BBF7EF800B2C4CF /* PHAsset+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PHAsset+Utility.h"; path = "Categories/PHAsset+Utility.h"; sourceTree = "<group>"; };
 		C67D867C1BBF7EF800B2C4CF /* PHAsset+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PHAsset+Utility.m"; path = "Categories/PHAsset+Utility.m"; sourceTree = "<group>"; };
 		C67D867D1BBF7EF800B2C4CF /* UIColor+ZH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+ZH.m"; path = "Categories/UIColor+ZH.m"; sourceTree = "<group>"; };
@@ -181,12 +165,8 @@
 		C67D86931BBF7EF800B2C4CF /* UIViewController+AlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+AlertController.h"; path = "Categories/UIViewController+AlertController.h"; sourceTree = "<group>"; };
 		C67D86941BBF7EF800B2C4CF /* UIViewController+AlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+AlertController.m"; path = "Categories/UIViewController+AlertController.m"; sourceTree = "<group>"; };
 		C67D86A21BBF7F3000B2C4CF /* ZHDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHDefines.h; sourceTree = "<group>"; };
-		C67D86A71BBF959800B2C4CF /* ZHLocationSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLocationSearchTableViewController.h; sourceTree = "<group>"; };
-		C67D86A81BBF959800B2C4CF /* ZHLocationSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLocationSearchTableViewController.m; sourceTree = "<group>"; };
 		C67D86AA1BC04B2700B2C4CF /* ZHUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHUserDefaults.h; sourceTree = "<group>"; };
 		C67D86AB1BC04B2700B2C4CF /* ZHUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHUserDefaults.m; sourceTree = "<group>"; };
-		C67D86AE1BC04CDC00B2C4CF /* ZHQueueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHQueueViewController.h; sourceTree = "<group>"; };
-		C67D86AF1BC04CDC00B2C4CF /* ZHQueueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHQueueViewController.m; sourceTree = "<group>"; };
 		C696B6591C0A91DA00F21D4D /* ZHFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHFriendTableViewCell.h; sourceTree = "<group>"; };
 		C696B65A1C0A91DA00F21D4D /* ZHFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHFriendTableViewCell.m; sourceTree = "<group>"; };
 		C696B65C1C0A976E00F21D4D /* ZHYouViewControllerFriendsHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYouViewControllerFriendsHeaderView.h; sourceTree = "<group>"; };
@@ -378,19 +358,6 @@
 			name = Annotations;
 			sourceTree = "<group>";
 		};
-		C6439A4D1C09732A006BCF73 /* Tagger */ = {
-			isa = PBXGroup;
-			children = (
-				C67D86371BBF429800B2C4CF /* ZHMasterViewController.h */,
-				C67D86381BBF429800B2C4CF /* ZHMasterViewController.m */,
-				C67D863A1BBF429800B2C4CF /* ZHAssetDetailViewController.h */,
-				C67D863B1BBF429800B2C4CF /* ZHAssetDetailViewController.m */,
-				C67D86B11BC04CE100B2C4CF /* Queue */,
-				C67D86A51BBF955600B2C4CF /* Location */,
-			);
-			name = Tagger;
-			sourceTree = "<group>";
-		};
 		C6439A4E1C097334006BCF73 /* You */ = {
 			isa = PBXGroup;
 			children = (
@@ -509,7 +476,6 @@
 				C6B8297C1BC31D1200782468 /* Map */,
 				C67092261C08396E00AE06F3 /* Onboarding */,
 				C62E2E711C0BF6510026695C /* Tab */,
-				C6439A4D1C09732A006BCF73 /* Tagger */,
 				C696B67C1C0AAD9E00F21D4D /* Updates */,
 				C6439A4E1C097334006BCF73 /* You */,
 				C62E2E821C0C37530026695C /* Photographer */,
@@ -577,27 +543,6 @@
 			name = Include;
 			sourceTree = "<group>";
 		};
-		C67D86A51BBF955600B2C4CF /* Location */ = {
-			isa = PBXGroup;
-			children = (
-				C67D86A61BBF955C00B2C4CF /* Annotation */,
-				C67D86631BBF541600B2C4CF /* ZHLocationViewController.h */,
-				C67D86641BBF541600B2C4CF /* ZHLocationViewController.m */,
-				C67D86A71BBF959800B2C4CF /* ZHLocationSearchTableViewController.h */,
-				C67D86A81BBF959800B2C4CF /* ZHLocationSearchTableViewController.m */,
-			);
-			name = Location;
-			sourceTree = "<group>";
-		};
-		C67D86A61BBF955C00B2C4CF /* Annotation */ = {
-			isa = PBXGroup;
-			children = (
-				C67D86661BBF5B2700B2C4CF /* ZHPin.h */,
-				C67D86671BBF5B2700B2C4CF /* ZHPin.m */,
-			);
-			name = Annotation;
-			sourceTree = "<group>";
-		};
 		C67D86AD1BC04B2D00B2C4CF /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -605,15 +550,6 @@
 				C67D86AB1BC04B2700B2C4CF /* ZHUserDefaults.m */,
 			);
 			name = Utility;
-			sourceTree = "<group>";
-		};
-		C67D86B11BC04CE100B2C4CF /* Queue */ = {
-			isa = PBXGroup;
-			children = (
-				C67D86AE1BC04CDC00B2C4CF /* ZHQueueViewController.h */,
-				C67D86AF1BC04CDC00B2C4CF /* ZHQueueViewController.m */,
-			);
-			name = Queue;
 			sourceTree = "<group>";
 		};
 		C696B6611C0A977D00F21D4D /* View */ = {
@@ -693,7 +629,6 @@
 			isa = PBXGroup;
 			children = (
 				C67D86421BBF429800B2C4CF /* LaunchScreen.storyboard */,
-				C67D863D1BBF429800B2C4CF /* Main.storyboard */,
 				C6B829771BC31CE800782468 /* Map.storyboard */,
 				C67D86561BBF4C2C00B2C4CF /* Onboarding.storyboard */,
 				C6439A351C0930CC006BCF73 /* FindFriends.storyboard */,
@@ -901,7 +836,6 @@
 				C696B6601C0A977900F21D4D /* ZHYouViewControllerFriendsHeaderView.xib in Resources */,
 				C6439A341C090A40006BCF73 /* schema.txt in Resources */,
 				C67D86411BBF429800B2C4CF /* Assets.xcassets in Resources */,
-				C67D863F1BBF429800B2C4CF /* Main.storyboard in Resources */,
 				C6439A361C0930CC006BCF73 /* FindFriends.storyboard in Resources */,
 				C67D86571BBF4C2C00B2C4CF /* Onboarding.storyboard in Resources */,
 				C696B6641C0A9B8900F21D4D /* ZHYouViewControllerUserDetailHeaderView.xib in Resources */,
@@ -955,7 +889,6 @@
 				C67D86A11BBF7EF800B2C4CF /* UIViewController+AlertController.m in Sources */,
 				C6439A401C096BB7006BCF73 /* ZHContactsManager.m in Sources */,
 				C6439A431C097071006BCF73 /* ZHViewController.m in Sources */,
-				C67D86B01BC04CDC00B2C4CF /* ZHQueueViewController.m in Sources */,
 				C6BBCA411BC31C0A009D6887 /* VWWClusteredMapView+MKMapViewDelegate.m in Sources */,
 				C67D869F1BBF7EF800B2C4CF /* UIFont+ZH.m in Sources */,
 				C62E2E6A1C0BD4E50026695C /* ZHUpdateViewController.m in Sources */,
@@ -970,11 +903,9 @@
 				C67D86AC1BC04B2700B2C4CF /* ZHUserDefaults.m in Sources */,
 				C6BBCA3E1BC31C0A009D6887 /* VWWQuadTree.m in Sources */,
 				C6FB1A351C0ABF5B006453C9 /* ZHLocationUpdate.m in Sources */,
-				C67D86651BBF541600B2C4CF /* ZHLocationViewController.m in Sources */,
 				C6FE5D701C0ACCC90084F758 /* ZHFullscreenAssetCollectionViewController.m in Sources */,
 				C696B6741C0AA0A300F21D4D /* ZHAssetCollectionViewCell.m in Sources */,
 				C67D869D1BBF7EF800B2C4CF /* NSURLRequest+AFCurlRequest.m in Sources */,
-				C67D86681BBF5B2700B2C4CF /* ZHPin.m in Sources */,
 				C6B829851BC3202A00782468 /* ZHAssetAnnotation.m in Sources */,
 				C6C099641C0CF2DC004B862F /* ZHAvatarImageView.m in Sources */,
 				C696B6701C0AA06600F21D4D /* ZHAssetGroupViewController.m in Sources */,
@@ -1001,12 +932,10 @@
 				C696B65E1C0A976E00F21D4D /* ZHYouViewControllerFriendsHeaderView.m in Sources */,
 				C67D86A01BBF7EF800B2C4CF /* UIView+RenderToImage.m in Sources */,
 				C67D869B1BBF7EF800B2C4CF /* NSString+ZH.m in Sources */,
-				C67D86A91BBF959800B2C4CF /* ZHLocationSearchTableViewController.m in Sources */,
 				C62E2E781C0C13BE0026695C /* ZHAsset.m in Sources */,
 				C6C099791C0E5F79004B862F /* ZHUserAssetAnnotation.m in Sources */,
 				C6BBCA3F1BC31C0A009D6887 /* VWWAnnotationFanoutView.m in Sources */,
 				C67D869A1BBF7EF800B2C4CF /* NSError+ZH.m in Sources */,
-				C67D86391BBF429800B2C4CF /* ZHMasterViewController.m in Sources */,
 				C696B65B1C0A91DA00F21D4D /* ZHFriendTableViewCell.m in Sources */,
 				C62E2E811C0C374F0026695C /* ZHPhotographerViewController.m in Sources */,
 				C670921E1C08330100AE06F3 /* ZHCloudManager.m in Sources */,
@@ -1014,21 +943,12 @@
 				C67D86971BBF7EF800B2C4CF /* CLLocation+ZH.m in Sources */,
 				C665D5591C0AD9F40018D988 /* ZHUpdateTableViewCell.m in Sources */,
 				C6FE5D6D1C0ACCC10084F758 /* ZHFullscreenAssetCollectionViewCell.m in Sources */,
-				C67D863C1BBF429800B2C4CF /* ZHAssetDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		C67D863D1BBF429800B2C4CF /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C67D863E1BBF429800B2C4CF /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		C67D86421BBF429800B2C4CF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

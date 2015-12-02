@@ -9,6 +9,8 @@
 #import "ZHLocationManager.h"
 #import "ZHLocationUpdate.h"
 #import "ZHUserDefaults.h"
+#import "ZHUser.h"
+#import "AppDelegate.h"
 
 @interface ZHLocationManager ()
 @property (nonatomic, strong) NSMutableArray *updates;
@@ -16,7 +18,7 @@
 @property (nonatomic, strong) CLLocationManager *locationManager;
 //@property (nonatomic, strong) PKLocationMonitorLocationErrorBlock locationBlock;
 @property (nonatomic, strong) NSTimer *acquireLocationTimer;
-@property (nonatomic, strong) ZHLocationManagerLocationBlock accurateLocationBlock;
+@property (nonatomic, strong) ZHLocationManagerLocationErrorBlock accurateLocationBlock;
 @end
 
 @interface ZHLocationManager (CLLocationManagerDelegate) <CLLocationManagerDelegate>
@@ -55,7 +57,7 @@
 
 -(void)getAccurateLocation{
     [self.locationManager stopUpdatingLocation];
-//    [self.locationManager stopMonitoringSignificantLocationChanges];
+    //    [self.locationManager stopMonitoringSignificantLocationChanges];
     [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
     [self.locationManager setDistanceFilter:500];
     [self.locationManager startUpdatingLocation];
@@ -83,19 +85,44 @@
     return [NSArray arrayWithArray:_updates];
 }
 
--(void)updateToCurrentLocationWithCompletionBlock:(ZHLocationManagerLocationBlock)completionBlock {
-    _accurateLocationBlock = completionBlock;
+-(void)updateToCurrentLocationWithCompletionBlock:(ZHLocationManagerLocationErrorBlock)completionBlock {
+    
+    _accurateLocationBlock = ^(CLLocation *location, NSError *error) {
+        ZHUser *currentUser = [ZHUser currentUser];
+        currentUser.location = location;
+        
+        // ** Updates currentUser's location
+        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        [appDelegate.cloudManager updateUser:currentUser completionBlock:^(ZHUser *user, NSError *error) {
+            if(error != nil) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completionBlock(nil, error);
+                });
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completionBlock(location, nil);
+                });
+            }
+        }];
+    };
+    
     [self getAccurateLocation];
 }
 
--(void)updateToLocation:(CLLocation*)location completionBlock:(ZHLocationManagerLocationBlock)completionBlock{
-    ZHLocationUpdate *update = [ZHLocationUpdate new];
-    update.location = location;
-    update.date = [NSDate date];
-    [_updates addObject:update];
+-(void)updateToLocation:(CLLocation*)location completionBlock:(ZHLocationManagerLocationErrorBlock)completionBlock{
     
-    [ZHUserDefaults setUpdates:_updates];
-    completionBlock(location);
+    ZHUser *currentUser = [ZHUser currentUser];
+    currentUser.location = location;
+    
+    // ** Updates currentUser's location
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    [appDelegate.cloudManager updateUser:currentUser completionBlock:^(ZHUser *user, NSError *error) {
+        if(error != nil) {
+            completionBlock(nil, error);
+        } else {
+            completionBlock(location, nil);
+        }
+    }];
 }
 
 
@@ -105,7 +132,7 @@
 @implementation ZHLocationManager (CLLocationManagerDelegate)
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-
+    
     CLLocation *newLocation = [locations lastObject];
     if(newLocation){
         
@@ -117,13 +144,13 @@
         [_updates addObject:update];
         [ZHUserDefaults setUpdates:_updates];
         
-        if(self.accurateLocationBlock){
-            self.accurateLocationBlock(newLocation);
-            self.accurateLocationBlock = nil;
+        if(_accurateLocationBlock){
+            _accurateLocationBlock(newLocation, nil);
+            _accurateLocationBlock = nil;
         }
         [self.locationManager stopUpdatingLocation];
     }
-
+    
 }
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -137,6 +164,13 @@
 
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error{
+    
+    if(_accurateLocationBlock){
+        _accurateLocationBlock(nil, error);
+        _accurateLocationBlock = nil;
+    }
+    
+    
     NSLog(@"Error: %@", error);
     [self.locationManager stopUpdatingLocation];
 }

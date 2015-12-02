@@ -7,12 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "ZHAssetDetailViewController.h"
 #import "UIColor+ZH.h"
 
-
-@interface AppDelegate () <UISplitViewControllerDelegate>
-@end
 
 @interface AppDelegate (Notifications)
 @end

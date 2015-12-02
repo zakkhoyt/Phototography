@@ -28,10 +28,8 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Locating...";
     
-#if TARGET_IPHONE_SIMULATOR
-    CLLocation *location = [[CLLocation alloc]initWithLatitude:37.75 longitude:-122.45];
-    [[ZHLocationManager sharedInstance] updateToLocation:location completionBlock:^(CLLocation *location) {
-        
+    
+    void (^locationUpdated)(CLLocation *location) = ^(CLLocation *location){
         ZHUser *currentUser = [ZHUser currentUser];
         currentUser.location = location;
         
@@ -45,40 +43,17 @@
                 [self presentAlertDialogWithMessage:[NSString stringWithFormat:@"Found %lu users with assets", (unsigned long)userAssets.count]];
             }
         }];
+
+    };
+    
+#if TARGET_IPHONE_SIMULATOR
+    CLLocation *location = [[CLLocation alloc]initWithLatitude:37.75 longitude:-122.45];
+    [[ZHLocationManager sharedInstance] updateToLocation:location completionBlock:^(CLLocation *location, NSError *error) {
+        locationUpdated(location);
     }];
 #else
     [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location) {
-        ZHUser *currentUser = [ZHUser currentUser];
-        currentUser.location = location;
-        
-        /// ******* get assets for all friends near location
-        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-        [appDelegate.cloudManager getAssetsNearLocation:location completionBlock:^(NSArray *userAssets, NSError *error) {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            if(error != nil) {
-                [self presentAlertDialogWithTitle:@"Failed to get assets" errorAsMessage:error];
-            } else {
-                
-                
-
-//                NSMutableString *summary = [NSMutableString new];
-//                [userAssets enumerateObjectsUsingBlock:^(NSDictionary *dictionary, NSUInteger idx, BOOL * _Nonnull stop) {
-//                    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-//                    NSString *uuid = dictionary[@"uuid"];
-//                    NSArray *assets = dictionary[@"assets"];
-//                    [appDelegate.cloudManager getPhotographerWithUUID:uuid completionBlock:^(ZHUser *user, NSError *error) {
-//                        [summary appendFormat:@"%@ - %lu\n", user.fullName, assets.count];
-//                        dispatch_semaphore_signal(semaphore);
-//                    }];
-//                    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-//                }];
-//                
-                
-                [self presentAlertDialogWithMessage:[NSString stringWithFormat:@"Found %lu users with assets", (unsigned long)userAssets.count]];
-
-            }
-            
-        }];
+        locationUpdated(location);
     }];
 #endif
 
@@ -91,7 +66,7 @@
     
 #if TARGET_IPHONE_SIMULATOR
     CLLocation *location = [[CLLocation alloc]initWithLatitude:37.75 longitude:-122.45];
-    [[ZHLocationManager sharedInstance] updateToLocation:location completionBlock:^(CLLocation *location) {
+    [[ZHLocationManager sharedInstance] updateToLocation:location completionBlock:^(CLLocation *location, NSError *error) {
         ZHUser *currentUser = [ZHUser currentUser];
         currentUser.location = location;
         
@@ -125,8 +100,7 @@
 #endif
 }
 - (IBAction)updateLocationButtonTouchUpInside:(id)sender {
-    [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location) {
-        
+    [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location, NSError *error) {
         ZHUser *currentUser = [ZHUser currentUser];
         currentUser.location = location;
 

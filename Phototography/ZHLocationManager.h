@@ -11,6 +11,7 @@
 
 
 typedef void (^ZHLocationManagerLocationBlock)(CLLocation *location);
+typedef void (^ZHLocationManagerLocationErrorBlock)(CLLocation *location, NSError *error);
 
 @interface ZHLocationManager : NSObject
 
@@ -20,9 +21,9 @@ typedef void (^ZHLocationManagerLocationBlock)(CLLocation *location);
 -(NSArray*)updates;
 
 // Get your current locatoin and then check in
--(void)updateToCurrentLocationWithCompletionBlock:(ZHLocationManagerLocationBlock)completionBlock;
+-(void)updateToCurrentLocationWithCompletionBlock:(ZHLocationManagerLocationErrorBlock)completionBlock;
 
 // Update to a specific location
--(void)updateToLocation:(CLLocation*)location completionBlock:(ZHLocationManagerLocationBlock)completionBlock;
+-(void)updateToLocation:(CLLocation*)location completionBlock:(ZHLocationManagerLocationErrorBlock)completionBlock;
 
 @end

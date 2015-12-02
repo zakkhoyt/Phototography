@@ -96,11 +96,12 @@ const CLLocationDistance kRadius = 100;
     
 #if TARGET_IPHONE_SIMULATOR
     CLLocation *location = [[CLLocation alloc]initWithLatitude:37.75 longitude:-122.45];
-    [[ZHLocationManager sharedInstance] updateToLocation:location completionBlock:^(CLLocation *location) {
+    [[ZHLocationManager sharedInstance] updateToLocation:location completionBlock:^(CLLocation *location, NSError *error) {
         findAssets(location);
     }];
+
 #else
-    [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location) {
+    [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location, NSError *error) {
         findAssets(location);
     }];
 #endif
