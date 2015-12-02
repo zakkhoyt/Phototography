@@ -17,7 +17,7 @@
 @property (nonatomic, strong) NSString *uuid;
 @property (nonatomic, strong) NSString *avatarName;
 @property (nonatomic, strong) CLLocation *location;
-@property (nonatomic, strong) NSMutableArray <NSString*> *friendUUIDs;
+@property (nonatomic, strong) NSMutableArray <ZHUser*> *friends;
 @property (nonatomic, strong) NSMutableArray <ZHAsset*> *assets;
 
 //@property (nonatomic, strong) CKRecordID *recordID;

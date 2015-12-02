@@ -12,12 +12,11 @@
 #import "ZHAssetAnnotationView.h"
 #import "ZHLocationManager.h"
 #import "ZHCloudManager.h"
-#import "ZHAssetAnnotation.h"
-#import "ZHAssetAnnotationView.h"
-#import "ZHUserAnnotationView.h"
+#import "ZHUserAssetAnnotation.h"
+#import "ZHUserAssetAnnotationView.h"
 #import "ZHPhotographerViewController.h"
 
-const CLLocationDistance kRadius = 10000;
+const CLLocationDistance kRadius = 100;
 
 @interface ZHUpdateViewController ()
 @property (weak, nonatomic) IBOutlet VWWClusteredMapView *clusteredMapView;
@@ -130,7 +129,9 @@ const CLLocationDistance kRadius = 10000;
 - (id<MKAnnotation>)mapView:(VWWClusteredMapView*)mapView annotationForItemAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *dictionary = self.userAssets[indexPath.section];
     NSArray *assets = dictionary[@"assets"];
-    ZHAssetAnnotation *annotation = [[ZHAssetAnnotation alloc]initWithAsset:assets[indexPath.row]];
+    NSString *userUUID = dictionary[@"userUUID"];
+    
+    ZHUserAssetAnnotation *annotation = [[ZHUserAssetAnnotation alloc]initWithAsset:assets[indexPath.row] userUUID:userUUID];
     return annotation;
 }
 
@@ -145,13 +146,16 @@ const CLLocationDistance kRadius = 10000;
     }
     
     id obj = [annotation.annotations firstObject];
-    if([obj isKindOfClass:[ZHAssetAnnotation class]]){
-        ZHUserAnnotationView *annotationView = (ZHUserAnnotationView*)[clusteredMapView dequeueReusableAnnotationViewWithIdentifier:@"ZHUserAnnotationView"];
+    if([obj isKindOfClass:[ZHUserAssetAnnotation class]]){
+        ZHUserAssetAnnotation *userAssetAnnotation = obj;
+        ZHUserAssetAnnotationView *annotationView = (ZHUserAssetAnnotationView*)[clusteredMapView dequeueReusableAnnotationViewWithIdentifier:@"ZHUserAnnotationView"];
         if(annotationView == nil){
-            annotationView = [[ZHUserAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"ZHUserAnnotationView"];
+            annotationView = [[ZHUserAssetAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"ZHUserAssetAnnotationView"];
         }
-        annotationView.annotation = annotation;
-        annotationView.user = [ZHUser currentUser];
+        annotationView.annotation = userAssetAnnotation;
+//        annotationView.user = userAssetAnnotation.userUUID;
+
+
         annotationView.count = annotation.annotations.count;
         return annotationView;
     }
@@ -162,15 +166,13 @@ const CLLocationDistance kRadius = 10000;
 - (void)clusteredMapView:(VWWClusteredMapView *)clusteredMapView didSelectClusteredAnnotationView:(VWWClusteredAnnotationView *)view {
     NSLog(@"annotationView.class: %@", NSStringFromClass([view class]));
     
-    if([view isKindOfClass:[ZHUserAnnotationView class]]) {
-        ZHUserAnnotationView *userAnnotationView = (ZHUserAnnotationView*)view;
-        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-        [appDelegate.cloudManager getPhotographerWithUUID:userAnnotationView.user.uuid completionBlock:^(ZHUser *user, NSError *error) {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Photographer" bundle:[NSBundle mainBundle]];
-            ZHPhotographerViewController *vc = [storyboard instantiateInitialViewController];
-            vc.user = user;
-            [self.navigationController pushViewController:vc animated:YES];
-        }];
+    if([view isKindOfClass:[ZHUserAssetAnnotationView class]]) {
+        ZHUserAssetAnnotationView *userAnnotationView = (ZHUserAssetAnnotationView*)view;
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Photographer" bundle:[NSBundle mainBundle]];
+        ZHPhotographerViewController *vc = [storyboard instantiateInitialViewController];
+        vc.user = userAnnotationView.user;
+        [self.navigationController pushViewController:vc animated:YES];
+
     }
 }
 

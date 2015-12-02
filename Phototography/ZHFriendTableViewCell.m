@@ -39,7 +39,7 @@
     _user = user;
     self.textLabel.text = user.fullName;
     
-    if([[ZHUser currentUser].friendUUIDs containsObject:user.uuid]){
+    if([[ZHUser currentUser].friends containsObject:user]){
         self.detailTextLabel.text = @"👍🏼";
     } else {
         self.detailTextLabel.text = @"";

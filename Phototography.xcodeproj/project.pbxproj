@@ -82,10 +82,11 @@
 		C6BBCA421BC31C0A009D6887 /* VWWClusteredMapView+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA381BC31C0A009D6887 /* VWWClusteredMapView+Private.m */; };
 		C6BBCA431BC31C0A009D6887 /* VWWClusteredMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BBCA3A1BC31C0A009D6887 /* VWWClusteredMapView.m */; };
 		C6C099641C0CF2DC004B862F /* ZHAvatarImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6C099631C0CF2DC004B862F /* ZHAvatarImageView.m */; };
-		C6C099671C0CF42F004B862F /* ZHUserAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6C099661C0CF42F004B862F /* ZHUserAnnotationView.m */; };
+		C6C099671C0CF42F004B862F /* ZHUserAssetAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6C099661C0CF42F004B862F /* ZHUserAssetAnnotationView.m */; };
 		C6C0996A1C0CF864004B862F /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = C6C099691C0CF864004B862F /* todo.txt */; };
 		C6C099711C0D19AC004B862F /* ZHAvatarPickerCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6C099701C0D19AC004B862F /* ZHAvatarPickerCollectionViewController.m */; };
 		C6C099751C0D1A31004B862F /* ZHAvatarCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C6C099741C0D1A31004B862F /* ZHAvatarCollectionViewCell.m */; };
+		C6C099791C0E5F79004B862F /* ZHUserAssetAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C6C099781C0E5F79004B862F /* ZHUserAssetAnnotation.m */; };
 		C6FB1A351C0ABF5B006453C9 /* ZHLocationUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FB1A341C0ABF5B006453C9 /* ZHLocationUpdate.m */; };
 		C6FE5D6D1C0ACCC10084F758 /* ZHFullscreenAssetCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FE5D6C1C0ACCC10084F758 /* ZHFullscreenAssetCollectionViewCell.m */; };
 		C6FE5D701C0ACCC90084F758 /* ZHFullscreenAssetCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FE5D6F1C0ACCC90084F758 /* ZHFullscreenAssetCollectionViewController.m */; };
@@ -233,13 +234,15 @@
 		C6BBCA3A1BC31C0A009D6887 /* VWWClusteredMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWClusteredMapView.m; sourceTree = "<group>"; };
 		C6C099621C0CF2DC004B862F /* ZHAvatarImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHAvatarImageView.h; sourceTree = "<group>"; };
 		C6C099631C0CF2DC004B862F /* ZHAvatarImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHAvatarImageView.m; sourceTree = "<group>"; };
-		C6C099651C0CF42F004B862F /* ZHUserAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHUserAnnotationView.h; sourceTree = "<group>"; };
-		C6C099661C0CF42F004B862F /* ZHUserAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHUserAnnotationView.m; sourceTree = "<group>"; };
+		C6C099651C0CF42F004B862F /* ZHUserAssetAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHUserAssetAnnotationView.h; sourceTree = "<group>"; };
+		C6C099661C0CF42F004B862F /* ZHUserAssetAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHUserAssetAnnotationView.m; sourceTree = "<group>"; };
 		C6C099691C0CF864004B862F /* todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo.txt; sourceTree = "<group>"; };
 		C6C0996F1C0D19AC004B862F /* ZHAvatarPickerCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHAvatarPickerCollectionViewController.h; sourceTree = "<group>"; };
 		C6C099701C0D19AC004B862F /* ZHAvatarPickerCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHAvatarPickerCollectionViewController.m; sourceTree = "<group>"; };
 		C6C099731C0D1A31004B862F /* ZHAvatarCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHAvatarCollectionViewCell.h; sourceTree = "<group>"; };
 		C6C099741C0D1A31004B862F /* ZHAvatarCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHAvatarCollectionViewCell.m; sourceTree = "<group>"; };
+		C6C099771C0E5F79004B862F /* ZHUserAssetAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHUserAssetAnnotation.h; sourceTree = "<group>"; };
+		C6C099781C0E5F79004B862F /* ZHUserAssetAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHUserAssetAnnotation.m; sourceTree = "<group>"; };
 		C6FB1A331C0ABF5B006453C9 /* ZHLocationUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLocationUpdate.h; sourceTree = "<group>"; };
 		C6FB1A341C0ABF5B006453C9 /* ZHLocationUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLocationUpdate.m; sourceTree = "<group>"; };
 		C6FE5D6B1C0ACCC10084F758 /* ZHFullscreenAssetCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHFullscreenAssetCollectionViewCell.h; sourceTree = "<group>"; };
@@ -753,8 +756,10 @@
 		C6C099681C0CF432004B862F /* Annotations */ = {
 			isa = PBXGroup;
 			children = (
-				C6C099651C0CF42F004B862F /* ZHUserAnnotationView.h */,
-				C6C099661C0CF42F004B862F /* ZHUserAnnotationView.m */,
+				C6C099771C0E5F79004B862F /* ZHUserAssetAnnotation.h */,
+				C6C099781C0E5F79004B862F /* ZHUserAssetAnnotation.m */,
+				C6C099651C0CF42F004B862F /* ZHUserAssetAnnotationView.h */,
+				C6C099661C0CF42F004B862F /* ZHUserAssetAnnotationView.m */,
 			);
 			name = Annotations;
 			sourceTree = "<group>";
@@ -954,7 +959,7 @@
 				C6BBCA411BC31C0A009D6887 /* VWWClusteredMapView+MKMapViewDelegate.m in Sources */,
 				C67D869F1BBF7EF800B2C4CF /* UIFont+ZH.m in Sources */,
 				C62E2E6A1C0BD4E50026695C /* ZHUpdateViewController.m in Sources */,
-				C6C099671C0CF42F004B862F /* ZHUserAnnotationView.m in Sources */,
+				C6C099671C0CF42F004B862F /* ZHUserAssetAnnotationView.m in Sources */,
 				C67D86981BBF7EF800B2C4CF /* NSDate+ZH.m in Sources */,
 				C6439A3D1C0962C4006BCF73 /* ZHYouViewController.m in Sources */,
 				C62E2E701C0BF64D0026695C /* ZHTabBarController.m in Sources */,
@@ -998,6 +1003,7 @@
 				C67D869B1BBF7EF800B2C4CF /* NSString+ZH.m in Sources */,
 				C67D86A91BBF959800B2C4CF /* ZHLocationSearchTableViewController.m in Sources */,
 				C62E2E781C0C13BE0026695C /* ZHAsset.m in Sources */,
+				C6C099791C0E5F79004B862F /* ZHUserAssetAnnotation.m in Sources */,
 				C6BBCA3F1BC31C0A009D6887 /* VWWAnnotationFanoutView.m in Sources */,
 				C67D869A1BBF7EF800B2C4CF /* NSError+ZH.m in Sources */,
 				C67D86391BBF429800B2C4CF /* ZHMasterViewController.m in Sources */,

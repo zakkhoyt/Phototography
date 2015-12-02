@@ -9,7 +9,7 @@
 #import "VWWClusteredAnnotationView.h"
 @class ZHUser;
 
-@interface ZHUserAnnotationView : VWWClusteredAnnotationView
+@interface ZHUserAssetAnnotationView : VWWClusteredAnnotationView
 @property (nonatomic, strong) ZHUser *user;
 @property (assign, nonatomic) NSUInteger count;
 @end

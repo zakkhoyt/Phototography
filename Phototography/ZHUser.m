@@ -17,7 +17,7 @@ static NSString *ZHUserLastNameKey = @"LastName";
 static NSString *ZHUserUUIDKey = @"UUID";
 static NSString *ZHUserAvatarNameKey = @"AvatarName";
 static NSString *ZHUserLocationKey = @"Location";
-static NSString *ZHUserFriendUUIDsKey = @"FriendUUIDs";
+static NSString *ZHUserFriendsKey = @"Friends";
 static NSString *ZHUserAssetsKey = @"Assets";
 
 
@@ -40,12 +40,14 @@ static NSString *ZHUserAssetsKey = @"Assets";
         self.lastName = [record objectForKey:@"LastName"];
         self.uuid = [record objectForKey:@"UUID"];
         self.avatarName = [record objectForKey:@"AvatarName"];
-        NSArray *friends = [record objectForKey:@"FriendUUIDs"];
+        
+        NSArray *friends = [record objectForKey:@"Friends"];
         if(friends == nil) {
-            self.friendUUIDs = [@[]mutableCopy];
+            self.friends = [@[]mutableCopy];
         } else {
-            self.friendUUIDs = [friends mutableCopy];
+            self.friends = [friends mutableCopy];
         }
+        
         
         NSArray *assets = [record objectForKey:@"Assets"];
         if(assets == nil) {
@@ -66,7 +68,8 @@ static NSString *ZHUserAssetsKey = @"Assets";
         self.lastName = userInfo.displayContact.familyName;
         self.uuid = [NSString stringWithFormat:@"uuid%@", userInfo.userRecordID.recordName];
         self.avatarName = [ZHAvatarImageView randomAvatarName];
-        self.friendUUIDs = [@[]mutableCopy];
+        self.friends = [@[]mutableCopy];
+
         self.assets = [@[]mutableCopy];
 
     }
@@ -82,7 +85,15 @@ static NSString *ZHUserAssetsKey = @"Assets";
     record[@"UUID"] = self.uuid;
     record[@"AvatarName"] = self.avatarName;
     record[@"Location"] = self.location;
-    record[@"FriendUUIDs"] = self.friendUUIDs;
+    
+    NSMutableArray *friendReferences = [[NSMutableArray alloc]initWithCapacity:self.friends.count];
+    [self.friends enumerateObjectsUsingBlock:^(ZHUser * _Nonnull user, NSUInteger idx, BOOL * _Nonnull stop) {
+        CKRecordID *recordID = [[CKRecordID alloc]initWithRecordName:user.uuid];
+        CKReference *friendReference = [[CKReference alloc]initWithRecordID:recordID action:CKReferenceActionNone];
+        [friendReferences addObject:friendReference];
+    }];
+    record[@"Friends"] = friendReferences;
+    
     record[@"Assets"] = self.assets;
     return record;
 }
@@ -131,7 +142,7 @@ static NSString *ZHUserAssetsKey = @"Assets";
     [aCoder encodeObject:self.uuid forKey:@"UUID"];
     [aCoder encodeObject:self.avatarName forKey:@"AvatarName"];
     [aCoder encodeObject:self.location forKey:@"Location"];
-    [aCoder encodeObject:self.friendUUIDs forKey:@"FriendUUIDs"];
+    [aCoder encodeObject:self.friends forKey:@"Friends"];
     [aCoder encodeObject:self.assets forKey:@"Assets"];
 }
 
@@ -144,9 +155,9 @@ static NSString *ZHUserAssetsKey = @"Assets";
         self.avatarName = [coder decodeObjectForKey:@"AvatarName"];
         self.location = [coder decodeObjectForKey:@"Location"];
         
-        NSArray *friendUUIDs = [coder decodeObjectForKey:@"FriendUUIDs"];
-        self.friendUUIDs = [friendUUIDs mutableCopy];
-        
+        NSArray *friends = [coder decodeObjectForKey:@"Friends"];
+        self.friends = [friends mutableCopy];
+
         NSArray *assets = [coder decodeObjectForKey:@"Assets"];
         self.assets = [assets mutableCopy];
 
@@ -165,7 +176,7 @@ static NSString *ZHUserAssetsKey = @"Assets";
     user.uuid = [self.uuid copy];
     user.firstName = [self.firstName copy];
     user.lastName = [self.lastName copy];
-    user.friendUUIDs = [self.friendUUIDs mutableCopy];
+    user.friends = [self.friends mutableCopy];
     user.location = [self.location copy];
     user.assets = [self.assets copy];
     return user;

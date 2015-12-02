@@ -132,7 +132,7 @@ typedef enum {
         case ZHYouViewControllerSectionUserDetails:
             return 5;
         case ZHYouViewControllerSectionFriends:
-            return [ZHUser currentUser].friendUUIDs.count;
+            return [ZHUser currentUser].friends.count;
         default:
             return 0;
     }
@@ -181,10 +181,8 @@ typedef enum {
             break;
         case ZHYouViewControllerSectionFriends: {
             ZHFriendTableViewCell *cell = [ZHFriendTableViewCell cellForTableView:tableView];
-            NSString *uuid = [ZHUser currentUser].friendUUIDs[indexPath.row];
-            [self.cloudManager getPhotographerWithUUID:uuid completionBlock:^(ZHUser *user, NSError *error) {
-                cell.user = user;
-            }];
+            ZHUser *user = [ZHUser currentUser].friends[indexPath.row];
+            cell.user = user;
             return cell;
         }
             break;
@@ -211,11 +209,9 @@ typedef enum {
         case ZHYouViewControllerSectionFriends:{
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Photographer" bundle:[NSBundle mainBundle]];
             ZHPhotographerViewController *vc = [storyboard instantiateInitialViewController];
-            NSString *uuid = [ZHUser currentUser].friendUUIDs[indexPath.row];
-            [self.cloudManager getPhotographerWithUUID:uuid completionBlock:^(ZHUser *user, NSError *error) {
-                vc.user = user;
-                [self.navigationController pushViewController:vc animated:YES];
-            }];
+            ZHUser *user = [ZHUser currentUser].friends[indexPath.row];
+            vc.user = user;
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         default:
@@ -285,9 +281,9 @@ typedef enum {
     switch (indexPath.section) {
         case ZHYouViewControllerSectionFriends: {
             UITableViewRowAction *unfollowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Unfollow" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-                NSString *uuidToRemove = [ZHUser currentUser].friendUUIDs[indexPath.row];
+                ZHUser *userToRemove = [ZHUser currentUser].friends[indexPath.row];
                 ZHUser *currentUser = [[ZHUser currentUser] copy];
-                [currentUser.friendUUIDs removeObject:uuidToRemove];
+                [currentUser.friends removeObject:userToRemove];
                 [self.cloudManager updateUser:currentUser completionBlock:^(ZHUser *user, NSError *error) {
                     if(error != nil) {
                         [self presentAlertDialogWithTitle:@"Could not unfollow user" errorAsMessage:error];

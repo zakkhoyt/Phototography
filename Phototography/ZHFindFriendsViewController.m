@@ -154,10 +154,10 @@ typedef enum {
         ZHUser *currentUser = [[ZHUser currentUser] copy];
         ZHUser *friendToAdd = self.users[indexPath.row];
         
-        if([currentUser.friendUUIDs containsObject:friendToAdd.uuid] == YES) {
+        if([currentUser.friends containsObject:friendToAdd] == YES) {
             NSLog(@"Already friends!");
         } else {
-            [currentUser.friendUUIDs addObject:friendToAdd.uuid];
+            [currentUser.friends addObject:friendToAdd];
             [appDelegate.cloudManager updateUser:currentUser completionBlock:^(ZHUser *user, NSError *error) {
                 if(error != nil) {
                     [self presentAlertDialogWithTitle:@"Could not follow user" errorAsMessage:error];

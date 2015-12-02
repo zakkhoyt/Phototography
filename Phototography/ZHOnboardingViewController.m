@@ -102,14 +102,23 @@ static NSString *SegueOnboardingToMain = @"SegueOnboardingToMain";
                         } else {
                             NSLog(@"Retrieved user info for %@ %@", user.firstName, user.lastName);
                             [ZHUser setCurrentUser:user];
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                [MBProgressHUD hideHUDForView:self.view animated:YES];
-                                self.statusLabel.text = [NSString stringWithFormat:@"Welcome to Phototography, %@ %@!\n"
-                                                         @"This app will let you know if your friends have taken photos near your current location. You can recreate their photos and share them back. You can search for friends now using the buttons below or set that up later.",
-                                                         user.firstName, user.lastName];
-                                self.startButton.hidden = NO;
-                                self.findFriendsButton.hidden = NO;
-                            });
+                            
+                            
+//                            [self.cloudManager getFriendsForCurrentUserWithCompletionBlock:^(NSArray *friends, NSError *error) {
+                                NSLog(@"Inspect friends");
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                    self.statusLabel.text = [NSString stringWithFormat:@"Welcome to Phototography, %@ %@!\n"
+                                                             @"This app will let you know if your friends have taken photos near your current location. You can recreate their photos and share them back. You can search for friends now using the buttons below or set that up later.",
+                                                             user.firstName, user.lastName];
+                                    self.startButton.hidden = NO;
+                                    self.findFriendsButton.hidden = NO;
+                                    
+                                    [self performSegueWithIdentifier:SegueOnboardingToMain sender:nil];
+                                });
+
+//                            }];
+                            
                         }
                     }];
                 }

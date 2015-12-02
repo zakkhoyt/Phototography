@@ -23,6 +23,7 @@ typedef void (^ZHCloudManagerProgressBlock)(NSUInteger uploadedCount, NSUInteger
 -(void)updateUser:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock;
 
 -(void)createPhotographer:(ZHUser*)user completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock;
+
 -(void)loggedInToICloud:(ZHCloudManagerBoolBlock)completionBlock;
 -(void)userInfo:(ZHCloudManagerUserErrorBlock)completionBlock;
 -(void)findUsersForEmail:(NSString*)email completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock;

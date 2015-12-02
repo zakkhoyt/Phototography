@@ -165,7 +165,11 @@
 }
 
 - (IBAction)assetCountButtonTouchUpInside:(id)sender {
-    
+//    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+//    [appDelegate.cloudManager getFriendsForCurrentUserWithCompletionBlock:^(NSArray *friends, NSError *error) {
+//        NSLog(@"Inspecct friends");
+//    }];
+
 }
 
 

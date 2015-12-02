@@ -6,7 +6,7 @@
 //  Copyright © 2015 Zakk Hoyt. All rights reserved.
 //
 
-#import "ZHUserAnnotationView.h"
+#import "ZHUserAssetAnnotationView.h"
 #import "ZHUser.h"
 #import "UIColor+ZH.h"
 #import "ZHDefines.h"
@@ -16,12 +16,12 @@
 
 #define ZH_HIDE_ANNOTATION_COUNT 1
 
-@interface ZHUserAnnotationView ()
+@interface ZHUserAssetAnnotationView ()
 @property (strong, nonatomic) UILabel *countLabel;
 @end
 
 
-@implementation ZHUserAnnotationView
+@implementation ZHUserAssetAnnotationView
 
 - (instancetype)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];

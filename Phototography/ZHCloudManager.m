@@ -89,6 +89,7 @@
     }];
 }
 
+
 -(void)getPhotographerWithUUID:(NSString*)uuid completionBlock:(ZHCloudManagerUserErrorBlock)completionBlock{
     CKRecordID *recordID = [[CKRecordID alloc]initWithRecordName:uuid];
     [self.publicDB fetchRecordWithID:recordID completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error) {
@@ -232,12 +233,19 @@
     }];
     
     [self.publicDB addOperation:modifyRecordsOperation];
-
-
 }
 
 
 
+//-(void)getFriendsForCurrentUser{
+//    NSMutableArray *f = [[NSMutableArray alloc]initWithCapacity:[ZHUser currentUser].friends.count];
+//    [[ZHUser currentUser].friends enumerateObjectsUsingBlock:^(ZHUser * _Nonnull user, NSUInteger idx, BOOL * _Nonnull stop) {
+//        [self.publicDB fetchRecordWithID:user completionHandler:^(CKRecord * _Nullable record, NSError * _Nullable error) {
+//
+//        }];
+//    }];
+//    
+//}
 
 -(void)findContacts:(ZHCloudManagerArrayErrorBlock)completionBlock{
     [self.container discoverAllContactUserInfosWithCompletionHandler:^(NSArray<CKDiscoveredUserInfo *> * _Nullable userInfos, NSError * _Nullable error) {
@@ -454,18 +462,18 @@
     dispatch_group_t group = dispatch_group_create();
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 
-    NSUInteger count = [ZHUser currentUser].friendUUIDs.count;
+    NSUInteger count = [ZHUser currentUser].friends.count;
     NSMutableArray *userAssets = [[NSMutableArray alloc]initWithCapacity:count];
     __block NSError *retError;
-    [[ZHUser currentUser].friendUUIDs enumerateObjectsUsingBlock:^(NSString * _Nonnull uuid, NSUInteger idx, BOOL * _Nonnull stop) {
+    [[ZHUser currentUser].friends enumerateObjectsUsingBlock:^(ZHUser * _Nonnull user, NSUInteger idx, BOOL * _Nonnull stop) {
         dispatch_group_enter(group);
         dispatch_async(queue, ^{
-            [self getAssetsNearLocation:location ownerUUID:uuid completionBlock:^(NSArray *assets, NSError *error) {
+            [self getAssetsNearLocation:location ownerUUID:user.uuid completionBlock:^(NSArray *assets, NSError *error) {
 
                 if(error != nil) {
                     retError = error;
                 } else if(assets != nil) {
-                    NSDictionary *dictionary = @{@"uuid": uuid,
+                    NSDictionary *dictionary = @{@"user": user,
                                                  @"assets": assets};
                     [userAssets addObject:dictionary];
                 }
