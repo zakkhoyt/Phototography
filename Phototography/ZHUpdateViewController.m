@@ -41,7 +41,10 @@
     self.clusteredMapView.addAnimationType = VWWClusteredMapViewAnnotationAddAnimationGrowStaggered;
     self.clusteredMapView.removeAnimationType = VWWClusteredMapViewAnnotationRemoveAnimationAutomatic;
     self.clusteredMapView.showsUserLocation = YES;
-    [self findNearbyPhotos];
+//    [self getLocationTheFindPhotos];
+    
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPress:)];
+    [self.clusteredMapView addGestureRecognizer:longPress];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -55,43 +58,81 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)longPress:(UILongPressGestureRecognizer*)sender {
+    if(sender.state == UIGestureRecognizerStateBegan) {
+        CGPoint point = [sender locationInView:self.clusteredMapView];
+        CLLocationCoordinate2D coordinate = [self.clusteredMapView convertPoint:point toCoordinateFromView:self.clusteredMapView];
+        CLLocation *location = [CLLocation locationFromCoordinate:coordinate];
+        
+        [[ZHLocationManager sharedInstance] updateToLocation:location completionBlock:^(CLLocation *location, NSError *error) {
+            [self findPhotosNearLocation:location];
+        }];
+    }
+}
 
--(void)findNearbyPhotos{
+
+-(void)findPhotosNearLocation:(CLLocation*)l {
+    
+    CLLocation *location = [CLLocation locationFromCoordinate:l.coordinate];
+    
+    // Clean up map
+    [self.clusteredMapView removeOverlays:self.clusteredMapView.overlays];
+    self.userAssets = nil;
+    [self.clusteredMapView reloadData];
+    
+    
+    CLLocationDistance width = 2*2*ZHLocationManagerRadiusInMeters;
+    CLLocationDistance height = width * self.view.bounds.size.width / self.view.bounds.size.height;
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, width, height);
+    [self.clusteredMapView setRegion:region animated:YES];
+    
+    // Draw a circle
+    MKCircle *circle = [MKCircle circleWithCenterCoordinate:location.coordinate radius:ZHLocationManagerRadiusInMeters];
+    [self.clusteredMapView addOverlay:circle];
+    
+    
+    ZHUser *currentUser = [ZHUser currentUser];
+    currentUser.location = location;
+    
+    /// ******* get assets for all friends near location
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    [appDelegate.cloudManager getAssetsNearLocation:location distance:ZHLocationManagerRadiusInMeters completionBlock:^(NSArray *userAssets, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if(error != nil) {
+            [self presentAlertDialogWithTitle:@"Could not update location" errorAsMessage:error];
+        } else {
+            __block NSUInteger counter = 0;
+            [userAssets enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull dictionary, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSArray *assets = dictionary[@"assets"];
+                counter += assets.count;
+            }];
+            [self presentAlertDialogWithMessage:[NSString stringWithFormat:@"Found %lu users with %lu assets",
+                                                 (unsigned long)userAssets.count,
+                                                 (unsigned long)counter]];
+            self.userAssets = userAssets;
+            [self.clusteredMapView reloadData];
+        }
+    }];
+
+}
+
+
+-(void)getLocationTheFindPhotos{
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Locating...";
     
-    void (^findAssets)(CLLocation *location) = ^(CLLocation *location){
-        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 2*ZHLocationManagerRadiusInMeters, 2*ZHLocationManagerRadiusInMeters*self.view.bounds.size.height / self.view.bounds.size.width);
-        [self.clusteredMapView setRegion:region animated:YES];
-        
-        ZHUser *currentUser = [ZHUser currentUser];
-        currentUser.location = location;
-
-        /// ******* get assets for all friends near location
-        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-        [appDelegate.cloudManager getAssetsNearLocation:location distance:ZHLocationManagerRadiusInMeters completionBlock:^(NSArray *userAssets, NSError *error) {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            if(error != nil) {
-                [self presentAlertDialogWithTitle:@"Could not update location" errorAsMessage:error];
-            } else {
-                [self presentAlertDialogWithMessage:[NSString stringWithFormat:@"Found %lu users with assets", (unsigned long)userAssets.count]];
-                self.userAssets = userAssets;
-                [self.clusteredMapView reloadData];
-            }
-        }];
-
-    };
+    
     
 #if TARGET_IPHONE_SIMULATOR
     CLLocation *location = [[CLLocation alloc]initWithLatitude:37.75 longitude:-122.45];
     [[ZHLocationManager sharedInstance] updateToLocation:location completionBlock:^(CLLocation *location, NSError *error) {
-        findAssets(location);
+        [self findPhotosNearLocation:location];
     }];
 
 #else
     [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location, NSError *error) {
-        findAssets(location);
+        [self findPhotosNearLocation:location];
     }];
 #endif
 
@@ -99,7 +140,7 @@
 
 
 - (IBAction)refreshBarButtonAction:(id)sender {
-    [self findNearbyPhotos];
+    [self getLocationTheFindPhotos];
 }
 
 @end
@@ -128,6 +169,19 @@
 @end
 
 @implementation ZHUpdateViewController (VWWClusteredMapViewDelegate)
+
+//- (MKOverlayRenderer *)clusteredMapView:(MKMapView *)clusteredMapView rendererForOverlay:(id <MKOverlay>)overlay {
+- (MKOverlayRenderer *)clusteredMapView:(VWWClusteredMapView *)clusteredMapView rendererForOverlay:(id <MKOverlay>)overlay {
+    if([overlay isKindOfClass:[MKCircle class]]) {
+        MKCircleRenderer *renderer = [[MKCircleRenderer alloc]initWithCircle:overlay];
+        renderer.strokeColor = [UIColor zhTintColor];
+        renderer.fillColor = [[UIColor zhBackgroundColor] colorWithAlphaComponent:0.1];
+        renderer.lineWidth = 1.0;
+        return renderer;
+    }
+    return nil;
+}
+
 
 -(VWWClusteredAnnotationView *)clusteredMapView:(VWWClusteredMapView *)clusteredMapView viewForClusteredAnnotation:(VWWClusteredAnnotation*)annotation {
     

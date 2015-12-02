@@ -8,9 +8,11 @@
 
 #import "AppDelegate.h"
 #import "UIColor+ZH.h"
+#import "ZHAssetManager.h"
+#import "ZHLocationManager.h"
 
+@interface AppDelegate ()
 
-@interface AppDelegate (Notifications)
 @end
 
 @implementation AppDelegate
@@ -21,6 +23,7 @@
     // TODO: Check for UIApplicationLaunchOptionsLocationKey
     
     
+
     
     self.cloudManager = [[ZHCloudManager alloc]init];
     
@@ -169,10 +172,54 @@
 
 // Good reading about handling notifications: http://www.annema.me/problems-with-ios-push-notifications
 -(void)application:(nonnull UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler {
-    NSLog(@"Received remote notification with userInfo: %@", userInfo.description);
     
-    // Currently there is no need to wait around. Consider adding completion block to handleNot:
-    completionHandler(UIBackgroundFetchResultNoData);
+    static BOOL busy = NO;
+    if(busy == NO) {
+        busy = YES;
+    } else {
+        NSLog(@"Discarding notification (too many at once)");
+        completionHandler(UIBackgroundFetchResultFailed);
+        return;
+    }
+
+    NSLog(@"Received remote notification with userInfo: %@", userInfo.description);
+    NSString *uuid = [userInfo valueForKeyPath:@"ck.qry.rid"];
+
+    
+    [self.cloudManager getPhotographerWithUUID:uuid completionBlock:^(ZHUser *user, NSError *error) {
+        NSLog(@"%@ Is in a new location. Finding assets within %01f meters of location: %@",
+              user.fullName,
+              ZHLocationManagerRadiusInMeters,
+              user.location);
+        
+        void (^findAssetsInRadius)() = ^() {
+            NSMutableArray *assetsInRadius = [NSMutableArray new];
+            [[ZHAssetManager sharedInstance].assetsWithLocation enumerateObjectsUsingBlock:^(PHAsset*  _Nonnull asset, NSUInteger idx, BOOL * _Nonnull stop) {
+                if([user.location distanceFromLocation:asset.location] < ZHLocationManagerRadiusInMeters) {
+                    [assetsInRadius addObject:asset];
+                }
+            }];
+            
+            NSLog(@"Found %lu assets within radius", assetsInRadius.count);
+            if(assetsInRadius.count > 0) {
+                // TODO: Write somethign to server then trigger notification
+            } else {
+                // Nothing to do here.
+            }
+            
+            busy = NO;
+
+        };
+        
+        if([ZHAssetManager sharedInstance].assetsWithLocation.count == 0){
+            [[ZHAssetManager sharedInstance] getAssetsWithCompletionBlock:^(NSError *error) {
+                findAssetsInRadius();
+            }];
+        } else {
+            findAssetsInRadius();
+        }
+    }];
+
 }
 
 

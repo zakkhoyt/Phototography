@@ -10,7 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 
 
-const CLLocationDistance ZHLocationManagerRadiusInMeters = 1000;
+const CLLocationDistance ZHLocationManagerRadiusInMeters = 100;
 
 typedef void (^ZHLocationManagerLocationBlock)(CLLocation *location);
 typedef void (^ZHLocationManagerLocationErrorBlock)(CLLocation *location, NSError *error);

@@ -8,7 +8,7 @@
 
 #import "ZHFindFriendsViewController.h"
 #import "ZHContactsManager.h"
-#import "ZHFriendTableViewCell.h"
+#import "ZHPhotographerTableViewCell.h"
 
 typedef enum {
     ZHFindFriendsViewControllerFindTypeAddressBook = 0,
@@ -39,6 +39,10 @@ typedef enum {
     //    self.contactManager = [[ZHContactsManager alloc]init];
     self.view.backgroundColor = [UIColor zhBackgroundColor];
     self.searchEmailView.backgroundColor = [UIColor zhBackgroundColor];
+    
+    self.tableView.estimatedRowHeight = 81;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
     self.tableView.hidden = YES;
     self.tableView.contentInset = UIEdgeInsetsZero;
 }
@@ -141,7 +145,7 @@ typedef enum {
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ZHFriendTableViewCell *cell = [ZHFriendTableViewCell cellForTableView:tableView];
+    ZHPhotographerTableViewCell *cell = [ZHPhotographerTableViewCell cellForTableView:tableView];
     ZHUser *user = self.users[indexPath.row];
     [cell setUser:user];
     return cell;

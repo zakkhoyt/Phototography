@@ -7,11 +7,12 @@
 //
 
 #import "ZHYouViewController.h"
-#import "ZHFriendTableViewCell.h"
+#import "ZHPhotographerTableViewCell.h"
 #import "ZHAssetManager.h"
 #import "ZHYouViewControllerFriendsHeaderView.h"
 #import "ZHYouViewControllerUserDetailHeaderView.h"
 #import "ZHPhotographerViewController.h"
+#import "ZHPhotographerTableViewCell.h"
 
 static NSString *SegueYouToFindFriends = @"SegueYouToFindFriends";
 static NSString *SegueYouToAvatarPicker = @"SegueYouToAvatarPicker";
@@ -52,6 +53,8 @@ typedef enum {
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     self.cloudManager = appDelegate.cloudManager;
 
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 81;
     
 //    CGFloat top = [UIApplication sharedApplication].statusBarFrame.size.height + self.navigationController.navigationBar.frame.size.height;
 //    self.tableView.contentInset = UIEdgeInsetsMake(top, 0, 0, 0);
@@ -180,7 +183,7 @@ typedef enum {
         }
             break;
         case ZHYouViewControllerSectionFriends: {
-            ZHFriendTableViewCell *cell = [ZHFriendTableViewCell cellForTableView:tableView];
+            ZHPhotographerTableViewCell *cell = [ZHPhotographerTableViewCell cellForTableView:tableView];
             ZHUser *user = [ZHUser currentUser].friends[indexPath.row];
             cell.user = user;
             return cell;

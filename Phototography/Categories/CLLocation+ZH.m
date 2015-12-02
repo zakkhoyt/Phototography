@@ -10,6 +10,10 @@
 
 @implementation CLLocation (ZH)
 
++(CLLocation*)locationFromCoordinate:(CLLocationCoordinate2D)coordinate{
+    CLLocation *location = [[CLLocation alloc]initWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+    return location;
+}
 
 -(NSString*)stringForCoordinate{
     return [NSString stringWithFormat:@"%.5f,%.5f", self.coordinate.latitude, self.coordinate.longitude];

@@ -18,18 +18,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaL-Ec-rqa">
-                                <rect key="frame" x="20" y="20" width="560" height="21"/>
+                                <rect key="frame" x="20" y="20" width="560" height="20.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rmw-eF-Q8d">
+                                <rect key="frame" x="28" y="562" width="544" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Subscribe to location updates"/>
+                                <connections>
+                                    <action selector="subscribeButtonTouchUpInside:" destination="KPI-Ie-1XD" eventType="touchUpInside" id="Sq3-wV-3HH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="rmw-eF-Q8d" secondAttribute="trailing" constant="8" id="Bt8-jl-qEV"/>
                             <constraint firstItem="kaL-Ec-rqa" firstAttribute="trailing" secondItem="aAY-Kv-laf" secondAttribute="trailingMargin" id="Jql-L3-1YZ"/>
+                            <constraint firstItem="Gyq-EU-H4w" firstAttribute="top" secondItem="rmw-eF-Q8d" secondAttribute="bottom" constant="8" id="Mcr-A6-JMo"/>
                             <constraint firstItem="kaL-Ec-rqa" firstAttribute="leading" secondItem="aAY-Kv-laf" secondAttribute="leadingMargin" id="fPS-Oc-7JD"/>
+                            <constraint firstItem="rmw-eF-Q8d" firstAttribute="leading" secondItem="aAY-Kv-laf" secondAttribute="leadingMargin" constant="8" id="jwe-4p-Mn2"/>
                             <constraint firstItem="kaL-Ec-rqa" firstAttribute="top" secondItem="CdE-y4-hS9" secondAttribute="bottom" id="kbb-zz-mTC"/>
                         </constraints>
                     </view>

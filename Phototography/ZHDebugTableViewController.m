@@ -101,19 +101,11 @@
 }
 - (IBAction)updateLocationButtonTouchUpInside:(id)sender {
     [[ZHLocationManager sharedInstance] updateToCurrentLocationWithCompletionBlock:^(CLLocation *location, NSError *error) {
-        ZHUser *currentUser = [ZHUser currentUser];
-        currentUser.location = location;
-
-        // ** Updates currentUser's location
-        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-        [appDelegate.cloudManager updateUser:currentUser completionBlock:^(ZHUser *user, NSError *error) {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            if(error != nil) {
-                [self presentAlertDialogWithTitle:@"Could not update location" errorAsMessage:error];
-            } else {
-                [self presentAlertDialogWithMessage:@"Success"];
-            }
-        }];
+        if(error != nil) {
+            [self presentAlertDialogWithTitle:@"Could not update location" errorAsMessage:error];
+        } else {
+            [self presentAlertDialogWithMessage:@"Success"];
+        }
     }];
 }
 - (IBAction)updateAssetsButtonTouchUpInside:(id)sender {

@@ -12,8 +12,11 @@ typedef void (^CLLocationStringBlock)(NSString *string);
 
 @interface CLLocation (ZH)
 
++(CLLocation*)locationFromCoordinate:(CLLocationCoordinate2D)coordinate;
 -(NSString*)stringForCoordinate;
 +(NSString*)stringForCoordinate:(CLLocationCoordinate2D)coordinate;
+
+
 
 -(void)stringLocalityCompletionBlock:(CLLocationStringBlock)completionBlock;
 -(void)stringCityStateCompletionBlock:(CLLocationStringBlock)completionBlock;

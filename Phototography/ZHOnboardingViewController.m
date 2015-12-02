@@ -60,7 +60,7 @@ static NSString *SegueOnboardingToMain = @"SegueOnboardingToMain";
             NSLog(@"Not logged into iCloud");
             self.statusLabel.text = @"Sign in to iCloud";
             NSString *helpString = @"Sign in to your iCloud account. On the Home screen, launch Settings, tap iCloud, and enter your Apple ID. Turn iCloud Drive on. If you don't have an iCloud account, tap Create a new Apple ID.";
-
+            
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sign in to iCloud"
                                                                            message:helpString
                                                                     preferredStyle:UIAlertControllerStyleAlert];
@@ -84,16 +84,16 @@ static NSString *SegueOnboardingToMain = @"SegueOnboardingToMain";
                     [alert addAction:[UIAlertAction actionWithTitle:@"Okay"
                                                               style:UIAlertActionStyleCancel
                                                             handler:nil]];
-
+                    
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
                         [self presentViewController:alert animated:YES completion:nil];
                     });
-
+                    
                 } else {
                     
                     // TODO: Now use the private Users record to create a public Photographers record
-                    
+                    hud.labelText = @"Creating photographer...";
                     [self.cloudManager createPhotographer:user completionBlock:^(ZHUser *user, NSError *error) {
                         
                         
@@ -104,29 +104,31 @@ static NSString *SegueOnboardingToMain = @"SegueOnboardingToMain";
                             [ZHUser setCurrentUser:user];
                             
                             
-                                NSLog(@"Inspect friends");
-                                dispatch_async(dispatch_get_main_queue(), ^{
+                            NSLog(@"Inspect friends");
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                
+                                
+                                // Get friends
+                                hud.labelText = @"Getting friends...";
+                                [self.cloudManager getFriendsForReferences:[ZHUser currentUser].friends completionBlock:^(NSArray *friends, NSError *error) {
+                                    if(error != nil) {
+                                        NSLog(@"Error getting friends");
+                                        [ZHUser currentUser].friends = [@[]mutableCopy];
+                                    } else {
+                                        [ZHUser currentUser].friends = [friends mutableCopy];
+                                    }
+                                    
                                     [MBProgressHUD hideHUDForView:self.view animated:YES];
-
-                                    // Get friends
-                                    [self.cloudManager getFriendsForReferences:[ZHUser currentUser].friends completionBlock:^(NSArray *friends, NSError *error) {
-                                        if(error != nil) {
-                                            NSLog(@"Error getting friends");
-                                            [ZHUser currentUser].friends = [@[]mutableCopy];
-                                        } else {
-                                            [ZHUser currentUser].friends = [friends mutableCopy];
-                                        }
-                                        
-                                        self.statusLabel.text = [NSString stringWithFormat:@"Welcome to Phototography, %@ %@!\n"
-                                                                 @"This app will let you know if your friends have taken photos near your current location. You can recreate their photos and share them back. You can search for friends now using the buttons below or set that up later.",
-                                                                 user.firstName, user.lastName];
-                                        self.startButton.hidden = NO;
-                                        self.findFriendsButton.hidden = NO;
-                                        
-                                        [self performSegueWithIdentifier:SegueOnboardingToMain sender:nil];
-
-                                    }];
-                                });
+                                    self.statusLabel.text = [NSString stringWithFormat:@"Welcome to Phototography, %@ %@!\n"
+                                                             @"This app will let you know if your friends have taken photos near your current location. You can recreate their photos and share them back. You can search for friends now using the buttons below or set that up later.",
+                                                             user.firstName, user.lastName];
+                                    self.startButton.hidden = NO;
+                                    self.findFriendsButton.hidden = NO;
+                                    
+                                    [self performSegueWithIdentifier:SegueOnboardingToMain sender:nil];
+                                    
+                                }];
+                            });
                         }
                     }];
                 }
@@ -139,25 +141,25 @@ static NSString *SegueOnboardingToMain = @"SegueOnboardingToMain";
 -(void)checkPermissions{
     VWWPhotosPermission *photos = [VWWPhotosPermission permissionWithLabelText:@"We will read your photo library to find photos without a geotag."];
     VWWContactsPermission *contacts = [VWWContactsPermission permissionWithLabelText:@"Contacts to find your friends"];
-//    VWWCoreLocationWhenInUsePermission *locationWhenInUse = [VWWCoreLocationWhenInUsePermission permissionWithLabelText:@"For obtaining your current location"];
+    //    VWWCoreLocationWhenInUsePermission *locationWhenInUse = [VWWCoreLocationWhenInUsePermission permissionWithLabelText:@"For obtaining your current location"];
     VWWCoreLocationWhenInUsePermission *locationInUse = [VWWCoreLocationWhenInUsePermission permissionWithLabelText:@"please"];
     NSArray *permissions = @[locationInUse, photos, contacts];
-//    NSArray *permissions = @[photos];
-
+    //    NSArray *permissions = @[photos];
+    
     [VWWPermissionsManager requirePermissions:permissions
-                                       title:@"Welcome to the Phototography! A tool to add geotags to your Apple Photo collection. Approve these permissions, then we can get started."
-                          fromViewController:self
-                                resultsBlock:^(NSArray *permissions) {
-                                    [permissions enumerateObjectsUsingBlock:^(VWWPermission *permission, NSUInteger idx, BOOL *stop) {
-                                        NSLog(@"%@ - %@", permission.type, [permission stringForStatus]);
-                                        [self performSegueWithIdentifier:SegueOnboardingToMain sender:nil];
-                                    }];
-                                }];
+                                        title:@"Welcome to the Phototography! A tool to add geotags to your Apple Photo collection. Approve these permissions, then we can get started."
+                           fromViewController:self
+                                 resultsBlock:^(NSArray *permissions) {
+                                     [permissions enumerateObjectsUsingBlock:^(VWWPermission *permission, NSUInteger idx, BOOL *stop) {
+                                         NSLog(@"%@ - %@", permission.type, [permission stringForStatus]);
+                                         [self performSegueWithIdentifier:SegueOnboardingToMain sender:nil];
+                                     }];
+                                 }];
 }
 
 
 - (IBAction)startButtonTouchUpInside:(id)sender {
-//    [self checkPermissions];
+    //    [self checkPermissions];
     [self performSegueWithIdentifier:SegueOnboardingToMain sender:nil];
 }
 
