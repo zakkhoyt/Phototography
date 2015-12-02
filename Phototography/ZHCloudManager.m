@@ -553,6 +553,27 @@ static NSString *ZHCloudManagerAssetsKey = @"Assets";
     }];
 }
 
+-(void)deleteAllSubscriptionsWithCompletionBlock:(ZHCloudManagerErrorBlock)completionBlock {
+    __block NSError *totalError;
+    [self.publicDB fetchAllSubscriptionsWithCompletionHandler:^(NSArray<CKSubscription *> * _Nullable subscriptions, NSError * _Nullable error) {
+        
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        [subscriptions enumerateObjectsUsingBlock:^(CKSubscription * _Nonnull subscription, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.publicDB deleteSubscriptionWithID:subscription.subscriptionID completionHandler:^(NSString * _Nullable subscriptionID, NSError * _Nullable error) {
+                if(error != nil) {
+                    totalError = error;
+                }
+                dispatch_semaphore_signal(semaphore);
+            }];
+        }];
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(totalError);
+        });
+    }];
+}
+
 
 
 @end

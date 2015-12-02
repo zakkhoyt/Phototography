@@ -174,13 +174,12 @@
 -(void)application:(nonnull UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler {
     
     static BOOL busy = NO;
-    if(busy == NO) {
-        busy = YES;
-    } else {
+    if(busy == YES) {
         NSLog(@"Discarding notification (too many at once)");
         completionHandler(UIBackgroundFetchResultFailed);
         return;
     }
+    busy = YES;
 
     NSLog(@"Received remote notification with userInfo: %@", userInfo.description);
     NSString *uuid = [userInfo valueForKeyPath:@"ck.qry.rid"];

@@ -142,5 +142,15 @@
     }];
 }
 
+- (IBAction)deleteSubscriptionsButtonTouchUpInside:(id)sender {
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    [appDelegate.cloudManager deleteAllSubscriptionsWithCompletionBlock:^(NSError *error) {
+        if(error) {
+            [self presentAlertDialogWithTitle:@"Failed to delete" errorAsMessage:error];
+        } else {
+            [self presentAlertDialogWithMessage:@"Success"];
+        }
+    }];
+}
 
 @end
