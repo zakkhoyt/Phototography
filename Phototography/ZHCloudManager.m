@@ -238,67 +238,33 @@
 
 
 -(void)getFriendsForReferences:(NSArray*)references completionBlock:(ZHCloudManagerArrayErrorBlock)completionBlock {
-    NSMutableArray *predicates = [[NSMutableArray alloc]initWithCapacity:references.count];
-    [references enumerateObjectsUsingBlock:^(CKReference *reference, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"UUID = %@", reference.recordID.recordName];
-//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"creatorUserRecordID = %@", reference];
-        [predicates addObject:predicate];
-    }];
     
+    if(references.count == 0) {
+        completionBlock(nil, nil);
+        return;
+    }
     
-    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicates];
-    
-    CKQuery *query = [[CKQuery alloc] initWithRecordType:@"Photographers" predicate:predicate];
-    [self.publicDB performQuery:query inZoneWithID:nil completionHandler:^(NSArray<CKRecord *> * _Nullable results, NSError * _Nullable error) {
+    NSArray *recordIDs = [references valueForKeyPath:@"recordID"];
+    CKFetchRecordsOperation *operation = [[CKFetchRecordsOperation alloc]initWithRecordIDs:recordIDs];
+    [operation setFetchRecordsCompletionBlock:^(NSDictionary<CKRecordID *,CKRecord *> * _Nullable dictionary, NSError * _Nullable error) {
         if(error != nil) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 completionBlock(nil, error);
             });
         } else {
-            NSMutableArray *friends = [[NSMutableArray alloc]initWithCapacity:results.count];
-            [results enumerateObjectsUsingBlock:^(CKRecord * _Nonnull record, NSUInteger idx, BOOL * _Nonnull stop) {
-                ZHUser *friend = [[ZHUser alloc]initWithRecord:record];
-                [friends addObject:friend];
-            }];
-            
             dispatch_async(dispatch_get_main_queue(), ^{
-                completionBlock(friends, nil);
+                NSMutableArray *friends = [[NSMutableArray alloc]initWithCapacity:references.count];
+                [dictionary.allValues enumerateObjectsUsingBlock:^(CKRecord * _Nonnull record, NSUInteger idx, BOOL * _Nonnull stop) {
+                    ZHUser *friend = [[ZHUser alloc]initWithRecord:record];
+                    [friends addObject:friend];
+                }];
+                completionBlock(friends, error);
             });
         }
     }];
+    [self.publicDB addOperation:operation];
     
-    
-    
-//CKQuery *query = [CKQuery alloc]init
-//    CKQueryOperation *operation = [CKQueryOperation alloc]initWithQuery:];
-    
-//    CKModifyRecordsOperation *modifyRecordsOperation = [[CKModifyRecordsOperation alloc] initWithRecordsToSave:records recordIDsToDelete:nil];
-//    modifyRecordsOperation.savePolicy = CKRecordSaveAllKeys;
-//    [modifyRecordsOperation setModifyRecordsCompletionBlock:^(NSArray <CKRecord *> * __nullable savedRecords,
-//                                                              NSArray <CKRecordID *> * __nullable deletedRecordIDs,
-//                                                              NSError * __nullable operationError){
-//        if(operationError != nil){
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                completionBlock(nil, operationError);
-//            });
-//        } else {
-//            NSLog(@"Updated photographer record");
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                ZHUser *newUser = [[ZHUser alloc]initWithRecord:record];
-//                
-//                if([user isEqual:[ZHUser currentUser]]) {
-//                    [[NSNotificationCenter defaultCenter] postNotificationName:ZHNotificationNamesCurrentUserUpdated object:nil];
-//                }
-//                
-//                completionBlock(newUser, nil);
-//            });
-//        }
-//    }];
-//    
-//    [self.publicDB addOperation:modifyRecordsOperation];
-
-    
-}
+    }
 
 -(void)findContacts:(ZHCloudManagerArrayErrorBlock)completionBlock{
     [self.container discoverAllContactUserInfosWithCompletionHandler:^(NSArray<CKDiscoveredUserInfo *> * _Nullable userInfos, NSError * _Nullable error) {
