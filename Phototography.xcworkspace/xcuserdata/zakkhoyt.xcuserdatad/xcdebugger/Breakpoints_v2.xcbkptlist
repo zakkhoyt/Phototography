@@ -148,7 +148,7 @@
                   moduleName = "Phototography"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zakkhoyt/Code/repositories/vwwGithub/Phototography/Phototography/ZHCloudManager.m"
-                  timestampString = "470732910.734012"
+                  timestampString = "472092808.618116"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
@@ -163,7 +163,7 @@
                   moduleName = "Phototography"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zakkhoyt/Code/repositories/vwwGithub/Phototography/Phototography/ZHCloudManager.m"
-                  timestampString = "470732910.734366"
+                  timestampString = "472092808.618725"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
@@ -1024,7 +1024,7 @@
                   moduleName = "Phototography"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zakkhoyt/Code/repositories/vwwGithub/Phototography/Phototography/ZHCloudManager.m"
-                  timestampString = "470732910.738986"
+                  timestampString = "472092808.669542"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "224"
@@ -1039,7 +1039,7 @@
                   moduleName = "Phototography"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zakkhoyt/Code/repositories/vwwGithub/Phototography/Phototography/ZHCloudManager.m"
-                  timestampString = "470732910.739166"
+                  timestampString = "472092808.669948"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "224"
@@ -1376,11 +1376,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ThirdParty/VWWClusteredMapView/VWWClusteredMapView.m"
-            timestampString = "470724334.681427"
+            timestampString = "472092662.588887"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "518"
-            endingLineNumber = "518"
+            startingLineNumber = "520"
+            endingLineNumber = "520"
             landmarkName = "@implementation VWWClusteredMapView(OverlaysAPI)"
             landmarkType = "3">
          </BreakpointContent>
@@ -1392,11 +1392,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ThirdParty/VWWClusteredMapView/VWWClusteredMapView+MKMapViewDelegate.m"
-            timestampString = "470724456.435971"
+            timestampString = "472091578.818713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "@implementation VWWClusteredMapView(MKMapViewDelegate)"
             landmarkType = "3">
          </BreakpointContent>
@@ -1408,11 +1408,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ThirdParty/VWWClusteredMapView/VWWClusteredMapView+MKMapViewDelegate.m"
-            timestampString = "470724455.508268"
+            timestampString = "472091578.818713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
             landmarkName = "@implementation VWWClusteredMapView(MKMapViewDelegate)"
             landmarkType = "3">
          </BreakpointContent>
@@ -1424,11 +1424,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phototography/ThirdParty/VWWClusteredMapView/VWWClusteredMapView+MKMapViewDelegate.m"
-            timestampString = "470724525.716241"
+            timestampString = "472091578.818713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
             landmarkName = "@implementation VWWClusteredMapView(MKMapViewDelegate)"
             landmarkType = "3">
          </BreakpointContent>
@@ -1700,6 +1700,22 @@
             startingLineNumber = "151"
             endingLineNumber = "151"
             landmarkName = "-deleteSubscriptionsButtonTouchUpInside:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Phototography/ThirdParty/VWWClusteredMapView/VWWClusteredMapView+Private.m"
+            timestampString = "472092808.46137"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "-refreshClusterableAnnotations"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

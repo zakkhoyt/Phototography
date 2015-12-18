@@ -102,7 +102,7 @@ typedef void(^VWWClusteredAnnotationViewEmptyBlock)(void);
         [UIView addKeyframeWithRelativeStartTime:3*frameDuration relativeDuration:frameDuration animations:^{
             self.transform = CGAffineTransformMakeScale(1.0, 1.0);
         }];
-    } completion:nil];
+    } completion:NULL];
 }
 
 -(void)animateAddRainStaggered:(BOOL)staggered{

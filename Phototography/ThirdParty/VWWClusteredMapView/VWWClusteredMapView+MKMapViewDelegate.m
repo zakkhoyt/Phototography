@@ -19,10 +19,7 @@
     }
 }
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
-    
     [self refreshClusterableAnnotations];
-    
-    
     if([self.delegate respondsToSelector:@selector(clusteredMapView:regionDidChangeAnimated:)]) {
         [self.delegate clusteredMapView:self regionDidChangeAnimated:animated];
     }

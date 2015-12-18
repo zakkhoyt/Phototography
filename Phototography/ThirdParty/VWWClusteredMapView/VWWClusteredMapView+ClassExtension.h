@@ -25,5 +25,6 @@
 @property (nonatomic, strong) UIDynamicAnimator* animator;
 @property (nonatomic, strong) UIGravityBehavior* gravity;
 
+@property (nonatomic, strong) NSLock *lock;
 
 @end

@@ -21,49 +21,56 @@
         return;
     }
     
-    double scale = self.bounds.size.width / self.visibleMapRect.size.width;
+    if([self.lock tryLock] == YES){
     
-    NSMutableSet *toAddFromAllSections = [[NSMutableSet alloc]init];
-    NSMutableSet *toRemoveFromAllSections = [[NSMutableSet alloc]init];
-    
-    NSUInteger sectionCount = [self.dataSource numberOfSectionsInMapView:self];
-    
-    for(NSUInteger sectionIndex = 0; sectionIndex < sectionCount; sectionIndex++){
-        if([self.hiddenSections containsObject:@(sectionIndex)]){
-            continue;
+        double scale = self.bounds.size.width / self.visibleMapRect.size.width;
+        
+        NSMutableSet *toAddFromAllSections = [[NSMutableSet alloc]init];
+        NSMutableSet *toRemoveFromAllSections = [[NSMutableSet alloc]init];
+        
+        NSUInteger sectionCount = [self.dataSource numberOfSectionsInMapView:self];
+        
+        for(NSUInteger sectionIndex = 0; sectionIndex < sectionCount; sectionIndex++){
+            if([self.hiddenSections containsObject:@(sectionIndex)]){
+                continue;
+            }
+            VWWCoordinateQuadTree *quadTree = self.quadTrees[sectionIndex];
+            NSArray *clusteredAnnotations = [quadTree clusteredAnnotationsWithinMapRect:self.visibleMapRect withZoomScale:scale];
+            NSMutableSet *before = self.clusteredAnnotations[sectionIndex];
+            [before removeObject:[self userLocation]];
+            NSSet *after = [NSSet setWithArray:clusteredAnnotations];
+            NSMutableSet *toKeep = [NSMutableSet setWithSet:before];
+            [toKeep intersectSet:after];
+            NSMutableSet *toAdd = [NSMutableSet setWithSet:after];
+            [toAdd minusSet:toKeep];
+            NSMutableSet *toRemove = [NSMutableSet setWithSet:before];
+            [toRemove minusSet:after];
+            
+            
+            NSMutableArray *nextCA = [[self.clusteredAnnotations[sectionIndex] allObjects]mutableCopy];
+            [nextCA addObjectsFromArray:[toAdd allObjects]];
+            [nextCA removeObjectsInArray:[toRemove allObjects]];
+            self.clusteredAnnotations[sectionIndex] = [NSMutableSet setWithArray:nextCA];
+            [toAddFromAllSections unionSet:toAdd];
+            [toRemoveFromAllSections unionSet:toRemove];
         }
-        VWWCoordinateQuadTree *quadTree = self.quadTrees[sectionIndex];
-        NSArray *clusteredAnnotations = [quadTree clusteredAnnotationsWithinMapRect:self.visibleMapRect withZoomScale:scale];
-        NSMutableSet *before = self.clusteredAnnotations[sectionIndex];
-        [before removeObject:[self userLocation]];
-        NSSet *after = [NSSet setWithArray:clusteredAnnotations];
-        NSMutableSet *toKeep = [NSMutableSet setWithSet:before];
-        [toKeep intersectSet:after];
-        NSMutableSet *toAdd = [NSMutableSet setWithSet:after];
-        [toAdd minusSet:toKeep];
-        NSMutableSet *toRemove = [NSMutableSet setWithSet:before];
-        [toRemove minusSet:after];
         
+        //    NSLog(@"toRemoveFromAllSections.count: %lu", toRemoveFromAllSections.count);
+        //    NSLog(@"toAddFromAllSections.coutn: %lu", toAddFromAllSections.count);
+        [self removeAnnotations:[toRemoveFromAllSections allObjects] completionBlock:^{
+            [self.mapView addAnnotations:[toAddFromAllSections allObjects]];
+            NSTimeInterval interval = self.addAnnotationAnimationDuration + 0.25; // animation + max possible stagger delay
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(interval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.lock unlock];
+            });
+        }];
         
-        NSMutableArray *nextCA = [[self.clusteredAnnotations[sectionIndex] allObjects]mutableCopy];
-        [nextCA addObjectsFromArray:[toAdd allObjects]];
-        [nextCA removeObjectsInArray:[toRemove allObjects]];
-        self.clusteredAnnotations[sectionIndex] = [NSMutableSet setWithArray:nextCA];
-        [toAddFromAllSections unionSet:toAdd];
-        [toRemoveFromAllSections unionSet:toRemove];
+//        NSLog(@"self.mapView.annotations.count: %lu", (unsigned long) self.mapView.annotations.count);
     }
-    
-//    NSLog(@"toRemoveFromAllSections.count: %lu", toRemoveFromAllSections.count);
-//    NSLog(@"toAddFromAllSections.coutn: %lu", toAddFromAllSections.count);
-    [self removeAnnotations:[toRemoveFromAllSections allObjects] completionBlock:^{
-        [self.mapView addAnnotations:[toAddFromAllSections allObjects]];
-    }];
-    
-//    NSLog(@"self.mapView.annotations.count: %lu", (unsigned long) self.mapView.annotations.count);
 }
 
 - (void)removeAnnotations:(NSArray*)annotations completionBlock:(VWWClusteredMapViewEmptyBlock)completionBlock{
-    
+
     if(annotations.count == 0){
         if(completionBlock){
             completionBlock();

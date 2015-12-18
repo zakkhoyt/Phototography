@@ -24,7 +24,6 @@
 		C6439A461C097085006BCF73 /* ZHTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6439A451C097085006BCF73 /* ZHTableViewController.m */; };
 		C6439A491C097092006BCF73 /* ZHCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6439A481C097092006BCF73 /* ZHCollectionViewController.m */; };
 		C665D5591C0AD9F40018D988 /* ZHUpdateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C665D5581C0AD9F40018D988 /* ZHUpdateTableViewCell.m */; };
-		C670921B1C08325100AE06F3 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C670921A1C08325100AE06F3 /* CloudKit.framework */; };
 		C670921E1C08330100AE06F3 /* ZHCloudManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C670921D1C08330100AE06F3 /* ZHCloudManager.m */; };
 		C67092221C08346D00AE06F3 /* ZHUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C67092211C08346D00AE06F3 /* ZHUser.m */; };
 		C67092251C08396A00AE06F3 /* ZHOnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67092241C08396A00AE06F3 /* ZHOnboardingViewController.m */; };
@@ -49,6 +48,7 @@
 		C67D86A01BBF7EF800B2C4CF /* UIView+RenderToImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86921BBF7EF800B2C4CF /* UIView+RenderToImage.m */; };
 		C67D86A11BBF7EF800B2C4CF /* UIViewController+AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86941BBF7EF800B2C4CF /* UIViewController+AlertController.m */; };
 		C67D86AC1BC04B2700B2C4CF /* ZHUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D86AB1BC04B2700B2C4CF /* ZHUserDefaults.m */; };
+		C68764FC1C1A4F9100A3FC4E /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C68764FB1C1A4F9100A3FC4E /* CloudKit.framework */; };
 		C696B65E1C0A976E00F21D4D /* ZHYouViewControllerFriendsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C696B65D1C0A976E00F21D4D /* ZHYouViewControllerFriendsHeaderView.m */; };
 		C696B6601C0A977900F21D4D /* ZHYouViewControllerFriendsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C696B65F1C0A977900F21D4D /* ZHYouViewControllerFriendsHeaderView.xib */; };
 		C696B6641C0A9B8900F21D4D /* ZHYouViewControllerUserDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C696B6631C0A9B8900F21D4D /* ZHYouViewControllerUserDetailHeaderView.xib */; };
@@ -119,7 +119,6 @@
 		C665D5571C0AD9F40018D988 /* ZHUpdateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHUpdateTableViewCell.h; sourceTree = "<group>"; };
 		C665D5581C0AD9F40018D988 /* ZHUpdateTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHUpdateTableViewCell.m; sourceTree = "<group>"; };
 		C67092191C08323900AE06F3 /* Phototography.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Phototography.entitlements; sourceTree = "<group>"; };
-		C670921A1C08325100AE06F3 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		C670921C1C08330100AE06F3 /* ZHCloudManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHCloudManager.h; sourceTree = "<group>"; };
 		C670921D1C08330100AE06F3 /* ZHCloudManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHCloudManager.m; sourceTree = "<group>"; };
 		C67092201C08346D00AE06F3 /* ZHUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHUser.h; sourceTree = "<group>"; };
@@ -167,6 +166,7 @@
 		C67D86A21BBF7F3000B2C4CF /* ZHDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHDefines.h; sourceTree = "<group>"; };
 		C67D86AA1BC04B2700B2C4CF /* ZHUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHUserDefaults.h; sourceTree = "<group>"; };
 		C67D86AB1BC04B2700B2C4CF /* ZHUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHUserDefaults.m; sourceTree = "<group>"; };
+		C68764FB1C1A4F9100A3FC4E /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		C696B65C1C0A976E00F21D4D /* ZHYouViewControllerFriendsHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYouViewControllerFriendsHeaderView.h; sourceTree = "<group>"; };
 		C696B65D1C0A976E00F21D4D /* ZHYouViewControllerFriendsHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYouViewControllerFriendsHeaderView.m; sourceTree = "<group>"; };
 		C696B65F1C0A977900F21D4D /* ZHYouViewControllerFriendsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHYouViewControllerFriendsHeaderView.xib; sourceTree = "<group>"; };
@@ -237,7 +237,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C670921B1C08325100AE06F3 /* CloudKit.framework in Frameworks */,
+				C68764FC1C1A4F9100A3FC4E /* CloudKit.framework in Frameworks */,
 				C67D86591BBF4E7400B2C4CF /* MapKit.framework in Frameworks */,
 				27681B1F71AD3CA0DC6A4566 /* libPods.a in Frameworks */,
 			);
@@ -249,7 +249,7 @@
 		69889A5A43B61404776A2A34 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C670921A1C08325100AE06F3 /* CloudKit.framework */,
+				C68764FB1C1A4F9100A3FC4E /* CloudKit.framework */,
 				C67D86581BBF4E7400B2C4CF /* MapKit.framework */,
 				79A9B1888187AEF86278BB82 /* libPods.a */,
 			);
