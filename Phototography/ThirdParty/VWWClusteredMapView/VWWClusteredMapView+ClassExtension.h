@@ -12,7 +12,7 @@
 
 @interface VWWClusteredMapView () 
 @property (nonatomic, strong) MKMapView *mapView;
-@property (nonatomic, strong) NSMutableArray *clusteredAnnotations;
+@property (nonatomic, strong) NSMutableArray *clusteredAnnotations; // an array of NSSets
 @property (nonatomic, strong) NSMutableSet *hiddenSections;
 @property (nonatomic, strong) NSMutableArray *lastClusteredAnnotations;
 

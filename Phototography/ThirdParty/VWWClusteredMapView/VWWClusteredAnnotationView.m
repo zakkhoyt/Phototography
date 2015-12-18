@@ -86,22 +86,13 @@ typedef void(^VWWClusteredAnnotationViewEmptyBlock)(void);
 }
 -(void)animateAddGrowStaggered:(BOOL)staggered{
     NSTimeInterval delay = staggered ? [self staggeredDelay] : 0;
-    
-    double frameDuration = 1.0/4.0;
     self.transform = CGAffineTransformMakeScale(0.01, 0.01);
-    [UIView animateKeyframesWithDuration:self.addAnnotationAnimationDuration delay:delay options:UIViewKeyframeAnimationOptionCalculationModeCubicPaced animations:^{
-        [UIView addKeyframeWithRelativeStartTime:0*frameDuration relativeDuration:frameDuration animations:^{
-            self.transform = CGAffineTransformMakeScale(0.05, 0.05);
-        }];
-        [UIView addKeyframeWithRelativeStartTime:1*frameDuration relativeDuration:frameDuration animations:^{
-            self.transform = CGAffineTransformMakeScale(1.5, 1.5);
-        }];
-        [UIView addKeyframeWithRelativeStartTime:2*frameDuration relativeDuration:frameDuration animations:^{
-            self.transform = CGAffineTransformMakeScale(0.9, 0.9);
-        }];
-        [UIView addKeyframeWithRelativeStartTime:3*frameDuration relativeDuration:frameDuration animations:^{
-            self.transform = CGAffineTransformMakeScale(1.0, 1.0);
-        }];
+    [UIView animateWithDuration:self.addAnnotationAnimationDuration
+                          delay:delay
+         usingSpringWithDamping:0.25
+          initialSpringVelocity:5.0
+                        options:UIViewAnimationOptionCurveEaseOut animations:^{
+        self.transform = CGAffineTransformMakeScale(1.0, 1.0);
     } completion:NULL];
 }
 

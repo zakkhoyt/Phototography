@@ -21,8 +21,11 @@
         return;
     }
     
+    
     if([self.lock tryLock] == YES){
     
+//        self.lastClusteredAnnotations = self.clusteredAnnotations;
+        
         double scale = self.bounds.size.width / self.visibleMapRect.size.width;
         
         NSMutableSet *toAddFromAllSections = [[NSMutableSet alloc]init];
@@ -132,34 +135,37 @@
 
 -(void)setAnimationPointsForAnnotationView:(VWWClusteredAnnotationView*)annotationView{
     
-    //    VWWClusteredAnnotation *annotation = annotationView.annotation;
-    //    if([annotation isKindOfClass:[VWWClusteredAnnotation class]] == NO){
-    //        // TODO: Assert
-    //        return;
-    //    }
-    //
-    //    NSSet *annotationStacks = [NSSet setWithArray:annotation.annotations];
-    //
-    //
-    //    // Find splits
-    //    for(VWWClusteredAnnotation *lastAnnotation in self.lastClusteredAnnotations){
-    //        NSSet *lastClusteredAnnotationstacks = [NSSet setWithArray:lastAnnotation.annotations];
-    //        if([annotationStacks isSubsetOfSet:lastClusteredAnnotationstacks]){
-    //            CGPoint fromPoint = [self.mapView convertCoordinate:lastAnnotation.coordinate toPointToView:self];
-    //            annotationView.splitFromPoint = fromPoint;
-    //            break;
-    //        }
-    //    }
-    //
-    //    // Find merges
-    //    for(VWWClusteredAnnotation *lastAnnotation in self.lastClusteredAnnotations){
-    //        NSSet *lastClusteredAnnotationstacks = [NSSet setWithArray:lastAnnotation.annotations];
-    //        if([lastClusteredAnnotationstacks isSubsetOfSet:annotationStacks]){
-    //            CGPoint toPoint = [self.mapView convertCoordinate:annotation.coordinate toPointToView:self];
-    //            annotationView.mergeToPoint = toPoint;
-    //            break;
-    //        }
-    //    }
+//    VWWClusteredAnnotation *annotation = annotationView.annotation;
+//    if([annotation isKindOfClass:[VWWClusteredAnnotation class]] == NO){
+//        // TODO: Assert
+//        return;
+//    }
+//    
+//    NSSet *annotationStacks = [NSSet setWithArray:annotation.annotations];
+//    // Find splits
+//    for(VWWClusteredAnnotation *lastAnnotation in self.lastClusteredAnnotations){
+//        NSSet *lastClusteredAnnotationstacks = [NSSet setWithArray:lastAnnotation.annotations];
+//        if([annotationStacks isSubsetOfSet:lastClusteredAnnotationstacks]){
+//            CGPoint fromPoint = [self.mapView convertCoordinate:lastAnnotation.coordinate toPointToView:self];
+//            annotationView.splitFromPoint = fromPoint;
+//            break;
+//        }
+//    }
+//    [self.lastClusteredAnnotations enumerateObjectsUsingBlock:^(NSSet* _Nonnull lastSet, NSUInteger idx, BOOL * _Nonnull stop) {
+//        [lastSet enumerateObjectsUsingBlock:^(VWWClusteredAnnotation*  _Nonnull lastAnnotation, BOOL * _Nonnull stop) {
+//            NSLog(@"");
+//        }];
+//    }];
+    
+//    // Find merges
+//    for(VWWClusteredAnnotation *lastAnnotation in self.lastClusteredAnnotations){
+//        NSSet *lastClusteredAnnotationstacks = [NSSet setWithArray:lastAnnotation.annotations];
+//        if([lastClusteredAnnotationstacks isSubsetOfSet:annotationStacks]){
+//            CGPoint toPoint = [self.mapView convertCoordinate:annotation.coordinate toPointToView:self];
+//            annotationView.mergeToPoint = toPoint;
+//            break;
+//        }
+//    }
     
 }
 
