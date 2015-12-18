@@ -29,7 +29,8 @@
 }
 
 
-
+// If set use average of all child annotations. Else use the first
+#define ZH_COORDINATE_QUAD_TREE_CLUSTER_AVERAGE 1
 - (NSArray *)clusteredAnnotationsWithinMapRect:(MKMapRect)rect withZoomScale:(double)zoomScale
 {
     double cellSize = [self cellSizeForZoomScale:zoomScale];
@@ -43,6 +44,7 @@
     NSMutableArray *clusteredAnnotations = [[NSMutableArray alloc] init];
     for (NSInteger x = minX; x <= maxX; x++) {
         for (NSInteger y = minY; y <= maxY; y++) {
+#if defined(ZH_COORDINATE_QUAD_TREE_CLUSTER_AVERAGE)
             MKMapRect mapRect = MKMapRectMake(x / scaleFactor, y / scaleFactor, 1.0 / scaleFactor, 1.0 / scaleFactor);
             
             __block double totalX = 0;
@@ -51,12 +53,12 @@
             
             NSMutableArray *annotations = [[NSMutableArray alloc]init];
             VWWBoundingBox *boundingBox = [self boundingBoxForMapRect:mapRect];
-            [VWWQuadTree quadTree:self.root gatherDataInRange:boundingBox block:^(VWWQuadTreeNodeData *data) {
+            [VWWQuadTree quadTree:self.root gatherDataInRange:boundingBox block:^(VWWQuadTreeNodeData *nodeData) {
                 count++;
-                totalX += data.coordinate.latitude;
-                totalY += data.coordinate.longitude;
+                totalX += nodeData.coordinate.latitude;
+                totalY += nodeData.coordinate.longitude;
                 
-                NSObject* annotation = data.data;
+                NSObject* annotation = nodeData.data;
                 [annotations addObject:annotation];
             }];
             
@@ -65,6 +67,30 @@
 
             VWWClusteredAnnotation *annotation = [[VWWClusteredAnnotation alloc]initWithCoordinate:coordinate annotations:annotations];
             [clusteredAnnotations addObject:annotation];
+#else
+            MKMapRect mapRect = MKMapRectMake(x / scaleFactor, y / scaleFactor, 1.0 / scaleFactor, 1.0 / scaleFactor);
+            
+            __block double firstX = 0;
+            __block double firstY = 0;
+            __block int count = 0;
+            
+            NSMutableArray *annotations = [[NSMutableArray alloc]init];
+            VWWBoundingBox *boundingBox = [self boundingBoxForMapRect:mapRect];
+            [VWWQuadTree quadTree:self.root gatherDataInRange:boundingBox block:^(VWWQuadTreeNodeData *nodeData) {
+                count++;
+                if(firstX == 0) {
+                    firstX += nodeData.coordinate.latitude;
+                    firstY += nodeData.coordinate.longitude;
+                }
+                NSObject* annotation = nodeData.data;
+                [annotations addObject:annotation];
+            }];
+            
+            CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(firstX, firstY);
+
+            VWWClusteredAnnotation *annotation = [[VWWClusteredAnnotation alloc]initWithCoordinate:coordinate annotations:annotations];
+            [clusteredAnnotations addObject:annotation];
+#endif
         }
     }
     
