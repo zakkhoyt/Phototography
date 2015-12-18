@@ -13,18 +13,27 @@
 #import "ZHAssetAnnotationView.h"
 #import "ZHAssetGroupViewController.h"
 #import "ZHAsset.h"
+#import "GHContextMenuView.h"
 
 static NSString *SegueMapToAssetGroup = @"SegueMapToAssetGroup";
 
 @interface ZHMapViewController ()
 @property (weak, nonatomic) IBOutlet VWWClusteredMapView *clusteredMapView;
 @property (nonatomic, strong) NSMutableArray *items;
+@property (nonatomic, strong) GHContextMenuView* contextMenuView;
 @end
 
 @interface ZHMapViewController (VWWClusteredMapViewDataSource) <VWWClusteredMapViewDataSource>
 @end
 
 @interface ZHMapViewController (VWWClusteredMapViewDelegate) <VWWClusteredMapViewDelegate>
+@end
+
+@interface ZHMapViewController (GHContextOverlayViewDelegate) <GHContextOverlayViewDelegate>
+@end
+
+@interface ZHMapViewController (GHContextOverlayViewDataSource) <GHContextOverlayViewDataSource>
+-(void)setupContextMenu;
 @end
 
 
@@ -42,6 +51,9 @@ static NSString *SegueMapToAssetGroup = @"SegueMapToAssetGroup";
     self.clusteredMapView.removeAnimationType = VWWClusteredMapViewAnnotationRemoveAnimationAutomatic;
     self.clusteredMapView.showsUserLocation = YES;
     [self refreshMapView];
+    
+    
+    [self setupContextMenu];
 
 }
 
@@ -139,10 +151,143 @@ static NSString *SegueMapToAssetGroup = @"SegueMapToAssetGroup";
     VWWClusteredAnnotation *annotation = (VWWClusteredAnnotation*)view.annotation;
     NSArray *assets = [annotation.annotations valueForKeyPath:@"asset"];
     [self performSegueWithIdentifier:SegueMapToAssetGroup sender:assets];
-    
-    
 }
 
 @end
+
+
+
+@implementation ZHMapViewController (GHContextOverlayViewDataSource)
+-(void)setupContextMenu{
+    self.contextMenuView = [[GHContextMenuView alloc] initWithFrame:self.view.bounds];
+    self.contextMenuView.dataSource = self;
+    self.contextMenuView.delegate = self;
+
+    
+    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self.contextMenuView action:@selector(longPressDetected:)];
+    [self.view addGestureRecognizer:longPressGesture];
+}
+#pragma mark IBActions
+-(void)longPressDetected:(UILongPressGestureRecognizer*)sender{
+
+}
+
+
+#pragma mark YALContextMenuTableViewDelegate
+- (NSInteger) numberOfMenuItems {
+    return 4;
+}
+
+-(UIImage*) imageForItemAtIndex:(NSInteger)index
+{
+    NSString* imageName = nil;
+    switch (index) {
+            break;
+        case 0:{
+            return [UIImage imageNamed:@"ic_location"];
+        }
+            break;
+            
+        case 1:{
+            return [UIImage imageNamed:@"ic_zoom_in"];
+        }
+            break;
+
+        case 2:{
+            return [UIImage imageNamed:@"ic_zoom_out"];
+        }
+
+        case 3:{
+            return [UIImage imageNamed:@"ic_globe"];
+        }
+
+            break;
+
+        default:
+            break;
+    }
+    return [UIImage imageNamed:imageName];
+}
+
+
+@end
+
+
+@implementation ZHMapViewController (GHContextOverlayViewDelegate)
+
+- (void) didSelectItemAtIndex:(NSInteger)selectedIndex forMenuAtPoint:(CGPoint)point{
+    switch (selectedIndex) {
+        case 0:{
+//            MKCoordinateRegion region = MKCoordinateRegionMake(self.clusteredMapView.userLocation.coordinate, MKCoordinateSpanMake(0.005, 0.005));
+//            [self.clusteredMapView setRegion:region animated:YES];
+            [self.clusteredMapView setCenterCoordinate:self.clusteredMapView.userLocation.coordinate animated:YES];
+
+        }
+            break;
+        case 1:{
+            CLLocationCoordinate2D coordinate = [self.clusteredMapView convertPoint:point toCoordinateFromView:self.clusteredMapView];
+            MKCoordinateRegion region = MKCoordinateRegionMake(coordinate, MKCoordinateSpanMake(0.005, 0.005));
+            [self.clusteredMapView setRegion:region animated:YES];
+        }
+            break;
+            
+        case 2:{
+            MKCoordinateRegion region = MKCoordinateRegionMake(self.clusteredMapView.region.center, MKCoordinateSpanMake(45, 90));
+            [self.clusteredMapView setRegion:region animated:YES];
+        }
+            break;
+            
+        case 3:{
+            UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"Map Type" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            
+            NSString *mapString = nil;
+            if(self.clusteredMapView.mapType == MKMapTypeStandard){
+                mapString = @"📍 Map 📍";
+            } else {
+                mapString = @"Map";
+            }
+            [ac addAction:[UIAlertAction actionWithTitle:mapString style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                self.clusteredMapView.mapType = MKMapTypeStandard;
+            }]];
+            
+            NSString *satelliteString = nil;
+            if(self.clusteredMapView.mapType == MKMapTypeSatellite ||
+               self.clusteredMapView.mapType == MKMapTypeSatelliteFlyover){
+                satelliteString = @"📍 Satellite 📍";
+            } else {
+                satelliteString = @"Satellite";
+            }
+            
+            [ac addAction:[UIAlertAction actionWithTitle:satelliteString style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                self.clusteredMapView.mapType = MKMapTypeSatelliteFlyover;
+            }]];
+            
+            NSString *hybridString = nil;
+            if(self.clusteredMapView.mapType == MKMapTypeHybrid ||
+               self.clusteredMapView.mapType == MKMapTypeHybridFlyover){
+                hybridString = @"📍 Hybrid 📍";
+            } else {
+                hybridString = @"Hybrid";
+            }
+            
+            [ac addAction:[UIAlertAction actionWithTitle:hybridString style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                self.clusteredMapView.mapType = MKMapTypeHybridFlyover;
+            }]];
+            
+            [ac addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+            }]];
+            
+            [self presentViewController:ac animated:YES completion:NULL];
+            
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+@end
+
 
 

@@ -29,6 +29,7 @@
 @property (nonatomic, strong) VWWQuadTreeNode *southWest;
 @property (nonatomic, strong) VWWQuadTreeNode *southEast;
 @property (nonatomic, strong) VWWBoundingBox *boundingBox;
+// TODO MAP: no need for bucketCapacity in obj-c. This is a byproduct of the port from C code. Remove with caution.
 @property (nonatomic) NSInteger bucketCapacity;
 @property (nonatomic, strong) NSMutableArray *points; // Contains VWWQuadTreeNodeData*
 @property (nonatomic) NSInteger count;

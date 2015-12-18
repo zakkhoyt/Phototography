@@ -148,7 +148,7 @@
                   moduleName = "Phototography"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zakkhoyt/Code/repositories/vwwGithub/Phototography/Phototography/ZHCloudManager.m"
-                  timestampString = "472095612.092012"
+                  timestampString = "472160938.20199"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
@@ -163,7 +163,7 @@
                   moduleName = "Phototography"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zakkhoyt/Code/repositories/vwwGithub/Phototography/Phototography/ZHCloudManager.m"
-                  timestampString = "472095612.09215"
+                  timestampString = "472160938.202128"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
@@ -1024,7 +1024,7 @@
                   moduleName = "Phototography"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zakkhoyt/Code/repositories/vwwGithub/Phototography/Phototography/ZHCloudManager.m"
-                  timestampString = "472095612.095143"
+                  timestampString = "472160938.205433"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "224"
@@ -1039,7 +1039,7 @@
                   moduleName = "Phototography"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zakkhoyt/Code/repositories/vwwGithub/Phototography/Phototography/ZHCloudManager.m"
-                  timestampString = "472095612.095267"
+                  timestampString = "472160938.205567"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "224"
@@ -1748,6 +1748,70 @@
             startingLineNumber = "27"
             endingLineNumber = "27"
             landmarkName = "-refreshClusterableAnnotations"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Phototography/ZHMapViewController.m"
+            timestampString = "472160558.107203"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "-numberOfMenuItems"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Phototography/ZHMapViewController.m"
+            timestampString = "472160558.107203"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
+            landmarkName = "-imageForItemAtIndex:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Phototography/ThirdParty/GHContextMenu/GHContextMenuView.m"
+            timestampString = "472109724.571364"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "-touchesBegan:withEvent:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Phototography/ZHMapViewController.m"
+            timestampString = "472160586.548267"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

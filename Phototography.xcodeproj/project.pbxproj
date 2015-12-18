@@ -59,6 +59,13 @@
 		C696B6781C0AA0C400F21D4D /* ZHAssetImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C696B6771C0AA0C400F21D4D /* ZHAssetImageView.m */; };
 		C696B67B1C0AAD9A00F21D4D /* ZHUpdatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C696B67A1C0AAD9A00F21D4D /* ZHUpdatesViewController.m */; };
 		C696B67F1C0AADE700F21D4D /* ZHLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C696B67E1C0AADE700F21D4D /* ZHLocationManager.m */; };
+		C6B4015D1C23CDA600DED8E4 /* SnapAnnotationImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C6B401541C23CDA600DED8E4 /* SnapAnnotationImage.png */; };
+		C6B4015E1C23CDA600DED8E4 /* SnapAnnotationImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6B401551C23CDA600DED8E4 /* SnapAnnotationImage@2x.png */; };
+		C6B4015F1C23CDA600DED8E4 /* SnapAnnotationImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6B401561C23CDA600DED8E4 /* SnapAnnotationImage@3x.png */; };
+		C6B401601C23CDA600DED8E4 /* VWWSnapAnnotationCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B401581C23CDA600DED8E4 /* VWWSnapAnnotationCollectionViewCell.m */; };
+		C6B401611C23CDA600DED8E4 /* VWWSnapAnnotationsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B4015A1C23CDA600DED8E4 /* VWWSnapAnnotationsCollectionView.m */; };
+		C6B401621C23CDA600DED8E4 /* VWWSnapAnnotationsCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B4015C1C23CDA600DED8E4 /* VWWSnapAnnotationsCollectionViewLayout.m */; };
+		C6B401691C23CF5C00DED8E4 /* GHContextMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B401681C23CF5C00DED8E4 /* GHContextMenuView.m */; };
 		C6B829781BC31CE800782468 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6B829771BC31CE800782468 /* Map.storyboard */; };
 		C6B8297B1BC31D0E00782468 /* ZHMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B8297A1BC31D0E00782468 /* ZHMapViewController.m */; };
 		C6B829851BC3202A00782468 /* ZHAssetAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B829821BC3202A00782468 /* ZHAssetAnnotation.m */; };
@@ -184,6 +191,17 @@
 		C696B67A1C0AAD9A00F21D4D /* ZHUpdatesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHUpdatesViewController.m; sourceTree = "<group>"; };
 		C696B67D1C0AADE700F21D4D /* ZHLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLocationManager.h; sourceTree = "<group>"; };
 		C696B67E1C0AADE700F21D4D /* ZHLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLocationManager.m; sourceTree = "<group>"; };
+		C6B401541C23CDA600DED8E4 /* SnapAnnotationImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SnapAnnotationImage.png; sourceTree = "<group>"; };
+		C6B401551C23CDA600DED8E4 /* SnapAnnotationImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SnapAnnotationImage@2x.png"; sourceTree = "<group>"; };
+		C6B401561C23CDA600DED8E4 /* SnapAnnotationImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SnapAnnotationImage@3x.png"; sourceTree = "<group>"; };
+		C6B401571C23CDA600DED8E4 /* VWWSnapAnnotationCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWSnapAnnotationCollectionViewCell.h; sourceTree = "<group>"; };
+		C6B401581C23CDA600DED8E4 /* VWWSnapAnnotationCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWSnapAnnotationCollectionViewCell.m; sourceTree = "<group>"; };
+		C6B401591C23CDA600DED8E4 /* VWWSnapAnnotationsCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWSnapAnnotationsCollectionView.h; sourceTree = "<group>"; };
+		C6B4015A1C23CDA600DED8E4 /* VWWSnapAnnotationsCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWSnapAnnotationsCollectionView.m; sourceTree = "<group>"; };
+		C6B4015B1C23CDA600DED8E4 /* VWWSnapAnnotationsCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWSnapAnnotationsCollectionViewLayout.h; sourceTree = "<group>"; };
+		C6B4015C1C23CDA600DED8E4 /* VWWSnapAnnotationsCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWSnapAnnotationsCollectionViewLayout.m; sourceTree = "<group>"; };
+		C6B401671C23CF5C00DED8E4 /* GHContextMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHContextMenuView.h; sourceTree = "<group>"; };
+		C6B401681C23CF5C00DED8E4 /* GHContextMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHContextMenuView.m; sourceTree = "<group>"; };
 		C6B829771BC31CE800782468 /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		C6B829791BC31D0E00782468 /* ZHMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHMapViewController.h; sourceTree = "<group>"; };
 		C6B8297A1BC31D0E00782468 /* ZHMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHMapViewController.m; sourceTree = "<group>"; };
@@ -608,6 +626,39 @@
 			name = Location;
 			sourceTree = "<group>";
 		};
+		C6B401521C23CDA600DED8E4 /* VWWSnapAnnotations */ = {
+			isa = PBXGroup;
+			children = (
+				C6B401531C23CDA600DED8E4 /* Images */,
+				C6B401571C23CDA600DED8E4 /* VWWSnapAnnotationCollectionViewCell.h */,
+				C6B401581C23CDA600DED8E4 /* VWWSnapAnnotationCollectionViewCell.m */,
+				C6B401591C23CDA600DED8E4 /* VWWSnapAnnotationsCollectionView.h */,
+				C6B4015A1C23CDA600DED8E4 /* VWWSnapAnnotationsCollectionView.m */,
+				C6B4015B1C23CDA600DED8E4 /* VWWSnapAnnotationsCollectionViewLayout.h */,
+				C6B4015C1C23CDA600DED8E4 /* VWWSnapAnnotationsCollectionViewLayout.m */,
+			);
+			path = VWWSnapAnnotations;
+			sourceTree = "<group>";
+		};
+		C6B401531C23CDA600DED8E4 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C6B401541C23CDA600DED8E4 /* SnapAnnotationImage.png */,
+				C6B401551C23CDA600DED8E4 /* SnapAnnotationImage@2x.png */,
+				C6B401561C23CDA600DED8E4 /* SnapAnnotationImage@3x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		C6B401661C23CF5C00DED8E4 /* GHContextMenu */ = {
+			isa = PBXGroup;
+			children = (
+				C6B401671C23CF5C00DED8E4 /* GHContextMenuView.h */,
+				C6B401681C23CF5C00DED8E4 /* GHContextMenuView.m */,
+			);
+			path = GHContextMenu;
+			sourceTree = "<group>";
+		};
 		C6B8297C1BC31D1200782468 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -634,6 +685,8 @@
 		C6BBCA251BC31C0A009D6887 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				C6B401661C23CF5C00DED8E4 /* GHContextMenu */,
+				C6B401521C23CDA600DED8E4 /* VWWSnapAnnotations */,
 				C6BBCA261BC31C0A009D6887 /* VWWClusteredMapView */,
 			);
 			path = ThirdParty;
@@ -819,12 +872,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6B4015D1C23CDA600DED8E4 /* SnapAnnotationImage.png in Resources */,
 				C6BBCA3B1BC31C0A009D6887 /* Ideas.txt in Resources */,
 				C62E2E841C0C37620026695C /* Photographer.storyboard in Resources */,
 				C67D86441BBF429800B2C4CF /* LaunchScreen.storyboard in Resources */,
 				C62E2E7A1C0C31EA0026695C /* Debug.storyboard in Resources */,
 				C6C0996A1C0CF864004B862F /* todo.txt in Resources */,
 				C696B6601C0A977900F21D4D /* ZHYouViewControllerFriendsHeaderView.xib in Resources */,
+				C6B4015F1C23CDA600DED8E4 /* SnapAnnotationImage@3x.png in Resources */,
+				C6B4015E1C23CDA600DED8E4 /* SnapAnnotationImage@2x.png in Resources */,
 				C6439A341C090A40006BCF73 /* schema.txt in Resources */,
 				C67D86411BBF429800B2C4CF /* Assets.xcassets in Resources */,
 				C6439A361C0930CC006BCF73 /* FindFriends.storyboard in Resources */,
@@ -876,6 +932,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6B401621C23CDA600DED8E4 /* VWWSnapAnnotationsCollectionViewLayout.m in Sources */,
 				C6C099711C0D19AC004B862F /* ZHAvatarPickerCollectionViewController.m in Sources */,
 				C67D86961BBF7EF800B2C4CF /* UIColor+ZH.m in Sources */,
 				C67D86A11BBF7EF800B2C4CF /* UIViewController+AlertController.m in Sources */,
@@ -885,6 +942,7 @@
 				C67D869F1BBF7EF800B2C4CF /* UIFont+ZH.m in Sources */,
 				C62E2E6A1C0BD4E50026695C /* ZHUpdateViewController.m in Sources */,
 				C6C099671C0CF42F004B862F /* ZHUserAssetAnnotationView.m in Sources */,
+				C6B401611C23CDA600DED8E4 /* VWWSnapAnnotationsCollectionView.m in Sources */,
 				C67D86981BBF7EF800B2C4CF /* NSDate+ZH.m in Sources */,
 				C6439A3D1C0962C4006BCF73 /* ZHYouViewController.m in Sources */,
 				C62E2E701C0BF64D0026695C /* ZHTabBarController.m in Sources */,
@@ -916,6 +974,7 @@
 				C62E2E7D1C0C32090026695C /* ZHDebugTableViewController.m in Sources */,
 				C6BBCA431BC31C0A009D6887 /* VWWClusteredMapView.m in Sources */,
 				C6439A461C097085006BCF73 /* ZHTableViewController.m in Sources */,
+				C6B401601C23CDA600DED8E4 /* VWWSnapAnnotationCollectionViewCell.m in Sources */,
 				C6BBCA3D1BC31C0A009D6887 /* VWWCoordinateQuadTree.m in Sources */,
 				C67D86991BBF7EF800B2C4CF /* NSDate+Utilities.m in Sources */,
 				C696B6671C0A9B9600F21D4D /* ZHYouViewControllerUserDetailHeaderView.m in Sources */,
@@ -930,6 +989,7 @@
 				C6BBCA3F1BC31C0A009D6887 /* VWWAnnotationFanoutView.m in Sources */,
 				C67D869A1BBF7EF800B2C4CF /* NSError+ZH.m in Sources */,
 				C62E2E811C0C374F0026695C /* ZHPhotographerViewController.m in Sources */,
+				C6B401691C23CF5C00DED8E4 /* GHContextMenuView.m in Sources */,
 				C670921E1C08330100AE06F3 /* ZHCloudManager.m in Sources */,
 				C67D86331BBF429800B2C4CF /* main.m in Sources */,
 				C67D86971BBF7EF800B2C4CF /* CLLocation+ZH.m in Sources */,
